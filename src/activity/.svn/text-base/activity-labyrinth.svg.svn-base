@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+  <!ENTITY fill_color "#000000">
+  <!ENTITY stroke_color "#000000">
+]>
+<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" >
+  <g
+     style="opacity:1;display:inline"
+     id="layer1">
+    <g
+       transform="translate(0,-5.297347)"
+       id="g2859">
+      <path
+         d="M 47.751322 29.629629 A 21.097883 14.285714 0 1 1  5.5555553,29.629629 A 21.097883 14.285714 0 1 1  47.751322 29.629629 z"
+         transform="matrix(1.104512,0,0,1.158977,-4.351752,-2.94587)"
+         style="fill:none;fill-opacity:1;stroke:&stroke_color;;stroke-width:3"
+         id="path1933" />
+      <path
+         d="M -2.9100528,26.124338 A 7.1428571,10.119047 0 1 1 -17.195767,26.124338 L -10.05291,26.124338 z"
+         transform="matrix(-0.695067,0.461883,-0.461883,-0.695067,13.13211,42.35239)"
+         style="fill:&fill_color;;fill-opacity:1;stroke:&stroke_color;;stroke-width:3;display:inline"
+         id="path1941" />
+      <path
+         d="M -8.4656081,12.301587 A 6.8783069,4.8941798 0 1 1 -22.222222,12.301587 L -15.343915,12.301587 z"
+         transform="matrix(-0.57481,-0.43394,0.670662,-0.888376,25.67699,22.94229)"
+         style="fill:&fill_color;;fill-opacity:1;stroke:&stroke_color;;stroke-width:3"
+         id="path1944" />
+      <path
+         d="M -3.3068781 32.870369 A 7.7380953 7.2089949 0 1 1  -18.783069,32.870369 A 7.7380953 7.2089949 0 1 1  -3.3068781 32.870369 z"
+         transform="matrix(0.939214,-0.594111,0.409467,0.64249,12.78728,5.189571)"
+         style="fill:&fill_color;;fill-opacity:1;stroke:&stroke_color;;stroke-width:2"
+         id="path1948" />
+      <path
+         d="M -19.973545 20.171957 A 4.5634923 3.6375661 0 1 1  -29.100529,20.171957 A 4.5634923 3.6375661 0 1 1  -19.973545 20.171957 z"
+         transform="matrix(0.515117,0,0,0.515117,44.66402,26.05088)"
+         style="fill:&fill_color;;fill-opacity:1;stroke:&stroke_color;;stroke-width:2"
+         id="path1950" />
+      <path
+         d="M -9.9267902 20.63492 A 10.575855 7.955337 0 1 1  -31.078501,20.63492 A 10.575855 7.955337 0 1 1  -9.9267902 20.63492 z"
+         transform="matrix(0.57134,0.11514,0.310345,0.640507,47.33499,21.22794)"
+         style="fill:&fill_color;;fill-opacity:1;stroke:&stroke_color;;stroke-width:2"
+         id="path1952" />
+    </g>
+  </g>
+</svg>
