@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 #
-#   Author : Deepank Gupta (deepankgupta@gmail.com)
+#   Author : Mohit Taneja (mohitgenii@gmail.com)
 #   Date : 25/02/2008 
 #
 #   This program is free software; you can redistribute it and/or modify
@@ -20,43 +20,102 @@
 
 class Indicator:
     ''' A base class for one of the game indicators such as health, nutrition,
-    and so on. Each indicator has a dictionary of parameters->weight, which are
+    and so on. Each indicator has a value e.g if health is 25% its value is 25
+    and a dictionary of parameters->weight, which are
     responsible for indicator value. By parameter we mean the facilities and
     resources which affect the value of the indicator.
     '''
-
+    
 def __init__(self, value, pdict):
+
+    ''' Constructor which takes the initial value of the indicator in variable value
+    and pdict as a dictionary of resources affecting the indicator
+    '''
+
+    self.maximum_value = 999
     self.set_value(value)
     self.set_parameters(pdict)
-        
+
+ 
+
+def set_max(self, max_value=999):                                           # chaNGE; NEW METHOD to add bounds
+
+    ''' methods to assign maximum value that can be assigned to a resource
+    '''
+    
+    self.maximum_value = max_value
+
+
 # value methods
+
 def get_value(self):
+    
+    ''' Returns the value of the resource
+    '''
+
     return self._value
 
 def set_value(self, value):
-    self._value = value
 
-# related parameters methods.
+    ''' Sets the value of the resource if its greater than the maximum value
+    it makes it equal to the maximum value and if it is less than 0 than makes it 0
+    '''
+    
+    if(value <= self.maximum_value and value >= 0):
+        self._value = value
+        
+    elif(value<0):
+        self._value=0
+        
+    elif(value>self.maximum_value):
+        self._value=self.maximum_value
+
+# parameter  methods
 def set_parameters(self, pdict):
+
+    ''' Initializes the parameters dictionary that affects the value of an indicator
+    '''
     self._parameters = pdict
 
-def add_parameter(self, parameter, weight):
-    self._parameters[par] = weight
-    
+                               
+def add_parameter(self, parameter, weight):                                #earlier there was an error in this code most probably
+
+    '''adds a new parameter to the dictionary, if a parameter and its value is passed to the function
+    '''
+    self._parameters[parameter] = weight
+  
+
 def rem_parameter(self, parameter):
+
+    '''to remove a parameter from the dictionary
+    '''
     del self._parameters[parameter]
 
-#This function is called to change the weight of a particular parameter.
-def change_weight(self, parameter, weight):
-    self._parameters[parameter] = weight
 
-#This function is called to update the value after a turn. 
+def change_weight(self, parameter, weight):
+
+     '''This function is called to change the weight of a particular parameter.
+     '''
+     self._parameters[parameter] = weight
+        
+ 
 def turn(self, parameter_values):
-    #parameter_values is a list of values of all the resources and facility
-    #quantities.
+    
+    '''This function is called to update the value after a turn.
+    parameter_values is a dictionary of parameters and there values
+    '''
+    
     for key in parameter_values.keys():
+
         if(self._parameters.has_key(key)):
             self._value = self._value + (parameter_values[key] * self._parameters[key])
+
+        if(self._value>self.maximum_value):
+            self._value = self.maximum_value
+
+        if(self._value<0):
+            self._value=0
+            
     return self._value
 
 
