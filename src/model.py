@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 #
-#   Author : Mohit Taneja (mohitgenii@gmail.com)
+#   Author : Deepank Gupta (deepankgupta@gmail.com)
 #   Date : 25/02/2008 
 #
 #   This program is free software; you can redistribute it and/or modify
@@ -17,106 +17,131 @@
 #   along with this program; if not, write to the Free Software
 #   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #
+#
+#   CHANGE LOG:
+#   LAST UPDATED 3/06/08
+#    BY - Mohit Taneja (mohitgenii@gmail.com)
+#
+#   TODO : ALL THE CONSTANTS TO BE TRANSFERRED TO THE CONSTANTS FILE
+
+
+
+
+
+import initial_constants
+import indicators_constants
+import facilities_constants
+import Exceptions_classes
 
 class Indicator:
     ''' A base class for one of the game indicators such as health, nutrition,
-    and so on. Each indicator has a value e.g if health is 25% its value is 25
+    and so on. Each indicator has a value e.g if health is 25% its value is 250
     and a dictionary of parameters->weight, which are
     responsible for indicator value. By parameter we mean the facilities and
     resources which affect the value of the indicator.
     '''
+
+    MAX_VAL_INDICATOR = 1000                                                        # TODO
     
-def __init__(self, value, pdict):
+    def __init__(self, name, value, pdict):
+        ''' Constructor which takes the name, initial value of the indicator in variable value
+        and pdict as a dictionary of parameters affecting the indicator
+        it is assumed that the weights are the ratios i.e they are b/w 0and 1
+        '''                                                                         # ASSUMPTION
 
-    ''' Constructor which takes the initial value of the indicator in variable value
-    and pdict as a dictionary of resources affecting the indicator
-    '''
-
-    self.maximum_value = 999
-    self.set_value(value)
-    self.set_parameters(pdict)
+        self.name = name
+        self.maximum_value = MAX_VAL_INDICATOR
+        self.set_value(value)
+        self.set_parameters(pdict)
 
  
 
-def set_max(self, max_value=999):                                           # chaNGE; NEW METHOD to add bounds
+    def set_max(self, max_value = MAX_VAL_INDICATOR):                                         
+        ''' methods to assign maximum value that can be assigned to a indicator
+        '''
+     
+        self.maximum_value = max_value
 
-    ''' methods to assign maximum value that can be assigned to a resource
-    '''
+
+    # value methods
+
+    def get_name(self):
+        ''' Returns the name of the indicator
+        '''
+
+        return self.name
+
+    def get_value(self):
+        ''' Returns the value of the indicator
+        '''
+
+        return self._value
+
+    def set_value(self, value):
+        ''' Sets the value of the indicator if its greater than the maximum value
+        it makes it equal to the maximum value and if it is less than 0 than makes it 0
+        '''
     
-    self.maximum_value = max_value
-
-
-# value methods
-
-def get_value(self):
-    
-    ''' Returns the value of the resource
-    '''
-
-    return self._value
-
-def set_value(self, value):
-
-    ''' Sets the value of the resource if its greater than the maximum value
-    it makes it equal to the maximum value and if it is less than 0 than makes it 0
-    '''
-    
-    if(value <= self.maximum_value and value >= 0):
-        self._value = value
+        if(value <= self.maximum_value and value >= 0):
+            self._value = value
         
-    elif(value<0):
-        self._value=0
+        elif(value<0):
+            self._value=0
         
-    elif(value>self.maximum_value):
-        self._value=self.maximum_value
+        elif(value>self.maximum_value):
+            self._value=self.maximum_value
 
-# parameter  methods
-def set_parameters(self, pdict):
+    # parameter  methods
 
-    ''' Initializes the parameters dictionary that affects the value of an indicator
-    '''
-    self._parameters = pdict
+    def set_parameters(self, pdict):
+        ''' Initializes the parameters dictionary that affects the value of an indicator
+        '''
+    
+        self._parameters = pdict
 
                                
-def add_parameter(self, parameter, weight):                                #earlier there was an error in this code most probably
-
-    '''adds a new parameter to the dictionary, if a parameter and its value is passed to the function
-    '''
-    self._parameters[parameter] = weight
+    def add_parameter(self, parameter, weight):                                
+        '''adds a new parameter to the dictionary, if a parameter and its value is passed
+        to the function
+        '''
+    
+        self._parameters[parameter] = weight
   
 
-def rem_parameter(self, parameter):
+    def rem_parameter(self, parameter):
+        '''to remove a parameter from the dictionary
+        '''
+    
+        del self._parameters[parameter]
 
-    '''to remove a parameter from the dictionary
-    '''
-    del self._parameters[parameter]
 
-
-def change_weight(self, parameter, weight):
-
-     '''This function is called to change the weight of a particular parameter.
-     '''
-     self._parameters[parameter] = weight
+    def change_weight(self, parameter, weight):
+        '''This function is called to change the weight of a particular parameter.
+        '''
+     
+        self._parameters[parameter] = weight
         
  
-def turn(self, parameter_values):
+    def turn(self, parameter_values):
+        '''This function is called to update the value after a turn.
+        parameter_values is a dictionary of parameters and there values.
+        The value of an indicator depends only on the instantaneous value of the parameters.
+        The values that are passed in this dictionary should be the
+        (value of the parameter)/(maximum value of parameter)
+        '''                                                                         # ASSUMPTION
     
-    '''This function is called to update the value after a turn.
-    parameter_values is a dictionary of parameters and there values
-    '''
-    
-    for key in parameter_values.keys():
+        for key in parameter_values.keys():
 
-        if(self._parameters.has_key(key)):
-            self._value = self._value + (parameter_values[key] * self._parameters[key])
+            if(self._parameters.has_key(key)):
+                self._value = parameter_values[key] * self._parameters[key] * self.maximum_value
 
-        if(self._value>self.maximum_value):
-            self._value = self.maximum_value
+            if(self._value>self.maximum_value):
+                self._value = self.maximum_value
 
-        if(self._value<0):
-            self._value=0
+            if(self._value<0):
+                self._value=0
             
-    return self._value
+        return self._value
 
 
 class Facility:
@@ -138,180 +163,830 @@ class Facility:
     LEVEL_INCR_CONS : Percentage of increase in consumption with each level
     wrt base_production.
     '''
- 
-LEVEL_INCR_PROD = 0.2
-LEVEL_INCR_CONS = 0.1
+     
+    LEVEL_INCR_PROD = 0.2
+    LEVEL_INCR_CONS = 0.1
 
-def __init__(self, name, cost_build, cost_inc_level, base_production, base_consumption, level = 0, number = 1, LEVEL_INCR_PROD = 0.2, LEVEL_INCR_CONS = 0.1):
-    self._name = name
-    self._level = level
-    self._number = number
-    self.set_cost_build(cost_build)
-    self.set_cost_inc_level(cost_inc_level)
-    self.set_production(base_production)
-    self.set_consumption(base_consumption)
-    Facility.LEVEL_INCR_PROD = LEVEL_INCR_PROD
-    Facility.LEVEL_INCR_CONS = LEVEL_INCR_CONS
+    def __init__(self, name, cost_build, cost_inc_level, base_production, base_consumption, level = 0, number = 1, LEVEL_INCREASE_PROD = LEVEL_INCR_PROD, LEVEL_INCREASE_CONS = LEVEL_INCR_CONS):
+        ''' Constructor that takes parameters as name of the facility, cost to build that
+        facility, cost to increase the level of an already settled facility, base
+        production as a dictionary of the resources being produced by the facility
+        and base consumption as the resources being consumed by the facility. level is by
+        default initialised to 0 and number of installations to 1.
+        '''
 
-def get_name(self):
-    return self._name
+        self._name = name
+        self._level = level
+        self._number = number
+        self.set_cost_build(cost_build)
+        self.set_cost_inc_level(cost_inc_level)
+        self.set_production(base_production)
+        self.set_consumption(base_consumption)
+        self.level_incr_prod = LEVEL_INCREASE_PROD
+        self.level_incr_cons = LEVEL_INCREASE_CONS
+        
 
-def set_cost_build(self, cost_build):
-    self.cost_build = cost_build
+    def get_name(self):
+        ''' Returns the name of the facility
+        THE NAME OF THE FACILITY SHOULD BE THE SAME AS THATS GIVEN IN facilities_constants.py
+        IN DICTIONARY THATS GIVEN IN FACILITY_MANP_DICT A TODO OR AN ASSUMPTION FOR CONTROLLER
+        '''                                                                         # ASSUMPTION
 
-def set_cost_inc_level(self, cost_inc_level):
-    self.cost_inc_level = cost_inc_level
+        return self._name
 
-#Production and consumption methods. 
-def set_production(self, base_production):
-    self.base_production = base_production
+    def set_cost_build(self, cost_build):
+        ''' Sets the cost to build a facility if one needs to change the value that has
+        been initialised by the constructor
+        '''
 
-def set_consumption(self, base_consumption):
-    self.base_consumption = base_consumption
+        self.cost_build = cost_build
 
-def add_production(self, name, value):
-    self.base_production[name] = value
+    def set_manp_req_build(self, manp_req_build):
+        ''' Sets the manpower requirement to build a facility
+        '''
 
-def rem_production(self, name):
-    del self.base_production[name]
+        self.manp_req_build = manp_req_build
 
-def get_production(self):
-    #Multiply base_production with number.
-    #Multiply level * base_consumption / 5 too.  
-    for key in self.base_production.keys():
-            self.production[key]=self._number * self.base_production[key] + (self.base_production[key] * Facility.LEVEL_INCR_PROD * self._level)
-    return production
+    def set_manp_rq_run(self, manp_req_run):
+        ''' Sets the manpower requirement to run a facility
+        '''
 
-def get_consumption(self):
-    #Multiply base_consumption with number
-    #Multiply level * base_consumption * LEVEL_INCR_CONS too
-    for key in self.base_consumption.keys():
-            consumption[key]=self._number * self.base_consumption[key] + (self.base_consumption[key] * Facility.LEVEL_INCR_CONS * self._level)
-    return consumption
+        self.manp_req_run = manp_req_run
+
+    def set_cost_inc_level(self, cost_inc_level):
+        ''' Sets the cost to increase the level of a facility that has been installed
+        if one needs to change the value that has been initialised by the constructor
+        '''
+        
+        self.cost_inc_level = cost_inc_level
+
+    #Production and consumption methods. 
+
+    def set_production(self, base_production):
+        ''' initialises the base production value of resources due to a facility
+        '''
+        
+        self.base_production = base_production
+
+    def set_consumption(self, base_consumption):
+        ''' initialises the base consumption value of a resource due to a facility
+        '''
+
+        self.base_consumption = base_consumption
+
+    def add_production(self, name, value):
+        ''' adds a new key to the dictionary of resources being produced by the facility
+        '''
+        
+        self.base_production[name] = value
+
+    def rem_production(self, name):
+        ''' removes a key from the dictionary of resources being produced by the facility
+        '''
+        
+        del self.base_production[name]
+
+    def get_production(self):
+        ''' Returns the resourceas produecd by a facility.
+        Multiply base_production with number of installations and add to it the
+        extra amt of resources produced due to upgradation of the level of facility
+        Multiply level * base_consumption * self. level_inr_prod
+        '''
+        
+        for key in self.base_production.keys():
+            self.production[key]=self._number * self.base_production[key] + (self.base_production[key] * self.level_incr_prod * self._level)
+        return production
+
+    def add_consumption(self, name, value):
+        ''' adds a new key to the dictionary of resources being consumed by the facility
+        '''
+
+        self.base_consumption[name] = value
+
+    def rem_consumption(self, name):
+        ''' removes a key from the dictionary of resources being consumed by the facility
+        '''
+        
+        del self.base_consumption[name]
+
+    def get_consumption(self):
+        ''' Returns the amt of resources consumed by the facility.
+        Multiply base_consumption with number of installations and add to it the
+        extra amt of resources being produced due to the upgradation of level of facility
+        Multiply level * base_consumption * self.level_incr_cons
+        '''
+        
+        for key in self.base_consumption.keys():
+            consumption[key]=self._number * self.base_consumption[key] + (self.base_consumption[key] * self.level_incr_cons * self._level)
+        return consumption
 
 
-def add_consumption(self, name, value):
-    self.base_consumption[name] = value
+    #Other Methods
 
-def rem_consumption(self, name):
-    del self.base_consumption[name]
-
-#Other Methods
-def update_level(self, resources):
-    #Check whether the resources are sufficient. If not then return NULL.
-    for resource in resources:
+    def update_level(self, resources):
+        ''' Updates the level of facility installed, all the buildings of a facility installed
+        are upgraded at the same time. First check whether the resources are sufficient. If yes
+        then upgrade and return the dictionary of the resources that are required for upgradation.
+        If not then raises an exception.
+        '''
+        
+        for resource in resources:
             name = resource.get_name()
-            if name in self.cost_inc_level.keys():
-                    if resource.get_village_quantity() < self.cost_inc_level[name]:
-                            return NULL
-    self._level = self._level + 1
-    return self.cost_inc_level
+            if self.cost_inc_level.has_key(name):
+                if resource.get_village_quantity() < self.cost_inc_level[name]:
+                    raise Resources_Underflow_Exception
+        self._level = self._level + 1
+        return self.cost_inc_level
 
-def build(self, resources):
-    #Check whether the resources are sufficient. If not then return NULL
-    for resource in resources:
+    def build_start(self, resources , people_obj):
+        ''' Starts Building a new installation of a facility. Check whether the resources are sufficient.
+        If yes than adds one to the no. of installations.If not then raises an exception
+        also it returns a dictionary of resources with their values that are required to build the facility
+        '''
+        
+        for resource in resources:
             name = resource.get_name()
-            if name in self.cost_build.keys():
-                    if resource.get_village_quantity() < self.cost_build[name]:
-                            return NULL
-    self._number = self._number + 1
-    return self.cost_build
+            if self.cost_build.has_key(name):
+                if resource.get_village_quantity() < self.cost_build[name]:
+                    raise Resources_Underflow_Exception
+        if self.check_manp_res(people_obj) < 0:
+            raise Low_Manpower_Resources_Exception
+        self._number = self._number + 1
+        return self.cost_build
 
-#Note that the demolish function is not taking or releasing any resources. 
-def demolish(self):
-    self._number = self._number - 1
+    def build_end(self, people_obj):
+        ''' Changes the manpower distribution that occurs when a building has been finished its construction.
+        It takes an object of class people and returns the same object with the updated population distribution.
+        '''
+        
+        self.dict_res_build = FACILITY_MANP_DICT_BUILD[self._name]
+        change = - self.dict_res_build['EMPLOYED PEOPLE IN CONSTRUCTION']
+        people_obj.change_no_of_ppl_emp_in_cons(change)
+        return people_obj
 
-def turn(self, resources):
-    production = self.get_production()
-    consumption = self.get_consumption()
-    #Add production and comsumption to the list of resource objects and update their values.
-    for resource in resources:
+    def stop_facility(self):
+        ''' Used to temporarily stop a facility in case the resources that are required to run a facility
+        are low the facility can be resumed when sufficient resources are available using resume_facility()
+        '''
+
+        self.temp_number = self._number
+        self.temp_level = self._level
+        self._number = 0
+        self._level = 0
+
+    def resume_facility(self):
+        ''' Used to resume a facility that was temporarily stopped using stop_facility()
+        '''
+
+        self._number = self.temp_number
+        self._level = self.temp_level
+
+        
+    def demolish(self , people_obj):
+        ''' Note that the demolish function is not taking any resources but releases the manpower
+        allocated to run the facility. It takes an object of class people and returns the same object
+        with the updated population distribution.
+        '''
+        
+        self._number = self._number - 1
+        
+        self.dict_res_run = FACILITY_MANP_DICT_RUN[self._name]
+        self.manp_dist_dict = MANP_DIST_DICT
+
+        for keying in self.manp_dist_dict.keys():
+            if self.dict_res_run.has_key(keying):
+                self.manp_dist_dict[keying] = -self.dict_res_run[keying]
+
+        people_obj.change_population_dist(self.manp_dist_dict['TOTAL POPULATION'], self.manp_dist_dict['SHELTERED PEOPLE'], self.manp_dist_dict['EDUCATED PEOPLE'], self.manp_dist_dict['HEALTHY PEOPLE'], self.manp_dist_dict['POPLE FED'], self.manp_dist_dict['EMPLOYED PEOPLE IN CONSTRUCTION'], self.manp_dist_dict['EMPLOYED PEOPLE IN HOSPITAL'], self.manp_dist_dict['EMPLOYED PEOPLE IN SCHOOL'], self.manp_dist_dict['EMPLOYED PEOPLE IN WORKSHOP'], self.manp_dist_dict['EMPLOYED PEOPLE IN FARM'])
+
+        return people_obj
+
+    def turn(self, resources):
+        ''' Updates the resources allocated to the village by increasing the value of resources that
+        have been produced in the current turn and decreasing the value of the resources that have
+        been consumed by the facility
+        '''
+
+        production = self.get_production()
+        consumption = self.get_consumption()
+        
+        for resource in resources:
             name = resource.get_name()
-            if name in production.keys():
-                    resource.change_village_quantity(production[name])
-            elif name in consumption.keys():
+            if production.has_key(name):
+                resource.change_village_quantity(production[name])
+            if consumption.has_key(name):
+                if resource.get_village_quantity() >= consumption[name]:
                     resource.change_village_quanitity(-consumption[name])
+                else:
+                    raise Resources_Underflow_Exception
 
+        return resources
+
+    def update_manp_res(self, people_obj):
+        ''' Updates the manpower resources if available to build a facility.
+        It takes an object of class people and returns the same object with the
+        updated population distribution
+        '''
+
+        self.dict_res_build = FACILITY_MANP_DICT_BUILD[self._name]
+        self.dict_res_run = FACILITY_MANP_DICT_RUN[self._name]
+        self.manp_dist_dict = MANP_DIST_DICT
+
+        for keying in self.manp_dist_dict.keys():
+
+            if self.dict_res_build.has_key(keying):
+                self.manp_dist_dict[keying] = self.dict_res_build[keying]
+
+            if self.dict_res_build.has_key(keying):
+                self.manp_dist_dict[keying] = self.dict_res_build[keying]
+
+        people_obj.change_population_dist(self.manp_dist_dict['TOTAL POPULATION'], self.manp_dist_dict['SHELTERED PEOPLE'], self.manp_dist_dict['EDUCATED PEOPLE'], self.manp_dist_dict['HEALTHY PEOPLE'], self.manp_dist_dict['POPLE FED'], self.manp_dist_dict['EMPLOYED PEOPLE IN CONSTRUCTION'], self.manp_dist_dict['EMPLOYED PEOPLE IN HOSPITAL'], self.manp_dist_dict['EMPLOYED PEOPLE IN SCHOOL'], self.manp_dist_dict['EMPLOYED PEOPLE IN WORKSHOP'], self.manp_dist_dict['EMPLOYED PEOPLE IN FARM'])
+
+        return people_obj
+
+    def check_manp_res(self, people_obj):
+        ''' Checks whether there are enough manpower resources to build a facility
+        It takes an object of class people which stores the current population distribution
+        it returns value >= 0 if the facility can be settled else returns value < 0
+        '''
+
+        people_req = 0
+        self.dict_res_build = FACILITY_MANP_DICT_BUILD[self._name]
+        self.dict_res_run = FACILITY_MANP_DICT_RUN[self._name]
+
+        for keying in self.dict_res_build.keys():
+            people_req += dict_res_build[keying]
+
+        for keying in self.dict_res_run.keys():
+            people_req += dict_res_run[keying]
+
+        return people_obj.get_total_no_of_ppl_un_emp() - people_req
+
+
+
+
+
+
+
+
+    
 class Resource:
     '''A class for game resources such as food, books and so on. 
     The game will contain two quanitities of resources. One for the market.
     Other for the village. The market quantity will also determine
     buying and selling prices for every resource.
     MAX_RES_VAL : It is the maximum amount/quantity of resource that a
-    village/market can hold.
+    village can hold. Market can hold any amount of any resource
     PRICE_VARIATION : It is the amount of variation that can occur in prices.
     Note that buying price and selling price are wrt village and not market. 
     '''
 
-MAX_RES_VAL = 1000
-PRICE_VARIATION = 50
+    MAX_RES_VAL_VILLAGE = 1000
+    MAX_RES_VAL_MARKET = 10000
+    PRICE_VARIATION = 50
 
-def __init__(self, name, vquantity, mquantity, base_buying_price, base_selling_price, MAX_RES_VAL = 1000, PRICE_VARIATION = 50):
-    self._name = name
-    self.village_quantity = vquantity
-    self.market_quantity = mquantity
-    self.mar_buy_price = base_buying_price
-    self.mar_sell_price = base_selling_price
-    self.vil_buy_price = base_buying_price
-    self.vil_sell_price = base_selling_price
-    Resource.MAX_RES_VAL = MAX_RES_VAL
-    Resource.PRICE_VARIATION = PRICE_VARIATION
+    def __init__(self, name, vquantity, mquantity, price, MAX_RESOURCE_VAL_VILLAGE = MAX_RES_VAL_VILLAGE, MAX_RESOURCE_VAL_MARKET = MAX_RES_VAL_MARKET ,PRICE_VAR = PRICE_VARIATION):
+        self._name = name
+        self.village_quantity = vquantity
+        self.market_quantity = mquantity
+        self.price = price
+        self.max_res_value_village = MAX_RESOURCE_VAL_VILLAGE
+        self.max_res_value_market = MAX_RESOURCE_VAL_MARKET
+        self.max_price_variation = PRICE_VAR
 
-#Name related methods
-def get_name(self):
-    return self._name
 
-#Quantity related methods.	
-def set_village_quantity(self, quantity):
-    self.village_quantity = quantity
+    def get_name(self):
+        ''' Returns the name of the resource
+        '''
+        
+        return self._name
 
-def get_village_quantity(self):
-    return self.village_quantity
+    #Quantity related methods.	
 
-def set_market_quantity(self, quantity):
-    self.market_quantity = quantity
+    def set_village_quantity(self, quantity):
+        ''' Sets the quantity of the resource present in the village
+        '''
 
-def get_market_quantity(self):
-    return self.market_quantity
+        if quantity > self.max_res_value_village:
+            raise Resources_Overflow_Exception
+        if quantity < 0:
+            raise Resources_Underflow_Exception
+        
+        self.village_quantity = quantity
 
-def change_village_quantity(self, change):
-    self.village_quantity = self.village_quantity + change
+    def get_village_quantity(self):
+        '''Returns the quantity of resource present in the village
+        '''
+        
+        return self.village_quantity
 
-#Price related methods
-def get_mar_buy_price(self):
-    price = self.mar_buy_price + (((Resource.MAX_RES_VAL/2 - self.market_quantity)/Resource.MAX_RES_VAL) * Resource.PRICE_VARIATION)
-    return price
+    def set_market_quantity(self, quantity):
+        ''' Sets the quantity of the resource present in the market
+        '''
 
-def get_mar_sell_price(self):
-    price = self.sell_price - (((Resource.MAX_RES_VAL/2 - self.market_quantity)/Resource.MAX_RES_VAL) * Resource.PRICE_VARIATION)
-    return price
+        if quantity > self.max_res_value_market:
+            raise Resources_Overflow_Exception
+        if quantity < 0:
+            raise Resources_Underflow_Exception
+        
+        self.market_quantity = quantity
 
-def get_vil_buy_price(self):
-    price = self.mar_buy_price + (((Resource.MAX_RES_VAL/2 - self.village_quantity)/Resource.MAX_RES_VAL) * Resource.PRICE_VARIATION)
-    return price
+    def get_market_quantity(self):
+        ''' Returns the quantity of the resource present in the market
+        '''
+        
+        return self.market_quantity
 
-def get_vil_sell_price(self):
-    price = self.sell_price - (((Resource.MAX_RES_VAL/2 - self.village_quantity)/Resource.MAX_RES_VAL) * Resource.PRICE_VARIATION)
-    return price
+    def change_village_quantity(self, change):
+        ''' Changes the quantity of resource present in the village
+        '''
 
-#Buy and sell methods
-def buy(self, quantity, money):
-    if quantity > market_quantity:
-            return -1
-    buy_price = (self.get_vil_buy_price() + self.get_mar_sell_price()) / 2
-    cost = quantity * buy_price
-    if cost < money:
-            self.village_quantity = self.village_quantity + quantity
-            self.market_quantity = self.market_quantity - quantity
+        if (self.village_quantity + change) > self.max_res_value_village:
+            raise Resources_Overflow_Exception
+        if (self.village_quantity + change) < 0:
+            raise Resources_Underflow_Exception
+        
+        self.village_quantity = self.village_quantity + change
+
+    def change_market_quantity(self, change):
+        ''' Changes the quantity of resource present in the market
+        '''
+        
+        if quantity > self.max_res_value_market:
+            raise Resources_Overflow_Exception
+        if quantity < 0:
+            raise Resources_Underflow_Exception
+        
+        self.market_quantity = self.market_quantity + change
+
+    #Price related methods
+        
+    def get_price(self):
+        ''' Returns the price of the resource
+        '''
+
+        return self.price
+
+    def set_price(self, new_price):
+        ''' Sets a new price for the resource
+        '''
+
+        self.price = new_price
+
+    def change_price(self, change):
+        ''' Changes the price of a resource
+        '''
+
+        if change > self.max_price_variation:
+            change = self.max_price_variation
+        self.price += change
+
+    def update_price(self):
+        ''' Updates the price of a resource in accordance with the market forces
+        '''
+
+        self.price = self.price + (((self.max_res_value_village/2 - self.village_quantity)/self.max_res_value_village) * self.max_price_variation) + (((self.max_res_value_market/2 - self.market_quantity)/self.max_res_value_market) * self.max_price_variation)           
+        
+        
+    #Buy and sell methods
+
+    def buy(self, quantity, money):
+        ''' This method is used to buy resources from the market.
+        It takes quantity that is to be bought and the total money present
+        with the village as parameters. It generates exception when the market
+        resources are less than that to be bought or if the village doesnot have
+        enough money to buy the resources. returns the cost to buy the resources
+        '''
+        
+        if quantity > market_quantity:
+            raise Resources_Underflow_Exception
+        buy_price = self.price
+        cost = quantity * buy_price
+        if cost < money:
+            self.change_village_quantity(quantity)
+            self.change_market_quantity(-quantity)
             return cost
-    else:
-            return -1
+        else:
+            raise Money_Underflow_Exception
 
-def sell(self, quantity):
-    if quantity > village_quantity:
-            return -1
-    sell_price = (self.get_vil_sell_price() + self.get_mar_buy_price()) / 2
-    cost = quantity * sell_price
-    self.village_quantity = self.village_quantity - quantity
-    self.market_quantity = self.market_quantity + quantity
-    return cost
+    def sell(self, quantity):
+        ''' This method is used to sell resources to the market
+        It generates an exeption when the village has less resources
+        than what is demanded to sell. returns the cost that the village
+        gets by selling the resources
+        '''
+        if quantity > village_quantity:
+            raise Resources_Underflow_Exception
+        sell_price = (self.get_vil_sell_price() + self.get_mar_buy_price()) / 2
+        cost = quantity * sell_price
+        self.change_village_quantity(-quantity)
+        self.change_market_quantity(quantity)
+        return cost
+
+
+
+class People:
+    ''' A Class which manages the population of the village. The population has been
+    classified on the basis of educated/or not, whether the person is provided food or
+    not i.e he is fed or not , also on the basis of whther the person is employed or not
+    and if he is employed than in which profession is he employed
+    '''
+
+    def __init__(self, total_population, no_of_ppl_sheltered, no_of_ppl_educated, no_of_ppl_healthy, no_of_ppl_fed, no_of_ppl_emp_in_cons, no_of_ppl_emp_in_hospital, no_of_ppl_emp_in_school, no_of_ppl_emp_in_workshop, no_of_ppl_emp_in_farm):
+        ''' Constructor which initialises the initial population distribution
+        '''
+
+        self.total_population = total_population
+        self.no_of_ppl_sheltered = no_of_ppl_sheltered
+        self.no_of_ppl_educated = no_of_ppl_educated
+        self.no_of_ppl_healthy = no_of_ppl_healthy
+        self.no_of_ppl_fed = no_of_ppl_fed
+        self.no_of_ppl_emp_in_cons = no_of_ppl_emp_in_cons
+        self.no_of_ppl_emp_in_hospital = no_of_ppl_emp_in_hospital
+        self.no_of_ppl_emp_in_school = no_of_ppl_emp_in_school
+        self.no_of_ppl_emp_in_workshop = no_of_ppl_emp_in_workshop
+        self.no_of_ppl_emp_in_farm = no_of_ppl_emp_in_farm
+        self.total_no_of_ppl_emp = self.no_of_ppl_emp_in_cons + self.no_of_ppl_emp_in_hospital + self.no_of_ppl_emp_in_school + self.no_of_ppl_emp_in_workshop + self.no_of_ppl_emp_in_farm
+        self.total_no_of_ppl_un_emp = self.total_population - self.total_no_of_ppl_emp
+        self.check_bounds()
+    # Methods to assign a value to the population distribution
+
+    def set_population_dist(self, total_population , no_of_ppl_sheltered , no_of_ppl_educated , no_of_ppl_healthy , no_of_ppl_fed , no_of_ppl_emp_in_cons , no_of_ppl_emp_in_hospital , no_of_ppl_emp_in_school , no_of_ppl_emp_in_workshop , no_of_ppl_emp_in_farm ):
+        ''' Changes the population distribution
+        '''
+        self.total_population = total_population
+        self.no_of_ppl_sheltered = no_of_ppl_sheltered
+        self.no_of_ppl_educated = no_of_ppl_educated
+        self.no_of_ppl_healthy = no_of_ppl_healthy
+        self.no_of_ppl_fed = no_of_ppl_fed
+        self.no_of_ppl_emp_in_cons = no_of_ppl_emp_in_cons
+        self.no_of_ppl_emp_in_hospital = no_of_ppl_emp_in_hospital
+        self.no_of_ppl_emp_in_school = no_of_ppl_emp_in_school
+        self.no_of_ppl_emp_in_workshop = no_of_ppl_emp_in_workshop
+        self.no_of_ppl_emp_in_farm = no_of_ppl_emp_in_farm
+        self.total_no_of_ppl_emp = self.no_of_ppl_emp_in_cons + self.no_of_ppl_emp_in_hospital + self.no_of_ppl_emp_in_school + self.no_of_ppl_emp_in_workshop + self.no_of_ppl_emp_in_farm
+        self.total_no_of_ppl_un_emp = self.total_population - self.total_no_of_ppl_emp
+        self.check_bounds()
+
+    def set_total_population(self, total_population):
+        ''' Changes the total population to a new value
+        '''
+
+        self.total_population = total_population
+        self.check_bounds()
+
+    def set_no_of_ppl_sheltered(self, no_of_ppl_sheltered):
+        ''' Changes the number of people sheltered to a new value
+        '''
+    
+        self.no_of_ppl_sheltered = no_of_ppl_sheltered
+        self.check_bounds()
+
+    def set_no_of_ppl_educated(self, no_of_ppl_educated):
+        ''' Changes the no of people educated to a new value
+        '''
+
+        self.no_of_ppl_educated = no_of_ppl_educated
+        self.check_bounds()
+
+    def set_no_of_ppl_healthy(self, no_of_ppl_healthy):
+        ''' Changes the no of people healthy to a new value
+        '''
+ 
+        self.no_of_ppl_healthy = no_of_ppl_healthy
+        self.check_bounds()
+
+    def set_no_of_ppl_fed(self, no_of_ppl_fed):
+        ''' Changes the no of people fed to a new value
+        '''
+
+        self.no_of_ppl_fed = no_of_ppl_fed
+        self.check_bounds()
+
+    def set_no_of_ppl_emp_in_cons(self, no_of_ppl_emp_in_cons):
+        ''' Changes the no of people employed in construction to a new value
+        '''
+
+        self.no_of_ppl_emp_in_cons = no_of_ppl_emp_in_cons
+        self.update_total_no_of_ppl_employed()
+        self.check_bounds()
+
+    def set_no_of_ppl_emp_in_hospital(self, no_of_ppl_emp_in_hospital):
+        ''' Changes the no of people employed in hospitals to a new value
+        '''
+ 
+        self.no_of_ppl_emp_in_hospital = no_of_ppl_emp_in_hospital
+        self.update_total_no_of_ppl_employed()
+        self.check_bounds()
+
+    def set_no_of_ppl_emp_in_school(self, no_of_ppl_emp_in_school):
+        ''' Changes the no of people employed in school to a new value
+        '''
+
+        self.no_of_ppl_emp_in_school = no_of_ppl_emp_in_school
+        self.update_total_no_of_ppl_employed()
+        self.check_bounds()
+
+    def set_no_of_ppl_emp_in_workshop(self, no_of_ppl_emp_in_workshop):
+        ''' Changes the no of people employed in workshop to a new value
+        '''
+
+        self.no_of_ppl_emp_in_workshop = no_of_ppl_emp_in_workshop
+        self.update_total_no_of_ppl_employed()
+        self.check_bounds()
+
+    def set_no_of_ppl_emp_in_farm(self, no_of_ppl_emp_in_farm):
+        ''' Changes the no of people employed in farm to a new value
+        '''
+
+        self.no_of_ppl_emp_in_farm = no_of_ppl_emp_in_farm
+        self.update_total_no_of_ppl_employed()
+        self.check_bounds()
+
+    def set_total_no_of_ppl_emp(self, total_no_of_ppl_emp):
+        ''' Changes the total no of people employed to a new value
+        '''
+
+        self.total_no_of_ppl_emp = total_no_of_ppl_emp
+        self.total_no_of_ppl_un_emp = self.total_population - self.total_no_of_ppl_emp
+        self.check_bounds()
+
+    # Method definitions to change the value of population distribution
+
+
+    def change_population_dist(self, change_in_total_population = 0, change_in_no_of_ppl_sheltered = 0, change_in_no_of_ppl_educated = 0, change_in_no_of_ppl_healthy = 0, change_in_no_of_ppl_fed = 0, change_in_no_of_ppl_emp_in_cons = 0, change_in_no_of_ppl_emp_in_hospital = 0, change_in_no_of_ppl_emp_in_school = 0, change_in_no_of_ppl_emp_in_workshop = 0, change_in_no_of_ppl_emp_in_farm = 0):
+        ''' Changes the population distribution
+        '''
+        self.total_population += change_in_total_population
+        self.no_of_ppl_sheltered += change_in_no_of_ppl_sheltered
+        self.no_of_ppl_educated += change_in_no_of_ppl_educated
+        self.no_of_ppl_healthy += change_in_no_of_ppl_healthy
+        self.no_of_ppl_fed += change_in_no_of_ppl_fed
+        self.no_of_ppl_emp_in_cons += change_in_no_of_ppl_emp_in_cons
+        self.no_of_ppl_emp_in_hospital += change_in_no_of_ppl_emp_in_hospital
+        self.no_of_ppl_emp_in_school += change_in_no_of_ppl_emp_in_school
+        self.no_of_ppl_emp_in_workshop += change_in_no_of_ppl_emp_in_workshop
+        self.no_of_ppl_emp_in_farm += change_in_no_of_ppl_emp_in_farm
+        self.total_no_of_ppl_emp = self.no_of_ppl_emp_in_cons + self.no_of_ppl_emp_in_hospital + self.no_of_ppl_emp_in_school + self.no_of_ppl_emp_in_workshop + self.no_of_ppl_emp_in_farm
+        self.total_no_of_ppl_un_emp = self.total_population - self.total_no_of_ppl_emp
+        self.check_bounds()
+
+
+
+    def change_total_population(self, change_in_total_population):
+        ''' Changes the total population 
+        '''
+
+        self.total_population += change_in_total_population
+        self.check_bounds()
+
+    def change_no_of_ppl_sheltered(self, change_in_no_of_ppl_sheltered):
+        ''' Changes the number of people sheltered 
+        '''
+    
+        self.no_of_ppl_sheltered += change_in_no_of_ppl_sheltered
+        self.check_bounds()
+
+    def change_no_of_ppl_educated(self, change_in_no_of_ppl_educated):
+        ''' Changes the no of people educated 
+        '''
+
+        self.no_of_ppl_educated += change_in_no_of_ppl_educated
+        self.check_bounds()
+
+    def change_no_of_ppl_healthy(self, change_in_no_of_ppl_healthy):
+        ''' Changes the no of people healthy 
+        '''
+
+        self.no_of_ppl_healthy += change_in_no_of_ppl_healthy
+        self.check_bounds()
+
+    def change_no_of_ppl_fed(self, change_in_no_of_ppl_fed):
+        ''' Changes the no of people fed 
+        '''
+
+        self.no_of_ppl_fed += change_in_no_of_ppl_fed
+        self.check_bounds()
+
+    def change_no_of_ppl_emp_in_cons(self, change_in_no_of_ppl_emp_in_cons):
+        ''' Changes the no of people employed in construction 
+        '''
+ 
+        self.no_of_ppl_emp_in_cons += change_in_no_of_ppl_emp_in_cons
+        self.update_total_no_of_ppl_employed()
+        self.check_bounds()
+
+    def change_no_of_ppl_emp_in_hospital(self, change_in_no_of_ppl_emp_in_hospital):
+        ''' Changes the no of people employed in hospitals 
+        '''
+
+        self.no_of_ppl_emp_in_hospital += change_in_no_of_ppl_emp_in_hospital
+        self.update_total_no_of_ppl_employed()
+        self.check_bounds()
+
+    def change_no_of_ppl_emp_in_school(self, change_in_no_of_ppl_emp_in_school):
+        ''' Changes the no of people employed in school 
+        '''
+
+        self.no_of_ppl_emp_in_school += change_in_no_of_ppl_emp_in_school
+        self.update_total_no_of_ppl_employed()
+        self.check_bounds()
+
+    def change_no_of_ppl_emp_in_workshop(self, change_in_no_of_ppl_emp_in_workshop):
+        ''' Changes the no of people employed in workshop 
+        '''
+
+        self.no_of_ppl_emp_in_workshop += change_in_no_of_ppl_emp_in_workshop
+        self.update_total_no_of_ppl_employed()
+        self.check_bounds()
+
+    def change_no_of_ppl_emp_in_farm(self, change_in_no_of_ppl_emp_in_farm):
+        ''' Changes the no of people employed in farm 
+        '''
+
+        self.no_of_ppl_emp_in_farm += change_in_no_of_ppl_emp_in_farm
+        self.update_total_no_of_ppl_employed()
+        self.check_bounds()
+
+    def change_total_no_of_ppl_emp(self, change_in_total_no_of_ppl_emp):
+        ''' Changes the total no of people employed 
+        '''
+ 
+        self.total_no_of_ppl_emp += total_no_of_ppl_emp
+        self.check_bounds()
+
+
+    def update_total_no_of_ppl_employed(self):
+        ''' Updates the total number of people employed 
+        '''
+
+        self.total_no_of_ppl_emp = self.no_of_ppl_emp_in_cons + self.no_of_ppl_emp_in_hospital + self.no_of_ppl_emp_in_school + self.no_of_ppl_emp_in_workshop + self.no_of_ppl_emp_in_farm
+        self.total_no_of_ppl_un_emp = self.total_population - self.total_no_of_ppl_emp
+        self.check_bounds()
+
+    # Method definitions that return the population distribution
+
+    def get_total_population(self):
+        ''' Returns the value of total population 
+        '''
+
+        return self.total_population 
+
+    def get_no_of_ppl_sheltered(self):
+        ''' Returns the number of people sheltered 
+        '''
+    
+        return self.no_of_ppl_sheltered 
+
+    def get_no_of_ppl_educated(self):
+        ''' Returns the no of people educated 
+        '''
+
+        return self.no_of_ppl_educated 
+
+    def get_no_of_ppl_healthy(self):
+        ''' Returns the no of people healthy 
+        '''
+
+        return self.no_of_ppl_healthy 
+
+    def get_no_of_ppl_fed(self):
+        ''' Returns the no of people fed 
+        '''
+
+        return self.no_of_ppl_fed 
+
+    def get_no_of_ppl_emp_in_cons(self):
+        ''' Returns the no of people employed in construction 
+        '''
+
+        return self.no_of_ppl_emp_in_cons 
+        
+    def get_no_of_ppl_emp_in_hospital(self):
+        ''' Returns the no of people employed in hospitals 
+        '''
+
+        return self.no_of_ppl_emp_in_hospital 
+        
+    def get_no_of_ppl_emp_in_school(self):
+        ''' Returns the no of people employed in school 
+        '''
+
+        return self.no_of_ppl_emp_in_school 
+        
+    def get_no_of_ppl_emp_in_workshop(self):
+        ''' Returns the no of people employed in workshop 
+        '''
+
+        return self.no_of_ppl_emp_in_workshop 
+        
+    def get_no_of_ppl_emp_in_farm(self):
+        ''' Returns the no of people employed in farm 
+        '''
+
+        return self.no_of_ppl_emp_in_farm 
+        
+    def get_total_no_of_ppl_emp(self):
+        ''' Returns the total no of people employed 
+        '''
+
+        return self.total_no_of_ppl_emp
+
+    def get_total_no_of_ppl_un_emp(self):
+        ''' Returns total number of people unemployed
+        '''
+
+        return self.total_no_of_ppl_un_emp
+    
+    # Method to check Bounds
+    
+    def check_bounds(self):
+        ''' Method to check bounds on all the variables regarding population distribution
+        '''
+        if(self.no_of_ppl_sheltered > self.total_population):
+            self.no_of_ppl_sheltered = self.total_population
+        if(self.no_of_ppl_sheltered < 0):
+            self.no_of_ppl_sheltered = 0
+    
+        if(self.no_of_ppl_educated > self.total_population):
+            self.no_of_ppl_educated = self.total_population
+        if(self.no_of_ppl_educated < 0):
+            self.no_of_ppl_educated = 0
+    
+        if(self.no_of_ppl_healthy > self.total_population):
+            self.no_of_ppl_healthy = self.total_population
+        if(self.no_of_ppl_healthy < 0):
+            self.no_of_ppl_healthy = 0
+    
+        if(self.no_of_ppl_fed > self.total_population):
+            self.no_of_ppl_fed = self.total_population
+        if(self.no_of_ppl_fed < 0):
+            self.no_of_ppl_fed = 0
+    
+        if(self.no_of_ppl_emp_in_cons > self.total_population):
+            self.no_of_ppl_emp_in_cons = self.total_population
+        if(self.no_of_ppl_emp_in_cons < 0):
+            self.no_of_ppl_emp_in_cons = 0
+    
+        if(self.no_of_ppl_emp_in_hospital > self.total_population):
+            self.no_of_ppl_emp_in_hospital = self.total_population
+        if(self.no_of_ppl_emp_in_hospital < 0):
+            self.no_of_ppl_emp_in_hospital = 0
+    
+        if(self.no_of_ppl_emp_in_school > self.total_population):
+            self.no_of_ppl_emp_in_school = self.total_population
+        if(self.no_of_ppl_emp_in_school < 0):
+            self.no_of_ppl_emp_in_school = 0
+    
+        if(self.no_of_ppl_emp_in_workshop > self.total_population):
+            self.no_of_ppl_emp_in_workshop = self.total_population
+        if(self.no_of_ppl_emp_in_workshop < 0):
+            self.no_of_ppl_emp_in_workshop = 0
+
+        if(self.no_of_ppl_emp_in_farm > self.total_population):
+            self.no_of_ppl_emp_in_farm = self.total_population
+        if(self.no_of_ppl_emp_in_farm < 0):
+            self.no_of_ppl_emp_in_farm = 0
+            
+        if(self.total_no_of_ppl_emp > self.total_population):
+            self.total_no_of_ppl_emp = self.total_population
+        if(self.total_no_of_ppl_emp < 0):
+            self.total_no_of_ppl_emp = 0
+        
+
+
+class Money:
+    ''' Class to manage the money present with the village
+    '''
+
+    INITIAL_MONEY = 10000
+    MAXIMUM_MONEY = 999999999999L
+    def __init__(self, money = INITIAL_MONEY):
+        ''' Initialises the variable money with the initial amount which is
+        to be given to the Village
+        '''
+
+        self.money = money
+        self.check_bounds()
+
+    def set_money(self, money):
+
+        self.money = money
+        self.check_bounds()
+
+    def change_money(self, change_in_money):
+
+        self.money += change_in_money
+        self.check_bounds()
+
+    def get_money(self):
+
+        return self.money
+    
+    def check_bounds(self):
+
+        if(self.money > MAXIMUM_MONEY):
+            self.money = MAXIMUM_MONEY
+        if(self.money < 0):
+            self.money = 0
+            
