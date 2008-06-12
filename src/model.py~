@@ -1096,6 +1096,6 @@ class Money:
         if(self.money >initial.MAX_MONEY):
             self.money =initial.MAX_MONEY
         if(self.money < 0):
-            raise Exceptions.Money_Underflow_Exception
+            self.money = 0
             
 
