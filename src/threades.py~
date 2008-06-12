@@ -151,7 +151,7 @@ def build_facility(facility_obj):
         if facility_obj.get_level() == 0:
             rs = facility_obj.update_level(resources)
     except Exceptions.Resources_Underflow_Exception:
-        print 'you dont have enough resources to build this facility'
+        print 'you dont have enough resources to build the facility', facility_obj.get_name()
         return 1
     except Exceptions.Low_Manpower_Resources_Exception:
         print 'you dont have enough manpower'
@@ -167,7 +167,7 @@ def build_facility(facility_obj):
     sleep(2)
     
     ppl = facility_obj.build_end(ppl)
-    print 'FACILITY MADE'    
+    print 'FACILITY MADE', facility_obj.get_name()    
 
 
 
@@ -191,7 +191,10 @@ def upgrade_facility(facility_obj):
         print 'low resources'
     except Exceptions.Maximum_Level_Reached:
         print 'facility has reached its maximum level you cant upgrade it now'
-
+    sleep(2)
+    print 'Updation of facility started',facility_obj.get_name()
+    sleep(2)
+    print 'FACILITY UPDATED',facility_obj.get_name()
 
 
 
@@ -221,8 +224,8 @@ def update_turn():
             try:
                 resources = facilities_list[i].turn(resources)
             except Exceptions.Resources_Underflow_Exception:
-                print ' you dont have enough resources to run this facility it is being stopped temporarily'
-                t = threading.Thread(target = stop_facility , args = (facilities_list[i]))
+                print ' you dont have enough resources to run the facility' , facilities_list[i].get_name(), ' it is being stopped temporarily'
+                t = threading.Thread(target = stop_facility , args = [facilities_list[i]])
             
                 t.start()
 
@@ -289,7 +292,7 @@ def update_turn():
         ppl_construction = ppl.get_no_of_ppl_emp_in_cons()/ppl.get_total_population()
         Training.turn({ 'LEVEL OF WORKSHOPS' : level , 'EMPLOYED PEOPLE IN WORKSHOP' : ppl_workshop , 'EMPLOYED PEOPLE IN FARM' : ppl_farm , 'EMPLOYED PEOPLE IN HOSPITAL' : ppl_hospital , 'EMPLOYED PEOPLE IN CONSTRUCTION' : ppl_construction })
 
-        sleep(5)
+        sleep(15)
 
 
 
@@ -368,7 +371,7 @@ def sell_res():
 
 
 
-sell_res()
+
 
 
 

@@ -488,6 +488,7 @@ class Resource:
         self.vquantity = v_quantity
         self.mquantity = m_quantity
         self.price = price
+        self.initial_price = price
         self.max_res_value_village = MAX_RESOURCE_VAL_VILLAGE
         self.max_res_value_market = MAX_RESOURCE_VAL_MARKET
         self.max_price_variation = PRICE_VAR
@@ -587,8 +588,10 @@ class Resource:
         ''' Updates the price of a resource in accordance with the market forces
         '''
 
-        self.price = self.price + (((self.max_res_value_village/2 - self.vquantity)/self.max_res_value_village) * self.max_price_variation) + (((self.max_res_value_market/2 - self.mquantity)/self.max_res_value_market) * self.max_price_variation)           
+        self.price = self.initial_price + (((self.max_res_value_village/2 - self.vquantity)/self.max_res_value_village) * self.max_price_variation) + (((self.max_res_value_market/2 - self.mquantity)/self.max_res_value_market) * self.max_price_variation)           
         
+        if self.price < 0:
+            self.price = 0
         
     #Buy and sell methods
 
