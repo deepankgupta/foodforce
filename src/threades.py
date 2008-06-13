@@ -227,7 +227,7 @@ def update_turn():
                 print ' you dont have enough resources to run the facility' , facilities_list[i].get_name(), ' it is being stopped temporarily'
                 t = threading.Thread(target = stop_facility , args = [facilities_list[i]])
                 t.start()
-            except Exceptions.Resource_Overflow_Exception:
+            except Exceptions.Resources_Overflow_Exception:
                 pass 
 
 
