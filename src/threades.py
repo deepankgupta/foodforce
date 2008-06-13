@@ -149,7 +149,9 @@ def build_facility(facility_obj):
     
     try:
         resources=facility_obj.build_start(resources,ppl)
+        
         ppl = facility_obj.update_manp_res(ppl)
+        
         if facility_obj.get_level() == 0:
             rs = facility_obj.update_level(resources)
     except Exceptions.Resources_Underflow_Exception:
@@ -373,10 +375,16 @@ def sell_res():
 
 
 
+'''
+for i in range(len(resources)):
+    print 'name : ' , resources[i].get_name()
+    print 'value : ' , resources[i].get_vquantity()
 
+resources = Hospital.turn(resources)
 
+for i in range(len(resources)):
+    print 'name : ' , resources[i].get_name()
+    print 'value : ' , resources[i].get_vquantity()
 
-
-
-
+'''
 

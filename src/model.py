@@ -30,7 +30,8 @@ import facilities
 import initial
 import Exceptions
 
- 
+
+
 
 class Indicator:
     ''' A base class for one of the game indicators such as health, nutrition,
@@ -359,7 +360,7 @@ class Facility:
         '''
         
         self.dict_res_build =facilities.FACILITY_MANP_DICT_BUILD[self._name]
-        change = - self.dict_res_build['EMPLOYED PEOPLE IN CONSTRUCTION']
+        change = -self.dict_res_build['EMPLOYED PEOPLE IN CONSTRUCTION']
         people_obj.change_no_of_ppl_emp_in_cons(change)
         self._number = self._number + 1
         return people_obj
@@ -431,17 +432,17 @@ class Facility:
         self.dict_res_build = facilities.FACILITY_MANP_DICT_BUILD[self._name]
         self.dict_res_run = facilities.FACILITY_MANP_DICT_RUN[self._name]
         self.manp_dist_dict = facilities.MANP_DIST_DICT
-        self.dict_res_change = facilities.FACILITY_MANP_DICT_CH[self.name]
+        self.dict_res_change = facilities.FACILITY_MANP_DICT_CH[self._name]
         for keying in self.manp_dist_dict.keys():
 
             if self.dict_res_build.has_key(keying):
-                self.manp_dist_dict[keying] += self.dict_res_build[keying]
+                self.manp_dist_dict[keying] = self.dict_res_build[keying]
 
             if self.dict_res_run.has_key(keying):
-                self.manp_dist_dict[keying] += self.dict_res_run[keying]
+                self.manp_dist_dict[keying] = self.dict_res_run[keying]
 
             if self.dict_res_change.has_key(keying):
-                self.manp_dist_dict[keying] += self.dict_res_change[keying]
+                self.manp_dist_dict[keying] = self.dict_res_change[keying]
 
         people_obj.change_population_dist(self.manp_dist_dict['TOTAL POPULATION'], self.manp_dist_dict['SHELTERED PEOPLE'], self.manp_dist_dict['EDUCATED PEOPLE'], self.manp_dist_dict['HEALTHY PEOPLE'], self.manp_dist_dict['PEOPLE FED'], self.manp_dist_dict['EMPLOYED PEOPLE IN CONSTRUCTION'], self.manp_dist_dict['EMPLOYED PEOPLE IN HOSPITAL'], self.manp_dist_dict['EMPLOYED PEOPLE IN SCHOOL'], self.manp_dist_dict['EMPLOYED PEOPLE IN WORKSHOP'], self.manp_dist_dict['EMPLOYED PEOPLE IN FARM'])
 
@@ -664,6 +665,7 @@ class People:
     def set_population_dist(self, total_population , no_of_ppl_sheltered , no_of_ppl_educated , no_of_ppl_healthy , no_of_ppl_fed , no_of_ppl_emp_in_cons , no_of_ppl_emp_in_hospital , no_of_ppl_emp_in_school , no_of_ppl_emp_in_workshop , no_of_ppl_emp_in_farm ):
         ''' Changes the population distribution
         '''
+               
         self.total_population = total_population
         self.no_of_ppl_sheltered = no_of_ppl_sheltered
         self.no_of_ppl_educated = no_of_ppl_educated
@@ -1002,13 +1004,18 @@ class People:
             self.total_no_of_ppl_emp = self.total_population
         if(self.total_no_of_ppl_emp < 0):
             self.total_no_of_ppl_emp = 0
-        
+
+        if(self.total_no_of_ppl_un_emp > self.total_population):
+            self.total_no_of_ppl_un_emp = self.total_population
+        if(self.total_no_of_ppl_un_emp < 0):
+            self.total_no_of_ppl_un_emp = 0
+         
     def update_turn(self,resources,facilities_list):
         ''' Method to calculate the amount of food items consumed by the manpower and the
         water consumption make the changes in resources and then return resources only
         '''
 
-        food = 0                    
+        food = 0.0                    
 
         for i in range(len(resources)):
             name = resources[i].get_name()
@@ -1066,11 +1073,7 @@ class People:
        
 
             
-    
-  
 
-                            
-    
 
 class Money:
     ''' Class to manage the money present with the village
