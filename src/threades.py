@@ -101,7 +101,7 @@ Training=model.Indicator('TRAINING',initial.INIT_TRAINING,indicators.PDICT_TRAIN
 
 
 '''initialisation of manpower resources'''
-ppl = model.People(100, 10, 10, 10, 10, 0, 0, 0, 0, 0)
+ppl = model.People(initial.INIT_PPL, 16, 0, 0, 0, 0, 0, 0, 0, 0)
 
 
 
@@ -121,7 +121,7 @@ def stop_facility(facility_obj):
     global resources
     facility_obj.stop_facility()
     a=1
-    while(a):
+    while True:
         a=0
         res_cost = facilities.FACILITY_RES_DICT_CONS[facility_obj.get_name()]
         for i in range(len(resources)):
@@ -129,9 +129,11 @@ def stop_facility(facility_obj):
             if res_cost.has_key(name):
                 if resources[i].get_vquantity() < res_cost[name]:
                     a=1
+        if a==0:
+            break
 
     facility_obj.resume_facility()
-
+    print 'Facility : ' , facility_obj.get_name() , ' resumed'
 
 
 

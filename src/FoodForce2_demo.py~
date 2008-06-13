@@ -604,36 +604,26 @@ while True:
 
                         while True:
                             
-                            font2 = pygame.font.SysFont("arial", 30);
+                            font2 = pygame.font.SysFont("arial", 20);
                             font2_height = font2.get_linesize()
                             screen.fill((0,0,0))
                             event_text = []
                             event_text.append(' MANPOWER RESOURCES')
                             event_text.append('')
                             event_text.append(' TOTAL POPULATION : ' + str(ppl.get_total_population()))
-                            event_text.append('')
                             event_text.append(' Total number of people fed : ' + str(ppl.get_no_of_ppl_fed()))
-                            event_text.append('')
                             event_text.append(' Total number of people sheltered : ' + str(ppl.get_no_of_ppl_sheltered()))
-                            event_text.append('')
                             event_text.append(' Total number of people educated : ' + str(ppl.get_no_of_ppl_educated()))
-                            event_text.append('')
                             event_text.append(' Total number of people healthy : ' + str(ppl.get_no_of_ppl_healthy()))
-                            event_text.append('')
+                            event_text.append(' Total number of people fed : ' + str(ppl.get_no_of_ppl_fed()))
+                            event_text.append(' Total number of people fed : ' + str(ppl.get_no_of_ppl_fed()))
                             event_text.append(' People employed in construction : ' + str(ppl.get_no_of_ppl_emp_in_cons()))
-                            event_text.append('')
                             event_text.append(' People employed in hospitals : ' + str(ppl.get_no_of_ppl_emp_in_hospital()))
-                            event_text.append('')
                             event_text.append(' People employed in schools : ' + str(ppl.get_no_of_ppl_emp_in_school()))
-                            event_text.append('')
                             event_text.append(' People employed in workshops : ' + str(ppl.get_no_of_ppl_emp_in_workshop()))
-                            event_text.append('')
                             event_text.append(' People employed in farm : ' + str(ppl.get_no_of_ppl_emp_in_farm()))
-                            event_text.append('')
                             event_text.append(' Total number of people employed : ' + str(ppl.get_total_no_of_ppl_emp()))
-                            event_text.append('')
                             event_text.append(' Total number of people unemployed : ' + str(ppl.get_total_no_of_ppl_un_emp()))
-                            event_text.append('')
                             event_text.append(' Press 0 to go to the previous menu')
    
                             event_text = event_text[-SCREEN_SIZE[1]/font2_height:]
