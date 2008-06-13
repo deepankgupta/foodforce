@@ -11,7 +11,7 @@ screen = pygame.display.set_mode(SCREEN_SIZE, 0, 32)
 
 font = pygame.font.SysFont("arial", 40);
 font_height = font.get_linesize()
-
+update_thread = threading.Thread(target = update_turn, args=[]).start()
 
 while True:
        
@@ -34,7 +34,7 @@ while True:
     pygame.display.update()
 
     event = pygame.event.wait()    
-    update_thread = threading.Thread(target = update_turn, args=[]).start()
+    
 
     if event.type == QUIT:
         exit()

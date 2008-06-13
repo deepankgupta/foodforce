@@ -1026,8 +1026,8 @@ class People:
         
         food_temp = food*initial.MAX_PER_FOOD_CONS/100
         
-        if food_temp > (initial.FOOD_PP *self.total_population):
-            food_temp = (initial.FOOD_PP) *self.total_population
+        if food_temp > (initial.FOOD_PP * self.total_population):
+            food_temp = (initial.FOOD_PP) * self.total_population
 
         self.no_of_ppl_fed = int(food_temp/initial.FOOD_PP)
         food_temp = self.no_of_ppl_fed*initial.FOOD_PP
@@ -1073,11 +1073,7 @@ class People:
        
 
             
-    
-#Farm = Facility('FARM',facilities.COST_FARM,facilities.COST_LEVEL_FARM,facilities.PROD_FARM,facilities.CONS_FARM,0,initial.INIT_FARM)  
-#print Farm.get_consumption()
-#print Farm.get_production()                            
-    
+
 
 class Money:
     ''' Class to manage the money present with the village

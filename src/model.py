@@ -287,7 +287,8 @@ class Facility:
         Multiply level * base_consumption * self. level_inr_prod
         '''
         
-        production = self.base_production
+        production = {}
+        
         for key in self.base_production.keys():
             production[key]=self._number * self.base_production[key] + (self.base_production[key] * self._number * self.level_incr_prod * self._level)
         return production
@@ -310,7 +311,7 @@ class Facility:
         extra amt of resources being produced due to the upgradation of level of facility
         Multiply level * base_consumption * self.level_incr_cons
         '''
-        consumption = self.base_consumption
+        consumption = {}
         for key in self.base_consumption.keys():
             consumption[key]=self._number * self.base_consumption[key] + (self.base_consumption[key] * self._number * self.level_incr_cons * self._level)
         return consumption
@@ -1026,8 +1027,8 @@ class People:
         
         food_temp = food*initial.MAX_PER_FOOD_CONS/100
         
-        if food_temp > (initial.FOOD_PP *self.total_population):
-            food_temp = (initial.FOOD_PP) *self.total_population
+        if food_temp > (initial.FOOD_PP * self.total_population):
+            food_temp = (initial.FOOD_PP) * self.total_population
 
         self.no_of_ppl_fed = int(food_temp/initial.FOOD_PP)
         food_temp = self.no_of_ppl_fed*initial.FOOD_PP

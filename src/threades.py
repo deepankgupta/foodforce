@@ -152,8 +152,7 @@ def build_facility(facility_obj):
         
         ppl = facility_obj.update_manp_res(ppl)
         
-        if facility_obj.get_level() == 0:
-            rs = facility_obj.update_level(resources)
+        
     except Exceptions.Resources_Underflow_Exception:
         print 'you dont have enough resources to build the facility', facility_obj.get_name()
         return 1
@@ -221,8 +220,12 @@ def update_turn():
     global Water
     global School
 
+
+    
     while(1):
         
+        
+
         # updation of all facilities
         for i in range(len(facilities_list)):
             try:
@@ -234,12 +237,11 @@ def update_turn():
             except Exceptions.Resources_Overflow_Exception:
                 pass 
 
-
-
-
         # updation of manpower resources
                    
         resources = ppl.update_turn(resources,facilities_list)
+
+    
 
         # updation of prices of resources
         for i in range(len(resources)):
@@ -298,6 +300,7 @@ def update_turn():
         Training.turn({ 'LEVEL OF WORKSHOPS' : level , 'EMPLOYED PEOPLE IN WORKSHOP' : ppl_workshop , 'EMPLOYED PEOPLE IN FARM' : ppl_farm , 'EMPLOYED PEOPLE IN HOSPITAL' : ppl_hospital , 'EMPLOYED PEOPLE IN CONSTRUCTION' : ppl_construction })
 
         sleep(15)
+        
 
 
 
@@ -374,17 +377,4 @@ def sell_res():
 
 
 
-
-'''
-for i in range(len(resources)):
-    print 'name : ' , resources[i].get_name()
-    print 'value : ' , resources[i].get_vquantity()
-
-resources = Hospital.turn(resources)
-
-for i in range(len(resources)):
-    print 'name : ' , resources[i].get_name()
-    print 'value : ' , resources[i].get_vquantity()
-
-'''
 
