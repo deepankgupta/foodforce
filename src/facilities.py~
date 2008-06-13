@@ -76,7 +76,7 @@ PROD_HOUSE = { }
 PROD_HOSPITAL = { 'MEDICINE' : 1 }  									 # WE CAN MAKE IT TO ZERO EVEN 
 PROD_SCHOOL = { }
 PROD_WORKSHOP = { 'TOOLS' : 15 }
-PROD_FARM = { 'RICE' : 10 , 'WHEAT' : 10 , 'BEANS' : 10 , 'SUGAR' : 10 , 'SALT' : 10 , 'OILS' : 10 } 
+PROD_FARM = { 'RICE' : 25 , 'WHEAT' : 25 , 'BEANS' : 25 , 'SUGAR' : 25 , 'SALT' : 25 , 'OILS' : 25 } 
 														 #THIS HAS TO BE DECIDED BY THE USER, BY 															 #DEFAULT THEIR VALUE HAS BEEN PUT EQUAL TO 															 #ZERO, TODO: FOR CONTROLLER FILL IN THE 															 #VALUES OF RICE ETC IN % 		
 PROD_FOUNTAIN = { 'WATER' : 25 }
 

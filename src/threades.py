@@ -101,7 +101,7 @@ Training=model.Indicator('TRAINING',initial.INIT_TRAINING,indicators.PDICT_TRAIN
 
 
 '''initialisation of manpower resources'''
-ppl = model.People(initial.INIT_PEOPLE, 16, 0, 0, 0, 0, 0, 0, 0, 0)
+ppl = model.People(initial.INIT_PEOPLE, 16.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 
 
 
