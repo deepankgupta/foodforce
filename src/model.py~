@@ -201,6 +201,16 @@ class Facility:
         '''returns the number of facilites'''
         return self._number
 
+    def change_number(self, change):
+        ''' changes the number of installations of a facility
+        '''
+        if self._number+change < 0:
+            self._number = 0
+        elif self._number+change > initial.MAX_NO_INS_FACILITY:
+            self._number = initial.MAX_NO_INS_FACILITY
+        else :
+            self._number += change 
+
     def get_level(self):
         '''returns level of facility'''    
         return self._level   
@@ -287,7 +297,8 @@ class Facility:
         Multiply level * base_consumption * self. level_inr_prod
         '''
         
-        production = self.base_production
+        production = {}
+        
         for key in self.base_production.keys():
             production[key]=self._number * self.base_production[key] + (self.base_production[key] * self._number * self.level_incr_prod * self._level)
         return production
@@ -310,7 +321,7 @@ class Facility:
         extra amt of resources being produced due to the upgradation of level of facility
         Multiply level * base_consumption * self.level_incr_cons
         '''
-        consumption = self.base_consumption
+        consumption = {}
         for key in self.base_consumption.keys():
             consumption[key]=self._number * self.base_consumption[key] + (self.base_consumption[key] * self._number * self.level_incr_cons * self._level)
         return consumption

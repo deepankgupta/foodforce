@@ -148,8 +148,33 @@ def build_facility(facility_obj):
     global ppl
     
     try:
+        
         resources=facility_obj.build_start(resources,ppl)
         
+        if facility_obj.get_name() == 'FARM':
+            print ' enter the amount of various food products that you will like to grow in the farm (in percentage) '
+            qrice = int(raw_input(' Rice: '))
+            qwheat = int(raw_input(' Wheat: '))
+            qbeans = int(raw_input(' Beans: '))
+            qsugar = int(raw_input(' Sugar: '))
+            qsalt = int(raw_input(' Salt: '))
+            qoils = int(raw_input(' Oils: '))
+            qrice = qrice*facilities.MAX_FOOD_PROD_PER_FARM/100
+            qwheat = qwheat*facilities.MAX_FOOD_PROD_PER_FARM/100
+            qbeans = qbeans*facilities.MAX_FOOD_PROD_PER_FARM/100
+            qsugar = qsugar*facilities.MAX_FOOD_PROD_PER_FARM/100
+            qsalt = qsalt*facilities.MAX_FOOD_PROD_PER_FARM/100
+            qoils = qoils*facilities.MAX_FOOD_PROD_PER_FARM/100
+            prod = facility_obj.get_prod_dict()
+            prod['RICE'] = (prod['RICE']*facility_obj.get_number() + qrice)/(facility_obj.get_number() + 1)
+            prod['WHEAT'] = (prod['WHEAT']*facility_obj.get_number() + qwheat)/(facility_obj.get_number() + 1)
+            prod['BEANS'] = (prod['BEANS']*facility_obj.get_number() + qbeans)/(facility_obj.get_number() + 1)
+            prod['SUGAR'] = (prod['SUGAR']*facility_obj.get_number() + qsugar)/(facility_obj.get_number() + 1)
+            prod['SALT'] = (prod['SALT']*facility_obj.get_number() + qsalt)/(facility_obj.get_number() + 1)
+            prod['OILS'] = (prod['OILS']*facility_obj.get_number() + qoils)/(facility_obj.get_number() + 1)
+            facility_obj.set_consumption(prod)
+                            
+            
         ppl = facility_obj.update_manp_res(ppl)
         
         
@@ -374,7 +399,74 @@ def sell_res():
                 print 'The village doesnot have enough quantity to sell this resource to market'
             except Exceptions.Resources_Overflow_Exception:
                 pass
-
-
-
-
+            
+            
+def earthquake():
+    ''' This method needs to be called when there is an earthquake in the 
+    village, it decreases the number of installations of some facilities and 
+    also reduce the population
+    '''
+    
+    global Hospital 
+    global House
+    global School
+    global Workshop
+    global ppl
+    
+    Hospital.demolish()
+    House.demolish()
+    House.demolish()
+    House.demolish()    
+    School.demolish()
+    Workshop.demolish()
+    ppl.change_total_population(-10)
+    
+    
+def flood():
+    '''This method needs to be called when there is an flood in the village
+    It will increase the quantity of water with the village and stop the operation of
+    all facilities for some time
+    '''
+    global Hospital 
+    global House
+    global School
+    global Workshop
+    global ppl
+    global Water
+    global Farm
+    
+    
+    try :
+        Water.change_vquantity(1000)
+    except :
+        pass
+    
+    Hospital.stop_facility()
+    House.stop_facility() # we can comment it out even....
+    School.stop_facility()
+    Workshop.stop_facility()
+    Farm.stop_facility()
+     
+    sleep(90) # that means for five turns
+    
+    Hospital.resume_facility()
+    House.resume_facility()
+    School.resume_facility()
+    Workshop.resume_facility()
+    Farm.resume_facility()
+    
+    
+def famine():
+    '''This method needs to be called when there is an famine in the village
+    It will stop the production of farms for some time, five turns
+    '''
+    
+    global Farm
+    
+    Farm.stop_facility()
+    sleep(90)
+    Farm.resume_facility()
+    
+    
+    
+    

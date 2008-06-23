@@ -201,6 +201,16 @@ class Facility:
         '''returns the number of facilites'''
         return self._number
 
+    def change_number(self, change):
+        ''' changes the number of installations of a facility
+        '''
+        if self._number+change < 0:
+            self._number = 0
+        elif self._number+change > initial.MAX_NO_INS_FACILITY:
+            self._number = initial.MAX_NO_INS_FACILITY
+        else :
+            self._number += change 
+
     def get_level(self):
         '''returns level of facility'''    
         return self._level   
@@ -363,7 +373,7 @@ class Facility:
         self.dict_res_build =facilities.FACILITY_MANP_DICT_BUILD[self._name]
         change = -self.dict_res_build['EMPLOYED PEOPLE IN CONSTRUCTION']
         people_obj.change_no_of_ppl_emp_in_cons(change)
-        self._number = self._number + 1
+        self.change_number(1)
         return people_obj
 
     def stop_facility(self):
@@ -390,7 +400,7 @@ class Facility:
         with the updated population distribution.
         '''
         
-        self._number = self._number - 1
+        self.change_number(-1)
         
         self.dict_res_run =facilities.FACILITY_MANP_DICT_RUN[self._name]
         self.manp_dist_dict = MANP_DIST_DICT
