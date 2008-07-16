@@ -1,1 +1,1 @@
-i=0while (-1):   print i   i +=1   if i>5:       break    
+def introduction():    global screen    images = []    image_display = pygame.image.load(os.path.join('data', 'intro_img1.png')).convert()    images.append(image_display)    image_display = pygame.image.load(os.path.join('data', 'intro_img1.png')).convert()    images.append(image_display)    image_display = pygame.image.load(os.path.join('data', 'intro_img1.png')).convert()    images.append(image_display)    i=0    while (i <= 5)  and flag_esc:        pass    screen.blit(image_display,(0,0))    
