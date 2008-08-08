@@ -1,7 +1,0 @@
-[Activity]
-name = Labyrinth
-activity_version = 1
-host_version = 1
-service_name = com.dragonflygamedesign.olpc.Labyrinth
-icon = activity-labyrinth
-class = activity.Labyrinth
