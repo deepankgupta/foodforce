@@ -1,0 +1,7 @@
+[Activity]
+name = Food Force 2: Escaping Poverty
+activity_version = 1
+host_version = 1
+service_name = org.laptop.ffep
+icon = activity-foodforce2
+class = activity.FoodForce2Activity
