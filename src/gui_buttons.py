@@ -524,7 +524,7 @@ class buysell_button:
         win_style['bg-color'] = (0,0,0)
 
         # Focus the animation window on the market
-        transform_obj.focus_at((2800,2500)) # Replace this with the coordinates ofthe market in the base surface
+        transform_obj.focus_at((3200,2600)) # Replace this with the coordinates ofthe market in the base surface
 
         # Calculating position and size of window from the size of the desktop        
         position_win =resize_pos((200.0,50.0))

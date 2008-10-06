@@ -45,8 +45,8 @@ resolution_list.sort()
 max_resolution = resolution_list.pop()
 new_screen_size = max_resolution
 # Max resolution detected and the screen size is set to it
-new_screen_size = (1200,800)
-screen = pygame.display.set_mode(new_screen_size,FULLSCREEN,32)
+new_screen_size = (950,700)
+screen = pygame.display.set_mode(new_screen_size,0,32)
 
 # For initialising the style of the guI
 defaultStyle.init(gui)
@@ -158,10 +158,10 @@ def build_facility(facility_obj, list_food = ('0')):
     global ppl
     
     
-    if not check_level(facility_obj):
+    '''if not check_level(facility_obj):
         text = ' All the installations of ' + facility_obj.get_name() +' of this level have been made. Try setting up some other facilities'
         return text
-        
+    '''    
     if facility_obj.get_number() == 0:
         
         if facility_obj.get_original_number() > 0:

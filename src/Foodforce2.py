@@ -37,7 +37,7 @@ from gui_buttons import *
 
 
 
-
+desktop2 = Desktop()
 def message_window():
     ''' Thread to display the messages'''
 
@@ -188,7 +188,7 @@ def escape():
     elif win_flag:
         gui_obj.close_win()
     else:
-        safe_exit()
+        pause_screen(False)
     
 def safe_exit(button = None):
 
@@ -226,13 +226,13 @@ def event_handling(e):
         win_flag = gui_obj.get_win_flag()
         if not win_flag:
             if e.key == K_s:
-               gui_obj.setup()
+	        gui_obj.setup_obj.setup()
             if e.key == K_u:
-               gui_obj.upgrade()
+                gui_obj.upgrade_obj.upgrade()
             if e.key == K_b:
-               gui_obj.buysell()
+                gui_obj.buysell_obj.buysell()
             if e.key == K_e:
-               earthquake()
+                earthquake()
 
     if e.type == KEYUP:
         if e.key == K_UP:
@@ -264,25 +264,38 @@ class starting_intro:
     ''' Display the starting intro_text and menu
     '''
     
-    def main_menu(self):
+    def main_menu(self,pause_flag = True):
         ''' Display the starting menu
         '''
         
-        logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()   
+        logo = pygame.image.load(os.path.join('data', 'logo.png')).convert()
         self.ff_logo = pygame.transform.scale(logo,resize_pos((1111,250)))
         screen.fill((0,0,0))
         screen.blit(self.ff_logo,resize_pos((40,50)))
+        
+        # Font type
         myfont = pygame.font.Font("font.ttf", resize_pt(17))
-        button_style = gui.defaultButtonStyle.copy()
-        button_style['font'] = myfont
-        self.start_button = Button(position = resize_pos((500,500)), size = resize_pos((200,30)), parent = desktop, text = "Start New Game",style = button_style)
-        #self.resume_button = Button(position = resize_pos((500,550)), size = resize_pos((200,30)), parent = desktop, text = "Resume Game",style = button_style)
-        self.controls_button = Button(position = resize_pos((500,550)), size = resize_pos((200,30)), parent = desktop, text = "Controls",style = button_style)
-        self.exit_button = Button(position = resize_pos((500,600)), size = resize_pos((200,30)), parent = desktop, text = "Exit",style = button_style)
-        self.start_button.onClick = self.startup_text
+        
+        # Creating new button style
+        buttonsurf = pygame.image.load(os.path.join('art','button_green.png')).convert_alpha()
+        self.button_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
+        
+        self.pause_flag = pause_flag
+	if self.pause_flag:
+            self.start_button = Button(position = resize_pos((500,500)), size = resize_pos((200,30)), parent = desktop2, text = "Start New Game",style = self.button_style)
+            self.start_button.onClick = self.startup_text
+        else:
+	    self.resume_button = Button(position = resize_pos((500,500)), size = resize_pos((200,30)), parent = desktop2, text = "Resume Game",style = self.button_style)
+            self.resume_button.onClick = self.resume
+
+	#self.resume_button = Button(position = resize_pos((500,550)), size = resize_pos((200,30)), parent = desktop, text = "Resume Game",style = self.button_style)
+        self.controls_button = Button(position = resize_pos((500,550)), size = resize_pos((200,30)), parent = desktop2, text = "Controls",style = self.button_style)
+        self.exit_button = Button(position = resize_pos((500,600)), size = resize_pos((200,30)), parent = desktop2, text = "Exit",style = self.button_style)
+        
         #self.resume_button.onClick = self.resume
         self.controls_button.onClick = self.controls
         self.exit_button.onClick = safe_exit
+        
         self.run = True
     
     def startup_text(self,button = None):
@@ -303,7 +316,7 @@ class starting_intro:
         win_style['bg-color'] = (0,0,0)
         position_win =resize_pos((200.0,50.0))
         size_win =resize_pos((800.0,600.0))
-        win = Window(position = position_win, size = size_win, parent = desktop, text = " FOODFORCE: ESCAPING POVERTY  " ,style = win_style,shadeable = False, closeable = False)
+        win = Window(position = position_win, size = size_win, parent = desktop2, text = " FOODFORCE: ESCAPING POVERTY  " ,style = win_style,shadeable = False, closeable = False)
         run = True
         win.surf.set_alpha(100)
         myfont2 = pygame.font.Font("font.ttf",resize_pt(23))
@@ -332,11 +345,11 @@ class starting_intro:
                 counter += 1
             screen.fill((255,255,255))
             screen.blit(hunger_map,resize_pos((0,0))) 
-            desktop.update()
-            desktop.draw()
+            desktop2.update()
+            desktop2.draw()
             pygame.display.flip()
             if counter == 8:
-               run = False
+                run = False
             threades.iteration_time = clock.tick()
             threades.global_time += threades.iteration_time
         win.close()
@@ -347,7 +360,7 @@ class starting_intro:
         hunger_map =  pygame.transform.scale(hunger_map,new_screen_size)
         screen.blit(hunger_map,resize_pos((0,0)))
         
-        win = Window(position = position_win, size = size_win, parent = desktop, text = " FOODFORCE: INSTRUCTIONS  " ,style = win_style,shadeable = False, closeable = False)
+        win = Window(position = position_win, size = size_win, parent = desktop2, text = " FOODFORCE: INSTRUCTIONS  " ,style = win_style,shadeable = False, closeable = False)
         run = True
         win.surf.set_alpha(160)
         
@@ -369,11 +382,11 @@ class starting_intro:
                 counter += 1
             screen.fill((255,255,255))
             screen.blit(hunger_map,resize_pos((0,0))) 
-            desktop.update()
-            desktop.draw()
+            desktop2.update()
+            desktop2.draw()
             pygame.display.flip()
             if counter == 8:
-               run = False
+                run = False
             threades.iteration_time = clock.tick()
             threades.global_time += threades.iteration_time
         win.close()
@@ -388,6 +401,7 @@ class starting_intro:
     def controls(self,button = None):
         """"show controllers
         """
+        self.remove_buttons()
         self.lightgreen_color = (0,100,0)
         self.green_color = (0,150,0)
         self.black_color = (0,0,0)
@@ -400,11 +414,12 @@ class starting_intro:
         win_style['bg-color'] = (0,0,0)
         win_style['border-color'] = (0,150,0)
         # Calculating position and size of window from the size of the desktop        
-        position_win =resize_pos((300.0,250.0))
-        size_win =resize_pos((600.0,600.0))
+        position_win =resize_pos((150.0,270.0))
+        size_win =resize_pos((900.0,600.0))
 
         # Creating window
-        self.win = Window(position = position_win, size = size_win, parent = desktop, text = "     Default Controls Setting " ,style = win_style,shadeable = False)
+        self.win = Window(position = position_win, size = size_win, parent = desktop2, text = "     Controls " , style = win_style, shadeable = False, closeable = False)
+        self.win.onClose = lambda button: self.main_menu()
         self.win.surf.set_alpha(140)
         
         control_text = """\n\n  Setup Facility           :       s \n\n  Upgrade Facility       :       u \n\n  Buy/Sell                    :       b \n\n  Scroll screen up       :       up arrow \n\n  Scroll screen down   :       down arrow \n\n  Scroll screen left      :       left arrow \n\n  Scroll screen right    :       right arrow """
@@ -416,64 +431,83 @@ class starting_intro:
         labelStyleCopy['font'] = myfont2
         labelStyleCopy['font-color'] = self.lightgreen_color
         labelStyleCopy['border-color'] = self.black_color
-        #self.message_label = Label(position = resize_pos((80,50),(600.0,600.0),self.win.size),size = resize_pos((490,490),(600.0,600.0),self.win.size), parent = self.win, text = control_text, style = labelStyleCopy)
         self.message_label = Label(position = resize_pos((80,80),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "Setup Facility ", style = labelStyleCopy)
-        self.message_label = Label(position = resize_pos((80,150),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "Upgrade Facility ", style = labelStyleCopy)
-        self.message_label = Label(position = resize_pos((80,220),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "Buy/Sell ", style = labelStyleCopy)
-        self.message_label = Label(position = resize_pos((80,290),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "Scroll Screen up ", style = labelStyleCopy)
-        self.message_label = Label(position = resize_pos((80,360),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "Scroll Screen down", style = labelStyleCopy)
-        self.message_label = Label(position = resize_pos((80,430),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "Scroll Screen left ", style = labelStyleCopy)
-        self.message_label = Label(position = resize_pos((80,500),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "Scroll Screen right ", style = labelStyleCopy)
+        self.message_label = Label(position = resize_pos((80,130),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "Upgrade Facility ", style = labelStyleCopy)
+        self.message_label = Label(position = resize_pos((80,180),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "Buy/Sell ", style = labelStyleCopy)
+        self.message_label = Label(position = resize_pos((80,230),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "Scroll Screen up ", style = labelStyleCopy)
+        self.message_label = Label(position = resize_pos((80,280),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "Scroll Screen down", style = labelStyleCopy)
+        self.message_label = Label(position = resize_pos((80,330),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "Scroll Screen left ", style = labelStyleCopy)
+        self.message_label = Label(position = resize_pos((80,380),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "Scroll Screen right ", style = labelStyleCopy)
+        self.message_label = Label(position = resize_pos((80,430),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "Focus ", style = labelStyleCopy)
+        self.message_label = Label(position = resize_pos((80,480),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "De Focus ", style = labelStyleCopy)
         self.message_label = Label(position = resize_pos((330,80),(600.0,600.0),self.win.size),size = resize_pos((10,70),(600.0,600.0),self.win.size), parent = self.win, text = ": ", style = labelStyleCopy)
-        self.message_label = Label(position = resize_pos((330,150),(600.0,600.0),self.win.size),size = resize_pos((10,70),(600.0,600.0),self.win.size), parent = self.win, text = ": ", style = labelStyleCopy)
-        self.message_label = Label(position = resize_pos((330,220),(600.0,600.0),self.win.size),size = resize_pos((10,70),(600.0,600.0),self.win.size), parent = self.win, text = ": ", style = labelStyleCopy)
-        self.message_label = Label(position = resize_pos((330,290),(600.0,600.0),self.win.size),size = resize_pos((10,70),(600.0,600.0),self.win.size), parent = self.win, text = ": ", style = labelStyleCopy)
-        self.message_label = Label(position = resize_pos((330,360),(600.0,600.0),self.win.size),size = resize_pos((10,70),(600.0,600.0),self.win.size), parent = self.win, text = ": ", style = labelStyleCopy)
+        self.message_label = Label(position = resize_pos((330,130),(600.0,600.0),self.win.size),size = resize_pos((10,70),(600.0,600.0),self.win.size), parent = self.win, text = ": ", style = labelStyleCopy)
+        self.message_label = Label(position = resize_pos((330,180),(600.0,600.0),self.win.size),size = resize_pos((10,70),(600.0,600.0),self.win.size), parent = self.win, text = ": ", style = labelStyleCopy)
+        self.message_label = Label(position = resize_pos((330,230),(600.0,600.0),self.win.size),size = resize_pos((10,70),(600.0,600.0),self.win.size), parent = self.win, text = ": ", style = labelStyleCopy)
+        self.message_label = Label(position = resize_pos((330,280),(600.0,600.0),self.win.size),size = resize_pos((10,70),(600.0,600.0),self.win.size), parent = self.win, text = ": ", style = labelStyleCopy)
+        self.message_label = Label(position = resize_pos((330,330),(600.0,600.0),self.win.size),size = resize_pos((10,70),(600.0,600.0),self.win.size), parent = self.win, text = ": ", style = labelStyleCopy)
+        self.message_label = Label(position = resize_pos((330,380),(600.0,600.0),self.win.size),size = resize_pos((10,70),(600.0,600.0),self.win.size), parent = self.win, text = ": ", style = labelStyleCopy)
         self.message_label = Label(position = resize_pos((330,430),(600.0,600.0),self.win.size),size = resize_pos((10,70),(600.0,600.0),self.win.size), parent = self.win, text = ": ", style = labelStyleCopy)
-        self.message_label = Label(position = resize_pos((330,500),(600.0,600.0),self.win.size),size = resize_pos((10,70),(600.0,600.0),self.win.size), parent = self.win, text = ": ", style = labelStyleCopy)
+        self.message_label = Label(position = resize_pos((330,480),(600.0,600.0),self.win.size),size = resize_pos((10,70),(600.0,600.0),self.win.size), parent = self.win, text = ": ", style = labelStyleCopy)
         self.message_label = Label(position = resize_pos((350,80),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "s ", style = labelStyleCopy)
-        self.message_label = Label(position = resize_pos((350,150),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "u ", style = labelStyleCopy)
-        self.message_label = Label(position = resize_pos((350,220),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "b ", style = labelStyleCopy)
-        self.message_label = Label(position = resize_pos((350,290),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "up arrow ", style = labelStyleCopy)
-        self.message_label = Label(position = resize_pos((350,360),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "down arrow ", style = labelStyleCopy)
-        self.message_label = Label(position = resize_pos((350,430),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "left arrrow ", style = labelStyleCopy)
-        self.message_label = Label(position = resize_pos((350,500),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "right arrow ", style = labelStyleCopy)
+        self.message_label = Label(position = resize_pos((350,130),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "u ", style = labelStyleCopy)
+        self.message_label = Label(position = resize_pos((350,180),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "b ", style = labelStyleCopy)
+        self.message_label = Label(position = resize_pos((350,230),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "up arrow ", style = labelStyleCopy)
+        self.message_label = Label(position = resize_pos((350,280),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "down arrow ", style = labelStyleCopy)
+        self.message_label = Label(position = resize_pos((350,330),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "left arrrow ", style = labelStyleCopy)
+        self.message_label = Label(position = resize_pos((350,380),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "right arrow ", style = labelStyleCopy)
+        self.message_label = Label(position = resize_pos((350,430),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "f ", style = labelStyleCopy)
+        self.message_label = Label(position = resize_pos((350,480),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "d ", style = labelStyleCopy)
         
-        #self.head_label = Label(position = resize_pos((0,0),(800.0,600.0),self.win.size),size = resize_pos((800,30),(800.0,600.0),self.win.size), parent = self.win, text = head_text, style = labelStyleCopy)
         self.win.surf.set_alpha(255)
+	self.ok_button = Button(position = resize_pos((480,550),(600.0,600.0),self.win.size), size = resize_pos((80,30),(600.0,600.0),self.win.size), parent = self.win, text = "  OK  ",style = self.button_style)
         
-        
-        '''while run:
-        
+	self.ok_button.onClick = self.close_win
+        self.controls_run = True
+        logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()   
+        ff_logo = pygame.transform.scale(logo,resize_pos((1111,250)))
+        while self.controls_run:
+            pygame.display.set_caption(str(int(clock.get_fps())))
+            screen.fill((0,0,0))
+            screen.blit(ff_logo,resize_pos((40,50)))
+    
             for e in gui.setEvents(pygame.event.get()):
-                if e.type == pygame.QUIT:
-                    safe_exit()    
                 if e.type == KEYDOWN:
                     if e.key == 27:  # For escape key
-                        run = False
-        '''
-    
+                        self.controls_run = False
+			self.win.close()
+                
+            desktop2.update()    
+            desktop2.draw()
+            pygame.display.update()
+        
+        
+    def close_win(self,button = None):
+	self.win.close()
+	self.controls_run = False
+	
     def remove_buttons(self):
         ''' Removes the buttons from the Desktop
         '''
-        win = Window(position = (0,0), size = (100,100), parent = desktop)
-        self.start_button._set_parent(win)
-        #self.resume_button._set_parent(win)
+	
+        win = Window(position = (0,0), size = (100,100), parent = desktop2)
+	if self.pause_flag:
+            self.start_button._set_parent(win)
+        else:           
+            self.resume_button._set_parent(win)
+	
         self.controls_button._set_parent(win)
         self.exit_button._set_parent(win)
     	win.close()
-        
-def main():
-
-   
-    # Displaying the WFP logo
-    intro_thread = threading.Thread(target = load_images, args=[])
-    intro_thread.start()
-    # Loading and starting the sound play
-    soundtrack.play(-1)
-
+ 
+    
+    
+    
+def pause_screen(pause_flag = True):
+    
     start = starting_intro()
-    start.main_menu()
+    
+    start.main_menu(pause_flag)
     logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()   
     ff_logo = pygame.transform.scale(logo,resize_pos((1111,250)))
     while start.run:
@@ -487,9 +521,21 @@ def main():
             if e.type == QUIT:
                 safe_exit()
         
-        desktop.update()    
-        desktop.draw()
+        desktop2.update()    
+        desktop2.draw()
         pygame.display.update()
+    
+    
+def main():
+
+   
+    # Displaying the WFP logo
+    intro_thread = threading.Thread(target = load_images, args=[])
+    intro_thread.start()
+    # Loading and starting the sound play
+    soundtrack.play(-1)
+
+    pause_screen()
     
   
     
@@ -519,7 +565,7 @@ def main():
         pygame.display.set_caption(str(int(clock.get_fps())))
 
         for e in gui.setEvents(pygame.event.get()):
-           event_handling(e)
+	    event_handling(e)
 
         #pygame.draw.rect(screen,(209,169,106),resize_rect((0,40,1200,560)))        
         animation_obj.update()
