@@ -419,7 +419,7 @@ class starting_intro:
 
         # Creating window
         self.win = Window(position = position_win, size = size_win, parent = desktop2, text = "     Controls " , style = win_style, shadeable = False, closeable = False)
-        self.win.onClose = lambda button: self.main_menu()
+        self.win.onClose = lambda button: self.main_menu(self.pause_flag)
         self.win.surf.set_alpha(140)
         
         control_text = """\n\n  Setup Facility           :       s \n\n  Upgrade Facility       :       u \n\n  Buy/Sell                    :       b \n\n  Scroll screen up       :       up arrow \n\n  Scroll screen down   :       down arrow \n\n  Scroll screen left      :       left arrow \n\n  Scroll screen right    :       right arrow """
