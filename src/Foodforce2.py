@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 #
 #   Author : Mohit Taneja (mohitgenii@gmail.com)
-#   Date : 9/06/2008 
+#   Date : 9/06/2008
 #
 #   This program is free software; you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -48,7 +48,7 @@ def message_window():
     win_style['font'] = myfont
     win_style['font-color'] = font_color
     win_style['bg-color'] = (0,0,25)
-    # Calculating position and size of window from the size of the desktop        
+    # Calculating position and size of window from the size of the desktop
     position_win =resize_pos((745.0,42.0))
     size_win =resize_pos((450.0,150.0))
 
@@ -65,7 +65,7 @@ def message_window():
 
             # Creating window
             win = Window(position = position_win, size = size_win, parent = desktop, text = "Message " ,style = win_style)
-            win.surf.set_alpha(160) 
+            win.surf.set_alpha(160)
             # Creating label
             message_label = Label(position = resize_pos((5,50),(450.0,150.0),win.size),size = resize_pos((445,140),(450.0,150.0),win.size), parent = win, text = text, style = labelStyleCopy)
             sleep(6)
@@ -76,7 +76,7 @@ def message_window():
 
 
 
- 
+
 
 
 
@@ -104,7 +104,7 @@ class Earthquake(pygame.sprite.Sprite):
 
     def update(self):
 
-        global Hospital 
+        global Hospital
         global House
         global School
         global Workshop
@@ -155,10 +155,10 @@ def display_earthquake_images():
     pygame.display.flip()
     sleep(3)
 
-earthquake = None    
+earthquake = None
 def earthquake():
-    ''' This method needs to be called when there is an earthquake in the 
-    village, it decreases the number of installations of some facilities and 
+    ''' This method needs to be called when there is an earthquake in the
+    village, it decreases the number of installations of some facilities and
     also reduce the population
     '''
     global earthquake
@@ -168,7 +168,7 @@ def earthquake():
 
 
 def load_sound(name):
-    
+
     if not pygame.mixer:
         return NoneSound()
     fullname = os.path.join(name)
@@ -189,14 +189,14 @@ def escape():
         gui_obj.close_win()
     else:
         pause_screen(False)
-    
+
 def safe_exit(button = None):
 
     soundtrack.stop()
     pygame.mixer.quit()
     pygame.quit()
     exit()
-   
+
 
 
 clock = pygame.time.Clock()
@@ -204,7 +204,7 @@ clock = pygame.time.Clock()
 
 def event_handling(e):
     if e.type == pygame.QUIT:
-        safe_exit()            
+        safe_exit()
     if e.type == QUIT:
         safe_exit()
     if e.type == KEYDOWN:
@@ -222,7 +222,7 @@ def event_handling(e):
             transform_obj.focus()
         if e.key == K_d or e.key == 45:
             transform_obj.defocus()
-            
+
         win_flag = gui_obj.get_win_flag()
         if not win_flag:
             if e.key == K_s:
@@ -263,23 +263,23 @@ soundtrack = load_sound(os.path.join('data', 'soundtrack.ogg'))
 class starting_intro:
     ''' Display the starting intro_text and menu
     '''
-    
+
     def main_menu(self,pause_flag = True):
         ''' Display the starting menu
         '''
-        
+
         logo = pygame.image.load(os.path.join('data', 'logo.png')).convert()
         self.ff_logo = pygame.transform.scale(logo,resize_pos((1111,250)))
         screen.fill((0,0,0))
         screen.blit(self.ff_logo,resize_pos((40,50)))
-        
+
         # Font type
         myfont = pygame.font.Font("font.ttf", resize_pt(17))
-        
+
         # Creating new button style
         buttonsurf = pygame.image.load(os.path.join('art','button_green.png')).convert_alpha()
         self.button_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
-        
+
         self.pause_flag = pause_flag
 	if self.pause_flag:
             self.start_button = Button(position = resize_pos((500,500)), size = resize_pos((200,30)), parent = desktop2, text = "Start New Game",style = self.button_style)
@@ -291,23 +291,23 @@ class starting_intro:
 	#self.resume_button = Button(position = resize_pos((500,550)), size = resize_pos((200,30)), parent = desktop, text = "Resume Game",style = self.button_style)
         self.controls_button = Button(position = resize_pos((500,550)), size = resize_pos((200,30)), parent = desktop2, text = "Controls",style = self.button_style)
         self.exit_button = Button(position = resize_pos((500,600)), size = resize_pos((200,30)), parent = desktop2, text = "Exit",style = self.button_style)
-        
+
         #self.resume_button.onClick = self.resume
         self.controls_button.onClick = self.controls
         self.exit_button.onClick = safe_exit
-        
+
         self.run = True
-    
+
     def startup_text(self,button = None):
         ''' Displays the startup text
         '''
-        
+
         self.remove_buttons()
         screen.fill((255,255,255))
         hunger_map = pygame.image.load(os.path.join('data', 'hunger_map.png')).convert()
         hunger_map =  pygame.transform.scale(hunger_map,new_screen_size)
         screen.blit(hunger_map,resize_pos((0,0)))
-        
+
         # Window custom style
         myfont = pygame.font.Font("font.ttf", resize_pt(28))
         win_style = gui.defaultWindowStyle.copy()
@@ -326,25 +326,25 @@ class starting_intro:
         labelstyle1['autosize'] = True
         labelstyle1['font'] = myfont2
         labelstyle1['font-color'] = (255,255,255)
-        
+
         counter = 0
         label = Label(position = resize_pos((10.0,130.0),(800.0,600.0),win.size), parent = win, text = '', style = labelstyle1)
-        
+
         threades.global_time = 0
         while run:
-        
+
             for e in gui.setEvents(pygame.event.get()):
                 if e.type == pygame.QUIT:
-                    safe_exit()    
+                    safe_exit()
                 if e.type == KEYDOWN:
                     if e.key == 27:  # For escape key
-                        run = False        
+                        run = False
             label.text =  trailer_text[counter]
             if threades.global_time >= 5000:
                 threades.global_time = 0
                 counter += 1
             screen.fill((255,255,255))
-            screen.blit(hunger_map,resize_pos((0,0))) 
+            screen.blit(hunger_map,resize_pos((0,0)))
             desktop2.update()
             desktop2.draw()
             pygame.display.flip()
@@ -353,35 +353,35 @@ class starting_intro:
             threades.iteration_time = clock.tick()
             threades.global_time += threades.iteration_time
         win.close()
-        
-     
+
+
         screen.fill((255,255,255))
         hunger_map = pygame.image.load(os.path.join('data', 'wfp_work.png')).convert()
         hunger_map =  pygame.transform.scale(hunger_map,new_screen_size)
         screen.blit(hunger_map,resize_pos((0,0)))
-        
+
         win = Window(position = position_win, size = size_win, parent = desktop2, text = " FOODFORCE: INSTRUCTIONS  " ,style = win_style,shadeable = False, closeable = False)
         run = True
         win.surf.set_alpha(160)
-        
+
         counter = 0
         label = Label(position = resize_pos((10.0,130.0),(800.0,600.0),win.size), parent = win, text = '', style = labelstyle1)
-        
+
         threades.global_time = 0
         while run:
-        
+
             for e in gui.setEvents(pygame.event.get()):
                 if e.type == pygame.QUIT:
-                    safe_exit()    
+                    safe_exit()
                 if e.type == KEYDOWN:
                     if e.key == 27:  # For escape key
-                        run = False        
+                        run = False
             label.text =  instruction_text[counter]
             if threades.global_time >= 17000:
                 threades.global_time = 0
                 counter += 1
             screen.fill((255,255,255))
-            screen.blit(hunger_map,resize_pos((0,0))) 
+            screen.blit(hunger_map,resize_pos((0,0)))
             desktop2.update()
             desktop2.draw()
             pygame.display.flip()
@@ -391,7 +391,7 @@ class starting_intro:
             threades.global_time += threades.iteration_time
         win.close()
         self.run = False
-        
+
     def resume(self,button = None):
         ''' Resumes Game
         '''
@@ -413,15 +413,15 @@ class starting_intro:
         win_style['font-color'] = self.green_color
         win_style['bg-color'] = (0,0,0)
         win_style['border-color'] = (0,150,0)
-        # Calculating position and size of window from the size of the desktop        
+        # Calculating position and size of window from the size of the desktop
         position_win =resize_pos((150.0,270.0))
         size_win =resize_pos((900.0,600.0))
 
         # Creating window
         self.win = Window(position = position_win, size = size_win, parent = desktop2, text = "     Controls " , style = win_style, shadeable = False, closeable = False)
         self.win.onClose = lambda button: self.main_menu(self.pause_flag)
-        self.win.surf.set_alpha(140)
-        
+	self.win.surf.set_alpha(140)
+
         control_text = """\n\n  Setup Facility           :       s \n\n  Upgrade Facility       :       u \n\n  Buy/Sell                    :       b \n\n  Scroll screen up       :       up arrow \n\n  Scroll screen down   :       down arrow \n\n  Scroll screen left      :       left arrow \n\n  Scroll screen right    :       right arrow """
         myfont2 = pygame.font.Font("font.ttf", resize_pt(25))
         labelStyleCopy = gui.defaultLabelStyle.copy()
@@ -458,77 +458,77 @@ class starting_intro:
         self.message_label = Label(position = resize_pos((350,380),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "right arrow ", style = labelStyleCopy)
         self.message_label = Label(position = resize_pos((350,430),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "f ", style = labelStyleCopy)
         self.message_label = Label(position = resize_pos((350,480),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "d ", style = labelStyleCopy)
-        
+
         self.win.surf.set_alpha(255)
 	self.ok_button = Button(position = resize_pos((480,550),(600.0,600.0),self.win.size), size = resize_pos((80,30),(600.0,600.0),self.win.size), parent = self.win, text = "  OK  ",style = self.button_style)
-        
+
 	self.ok_button.onClick = self.close_win
         self.controls_run = True
-        logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()   
+        logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
         ff_logo = pygame.transform.scale(logo,resize_pos((1111,250)))
         while self.controls_run:
             pygame.display.set_caption(str(int(clock.get_fps())))
             screen.fill((0,0,0))
             screen.blit(ff_logo,resize_pos((40,50)))
-    
+
             for e in gui.setEvents(pygame.event.get()):
                 if e.type == KEYDOWN:
                     if e.key == 27:  # For escape key
                         self.controls_run = False
 			self.win.close()
-                
-            desktop2.update()    
+
+            desktop2.update()
             desktop2.draw()
             pygame.display.update()
-        
-        
+
+
     def close_win(self,button = None):
 	self.win.close()
 	self.controls_run = False
-	
+
     def remove_buttons(self):
         ''' Removes the buttons from the Desktop
         '''
-	
+
         win = Window(position = (0,0), size = (100,100), parent = desktop2)
 	if self.pause_flag:
             self.start_button._set_parent(win)
-        else:           
+        else:
             self.resume_button._set_parent(win)
-	
+
         self.controls_button._set_parent(win)
         self.exit_button._set_parent(win)
     	win.close()
- 
-    
-    
-    
+
+
+
+
 def pause_screen(pause_flag = True):
-    
+
     start = starting_intro()
-    
+
     start.main_menu(pause_flag)
-    logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()   
+    logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
     ff_logo = pygame.transform.scale(logo,resize_pos((1111,250)))
     while start.run:
         pygame.display.set_caption(str(int(clock.get_fps())))
         screen.fill((0,0,0))
         screen.blit(ff_logo,resize_pos((40,50)))
-    
+
         for e in gui.setEvents(pygame.event.get()):
             if e.type == pygame.QUIT:
-                safe_exit()            
+                safe_exit()
             if e.type == QUIT:
                 safe_exit()
-        
-        desktop2.update()    
+
+        desktop2.update()
         desktop2.draw()
         pygame.display.update()
-    
-    
+
+
 def main():
 
-   
+
     # Displaying the WFP logo
     intro_thread = threading.Thread(target = load_images, args=[])
     intro_thread.start()
@@ -536,9 +536,9 @@ def main():
     soundtrack.play(-1)
 
     pause_screen()
-    
-  
-    
+
+
+
     wfp_logo = pygame.image.load(os.path.join('data', 'top.png')).convert()
     intro_thread.join()
     initialize_facilities()
@@ -546,9 +546,9 @@ def main():
     #surface_middle = pygame.transform.scale(surface3,resize_pos((1200,560)))
     surface_top = pygame.transform.scale(wfp_logo,resize_pos((1200,40)))
 
-    
+
     initialize_gui()
-   
+
     screen.fill((0,0,0))
     panel = display_panel()
     animation_obj = Animation()
@@ -560,42 +560,42 @@ def main():
     # The main infinite loop
     while True:
         #clock.tick()
-        
-    
+
+
         pygame.display.set_caption(str(int(clock.get_fps())))
 
         for e in gui.setEvents(pygame.event.get()):
 	    event_handling(e)
 
-        #pygame.draw.rect(screen,(209,169,106),resize_rect((0,40,1200,560)))        
+        #pygame.draw.rect(screen,(209,169,106),resize_rect((0,40,1200,560)))
         animation_obj.update()
 
-        
+
         # For top surface
         screen.blit(surface_top,(0,0))
-        
+
         # For middle surface
         #surface_middle = pygame.transform.scale(surface3,resize_pos((1200,560)))
         #screen.blit(surface_middle,resize_pos((0,40)))
-        
+
         # For bottom surface
-        pygame.draw.rect(screen,(0,0,0),resize_rect((0,600,1200,300)))        
-        
-        
-        panel.update()    
-        
-        desktop.update()    
-        
+        pygame.draw.rect(screen,(0,0,0),resize_rect((0,600,1200,300)))
+
+
+        panel.update()
+
+        desktop.update()
+
         desktop.draw()
 
         pygame.display.update()
-        
+
         threades.iteration_time = clock.tick()
         threades.global_time += threades.iteration_time
 
 
 if __name__ == '__main__':
     main()
-    
+
 
 
