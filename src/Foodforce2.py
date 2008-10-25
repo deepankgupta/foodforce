@@ -41,13 +41,13 @@ desktop2 = Desktop()
 def message_window():
     ''' Thread to display the messages'''
 
-    font_color = (160,160,160)
-    myfont = pygame.font.Font("font.ttf", resize_pt(20))
+    font_color = (255,214,150)
+    myfont = pygame.font.Font("font.ttf", resize_pt(23))
     # Custom Window Style
     win_style = gui.defaultWindowStyle.copy()
     win_style['font'] = myfont
     win_style['font-color'] = font_color
-    win_style['bg-color'] = (0,0,25)
+    
     # Calculating position and size of window from the size of the desktop
     position_win =resize_pos((745.0,42.0))
     size_win =resize_pos((450.0,150.0))
@@ -64,7 +64,8 @@ def message_window():
         if text:
 
             # Creating window
-            win = Window(position = position_win, size = size_win, parent = desktop, text = "Message " ,style = win_style)
+	    win_style['bg-color'] = color
+            win = Window(position = position_win, size = size_win, parent = desktop, text = "Message " ,style = win_style ,closeable = False ,shadeable = False)
             win.surf.set_alpha(160)
             # Creating label
             message_label = Label(position = resize_pos((5,50),(450.0,150.0),win.size),size = resize_pos((445,140),(450.0,150.0),win.size), parent = win, text = text, style = labelStyleCopy)
@@ -245,7 +246,7 @@ def event_handling(e):
             transform_obj.stop_move('right')
 
     x,y = pygame.mouse.get_pos()
-    r = pygame.Rect(resize_rect((0,40,1200,560)))
+    r = pygame.Rect(resize_rect((0,40,930,560)))
     if r.collidepoint(x,y):
         if e.type == MOUSEMOTION:
             if e.buttons == (1,0,0):
@@ -312,8 +313,8 @@ class starting_intro:
         myfont = pygame.font.Font("font.ttf", resize_pt(28))
         win_style = gui.defaultWindowStyle.copy()
         win_style['font'] = myfont
-        win_style['font-color'] = (255,255,255)
-        win_style['bg-color'] = (0,0,0)
+        win_style['font-color'] = (0,0,0)
+        win_style['bg-color'] = (255,255,255)
         position_win =resize_pos((200.0,50.0))
         size_win =resize_pos((800.0,600.0))
         win = Window(position = position_win, size = size_win, parent = desktop2, text = " FOODFORCE: ESCAPING POVERTY  " ,style = win_style,shadeable = False, closeable = False)
@@ -322,10 +323,10 @@ class starting_intro:
         myfont2 = pygame.font.Font("font.ttf",resize_pt(23))
         labelstyle1 = gui.defaultLabelStyle.copy()
         labelstyle1['border-width'] = 0
-        labelstyle1['wordwrap'] = False
+        labelstyle1['wordwrap'] = True
         labelstyle1['autosize'] = True
         labelstyle1['font'] = myfont2
-        labelstyle1['font-color'] = (255,255,255)
+        labelstyle1['font-color'] = (0,0,0)
 
         counter = 0
         label = Label(position = resize_pos((10.0,130.0),(800.0,600.0),win.size), parent = win, text = '', style = labelstyle1)
@@ -377,7 +378,7 @@ class starting_intro:
                     if e.key == 27:  # For escape key
                         run = False
             label.text =  instruction_text[counter]
-            if threades.global_time >= 17000:
+            if threades.global_time >= 10000:
                 threades.global_time = 0
                 counter += 1
             screen.fill((255,255,255))

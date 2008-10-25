@@ -11,11 +11,11 @@ class initialize:
         dat_lines = file_dat.readlines()
         file_dat.close()
         for each_line in dat_lines:
-          length = len(each_line) - 1
-          if each_line[0] == '\n' or each_line[0] == '#':
-            continue
-          else:
-            rec_line.append(each_line[0:length])
+            length = len(each_line) - 1
+            if each_line[0] == '\n' or each_line[0] == '#':
+                continue
+            else:
+                rec_line.append(each_line[0:length])
             
     def ini_val_facility():
         COST_HOUSE = {rec_line[0] : float(rec_line[1]),rec_line[2] : float(rec_line[3]),rec_line[4] : float(rec_line[5]}  
