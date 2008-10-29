@@ -64,7 +64,7 @@ def message_window():
         if text:
 
             # Creating window
-	    win_style['bg-color'] = color
+            win_style['bg-color'] = color
             win = Window(position = position_win, size = size_win, parent = desktop, text = "Message " ,style = win_style ,closeable = False ,shadeable = False)
             win.surf.set_alpha(160)
             # Creating label

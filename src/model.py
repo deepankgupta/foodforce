@@ -244,17 +244,17 @@ def init_obj():
     '''facility initializaion '''
     #house
     global House, School, Hospital, Farm, Workshop, Fountain
-    House = Facility('HOUSE',COST_HOUSE,COST_LEVEL_HOUSE,PROD_HOUSE,CONS_HOUSE,0,0)
+    House = Facility('HOUSE',COST_HOUSE,COST_LEVEL_HOUSE,PROD_HOUSE,CONS_HOUSE)
     #school
-    School = Facility('SCHOOL',COST_SCHOOL,COST_LEVEL_SCHOOL,PROD_SCHOOL,CONS_SCHOOL,0,0)
+    School = Facility('SCHOOL',COST_SCHOOL,COST_LEVEL_SCHOOL,PROD_SCHOOL,CONS_SCHOOL)
     #hospital
-    Hospital = Facility('HOSPITAL',COST_HOSPITAL,COST_LEVEL_HOSPITAL,PROD_HOSPITAL,CONS_HOSPITAL,0,0)
+    Hospital = Facility('HOSPITAL',COST_HOSPITAL,COST_LEVEL_HOSPITAL,PROD_HOSPITAL,CONS_HOSPITAL)
     #farm
-    Farm = Facility('FARM',COST_FARM,COST_LEVEL_FARM,PROD_FARM,CONS_FARM,0,0)
+    Farm = Facility('FARM',COST_FARM,COST_LEVEL_FARM,PROD_FARM,CONS_FARM)
     #workshop
-    Workshop = Facility('WORKSHOP',COST_WORKSHOP,COST_LEVEL_WORKSHOP,PROD_WORKSHOP,CONS_WORKSHOP,0,0)
+    Workshop = Facility('WORKSHOP',COST_WORKSHOP,COST_LEVEL_WORKSHOP,PROD_WORKSHOP,CONS_WORKSHOP)
     #fountain
-    Fountain = Facility('FOUNTAIN',COST_FOUNTAIN,COST_LEVEL_FOUNTAIN,PROD_FOUNTAIN,CONS_FOUNTAIN,0,0)
+    Fountain = Facility('FOUNTAIN',COST_FOUNTAIN,COST_LEVEL_FOUNTAIN,PROD_FOUNTAIN,CONS_FOUNTAIN)
 
     ''' initialization of resources   '''
     global Water, Buildmat, Tools, Medicine, Book, Rice, Wheat, Beans, Sugar, Salt, Oil
@@ -780,10 +780,12 @@ class Facility:
         # Generating the change in manpower due to upgradation
         self.manp_dist_dict = MANP_DIST_DICT
         self.dict_res_change = FACILITY_MANP_DICT_CH[self._name]
+        print self.dict_res_change
+        print self.level_incr_prod
         for keying in self.manp_dist_dict.keys():
             if self.dict_res_change.has_key(keying):
-                self.manp_dist_dict[keying] =  self.level_incr_prod*self._number*self.dict_res_change[keying]
-
+                self.manp_dist_dict[keying] +=  self.level_incr_prod*self._number*self.dict_res_change[keying]
+        print self.manp_dist_dict
         people_obj.change_population_dist(self.manp_dist_dict['TOTAL POPULATION'], self.manp_dist_dict['SHELTERED PEOPLE'], self.manp_dist_dict['EDUCATED PEOPLE'], self.manp_dist_dict['HEALTHY PEOPLE'], self.manp_dist_dict['PEOPLE FED'], self.manp_dist_dict['EMPLOYED PEOPLE IN CONSTRUCTION'], self.manp_dist_dict['EMPLOYED PEOPLE IN HOSPITAL'], self.manp_dist_dict['EMPLOYED PEOPLE IN SCHOOL'], self.manp_dist_dict['EMPLOYED PEOPLE IN WORKSHOP'], self.manp_dist_dict['EMPLOYED PEOPLE IN FARM'])
         MANP_DIST_DICT = { 'TOTAL POPULATION' : 0.0 , 'SHELTERED PEOPLE' : 0.0 , 'EDUCATED PEOPLE' : 0.0 , 'HEALTHY PEOPLE' : 0.0 , 'PEOPLE FED' : 0.0 , 'EMPLOYED PEOPLE IN CONSTRUCTION' : 0.0 , 'EMPLOYED PEOPLE IN HOSPITAL' : 0.0 , 'EMPLOYED PEOPLE IN SCHOOL' : 0.0 , 'EMPLOYED PEOPLE IN WORKSHOP' : 0.0 , 'EMPLOYED PEOPLE IN FARM' : 0.0 }
         return resources
