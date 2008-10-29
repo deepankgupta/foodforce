@@ -243,3 +243,7 @@ def load_images():
     ss = Spritesheet('dot_fountain.png')
     tiles = ss.imgat(( 0, 0, 15, 15), -1)
     Map_images.append(tiles)
+    
+    ss = Spritesheet('dot_market.png')
+    tiles = ss.imgat(( 0, 0, 15, 15), -1)
+    Map_images.append(tiles)

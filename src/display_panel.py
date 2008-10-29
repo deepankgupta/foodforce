@@ -327,6 +327,8 @@ class mini_map:
     def update(self):
         
         screen.blit(self.map,resize_pos((930,390)))
+        posn = resize_pos((930+int(3200/33.3),390+int(2600/28.57)))
+        screen.blit(Map_images[6],posn)
         for i in range(len(facilities_list)):
             for j in range(facilities_list[i].get_original_number()):
                 posn = resize_pos((930+int(facilities_posn_list[i][j][0]/33.3),390+int(facilities_posn_list[i][j][1]/28.57)))
