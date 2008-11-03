@@ -227,13 +227,13 @@ def event_handling(e):
         win_flag = gui_obj.get_win_flag()
         if not win_flag:
             if e.key == K_s:
-	        gui_obj.setup_obj.setup()
+                gui_obj.setup_obj.setup()
             if e.key == K_u:
                 gui_obj.upgrade_obj.upgrade()
             if e.key == K_b:
                 gui_obj.buysell_obj.buysell()
-            if e.key == K_e:
-                earthquake()
+            #if e.key == K_e:
+                #earthquake()
 
     if e.type == KEYUP:
         if e.key == K_UP:
@@ -248,10 +248,7 @@ def event_handling(e):
     x,y = pygame.mouse.get_pos()
     r = pygame.Rect(resize_rect((0,40,930,560)))
     if r.collidepoint(x,y):
-        if e.type == MOUSEMOTION:
-            if e.buttons == (1,0,0):
-                transform_obj.move_mouse(e.rel)
-
+        
         if e.type == MOUSEBUTTONDOWN:
             if e.button == 4:
                 transform_obj.focus()
@@ -282,20 +279,20 @@ class starting_intro:
         self.button_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
 
         self.pause_flag = pause_flag
-	if self.pause_flag:
+        if self.pause_flag:
             self.start_button = Button(position = resize_pos((500,500)), size = resize_pos((200,30)), parent = desktop2, text = "Start New Game",style = self.button_style)
             self.start_button.onClick = self.startup_text
         else:
-	    self.resume_button = Button(position = resize_pos((500,500)), size = resize_pos((200,30)), parent = desktop2, text = "Resume Game",style = self.button_style)
+            self.resume_button = Button(position = resize_pos((500,500)), size = resize_pos((200,30)), parent = desktop2, text = "Resume Game",style = self.button_style)
             self.resume_button.onClick = self.resume
 
-	#self.resume_button = Button(position = resize_pos((500,550)), size = resize_pos((200,30)), parent = desktop, text = "Resume Game",style = self.button_style)
+    #self.resume_button = Button(position = resize_pos((500,550)), size = resize_pos((200,30)), parent = desktop, text = "Resume Game",style = self.button_style)
         self.controls_button = Button(position = resize_pos((500,550)), size = resize_pos((200,30)), parent = desktop2, text = "Controls",style = self.button_style)
-        self.exit_button = Button(position = resize_pos((500,600)), size = resize_pos((200,30)), parent = desktop2, text = "Exit",style = self.button_style)
+        #self.exit_button = Button(position = resize_pos((500,600)), size = resize_pos((200,30)), parent = desktop2, text = "Exit",style = self.button_style)
 
         #self.resume_button.onClick = self.resume
         self.controls_button.onClick = self.controls
-        self.exit_button.onClick = safe_exit
+        #self.exit_button.onClick = safe_exit
 
         self.run = True
 
@@ -421,7 +418,7 @@ class starting_intro:
         # Creating window
         self.win = Window(position = position_win, size = size_win, parent = desktop2, text = "     Controls " , style = win_style, shadeable = False, closeable = False)
         self.win.onClose = lambda button: self.main_menu(self.pause_flag)
-	self.win.surf.set_alpha(140)
+        self.win.surf.set_alpha(140)
 
         control_text = """\n\n  Setup Facility           :       s \n\n  Upgrade Facility       :       u \n\n  Buy/Sell                    :       b \n\n  Scroll screen up       :       up arrow \n\n  Scroll screen down   :       down arrow \n\n  Scroll screen left      :       left arrow \n\n  Scroll screen right    :       right arrow """
         myfont2 = pygame.font.Font("font.ttf", resize_pt(25))
@@ -461,9 +458,9 @@ class starting_intro:
         self.message_label = Label(position = resize_pos((350,480),(600.0,600.0),self.win.size),size = resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "d ", style = labelStyleCopy)
 
         self.win.surf.set_alpha(255)
-	self.ok_button = Button(position = resize_pos((480,550),(600.0,600.0),self.win.size), size = resize_pos((80,30),(600.0,600.0),self.win.size), parent = self.win, text = "  OK  ",style = self.button_style)
+        self.ok_button = Button(position = resize_pos((480,550),(600.0,600.0),self.win.size), size = resize_pos((80,30),(600.0,600.0),self.win.size), parent = self.win, text = "  OK  ",style = self.button_style)
 
-	self.ok_button.onClick = self.close_win
+        self.ok_button.onClick = self.close_win
         self.controls_run = True
         logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
         ff_logo = pygame.transform.scale(logo,resize_pos((1111,250)))
@@ -476,7 +473,7 @@ class starting_intro:
                 if e.type == KEYDOWN:
                     if e.key == 27:  # For escape key
                         self.controls_run = False
-			self.win.close()
+            self.win.close()
 
             desktop2.update()
             desktop2.draw()
@@ -484,22 +481,22 @@ class starting_intro:
 
 
     def close_win(self,button = None):
-	self.win.close()
-	self.controls_run = False
+        self.win.close()
+        self.controls_run = False
 
     def remove_buttons(self):
         ''' Removes the buttons from the Desktop
         '''
 
         win = Window(position = (0,0), size = (100,100), parent = desktop2)
-	if self.pause_flag:
+        if self.pause_flag:
             self.start_button._set_parent(win)
         else:
             self.resume_button._set_parent(win)
 
         self.controls_button._set_parent(win)
-        self.exit_button._set_parent(win)
-    	win.close()
+        #self.exit_button._set_parent(win)
+        win.close()
 
 
 
@@ -515,7 +512,7 @@ def pause_screen(pause_flag = True):
         pygame.display.set_caption(str(int(clock.get_fps())))
         screen.fill((0,0,0))
         screen.blit(ff_logo,resize_pos((40,50)))
-
+        
         for e in gui.setEvents(pygame.event.get()):
             if e.type == pygame.QUIT:
                 safe_exit()
@@ -562,11 +559,25 @@ def main():
     while True:
         #clock.tick()
 
-
+        (x,y) = (0,0)
+        x,y = pygame.mouse.get_pos()
+        if ((x < new_screen_size[0]) and (x > (new_screen_size[0]-60))):
+            transform_obj.move_free((-10,0))
+            
+        if (x < 60 and x > 0):
+            transform_obj.move_free((10,0))
+            
+        if (y < resize_pt_y(900)) and (y > resize_pt_y(840)):
+            transform_obj.move_free((0,-10))
+            
+        if ((y < resize_pt_y(60)) and (y > resize_pt_y(0))):
+            transform_obj.move_free((0,10))
+            
+        
         pygame.display.set_caption(str(int(clock.get_fps())))
 
         for e in gui.setEvents(pygame.event.get()):
-	    event_handling(e)
+            event_handling(e)
 
         #pygame.draw.rect(screen,(209,169,106),resize_rect((0,40,1200,560)))
         animation_obj.update()
