@@ -223,6 +223,8 @@ def event_handling(e):
             transform_obj.focus()
         if e.key == K_d or e.key == 45:
             transform_obj.defocus()
+        if e.key == K_RETURN:
+            gui_obj.press_enter()
 
         win_flag = gui_obj.get_win_flag()
         if not win_flag:
@@ -473,7 +475,7 @@ class starting_intro:
                 if e.type == KEYDOWN:
                     if e.key == 27:  # For escape key
                         self.controls_run = False
-            self.win.close()
+                        self.win.close()
 
             desktop2.update()
             desktop2.draw()

@@ -173,7 +173,7 @@ class setup_button:
 
 
 
-    def setup_facility(self,button):
+    def setup_facility(self,button=None):
         ''' Sets up the facility
         '''
 
@@ -260,7 +260,7 @@ class setup_button:
         return self.return_text_farm
 
 
-    def setup_facility_farm(self,button):
+    def setup_facility_farm(self,button=None):
 
         # Checking whether the user has entered the value in text box properly
         text1 = self.textbox_rice.text
@@ -462,7 +462,7 @@ class upgrade_button:
         self.message_label2.text = text
         self.message_label.text = 'Upgrades ' + button.text
 
-    def upgrade_facility(self,button):
+    def upgrade_facility(self,button=None):
         ''' Upgrades the facility
         '''
 
@@ -875,6 +875,18 @@ class gui_buttons:
             self.upgrade_obj.close_win()
         elif self.buysell_obj.get_win_flag():
             self.buysell_obj.close_win()
+            
+    def press_enter(self):
+        
+        # responds to the enter keypress
+        if  self.get_child_win_flag():
+            self.setup_obj.setup_facility_farm()
+        
+        elif self.setup_obj.get_win_flag():
+            self.setup_obj.setup_facility()
+            
+        elif self.upgrade_obj.get_win_flag():
+            self.upgrade_obj.upgrade_facility()
             
     def disable_buttons(self):
 
