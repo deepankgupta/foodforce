@@ -1,7 +1,7 @@
 [Activity]
-name = Food Force 2: Escaping Poverty
+name = FoodForce2 
 activity_version = 1
 host_version = 1
-service_name = org.laptop.ffep
+service_name = org.laptop.community.FoodForce2
 icon = activity-foodforce2
-class = activity.FoodForce2Activity
+exec = sugar-activity activity.Activity

@@ -319,27 +319,30 @@ class starting_intro:
         win = Window(position = position_win, size = size_win, parent = desktop2, text = " FOODFORCE: ESCAPING POVERTY  " ,style = win_style,shadeable = False, closeable = False)
         run = True
         win.surf.set_alpha(100)
-        myfont2 = pygame.font.Font("font.ttf",resize_pt(23))
+        myfont2 = pygame.font.Font("font.ttf",resize_pt(19))
         labelstyle1 = gui.defaultLabelStyle.copy()
         labelstyle1['border-width'] = 0
         labelstyle1['wordwrap'] = True
-        labelstyle1['autosize'] = True
+        labelstyle1['autosize'] = False
         labelstyle1['font'] = myfont2
         labelstyle1['font-color'] = (0,0,0)
 
         counter = 0
-        label = Label(position = resize_pos((10.0,130.0),(800.0,600.0),win.size), parent = win, text = '', style = labelstyle1)
+        label = Label(position = resize_pos((10.0,130.0),(800.0,600.0),win.size),size = resize_pos((780.0,460.0),(800.0,600.0),win.size), parent = win, text = '', style = labelstyle1)
 
         threades.global_time = 0
         while run:
 
+            label.text =  trailer_text[counter]
             for e in gui.setEvents(pygame.event.get()):
                 if e.type == pygame.QUIT:
                     safe_exit()
                 if e.type == KEYDOWN:
                     if e.key == 27:  # For escape key
                         run = False
-            label.text =  trailer_text[counter]
+                    if e.key == K_RETURN:
+                        counter += 1
+            
             if threades.global_time >= 5000:
                 threades.global_time = 0
                 counter += 1
@@ -350,6 +353,10 @@ class starting_intro:
             pygame.display.flip()
             if counter == 8:
                 run = False
+            
+            
+            
+        
             threades.iteration_time = clock.tick()
             threades.global_time += threades.iteration_time
         win.close()
@@ -365,19 +372,22 @@ class starting_intro:
         win.surf.set_alpha(160)
 
         counter = 0
-        label = Label(position = resize_pos((10.0,130.0),(800.0,600.0),win.size), parent = win, text = '', style = labelstyle1)
+        label = Label(position = resize_pos((10.0,130.0),(800.0,600.0),win.size),size = resize_pos((780.0,460.0),(800.0,600.0),win.size), parent = win, text = '', style = labelstyle1)
 
         threades.global_time = 0
         while run:
 
+            label.text =  instruction_text[counter]
             for e in gui.setEvents(pygame.event.get()):
                 if e.type == pygame.QUIT:
                     safe_exit()
                 if e.type == KEYDOWN:
                     if e.key == 27:  # For escape key
                         run = False
-            label.text =  instruction_text[counter]
-            if threades.global_time >= 10000:
+                    if e.key == K_RETURN:
+                        counter += 1
+            
+            if threades.global_time >= 15000:
                 threades.global_time = 0
                 counter += 1
             screen.fill((255,255,255))
