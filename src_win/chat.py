@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 #
 #   Author : Mohit Taneja (mohitgenii@gmail.com)
-#   Date : 9/06/2008 
+#   Date : 9/12/2008 
 #
 #   This program is free software; you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -134,10 +134,30 @@ def showChat(chatText):
     '''
     chatObject = chat()
     chatObject.chatWindow()
-    i = 0    
-    while i < chatText.size() : 
-        chatObject.addChat(chatText[i],chatText[i+1])
-        i +=2
+    i = 0   
+    run = True
+    while run:
+        
+        for e in gui.setEvents(pygame.event.get()):
+                if e.type == pygame.QUIT:
+                    pygame.mixer.quit()
+                    pygame.quit()
+                    exit()
+        if threades.global_time >= 5000:
+                threades.global_time = 0
+                i += 1
+                chatObject.addChat(chatText[i],chatText[i+1])
+        
+        desktop.update()
+        desktop.draw()
+        pygame.display.flip()
+        if i == chatText.size():
+            run = False
+                     
+        
+        threades.iteration_time = clock.tick()
+        threades.global_time += threades.iteration_time  
+        
         
     chatObject.closeChatWindow()
     
