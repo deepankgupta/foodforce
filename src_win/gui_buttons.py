@@ -66,7 +66,7 @@ class setup_button:
         self.win = Window(position = position_win, size = size_win, parent = desktop, text = "Set up a facility for your village " ,style = win_style,shadeable = False)
         #self.win.surf.blit(School_tiles_list[3][2],(0,0))
         self.win.surf.set_alpha(140) 
-        self.win.onClose = lambda button: gui_obj.enable_buttons()
+        self.win.onClose = lambda button: self.close_win_safe()
         self.win_flag = True
         
         # Pausing the update thread
@@ -171,6 +171,9 @@ class setup_button:
         self.win_flag = False
         gui_obj.enable_buttons()
 
+    def close_win_safe(self,button = None):
+        self.win_flag = False
+        gui_obj.enable_buttons()
 
 
     def setup_facility(self,button=None):
@@ -367,7 +370,7 @@ class upgrade_button:
         # Creating window
         self.win = Window(position = position_win, size = size_win, parent = desktop, text = "Upgrade Facility " ,style = win_style,shadeable = False)
         self.win.surf.set_alpha(140) 
-        self.win.onClose = lambda button: gui_obj.enable_buttons()
+        self.win.onClose = lambda button: self.close_win_safe()
         self.win_flag = True
 
         # Pausing the update thread
@@ -491,6 +494,9 @@ class upgrade_button:
         self.win_flag = False
         gui_obj.enable_buttons()
 
+    def close_win_safe(self,button = None):
+        self.win_flag = False
+        gui_obj.enable_buttons()
 
 
     def get_win_flag(self):
@@ -533,7 +539,7 @@ class buysell_button:
         # Creating window
         self.win = Window(position = position_win, size = size_win, parent = desktop, text = " Buy or Sell Resources " ,style = win_style,shadeable = False)
         self.win.surf.set_alpha(140) 
-        self.win.onClose = lambda button: gui_obj.enable_buttons()
+        self.win.onClose = lambda button: self.close_win_safe()
         self.win_flag = True
 
         # Pausing the update thread
@@ -825,6 +831,10 @@ class buysell_button:
         self.win_flag = False
         gui_obj.enable_buttons()
 
+    def close_win_safe(self,button = None):
+        self.win_flag = False
+        gui_obj.enable_buttons()
+
 
 
     def get_win_flag(self):
@@ -893,6 +903,7 @@ class gui_buttons:
 
         # stopping the motion of the background
         transform_obj.stop_mouse_move()
+        total_update_flag = True
 
         self.setup_button.enabled = False
         self.upgrade_button.enabled = False
@@ -910,6 +921,7 @@ class gui_buttons:
         self.setup_button.enabled = True
         self.upgrade_button.enabled = True
         self.buysell_button.enabled = True
+        total_update_flag = True
 
 
 

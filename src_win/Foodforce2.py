@@ -35,6 +35,7 @@ from gui_buttons import *
 
 
 
+    
 
 
 desktop2 = Desktop()
@@ -234,8 +235,8 @@ def event_handling(e):
                 gui_obj.upgrade_obj.upgrade()
             if e.key == K_b:
                 gui_obj.buysell_obj.buysell()
-            #if e.key == K_e:
-                #earthquake()
+            if e.key == K_e:
+                earthquake()
 
     if e.type == KEYUP:
         if e.key == K_UP:
@@ -259,6 +260,35 @@ def event_handling(e):
 
 soundtrack = load_sound(os.path.join('data', 'soundtrack.ogg'))
 
+def get_update_region():
+    
+    
+    list_rects = []
+    if total_update_flag:
+        screen.blit(surface_top,(0,0))
+        pygame.draw.rect(screen,(0,0,0),resize_rect((0,600,1200,300)))
+        list_rects.append(pygame.Rect(resize_pos((0,0)),resize_pos((1200,900))))
+        return list_rects
+    
+    list_rects.append(pygame.Rect(resize_pos((0,40)),resize_pos((930,560))))
+                      
+    if (panel.ind.update_flag or panel.man.update_flag or panel.res.update_flag or panel_update_flag):
+        pygame.draw.rect(screen,(0,0,0),resize_rect((0,600,1200,300)))
+        list_rects.append(pygame.Rect(resize_pos((0,600)),resize_pos((1200,300))))
+    
+    if panel.map.update_flag or map_update_flag:
+        list_rects.append(pygame.Rect(resize_pos((930,390)),resize_pos((270,210))))
+        
+    if panel.res.money_flag or top_update_flag:
+        screen.blit(surface_top,(0,0))
+        list_rects.append(pygame.Rect((0,0),resize_pos((1200,40))))
+        
+    if panel.fac.update_flag or facilities_update_flag:
+        list_rects.append(pygame.Rect(resize_pos((930,40)),resize_pos((270,350))))
+        
+    return list_rects
+
+    
 
 class starting_intro:
     ''' Display the starting intro_text and menu
@@ -513,6 +543,7 @@ class starting_intro:
 
 
 
+
 def pause_screen(pause_flag = True):
 
     start = starting_intro()
@@ -534,11 +565,15 @@ def pause_screen(pause_flag = True):
         desktop2.update()
         desktop2.draw()
         pygame.display.update()
+    total_update_flag = True
 
-
+wfp_logo = pygame.image.load(os.path.join('data', 'top.png')).convert()
+surface_top = pygame.transform.scale(wfp_logo,resize_pos((1200,40)))
+   
 def main():
 
-
+    global panel
+    
     # Displaying the WFP logo
     intro_thread = threading.Thread(target = load_images, args=[])
     intro_thread.start()
@@ -549,13 +584,11 @@ def main():
 
 
 
-    wfp_logo = pygame.image.load(os.path.join('data', 'top.png')).convert()
     intro_thread.join()
     initialize_facilities()
 
     #surface_middle = pygame.transform.scale(surface3,resize_pos((1200,560)))
-    surface_top = pygame.transform.scale(wfp_logo,resize_pos((1200,40)))
-
+    
 
     initialize_gui()
 
@@ -595,24 +628,21 @@ def main():
         animation_obj.update()
 
 
-        # For top surface
-        screen.blit(surface_top,(0,0))
-
-        # For middle surface
+        
+        #For middle surface
         #surface_middle = pygame.transform.scale(surface3,resize_pos((1200,560)))
         #screen.blit(surface_middle,resize_pos((0,40)))
 
-        # For bottom surface
-        pygame.draw.rect(screen,(0,0,0),resize_rect((0,600,1200,300)))
+        
 
-
+        
+        rects_list = get_update_region()
         panel.update()
-
         desktop.update()
 
         desktop.draw()
-
-        pygame.display.update()
+        
+        pygame.display.update(rects_list)
 
         threades.iteration_time = clock.tick()
         threades.global_time += threades.iteration_time

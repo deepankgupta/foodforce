@@ -130,7 +130,8 @@ class chat:
             
 def showChat(chatText):
     
-    ''' Chat text should be a list with first the name of the character and then his dialogue,
+    ''' Chat text should be a list with first the name
+        of the character and then his dialogue,
     '''
     chatObject = chat()
     chatObject.chatWindow()

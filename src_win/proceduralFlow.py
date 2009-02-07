@@ -28,6 +28,7 @@ import threading
 import gui_buttons
 import gui
 from gui import *
+from chat import *
 
 class checkFlow :
     
@@ -100,8 +101,20 @@ class checkFlow :
                 flag = False
         
         return flag
-            
-        
-        
-        
+       
+
+class events:
+    ''' Class which contains a list of all the events
+        which can happen in the game while the sequential flow
+    '''
     
+    def __init__(self):
+        pass
+    
+    def Chat(self,text):
+        ''' Chat text should be a list with first the name
+            of the character and then his dialogue,
+        '''
+        showChat(text)
+        
+    def 
