@@ -253,6 +253,8 @@ def event_handling(e):
     if r.collidepoint(x,y):
         
         if e.type == MOUSEBUTTONDOWN:
+            if e.button == 1 and gui_obj.get_child_win_flag():
+                gui_obj.setup_obj.bardisplay.updateChart((x,y))
             if e.button == 4:
                 transform_obj.focus()
             if e.button == 5:
@@ -261,7 +263,7 @@ def event_handling(e):
 soundtrack = load_sound(os.path.join('data', 'soundtrack.ogg'))
 
 def get_update_region():
-    
+    # Function which returns the regions to be updated
     
     list_rects = []
     if total_update_flag:
@@ -599,13 +601,17 @@ def main():
     # Starting of the threads
     update_thread = threading.Thread(target = threades.update_turn, args=[]).start()
     message_thread = threading.Thread(target = message_window, args=[]).start()
-
+    mouse_flag = False
+        
     # The main infinite loop
     while True:
         #clock.tick()
 
+        mouse_flag = False
+            
         (x,y) = (0,0)
         x,y = pygame.mouse.get_pos()
+        
         if ((x < new_screen_size[0]) and (x > (new_screen_size[0]-60))):
             transform_obj.move_free((-10,0))
             
@@ -618,7 +624,9 @@ def main():
         if ((y < resize_pt_y(60)) and (y > resize_pt_y(0))):
             transform_obj.move_free((0,10))
             
-        
+        if (x > resize_pt_x(0)) and (x < resize_pt_x(600)) and (y > resize_pt_y(845)) and (y < resize_pt_y(900)):
+            mouse_flag = True
+            
         pygame.display.set_caption(str(int(clock.get_fps())))
 
         for e in gui.setEvents(pygame.event.get()):
@@ -638,9 +646,10 @@ def main():
         
         rects_list = get_update_region()
         panel.update()
-        desktop.update()
-
-        desktop.draw()
+        
+        if (total_update_flag or map_update_flag or facilities_update_flag or panel_update_flag):
+            desktop.update()
+            desktop.draw()
         
         pygame.display.update(rects_list)
 

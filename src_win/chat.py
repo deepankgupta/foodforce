@@ -44,8 +44,8 @@ class chat:
         self.position = (15,10)
         self.initial_position = (15,10)
         self.final_position = (15,690)
-        self.imageBox = pygame.image.load(os.path.join('data', 'imageBox.png')).convert_alpha()
-        self.chatBox = pygame.image.load(os.path.join('data', 'chatBox.png')).convert_alpha()
+        self.imageBox = pygame.image.load(os.path.join('art', 'imageBox.png')).convert_alpha()
+        self.chatBox = pygame.image.load(os.path.join('art', 'chatBox.png')).convert_alpha()
         
         
         
@@ -135,6 +135,7 @@ def showChat(chatText):
     '''
     chatObject = chat()
     chatObject.chatWindow()
+    clock = pygame.time.Clock()
     i = 0   
     run = True
     while run:

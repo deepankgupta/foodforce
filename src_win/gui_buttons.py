@@ -29,8 +29,129 @@ import gui
 from gui import *
 
 
+class barChart:
+    
+    ''' Class which displays the bar chart and handles it
+    '''
+    color1 = (255,214,150)
+    color2 = (170,142,100)
+    color3 = (85,71,50)
+    color_rect = (50,100,150)
+    
+    def drawChart(self,surface,rice,vegetables,beans):
+        ''' Draws a barchart on the screen
+        '''
+        
+        self.surf = surface
+        self.bar1Val = rice
+        self.bar2Val = vegetables
+        self.bar3Val = beans
+        
+        
+        pygame.draw.rect(surface,self.color1,resize_rect((100,50.0+200*(100-self.bar1Val)/100,50,200*self.bar1Val/100.0)))
+        pygame.draw.rect(surface,self.color2,resize_rect((250,50.0+200*(100-self.bar2Val)/100,50,200*self.bar2Val/100.0)))
+        pygame.draw.rect(surface,self.color3,resize_rect((400,50.0+200*(100-self.bar3Val)/100,50,200*self.bar3Val/100.0)))
+        
+        pygame.draw.rect(surface,self.color_rect,resize_rect((100,50,50,200)),2)
+        pygame.draw.rect(surface,self.color_rect,resize_rect((250,50,50,200)),2)
+        pygame.draw.rect(surface,self.color_rect,resize_rect((400,50,50,200)),2)
+        
+    def updateChart(self,(x,y)):
+        ''' Updates the bar chart on the basis of the mouse click
+        '''
+        surface = self.surf
+        if (x>resize_pt_x(400)) and (x<resize_pt_x(450)) and (y>resize_pt_y(200)) and (y<resize_pt_y(400)):
+            pygame.draw.rect(surface,(0,0,0),resize_rect((100,50,350,200)))
+            change = self.bar1Val - (resize_pt_y(400)-y)*100/resize_pt_y(200.0)
+            self.bar1Val = self.bar1Val - change
+            self.bar2Val = self.bar2Val +change/2
+            self.bar3Val = self.bar3Val +change/2
+            
+            if self.bar1Val > 100:
+                self.bar1Val = 100
+            if self.bar1Val < 0:
+                self.bar1Val = 0
+            if self.bar2Val > 100:
+                self.bar2Val = 100
+            if self.bar2Val < 0:
+                self.bar2Val = 0
+            if self.bar3Val > 100:
+                self.bar3Val = 100
+            if self.bar3Val < 0:
+                self.bar3Val = 0
+            
+            pygame.draw.rect(surface,self.color1,resize_rect((100,50.0+200*(100-self.bar1Val)/100,50,200*self.bar1Val/100.0)))
+            pygame.draw.rect(surface,self.color2,resize_rect((250,50.0+200*(100-self.bar2Val)/100,50,200*self.bar2Val/100.0)))
+            pygame.draw.rect(surface,self.color3,resize_rect((400,50.0+200*(100-self.bar3Val)/100,50,200*self.bar3Val/100.0)))
 
-  
+            pygame.draw.rect(surface,self.color_rect,resize_rect((100,50,50,200)),2)
+            pygame.draw.rect(surface,self.color_rect,resize_rect((250,50,50,200)),2)
+            pygame.draw.rect(surface,self.color_rect,resize_rect((400,50,50,200)),2)
+            
+            
+            
+        if (x>resize_pt_x(550)) and (x<resize_pt_x(600)) and (y>resize_pt_y(200)) and (y<resize_pt_y(400)):
+            pygame.draw.rect(surface,(0,0,0),resize_rect((100,50,350,200)))
+            change = self.bar2Val - (resize_pt_y(400)-y)*100/resize_pt_y(200.0)
+            self.bar2Val = self.bar2Val - change
+            self.bar1Val = self.bar1Val + change/2
+            self.bar3Val = self.bar3Val + change/2
+            
+            if self.bar1Val > 100:
+                self.bar1Val = 100
+            if self.bar1Val < 0:
+                self.bar1Val = 0
+            if self.bar2Val > 100:
+                self.bar2Val = 100
+            if self.bar2Val < 0:
+                self.bar2Val = 0
+            if self.bar3Val > 100:
+                self.bar3Val = 100
+            if self.bar3Val < 0:
+                self.bar3Val = 0
+            
+            pygame.draw.rect(surface,self.color1,resize_rect((100,50.0+200*(100-self.bar1Val)/100,50,200*self.bar1Val/100.0)))
+            pygame.draw.rect(surface,self.color2,resize_rect((250,50.0+200*(100-self.bar2Val)/100,50,200*self.bar2Val/100.0)))
+            pygame.draw.rect(surface,self.color3,resize_rect((400,50.0+200*(100-self.bar3Val)/100,50,200*self.bar3Val/100.0)))
+
+            pygame.draw.rect(surface,self.color_rect,resize_rect((100,50,50,200)),2)
+            pygame.draw.rect(surface,self.color_rect,resize_rect((250,50,50,200)),2)
+            pygame.draw.rect(surface,self.color_rect,resize_rect((400,50,50,200)),2)
+            
+            
+            
+        if (x>resize_pt_x(700)) and (x<resize_pt_x(750)) and (y>resize_pt_y(200)) and (y<resize_pt_y(400)):
+            pygame.draw.rect(surface,(0,0,0),resize_rect((100,50,350,200)))
+            change = self.bar3Val - (resize_pt_y(400)-y)*100/resize_pt_y(200.0)
+            self.bar3Val = self.bar3Val - change
+            self.bar2Val = self.bar2Val + change/2
+            self.bar1Val = self.bar1Val + change/2
+            
+            if self.bar1Val > 100:
+                self.bar1Val = 100
+            if self.bar1Val < 0:
+                self.bar1Val = 0
+            if self.bar2Val > 100:
+                self.bar2Val = 100
+            if self.bar2Val < 0:
+                self.bar2Val = 0
+            if self.bar3Val > 100:
+                self.bar3Val = 100
+            if self.bar3Val < 0:
+                self.bar3Val = 0
+            
+            pygame.draw.rect(surface,self.color1,resize_rect((100,50.0+200*(100-self.bar1Val)/100,50,200*self.bar1Val/100.0)))
+            pygame.draw.rect(surface,self.color2,resize_rect((250,50.0+200*(100-self.bar2Val)/100,50,200*self.bar2Val/100.0)))
+            pygame.draw.rect(surface,self.color3,resize_rect((400,50.0+200*(100-self.bar3Val)/100,50,200*self.bar3Val/100.0)))
+            
+            pygame.draw.rect(surface,self.color_rect,resize_rect((100,50,50,200)),2)
+            pygame.draw.rect(surface,self.color_rect,resize_rect((250,50,50,200)),2)
+            pygame.draw.rect(surface,self.color_rect,resize_rect((400,50,50,200)),2)
+            
+            
+       
+        
+
 class setup_button:
 
     ''' Class which handles the windows when the setup button is clicked
@@ -214,12 +335,15 @@ class setup_button:
         size_win =resize_pos((600.0,400.0))
 
         # Creating window
-        self.child_win = Window(position = position_win, size = size_win, parent = desktop, text = "Setup Farm " ,style = win_style,shadeable = False)
-        self.child_win.surf.set_alpha(190) 
+        self.child_win = Window(position = position_win, size = size_win, parent = desktop, text = "Setup Farm " ,style = win_style,shadeable = False,moveable = False)
+        #self.child_win.surf.set_alpha(190) 
         self.win.enabled = False
         self.child_win_flag = True
         self.child_win.onClose = lambda button: self.enable_parent_win()
 
+        self.bardisplay = barChart()
+        self.bardisplay.drawChart(self.child_win.surf,33,33,34)
+        
         # Creating custom label style1
         myfont2 = pygame.font.Font("font.ttf",resize_pt(16))
         labelstyle1 = gui.defaultLabelStyle.copy()
@@ -229,21 +353,23 @@ class setup_button:
         labelstyle1['font'] = myfont2
         labelstyle1['font-color'] = self.rect_color
 
-        label_rice = Label(position = resize_pos((10.0,70.0),(600.0,400.0),self.child_win.size), parent = self.child_win, text = 'Rice', style = labelstyle1)
-        label_veg = Label(position = self.child_win.nextPosition(resize_pt_y(20)), parent = self.child_win, text = 'Fruit and Vegetables', style = labelstyle1)
-        label_beans = Label(position = self.child_win.nextPosition(resize_pt_y(20)), parent = self.child_win, text = 'Beans', style = labelstyle1)
+        label_rice = Label(position = resize_pos((100.0,260.0),(600.0,400.0),self.child_win.size), parent = self.child_win, text = 'Rice', style = labelstyle1)
+        label_veg = Label(position = resize_pos((250.0,260.0),(600.0,400.0),self.child_win.size), parent = self.child_win, text = 'Fruit and \nVegetables', style = labelstyle1)
+        label_beans = Label(position = resize_pos((400.0,260.0),(600.0,400.0),self.child_win.size), parent = self.child_win, text = 'Beans', style = labelstyle1)
 
         # Creating second custom label style
         labelStyleCopy2 = gui.defaultLabelStyle.copy()
-        labelStyleCopy2['border-width'] = 1
+        labelStyleCopy2['border-width'] = 0
         labelStyleCopy2['wordwrap'] = True
         labelStyleCopy2['autosize'] = False
         labelStyleCopy2['font'] = myfont2
+        labelStyleCopy2['border-color'] = self.rect_color
         labelStyleCopy2['font-color'] = self.rect_color
-        labelStyleCopy2['border-color'] = self.color_grey
-        text = ' Please enter the percentages of different food items you want to grow in your farm'
-        self.message_label2 = Label(position = resize_pos((20,200),(600.0,400.0),self.child_win.size),size = resize_pos((470,120),(600.0,400.0),self.child_win.size), parent = self.child_win, text = text, style = labelStyleCopy2)
+        
+        text = 'Balance the bar chart to select the percentages of different food items you want to grow in your farm'
+        self.message_label2 = Label(position = resize_pos((20,320),(600.0,400.0),self.child_win.size),size = resize_pos((470,70),(600.0,400.0),self.child_win.size), parent = self.child_win, text = text, style = labelStyleCopy2)
 
+        '''
         # Creating custom text box style
         textbox_style = gui.defaultTextBoxStyle.copy()
         textbox_style['font'] = myfont2
@@ -251,12 +377,13 @@ class setup_button:
         self.textbox_rice = TextBox(position = resize_pos((300.0, 70.0),(600.0,400.0),self.child_win.size), size = resize_pos((50,20),(600.0,400.0),self.child_win.size), parent = self.child_win, style = textbox_style) 
         self.textbox_veg = TextBox(position = resize_pos((300.0, 110.0),(600.0,400.0),self.child_win.size), size = resize_pos((50,20),(600.0,400.0),self.child_win.size), parent = self.child_win, style = textbox_style) 
         self.textbox_beans = TextBox(position = resize_pos((300.0, 150.0),(600.0,400.0),self.child_win.size), size = resize_pos((50,20),(600.0,400.0),self.child_win.size), parent = self.child_win, style = textbox_style) 
-
+        '''
+        
         # Custom button style        
         button_style = gui.defaultButtonStyle.copy()
         button_style['font'] = myfont2
 
-        self.button_setup_farm = Button(position = resize_pos((500.0,300.0),(600.0,400.0),size_win), size = resize_pos((80.0,50.0),(600.0,400.0),size_win), parent = self.child_win, text = "Set Up",style = button_style)
+        self.button_setup_farm = Button(position = resize_pos((500.0,320.0),(600.0,400.0),size_win), size = resize_pos((80.0,50.0),(600.0,400.0),size_win), parent = self.child_win, text = "Set Up",style = button_style)
         self.button_setup_farm.onClick = self.setup_facility_farm
 
         self.return_text_farm = ' '
@@ -265,69 +392,16 @@ class setup_button:
 
     def setup_facility_farm(self,button=None):
 
-        # Checking whether the user has entered the value in text box properly
-        text1 = self.textbox_rice.text
-
-        try:
-            if text1 == '':
-                quantity1 = 0
-            else:
-                quantity1 = float(text1)
-
-                if quantity1 < 0.0:
-                    self.message_label2.text = 'Please enter a positive value as the percentage of rice'
-                    return
-
-        except:
-            self.message_label2.text = 'Please enter a number as the percentage of rice you want to grow'
-            return    
-
-        text2 = self.textbox_veg.text
-
-        try:
-            if text2 == '':
-                quantity2 = 0
-            else:
-                quantity2 = float(text2)
-
-                if quantity2 < 0.0:
-                    self.message_label2.text = 'Please enter a positive value as the percentage of vegetables'
-                    return
-
-        except:
-            self.message_label2.text = 'Please enter a number as the percentage of vegetables you want to grow'
-            return    
-
-        text3 = self.textbox_beans.text
-        print text3
-        try:
-            if text3 == '':
-                quantity3 = 0
-            else:
-
-                quantity3 = float(text3)
-                if quantity3 < 0.0:
-
-                    self.message_label2.text = 'Please enter a positive value as the percentage of beans'
-                    return
-
-        except:
-            self.message_label2.text = 'Please enter a number as the percentage of beans you want to grow'
-            return    
-
-        if ((quantity1 + quantity2 + quantity3)< 99.5) or ((quantity1 + quantity2 + quantity3)> 100.5):
-
-            self.message_label2.text = 'The sum of all the percentages should be equal to 100'
-            return
-
+        # Finally setting up the facility after the button is clicked
+        quantity1 = self.bardisplay.bar1Val
+        quantity2 = self.bardisplay.bar2Val
+        quantity3 = self.bardisplay.bar3Val
         list_food = [quantity1,quantity2,quantity3]
         label_text = build_facility(Farm,list_food)
-        self.message_label2.text = label_text
-        if label_text == 'Facility has been build':    
-            self.child_win.close()
-            self.enable_parent_win()
-            self.close_win()
-            return
+        self.child_win.close()
+        self.enable_parent_win()
+        self.close_win()
+        return
 
     def enable_parent_win(self):
         self.child_win_flag = False
