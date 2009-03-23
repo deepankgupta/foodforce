@@ -323,33 +323,184 @@ class starting_intro:
     #self.resume_button = Button(position = resize_pos((500,550)), size = resize_pos((200,30)), parent = desktop, text = "Resume Game",style = self.button_style)
         self.controls_button = Button(position = resize_pos((500,550)), size = resize_pos((200,30)), parent = desktop2, text = "Controls",style = self.button_style)
         self.exit_button = Button(position = resize_pos((500,600)), size = resize_pos((200,30)), parent = desktop2, text = "Exit",style = self.button_style)
-
+        self.instructions_button = Button(position = resize_pos((800,20)), size = resize_pos((150,30)), parent = desktop2, text = "Guide",style = self.button_style)
+        self.about_us_button = Button(position = resize_pos((1000,20)), size = resize_pos((150,30)), parent = desktop2, text = "About Us",style = self.button_style)
+        
+                                      
         #self.resume_button.onClick = self.resume
         self.controls_button.onClick = self.controls
         self.exit_button.onClick = safe_exit
+        
+        self.instructions_button.onClick = self.instructionsWindow
+        self.about_us_button.onClick = self.aboutUsWindow
 
         self.run = True
 
+    def instructionsWindow(self,button = None):
+        ''' Opens a window for Instructions
+        '''
+        
+        self.remove_buttons()
+        self.lightgreen_color = (0,100,0)
+        self.green_color = (0,150,0)
+        self.black_color = (0,0,0)
+        myfont1 = pygame.font.Font("font.ttf", resize_pt(40))
+
+        # Custom Window Style
+        win_style = gui.defaultWindowStyle.copy()
+        win_style['font'] = myfont1
+        win_style['font-color'] = self.green_color
+        win_style['bg-color'] = (0,0,0)
+        win_style['border-color'] = (0,150,0)
+        # Calculating position and size of window from the size of the desktop
+        position_win =resize_pos((150.0,270.0))
+        size_win =resize_pos((900.0,600.0))
+
+        # Creating window
+        self.win = Window(position = position_win, size = size_win, parent = desktop2, text = "     Guide" , style = win_style, shadeable = False, closeable = False,moveable = False)
+        self.win.onClose = lambda button: self.main_menu(self.pause_flag)
+        #self.win.surf.set_alpha(140) This seems to be redundant as translucency doesnt seems to work properly
+
+        myfont2 = pygame.font.Font("font.ttf", resize_pt(20))
+        labelStyleCopy = gui.defaultLabelStyle.copy()
+        labelStyleCopy['border-width'] = 1
+        labelStyleCopy['wordwrap'] = True
+        labelStyleCopy['autosize'] = False
+        labelStyleCopy['font'] = myfont2
+        labelStyleCopy['font-color'] = (0,200,0)
+        labelStyleCopy['border-color'] = self.black_color
+        
+        self.skip_button = Button(position = resize_pos((500,550),(900.0,600.0),self.win.size), size = resize_pos((80,30),(900.0,600.0),self.win.size), parent = self.win, text = "  Skip  ",style = self.button_style)
+        self.next_button = Button(position = resize_pos((380,550),(900.0,600.0),self.win.size), size = resize_pos((80,30),(900.0,600.0),self.win.size), parent = self.win, text = "  Next > ",style = self.button_style)
+        self.prev_button = Button(position = resize_pos((260,550),(900.0,600.0),self.win.size), size = resize_pos((80,30),(900.0,600.0),self.win.size), parent = self.win, text = "  < Prev  ",style = self.button_style)
+
+        self.next_button.onClick = self.increaseInstructionsCounter
+        self.prev_button.onClick = self.decreaseInstructionsCounter
+        self.skip_button.onClick = self.close_win
+        self.instructions_run = True
+        logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
+        ff_logo = pygame.transform.scale(logo,resize_pos((1111,250)))
+        
+        self.instructions_counter = 0
+        label = Label(position = resize_pos((10.0,100.0),(900.0,600.0),self.win.size),size = resize_pos((880.0,440.0),(900.0,600.0),self.win.size), parent = self.win, text = '', style = labelStyleCopy)
+
+        while self.instructions_run:
+            #pygame.display.set_caption(str(int(clock.get_fps())))
+            screen.fill((0,0,0))
+            screen.blit(ff_logo,resize_pos((40,50)))
+
+            label.text = instruction_text[self.instructions_counter]
+            for e in gui.setEvents(pygame.event.get()):
+                if e.type == KEYDOWN:
+                    if e.key == 27:  # For escape key
+                        self.instructions_run = False
+                        self.win.close()
+                    if e.key == K_RIGHT:
+                        if self.instructions_counter < len(instruction_text)-1:
+                            self.instructions_counter += 1
+                    if e.key == K_LEFT:
+                        if self.instructions_counter > 0 :
+                            self.instructions_counter -= 1
+
+            desktop2.update()
+            desktop2.draw()
+            pygame.display.update()
+            
+    def increaseInstructionsCounter(self,button = None):
+        if self.instructions_counter < len(instruction_text)-1:
+            self.instructions_counter +=1
+    
+    def decreaseInstructionsCounter(self,button = None):
+        if self.instructions_counter > 0 :
+            self.instructions_counter -=1
+        
+
+            
+
+    def aboutUsWindow(self,button = None):
+        ''' Displays the credits
+        '''
+        
+        self.remove_buttons()
+        self.lightgreen_color = (0,100,0)
+        self.green_color = (0,150,0)
+        self.black_color = (0,0,0)
+        myfont1 = pygame.font.Font("font.ttf", resize_pt(40))
+
+        # Custom Window Style
+        win_style = gui.defaultWindowStyle.copy()
+        win_style['font'] = myfont1
+        win_style['font-color'] = self.green_color
+        win_style['bg-color'] = (0,0,0)
+        win_style['border-color'] = (0,150,0)
+        # Calculating position and size of window from the size of the desktop
+        position_win =resize_pos((150.0,270.0))
+        size_win =resize_pos((900.0,600.0))
+
+        # Creating window
+        self.win = Window(position = position_win, size = size_win, parent = desktop2, text = "     About Us " , style = win_style, shadeable = False, closeable = False,moveable = False)
+        self.win.onClose = lambda button: self.main_menu(self.pause_flag)
+        #self.win.surf.set_alpha(140) This seems to be redundant as translucency doesnt seems to work properly
+
+        self.next_button = Button(position = resize_pos((500,650)), size = resize_pos((200,30)), parent = self.win, text = "Next ",style = self.button_style)
+        
+        myfont2 = pygame.font.Font("font.ttf", resize_pt(20))
+        labelStyleCopy = gui.defaultLabelStyle.copy()
+        labelStyleCopy['border-width'] = 1
+        labelStyleCopy['wordwrap'] = True
+        labelStyleCopy['autosize'] = False
+        labelStyleCopy['font'] = myfont2
+        labelStyleCopy['font-color'] = (0,200,0)
+        labelStyleCopy['border-color'] = self.black_color
+        
+        self.close_button = Button(position = resize_pos((500,550),(900.0,600.0),self.win.size), size = resize_pos((80,30),(900.0,600.0),self.win.size), parent = self.win, text = "  Close  ",style = self.button_style)
+        
+        self.close_button.onClick = self.close_win
+        self.about_us_run = True
+        logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
+        ff_logo = pygame.transform.scale(logo,resize_pos((1111,250)))
+        
+        #self.instructions_counter = 0
+        label = Label(position = resize_pos((10.0,100.0),(900.0,600.0),self.win.size),size = resize_pos((880.0,440.0),(900.0,600.0),self.win.size), parent = self.win, text = '', style = labelStyleCopy)
+
+        while self.about_us_run:
+            #pygame.display.set_caption(str(int(clock.get_fps())))
+            screen.fill((0,0,0))
+            screen.blit(ff_logo,resize_pos((40,50)))
+
+            label.text = about_us_text
+            for e in gui.setEvents(pygame.event.get()):
+                if e.type == KEYDOWN:
+                    if e.key == 27:  # For escape key
+                        self.about_us_run = False
+                        self.win.close()
+         
+            desktop2.update()
+            desktop2.draw()
+            pygame.display.update()
+    
     def startup_text(self,button = None):
         ''' Displays the startup text
         '''
 
         self.remove_buttons()
         screen.fill((255,255,255))
-        hunger_map = pygame.image.load(os.path.join('data', 'hunger_map.png')).convert()
+        hunger_map = pygame.image.load(os.path.join('data', 'Wfpwork.png')).convert()
         hunger_map =  pygame.transform.scale(hunger_map,new_screen_size)
         screen.blit(hunger_map,resize_pos((0,0)))
 
+        color_brown = (255,214,150)
         # Window custom style
         myfont = pygame.font.Font("font.ttf", resize_pt(28))
         win_style = gui.defaultWindowStyle.copy()
         win_style['font'] = myfont
-        win_style['font-color'] = (0,0,0)
-        win_style['bg-color'] = (255,255,255)
+        win_style['font-color'] = color_brown
+        win_style['bg-color'] = (0,0,0)
+        win_style['border-color'] = color_brown
         position_win =resize_pos((200.0,50.0))
         size_win =resize_pos((800.0,600.0))
-        win = Window(position = position_win, size = size_win, parent = desktop2, text = " FOODFORCE: ESCAPING POVERTY  " ,style = win_style,shadeable = False, closeable = False)
-        run = True
+        win = Window(position = position_win, size = size_win, parent = desktop2, text = " FOODFORCE II : ESCAPING POVERTY  " ,style = win_style,shadeable = False, closeable = False,moveable = False)
+        self.startup_text_run = True
         win.surf.set_alpha(100)
         myfont2 = pygame.font.Font("font.ttf",resize_pt(19))
         labelstyle1 = gui.defaultLabelStyle.copy()
@@ -357,13 +508,26 @@ class starting_intro:
         labelstyle1['wordwrap'] = True
         labelstyle1['autosize'] = False
         labelstyle1['font'] = myfont2
-        labelstyle1['font-color'] = (0,0,0)
+        labelstyle1['font-color'] = color_brown
 
         counter = 0
         label = Label(position = resize_pos((10.0,130.0),(800.0,600.0),win.size),size = resize_pos((780.0,460.0),(800.0,600.0),win.size), parent = win, text = '', style = labelstyle1)
+        
+        button_style = gui.defaultButtonStyle.copy()
+        button_style['font'] = myfont2
 
+        self.skip_button = Button(position = resize_pos((600,550),(800.0,600.0),win.size), size = resize_pos((150,30),(800.0,600.0),win.size), parent = win, text = "  Skip  ",style = button_style)
+        self.skip_button.onClick = self.turnoff_startup_run
         threades.global_time = 0
-        while run:
+        
+        #One time show of the background image
+        screen.fill((255,255,255))
+        screen.blit(hunger_map,resize_pos((0,0)))
+        pygame.display.flip()
+        #sleep(5)
+        first_display = True
+        threades.global_time = 0
+        while self.startup_text_run:
 
             label.text =  trailer_text[counter]
             for e in gui.setEvents(pygame.event.get()):
@@ -371,20 +535,24 @@ class starting_intro:
                     safe_exit()
                 if e.type == KEYDOWN:
                     if e.key == 27:  # For escape key
-                        run = False
+                        self.startup_text_run = False
                     if e.key == K_RETURN:
                         counter += 1
             
             if threades.global_time >= 5000:
+                first_display = False                
                 threades.global_time = 0
                 counter += 1
-            screen.fill((255,255,255))
-            screen.blit(hunger_map,resize_pos((0,0)))
-            desktop2.update()
-            desktop2.draw()
-            pygame.display.flip()
-            if counter == 8:
-                run = False
+            if not first_display:
+                
+                screen.fill((255,255,255))
+                screen.blit(hunger_map,resize_pos((0,0)))
+                desktop2.update()
+                desktop2.draw()
+                pygame.display.flip()
+                
+            if counter == len(trailer_text):
+                self.startup_text_run = False
             
             
             
@@ -393,47 +561,13 @@ class starting_intro:
             threades.global_time += threades.iteration_time
         win.close()
 
-
-        screen.fill((255,255,255))
-        hunger_map = pygame.image.load(os.path.join('data', 'wfp_work.png')).convert()
-        hunger_map =  pygame.transform.scale(hunger_map,new_screen_size)
-        screen.blit(hunger_map,resize_pos((0,0)))
-
-        win = Window(position = position_win, size = size_win, parent = desktop2, text = " FOODFORCE: INSTRUCTIONS  " ,style = win_style,shadeable = False, closeable = False)
-        run = True
-        win.surf.set_alpha(160)
-
-        counter = 0
-        label = Label(position = resize_pos((10.0,130.0),(800.0,600.0),win.size),size = resize_pos((780.0,460.0),(800.0,600.0),win.size), parent = win, text = '', style = labelstyle1)
-
-        threades.global_time = 0
-        while run:
-
-            label.text =  instruction_text[counter]
-            for e in gui.setEvents(pygame.event.get()):
-                if e.type == pygame.QUIT:
-                    safe_exit()
-                if e.type == KEYDOWN:
-                    if e.key == 27:  # For escape key
-                        run = False
-                    if e.key == K_RETURN:
-                        counter += 1
-            
-            if threades.global_time >= 15000:
-                threades.global_time = 0
-                counter += 1
-            screen.fill((255,255,255))
-            screen.blit(hunger_map,resize_pos((0,0)))
-            desktop2.update()
-            desktop2.draw()
-            pygame.display.flip()
-            if counter == 8:
-                run = False
-            threades.iteration_time = clock.tick()
-            threades.global_time += threades.iteration_time
-        win.close()
+        
         self.run = False
 
+    def turnoff_startup_run(self,button = None):
+        
+        self.startup_text_run = False
+        
     def resume(self,button = None):
         ''' Resumes Game
         '''
@@ -527,6 +661,8 @@ class starting_intro:
     def close_win(self,button = None):
         self.win.close()
         self.controls_run = False
+        self.instructions_run = False
+        self.about_us_run = False
 
     def remove_buttons(self):
         ''' Removes the buttons from the Desktop
@@ -540,6 +676,8 @@ class starting_intro:
 
         self.controls_button._set_parent(win)
         self.exit_button._set_parent(win)
+        self.about_us_button._set_parent(win)
+        self.instructions_button._set_parent(win)
         win.close()
 
 
