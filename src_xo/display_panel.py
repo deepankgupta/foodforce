@@ -7,7 +7,7 @@ import threading
 
 import gui
 from gui import *
-
+from gui_buttons import *
 
 
 
@@ -53,6 +53,8 @@ class indicator_panel:
     def __init__(self):
         ''' Draws the indicator panel on the surface
         '''
+        
+        self.update_flag = True
 
         myfont1 = pygame.font.Font("font.ttf", resize_pt(30))   # For main heading
 
@@ -108,14 +110,24 @@ class indicator_panel:
     def update_value(self):
         ''' Updates the values of all the indicators
         '''
-        pygame.draw.line(screen,self.color_grey,resize_pos((900,645)),resize_pos((900,900)),1)
         
         for i in range(5):
 
             self.bar_dict[i].update_value(indicators_list[i].get_value())
             if not (self.value_labels[i].text == str(int(indicators_list[i].get_value()))+'%'):
-                self.value_labels[i].text = str(int(indicators_list[i].get_value()))+'%'
+                self.update_flag = True
+        
+        if self.update_flag or panel_update_flag or total_update_flag:
+            pygame.draw.line(screen,self.color_grey,resize_pos((900,645)),resize_pos((900,900)),1)
+        
+            for i in range(5):
     
+                self.bar_dict[i].update_value(indicators_list[i].get_value())
+                if not (self.value_labels[i].text == str(int(indicators_list[i].get_value()))+'%'):
+                    self.value_labels[i].text = str(int(indicators_list[i].get_value()))+'%'
+
+        self.update_flag = False
+        
 
 
 
@@ -131,6 +143,8 @@ class resources_panel:
         ''' Draws the resources panel on the surface
         '''
         
+        self.update_flag = True
+        self.money_flag = True
         myfont1 = pygame.font.Font("font.ttf", resize_pt(30))   # For main heading
         myfont2 = pygame.font.Font("font.ttf", resize_pt(20))   # For resources name and their value
         myfont3 = pygame.font.Font("font.ttf", resize_pt(16))
@@ -192,14 +206,27 @@ class resources_panel:
         ''' Updates the resources panel
         '''
 
-        # Updating general resources list
-        pygame.draw.line(screen,self.color_grey,resize_pos((400,645)),resize_pos((400,855)),1)
-        pygame.draw.line(screen,self.color_grey,resize_pos((650,645)),resize_pos((650,855)),1)
-
         for i in range(11):
             if not (self.value_labels[i].text == str(int(resources[i].get_vquantity()))):
-                self.value_labels[i].text = str(int(resources[i].get_vquantity()))
+                self.update_flag = True
+        
+        if self.update_flag or panel_update_flag or total_update_flag:
+           
+            
+            pygame.draw.line(screen,self.color_grey,resize_pos((400,645)),resize_pos((400,855)),1)
+            pygame.draw.line(screen,self.color_grey,resize_pos((650,645)),resize_pos((650,855)),1)
+    
+            for i in range(11):
+                if not (self.value_labels[i].text == str(int(resources[i].get_vquantity()))):
+                    self.value_labels[i].text = str(int(resources[i].get_vquantity()))
+        
+        if self.money_label.text == 'Money -:   '+str(int(money.get_money()))+'      ':
+            self.money_flag = True
             self.money_label.text = 'Money -:   '+str(int(money.get_money()))+'      '
+
+        self.update_flag = False
+        self.money_flag = False
+    
     
     
 
@@ -213,6 +240,8 @@ class manpower_panel:
     def __init__(self):
         ''' Draws the manpower panel
         '''
+        
+        self.update_flag = True
         myfont1 = pygame.font.Font("font.ttf", resize_pt(30))   # For main heading
         myfont2 = pygame.font.Font("font.ttf", resize_pt(20))   # For resources name and their value
         myfont3 = pygame.font.Font("font.ttf", resize_pt(16))   # For resources name and their value
@@ -261,17 +290,25 @@ class manpower_panel:
         ''' Updates the Manpower panel
         '''
         list_values = (ppl.get_total_population(),ppl.get_no_of_ppl_sheltered(),ppl.get_no_of_ppl_educated(),ppl.get_no_of_ppl_healthy(),ppl.get_no_of_ppl_fed(),ppl.get_total_no_of_ppl_emp())
-
-        pygame.draw.line(screen,self.color_grey,resize_pos((900,645)),resize_pos((900,855)),1)
-        pygame.draw.rect(screen,self.color_grey,resize_rect((0,855,300,45)),2)        
-        pygame.draw.rect(screen,self.color_grey,resize_rect((300,855,300,45)),2)        
-        pygame.draw.rect(screen,self.color_grey,resize_rect((600,855,300,45)),2)        
-
         for i in range(6):
 
             if not (self.value_labels[i].text == str(int(list_values[i]))):
-                self.value_labels[i].text = str(int(list_values[i]))
+                self.update_flag = True
+        
+        if self.update_flag or panel_update_flag or total_update_flag:
+
+            pygame.draw.line(screen,self.color_grey,resize_pos((900,645)),resize_pos((900,855)),1)
+            pygame.draw.rect(screen,self.color_grey,resize_rect((0,855,300,45)),2)        
+            pygame.draw.rect(screen,self.color_grey,resize_rect((300,855,300,45)),2)        
+            pygame.draw.rect(screen,self.color_grey,resize_rect((600,855,300,45)),2)        
     
+            for i in range(6):
+    
+                if not (self.value_labels[i].text == str(int(list_values[i]))):
+                    self.value_labels[i].text = str(int(list_values[i]))
+        
+        self.update_flag = False
+        
     
 class facilities_panel:
 
@@ -282,6 +319,7 @@ class facilities_panel:
     def __init__(self):
         ''' Draws the Facilities panel
         '''
+        self.update_flag = True
         myfont1 = pygame.font.Font("font.ttf", resize_pt(20))   # For resources name and their value
         
         self.labelstyle1 = gui.defaultLabelStyle.copy()
@@ -307,33 +345,54 @@ class facilities_panel:
     def update_value(self):
         ''' Updates the Facilities panel
         '''
-        self.list_values1 = (House.get_original_number(),School.get_original_number(),Hospital.get_original_number(),Workshop.get_original_number(),Farm.get_original_number(),Fountain.get_original_number())
-        self.list_values2 = (House.get_level(),School.get_level(),Hospital.get_level(),Workshop.get_level(),Farm.get_level(),Fountain.get_level())
-        pygame.draw.rect(screen,(0,0,0),resize_rect((930,40,270,350))) 
         for i in range(6):
 
             if not (self.value_labels[i].text == self.list_names[i]+str(int(self.list_values1[i]))+' Level: '+str(int(self.list_values2[i]))):
-                self.value_labels[i].text = self.list_names[i]+str(int(self.list_values1[i]))+' Level: '+str(int(self.list_values2[i]))
+                self.update_flag = False
+        
+        if self.update_flag or facilities_update_flag or total_update_flag:
+            
+            self.list_values1 = (House.get_original_number(),School.get_original_number(),Hospital.get_original_number(),Workshop.get_original_number(),Farm.get_original_number(),Fountain.get_original_number())
+            self.list_values2 = (House.get_level(),School.get_level(),Hospital.get_level(),Workshop.get_level(),Farm.get_level(),Fountain.get_level())
+            pygame.draw.rect(screen,(0,0,0),resize_rect((930,40,270,350))) 
+            for i in range(6):
+    
+                if not (self.value_labels[i].text == self.list_names[i]+str(int(self.list_values1[i]))+' Level: '+str(int(self.list_values2[i]))):
+                    self.value_labels[i].text = self.list_names[i]+str(int(self.list_values1[i]))+' Level: '+str(int(self.list_values2[i]))
+        
+        self.update_flag = False
+        
 
 
 class mini_map:
 
     def __init__(self):
+        
+        self.update_flag = True
         for i in range(6):
             Map_images[i] = pygame.transform.scale(Map_images[i],resize_pos((15,15)))
         self.map = pygame.image.load(os.path.join('data', 'map.png')).convert()
         self.map = pygame.transform.scale(self.map,resize_pos((270,210)))
+        self.list_num_fac = []
+        for i in range(len(facilities_list)):
+            self.list_num_fac.append(facilities_list[i].get_original_number())
     
     def update(self):
         
-        screen.blit(self.map,resize_pos((930,390)))
-        posn = resize_pos((930+int(3200/33.3),390+int(2600/28.57)))
-        screen.blit(Map_images[6],posn)
         for i in range(len(facilities_list)):
-            for j in range(facilities_list[i].get_original_number()):
-                posn = resize_pos((930+int(facilities_posn_list[i][j][0]/33.3),390+int(facilities_posn_list[i][j][1]/28.57)))
-                screen.blit(Map_images[i],posn)
+            if not (self.list_num_fac[i] == facilities_list[i].get_original_number()):
+                self.update_flag = True
     
+        if self.update_flag or map_update_flag or total_update_flag:
+            screen.blit(self.map,resize_pos((930,390)))
+            posn = resize_pos((930+int(3200/33.3),390+int(2600/28.57)))
+            screen.blit(Map_images[6],posn)
+            for i in range(len(facilities_list)):
+                for j in range(facilities_list[i].get_original_number()):
+                    posn = resize_pos((930+int(facilities_posn_list[i][j][0]/33.3),390+int(facilities_posn_list[i][j][1]/28.57)))
+                    screen.blit(Map_images[i],posn)
+        
+        self.update_flag = False
     
 
 
