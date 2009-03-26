@@ -785,7 +785,7 @@ def main():
         rects_list = get_update_region()
         panel.update()
         
-        if (total_update_flag or map_update_flag or facilities_update_flag or panel_update_flag):
+        if (total_update_flag or map_update_flag or facilities_update_flag or panel_update_flag or panel.res.money_flag):
             desktop.update()
             desktop.draw()
         
