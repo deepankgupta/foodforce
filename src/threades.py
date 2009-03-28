@@ -50,8 +50,8 @@ new_screen_size = max_resolution
 display_info = pygame.display.Info()
 new_screen_size = (display_info.current_w,display_info.current_h)
 # Max resolution detected and the screen size is set to it
-# new_screen_size = (800.0,600.0)
-screen = pygame.display.set_mode(new_screen_size,FULLSCREEN,32)
+new_screen_size = (1000.0,800.0)
+screen = pygame.display.set_mode(new_screen_size,0,32)
 
 # For initialising the style of the guI
 defaultStyle.init(gui)
@@ -681,11 +681,11 @@ class Messages:
         ''' Used to push a message in the message queue
         '''
         if priority == 'low':
-            color = (0,127,0) # Green
+            color = (0,250,0) # Green
         if priority == 'medium':
-            color = (0,0,127) # Blue
+            color = (0,0,250) # Blue
         if priority == 'high':
-            color = (127,0,0) # Red
+            color = (250,0,0) # Red
         
         self.queue_color.append(color)
         self.queue.append(text)

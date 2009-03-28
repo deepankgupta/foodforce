@@ -43,11 +43,11 @@ def message_window():
     ''' Thread to display the messages'''
 
     font_color = (255,214,150)
-    myfont = pygame.font.Font("font.ttf", resize_pt(23))
+    myfont = pygame.font.Font("font.ttf", resize_pt(17))
     # Custom Window Style
     win_style = gui.defaultWindowStyle.copy()
     win_style['font'] = myfont
-    win_style['font-color'] = font_color
+    win_style['bg-color'] = (0,0,0)
     
     # Calculating position and size of window from the size of the desktop
     position_win =resize_pos((745.0,42.0))
@@ -58,21 +58,24 @@ def message_window():
     labelStyleCopy['wordwrap'] = True
     labelStyleCopy['autosize'] = False
     labelStyleCopy['font'] = myfont
-    labelStyleCopy['font-color'] = font_color
+    #labelStyleCopy['font-color'] = font_color
 
     while True:
         (text,color) = message.pop_message()
         if text:
 
             # Creating window
-            win_style['bg-color'] = color
-            win = Window(position = position_win, size = size_win, parent = desktop, text = "Message " ,style = win_style ,closeable = False ,shadeable = False)
-            win.surf.set_alpha(160)
+            win_style['font-color'] = color
+            labelStyleCopy['font-color'] = color
+
+            win = Window(position = position_win, size = size_win, parent = desktop, text = "Message " ,style = win_style ,closeable = False ,shadeable = False,moveable = False)
+            pygame.draw.rect(win.surf,color,resize_rect((3,3,444,144)),1)            
+            #win.surf.set_alpha(160)
             # Creating label
-            message_label = Label(position = resize_pos((5,50),(450.0,150.0),win.size),size = resize_pos((445,140),(450.0,150.0),win.size), parent = win, text = text, style = labelStyleCopy)
+            message_label = Label(position = resize_pos((5,50),(450.0,150.0),win.size),size = resize_pos((440,140),(450.0,150.0),win.size), parent = win, text = text, style = labelStyleCopy)
             sleep(6)
             win.close()
-        sleep(1)
+        sleep(2)
 
 
 
@@ -250,11 +253,15 @@ def event_handling(e):
 
     x,y = pygame.mouse.get_pos()
     r = pygame.Rect(resize_rect((0,40,930,560)))
+    if gui_obj.buysell_obj.get_win_flag():
+        gui_obj.buysell_obj.drawPriceChart()
     if r.collidepoint(x,y):
         
         if e.type == MOUSEBUTTONDOWN:
             if e.button == 1 and gui_obj.get_child_win_flag():
                 gui_obj.setup_obj.bardisplay.updateChart((x,y))
+            if e.button == 1 and gui_obj.buysell_obj.get_win_flag():
+                gui_obj.buysell_obj.barObject.updateChart((x,y))
             if e.button == 4:
                 transform_obj.focus()
             if e.button == 5:
@@ -385,7 +392,7 @@ class starting_intro:
         label = Label(position = resize_pos((10.0,100.0),(900.0,600.0),self.win.size),size = resize_pos((880.0,440.0),(900.0,600.0),self.win.size), parent = self.win, text = '', style = labelStyleCopy)
 
         while self.instructions_run:
-            #pygame.display.set_caption(str(int(clock.get_fps())))
+            pygame.display.set_caption('FoodForce2')
             screen.fill((0,0,0))
             screen.blit(ff_logo,resize_pos((40,50)))
 
@@ -464,7 +471,7 @@ class starting_intro:
         label = Label(position = resize_pos((10.0,100.0),(900.0,600.0),self.win.size),size = resize_pos((880.0,440.0),(900.0,600.0),self.win.size), parent = self.win, text = '', style = labelStyleCopy)
 
         while self.about_us_run:
-            #pygame.display.set_caption(str(int(clock.get_fps())))
+            pygame.display.set_caption('FoodForce2')
             screen.fill((0,0,0))
             screen.blit(ff_logo,resize_pos((40,50)))
 
@@ -643,7 +650,7 @@ class starting_intro:
         logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
         ff_logo = pygame.transform.scale(logo,resize_pos((1111,250)))
         while self.controls_run:
-            pygame.display.set_caption(str(int(clock.get_fps())))
+            pygame.display.set_caption('FoodForce2')
             screen.fill((0,0,0))
             screen.blit(ff_logo,resize_pos((40,50)))
 
@@ -692,7 +699,7 @@ def pause_screen(pause_flag = True):
     logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
     ff_logo = pygame.transform.scale(logo,resize_pos((1111,250)))
     while start.run:
-        pygame.display.set_caption(str(int(clock.get_fps())))
+        pygame.display.set_caption('FoodForce2')
         screen.fill((0,0,0))
         screen.blit(ff_logo,resize_pos((40,50)))
         
@@ -765,7 +772,7 @@ def main():
         if (x > resize_pt_x(0)) and (x < resize_pt_x(600)) and (y > resize_pt_y(845)) and (y < resize_pt_y(900)):
             mouse_flag = True
             
-        pygame.display.set_caption(str(int(clock.get_fps())))
+        pygame.display.set_caption('FoodForce2')
 
         for e in gui.setEvents(pygame.event.get()):
             event_handling(e)
