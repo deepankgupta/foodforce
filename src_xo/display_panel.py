@@ -206,6 +206,7 @@ class resources_panel:
         ''' Updates the resources panel
         '''
 
+        self.money_flag = False
         for i in range(11):
             if not (self.value_labels[i].text == str(int(resources[i].get_vquantity()))):
                 self.update_flag = True
@@ -220,12 +221,12 @@ class resources_panel:
                 if not (self.value_labels[i].text == str(int(resources[i].get_vquantity()))):
                     self.value_labels[i].text = str(int(resources[i].get_vquantity()))
         
-        if self.money_label.text == 'Money -:   '+str(int(money.get_money()))+'      ':
+        if not (self.money_label.text == 'Money -:   '+str(int(money.get_money()))+'      '):
             self.money_flag = True
             self.money_label.text = 'Money -:   '+str(int(money.get_money()))+'      '
 
         self.update_flag = False
-        self.money_flag = False
+        
     
     
     

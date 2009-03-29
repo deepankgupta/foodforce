@@ -28,7 +28,7 @@ import threading
 import gui
 from gui import *
 
-ActivitySharedFlag = True
+ActivitySharedFlag = False
 
 class marketBarChart:
     '''Class which displays the bar chart in the market window
@@ -715,10 +715,10 @@ class buysell_button:
         heading_label1 = Label(position = resize_pos((10.0,70.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Resources', style = labelstyle1)
         heading_label2 = Label(position = resize_pos((180.0,70.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Village', style = labelstyle1)
         heading_label3 = Label(position = resize_pos((180.0,85.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Quantity', style = labelstyle1)
-        heading_label4 = Label(position = resize_pos((280.0,70.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Price', style = labelstyle1)
-        heading_label5 = Label(position = resize_pos((520.0,70.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Resources', style = labelstyle1)
-        heading_label6 = Label(position = resize_pos((700.0,70.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Market', style = labelstyle1)
-        heading_label7 = Label(position = resize_pos((700.0,85.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Quantity', style = labelstyle1)
+        heading_label4 = Label(position = resize_pos((370.0,70.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Price', style = labelstyle1)
+        #heading_label5 = Label(position = resize_pos((520.0,70.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Resources', style = labelstyle1)
+        heading_label6 = Label(position = resize_pos((270.0,70.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Market', style = labelstyle1)
+        heading_label7 = Label(position = resize_pos((270.0,85.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Quantity', style = labelstyle1)
 
         # creating custom style for option box
         op_style = gui.defaultOptionBoxStyle.copy()
@@ -786,7 +786,7 @@ class buysell_button:
                 self.label_res_price = Label(position = resize_pos((650.0,280.0),(800.0,600.0),self.win.size), parent = self.win, text = str(int(self.barObject.bar2Val)), style = labelstyle1)
         
         # Creating labels for prices of Resources 
-        self.price_vwater = Label(position = resize_pos((280.0,140.0),(800.0,600.0),self.win.size), parent = self.win, text = str(int(Water.get_price())), style = labelstyle1)
+        self.price_vwater = Label(position = resize_pos((370.0,140.0),(800.0,600.0),self.win.size), parent = self.win, text = str(int(Water.get_price())), style = labelstyle1)
         self.price_vbuildmat = Label(position = self.win.nextPosition(resize_pt_y(7)), parent = self.win, text = str(int(Buildmat.get_price())), style = labelstyle1)
         self.price_vtools = Label(position = self.win.nextPosition(resize_pt_y(7)), parent = self.win, text = str(int(Tools.get_price())), style = labelstyle1)
         self.price_vbooks = Label(position = self.win.nextPosition(resize_pt_y(7)), parent = self.win, text = str(int(Book.get_price())), style = labelstyle1)
@@ -807,7 +807,7 @@ class buysell_button:
         self.win.textbox = TextBox(position = resize_pos((350.0, 200.0),(800.0,600.0),self.win.size), size = resize_pos((100,20),(800.0,600.0),self.win.size), parent = self.win, style = textbox_style) 
         '''
 
-       # Creating buttons for buying and selling and closing the window
+        # Creating buttons for buying and selling and closing the window
         button_style = gui.defaultButtonStyle.copy()
         button_style['font'] = myfont2
 
@@ -817,6 +817,20 @@ class buysell_button:
         self.button_buy.onClick = self.buy_resources
         self.button_sell.onClick = self.sell_resources
         self.button_close.onClick  = self.close_win
+        
+        # Creating labels for market values of Resources 
+        self.label_mwater = Label(position = resize_pos((270.0,140.0),(800.0,600.0),self.win.size), parent = self.win, text = str(int(Water.get_mquantity())), style = labelstyle1)
+        self.label_mbuildmat = Label(position = self.win.nextPosition(resize_pt_y(7)), parent = self.win, text = str(int(Buildmat.get_mquantity())), style = labelstyle1)
+        self.label_mtools = Label(position = self.win.nextPosition(resize_pt_y(7)), parent = self.win, text = str(int(Tools.get_mquantity())), style = labelstyle1)
+        self.label_mbooks = Label(position = self.win.nextPosition(resize_pt_y(7)), parent = self.win, text = str(int(Book.get_mquantity())), style = labelstyle1)
+        self.label_mmedicine = Label(position = self.win.nextPosition(resize_pt_y(7)), parent = self.win, text = str(int(Medicine.get_mquantity())), style = labelstyle1)
+        self.label_mrice = Label(position = self.win.nextPosition(resize_pt_y(7)), parent = self.win, text = str(int(Rice.get_mquantity())), style = labelstyle1)
+        self.label_mwheat = Label(position = self.win.nextPosition(resize_pt_y(7)), parent = self.win, text = str(int(Wheat.get_mquantity())), style = labelstyle1)
+        self.label_mbeans = Label(position = self.win.nextPosition(resize_pt_y(7)), parent = self.win, text = str(int(Beans.get_mquantity())), style = labelstyle1)
+        self.label_msugar = Label(position = self.win.nextPosition(resize_pt_y(7)), parent = self.win, text = str(int(Sugar.get_mquantity())), style = labelstyle1)
+        self.label_msalt = Label(position = self.win.nextPosition(resize_pt_y(7)), parent = self.win, text = str(int(Salt.get_mquantity())), style = labelstyle1)
+        self.label_moil = Label(position = self.win.nextPosition(resize_pt_y(7)), parent = self.win, text = str(int(Oil.get_mquantity())), style = labelstyle1)
+
 
 
         # Creating label to display the status messages
@@ -874,57 +888,57 @@ class buysell_button:
             label_text =  buy_res(Water,quantity)
             if label_text == 'The Village has bought the resource you demanded':
                 self.label_vwater.text = str(int(Water.get_vquantity()))
-                #self.label_mwater.text = str(int(Water.get_mquantity()))
+                self.label_mwater.text = str(int(Water.get_mquantity()))
         elif self.buildmat_box.value:
             label_text =  buy_res(Buildmat,quantity)
             if label_text == 'The Village has bought the resource you demanded':
                 self.label_vbuildmat.text = str(int(Buildmat.get_vquantity()))
-                #self.label_mbuildmat.text = str(int(Buildmat.get_mquantity()))
+                self.label_mbuildmat.text = str(int(Buildmat.get_mquantity()))
         elif self.tools_box.value:
             label_text =  buy_res(Tools,quantity)
             if label_text == 'The Village has bought the resource you demanded':
                 self.label_vtools.text = str(int(Tools.get_vquantity()))
-                #self.label_mtools.text = str(int(Tools.get_mquantity()))
+                self.label_mtools.text = str(int(Tools.get_mquantity()))
         elif self.medicine_box.value:
             label_text =  buy_res(Medicine,quantity)
             if label_text == 'The Village has bought the resource you demanded':
                 self.label_vmedicine.text = str(int(Medicine.get_vquantity()))
-                #self.label_mmedicine.text = str(int(Medicine.get_mquantity()))
+                self.label_mmedicine.text = str(int(Medicine.get_mquantity()))
         elif self.books_box.value:
             label_text =  buy_res(Book,quantity)
             if label_text == 'The Village has bought the resource you demanded':
                 self.label_vbooks.text = str(int(Book.get_vquantity()))
-                #self.label_mbooks.text = str(int(Book.get_mquantity()))
+                self.label_mbooks.text = str(int(Book.get_mquantity()))
         elif self.rice_box.value:
             label_text =  buy_res(Rice,quantity)
             if label_text == 'The Village has bought the resource you demanded':
                 self.label_vrice.text = str(int(Rice.get_vquantity()))
-                #self.label_mrice.text = str(int(Rice.get_mquantity()))
+                self.label_mrice.text = str(int(Rice.get_mquantity()))
         elif self.wheat_box.value:
             label_text =  buy_res(Wheat,quantity)
             if label_text == 'The Village has bought the resource you demanded':
                 self.label_vwheat.text = str(int(Wheat.get_vquantity()))
-                #self.label_mwheat.text = str(int(Wheat.get_mquantity()))
+                self.label_mwheat.text = str(int(Wheat.get_mquantity()))
         elif self.beans_box.value:
             label_text =  buy_res(Beans,quantity)
             if label_text == 'The Village has bought the resource you demanded':
                 self.label_vbeans.text = str(int(Beans.get_vquantity()))
-                #self.label_mbeans.text = str(int(Beans.get_mquantity()))
+                self.label_mbeans.text = str(int(Beans.get_mquantity()))
         elif self.sugar_box.value:
             label_text =  buy_res(Sugar,quantity)
             if label_text == 'The Village has bought the resource you demanded':
                 self.label_vsugar.text = str(int(Sugar.get_vquantity()))
-                #self.label_msugar.text = str(int(Sugar.get_mquantity()))
+                self.label_msugar.text = str(int(Sugar.get_mquantity()))
         elif self.salt_box.value:
             label_text =  buy_res(Salt,quantity)
             if label_text == 'The Village has bought the resource you demanded':
                 self.label_vsalt.text = str(int(Salt.get_vquantity()))
-                #self.label_msalt.text = str(int(Salt.get_mquantity()))
+                self.label_msalt.text = str(int(Salt.get_mquantity()))
         elif self.oil_box.value:
             label_text =  buy_res(Oil,quantity)
             if label_text == 'The Village has bought the resource you demanded':
                 self.label_voil.text = str(int(Oil.get_vquantity()))
-                #self.label_moil.text = str(int(Oil.get_mquantity()))
+                self.label_moil.text = str(int(Oil.get_mquantity()))
         else:
             label_text = ' Please select a Resource for Trading'
 
@@ -944,57 +958,57 @@ class buysell_button:
             label_text =  sell_res(Water,quantity)
             if label_text == 'The Village has sold the resource you demanded':
                 self.label_vwater.text = str(int(Water.get_vquantity()))
-                #self.label_mwater.text = str(int(Water.get_mquantity()))
+                self.label_mwater.text = str(int(Water.get_mquantity()))
         elif self.buildmat_box.value:
             label_text =  sell_res(Buildmat,quantity)
             if label_text == 'The Village has sold the resource you demanded':
                 self.label_vbuildmat.text = str(int(Buildmat.get_vquantity()))
-                #self.label_mbuildmat.text = str(int(Buildmat.get_mquantity()))
+                self.label_mbuildmat.text = str(int(Buildmat.get_mquantity()))
         elif self.tools_box.value:
             label_text =  sell_res(Tools,quantity)
             if label_text == 'The Village has sold the resource you demanded':
                 self.label_vtools.text = str(int(Tools.get_vquantity()))
-                #self.label_mtools.text = str(int(Tools.get_mquantity()))
+                self.label_mtools.text = str(int(Tools.get_mquantity()))
         elif self.medicine_box.value:
             label_text =  sell_res(Medicine,quantity)
             if label_text == 'The Village has sold the resource you demanded':
                 self.label_vmedicine.text = str(int(Medicine.get_vquantity()))
-                #self.label_mmedicine.text = str(int(Medicine.get_mquantity()))
+                self.label_mmedicine.text = str(int(Medicine.get_mquantity()))
         elif self.books_box.value:
             label_text =  sell_res(Book,quantity)
             if label_text == 'The Village has sold the resource you demanded':
                 self.label_vbooks.text = str(int(Book.get_vquantity()))
-                #self.label_mbooks.text = str(int(Book.get_mquantity()))
+                self.label_mbooks.text = str(int(Book.get_mquantity()))
         elif self.rice_box.value:
             label_text =  sell_res(Rice,quantity)
             if label_text == 'The Village has sold the resource you demanded':
                 self.label_vrice.text = str(int(Rice.get_vquantity()))
-                #self.label_mrice.text = str(int(Rice.get_mquantity()))
+                self.label_mrice.text = str(int(Rice.get_mquantity()))
         elif self.wheat_box.value:
             label_text =  sell_res(Wheat,quantity)
             if label_text == 'The Village has sold the resource you demanded':
                 self.label_vwheat.text = str(int(Wheat.get_vquantity()))
-                #self.label_mwheat.text = str(int(Wheat.get_mquantity()))
+                self.label_mwheat.text = str(int(Wheat.get_mquantity()))
         elif self.beans_box.value:
             label_text =  sell_res(Beans,quantity)
             if label_text == 'The Village has sold the resource you demanded':
                 self.label_vbeans.text = str(int(Beans.get_vquantity()))
-                #self.label_mbeans.text = str(int(Beans.get_mquantity()))
+                self.label_mbeans.text = str(int(Beans.get_mquantity()))
         elif self.sugar_box.value:
             label_text =  sell_res(Sugar,quantity)
             if label_text == 'The Village has sold the resource you demanded':
                 self.label_vsugar.text = str(int(Sugar.get_vquantity()))
-                #self.label_msugar.text = str(int(Sugar.get_mquantity()))
+                self.label_msugar.text = str(int(Sugar.get_mquantity()))
         elif self.salt_box.value:
             label_text =  sell_res(Salt,quantity)
             if label_text == 'The Village has sold the resource you demanded':
                 self.label_vsalt.text = str(int(Salt.get_vquantity()))
-                #self.label_msalt.text = str(int(Salt.get_mquantity()))
+                self.label_msalt.text = str(int(Salt.get_mquantity()))
         elif self.oil_box.value:
             label_text =  sell_res(Oil,quantity)
             if label_text == 'The Village has sold the resource you demanded':
                 self.label_voil.text = str(int(Oil.get_vquantity()))
-                #self.label_moil.text = str(int(Oil.get_mquantity()))
+                self.label_moil.text = str(int(Oil.get_mquantity()))
         else:
             label_text = ' Please select a Resource for Trading'
         self.message_label.text = label_text
@@ -1115,7 +1129,7 @@ class meshTrading:
     '''Class which handles matters regarding the trading over
        Mesh Network
     '''    
-    def tradingWindow(buddyName = 'Friend',resource = 'Water',price = '10'):
+    def tradingWindow(self,buddyName = 'Friend',resource = 'Water',price = '10',trade = 'sell'):
         '''Opens the trading window at the reciever end for trading
         '''        
 
@@ -1126,6 +1140,7 @@ class meshTrading:
         win_style = gui.defaultWindowStyle.copy()
         win_style['font'] = myfont
         win_style['bg-color'] = (0,0,0)
+        win_style['font-color'] = color_blue
         
         # Calculating position and size of window from the size of the desktop
         position_win =resize_pos((725.0,42.0))
@@ -1139,13 +1154,29 @@ class meshTrading:
         labelStyleCopy['font-color'] = color_blue
         #labelStyleCopy['font-color'] = font_color
     
-        win = Window(position = position_win, size = size_win, parent = desktop, text = " Trade " ,style = win_style,shadeable = False, moveable = False)
-        while True:
-            (text,color) = message.pop_message()
-            if text:
-    
-                # Creating window
-                win_style['font-color'] = color
-                
+        self.win = Window(position = position_win, size = size_win, parent = desktop, text = " Trade " ,style = win_style,shadeable = False, moveable = False)
+        # Creating label
+        label_text = buddyName + ' wants to ' + trade + ' ' + resource + ' at $ '+ price 
+        message_label = Label(position = resize_pos((5,5),(470.0,180.0),win.size),size = resize_pos((460,120),(470.0,180.0),win.size), parent = win, text = label_text, style = labelStyleCopy)
+        
+        # Creating button style
+        myfont2 = pygame.font.Font("font.ttf", resize_pt(16))
+        button_style = gui.defaultButtonStyle.copy()
+        button_style['font'] = myfont2
+
+        self.button_accept = Button(position = resize_pos((100.0,130.0),(470.0,180.0),size_win), size = resize_pos((100.0,40.0),(470.0,180.0),size_win), parent = self.win, text = " Accept ",style = button_style)
+        self.button_reject = Button(position = resize_pos((300.0,130.0),(470.0,180.0),size_win), size = resize_pos((100.0,40.0),(470.0,180.0),size_win), parent = self.win, text = " Accept ",style = button_style)
+        
+        self.button_accept.onClick = self.checkTrade
+        self.button_accept.onClick = self.closeWin
+        
+        sleep(6)
+        self.win.close()
+                    
+    def checkTrade(self,button = None):
+        ''' Sends an acceptance request to the person who tried to trade 
+        '''
+        
             
-    
+    def closeWin(self):
+        self.win.close()
