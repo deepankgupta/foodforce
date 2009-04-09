@@ -32,6 +32,9 @@ import defaultStyle
 from load_images import *
 from display_panel import *
 from gui_buttons import *
+import game_sharing
+import olpcgames.mesh as mesh
+
 
 
 
@@ -267,6 +270,16 @@ def event_handling(e):
             if e.button == 5:
                 transform_obj.defocus()
 
+    if e.type==mesh.CONNECT :
+        game_sharing.sharing_handler(e.type,None,'')
+    #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,None,'']).start()
+    elif e.type==mesh.PARTICIPANT_ADD or e.type==mesh.PARTICIPANT_REMOVE :
+        game_sharing.sharing_handler(e.type,e.handle,'')
+    #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,'']).start()
+    elif e.type==mesh.MESSAGE_MULTI or e.type==mesh.MESSAGE_UNI :
+        game_sharing.sharing_handler(e.type,e.handle,e.content)
+    #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,e.content]).start()
+
 soundtrack = load_sound(os.path.join('data', 'soundtrack.ogg'))
 
 def get_update_region():
@@ -409,6 +422,16 @@ class starting_intro:
                         if self.instructions_counter > 0 :
                             self.instructions_counter -= 1
 
+                if e.type==mesh.CONNECT :
+                    game_sharing.sharing_handler(e.type,None,'')
+                #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,None,'']).start()
+                elif e.type==mesh.PARTICIPANT_ADD or e.type==mesh.PARTICIPANT_REMOVE :
+                    game_sharing.sharing_handler(e.type,e.handle,'')
+                #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,'']).start()
+                elif e.type==mesh.MESSAGE_MULTI or e.type==mesh.MESSAGE_UNI :
+                    game_sharing.sharing_handler(e.type,e.handle,e.content)
+                #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,e.content]).start()
+
             desktop2.update()
             desktop2.draw()
             pygame.display.update()
@@ -481,6 +504,16 @@ class starting_intro:
                     if e.key == 27:  # For escape key
                         self.about_us_run = False
                         self.win.close()
+
+                if e.type==mesh.CONNECT :
+                    game_sharing.sharing_handler(e.type,None,'')
+                #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,None,'']).start()
+                elif e.type==mesh.PARTICIPANT_ADD or e.type==mesh.PARTICIPANT_REMOVE :
+                    game_sharing.sharing_handler(e.type,e.handle,'')
+                #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,'']).start()
+                elif e.type==mesh.MESSAGE_MULTI or e.type==mesh.MESSAGE_UNI :
+                    game_sharing.sharing_handler(e.type,e.handle,e.content)
+                #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,e.content]).start()
          
             desktop2.update()
             desktop2.draw()
@@ -545,6 +578,16 @@ class starting_intro:
                         self.startup_text_run = False
                     if e.key == K_RETURN:
                         counter += 1
+
+                if e.type==mesh.CONNECT :
+                    game_sharing.sharing_handler(e.type,None,'')
+                #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,None,'']).start()
+                elif e.type==mesh.PARTICIPANT_ADD or e.type==mesh.PARTICIPANT_REMOVE :
+                    game_sharing.sharing_handler(e.type,e.handle,'')
+                #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,'']).start()
+                elif e.type==mesh.MESSAGE_MULTI or e.type==mesh.MESSAGE_UNI :
+                    game_sharing.sharing_handler(e.type,e.handle,e.content)
+                #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,e.content]).start()
             
             if threades.global_time >= 5000:
                 first_display = False                
@@ -660,6 +703,16 @@ class starting_intro:
                         self.controls_run = False
                         self.win.close()
 
+                if e.type==mesh.CONNECT :
+                    game_sharing.sharing_handler(e.type,None,'')
+                #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,None,'']).start()
+                elif e.type==mesh.PARTICIPANT_ADD or e.type==mesh.PARTICIPANT_REMOVE :
+                    game_sharing.sharing_handler(e.type,e.handle,'')
+                #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,'']).start()
+                elif e.type==mesh.MESSAGE_MULTI or e.type==mesh.MESSAGE_UNI :
+                    game_sharing.sharing_handler(e.type,e.handle,e.content)
+                #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,e.content]).start()
+
             desktop2.update()
             desktop2.draw()
             pygame.display.update()
@@ -708,6 +761,16 @@ def pause_screen(pause_flag = True):
                 safe_exit()
             if e.type == QUIT:
                 safe_exit()
+
+            if e.type==mesh.CONNECT :
+                game_sharing.sharing_handler(e.type,None,'')
+                #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,None,'']).start()
+            elif e.type==mesh.PARTICIPANT_ADD or e.type==mesh.PARTICIPANT_REMOVE :
+                game_sharing.sharing_handler(e.type,e.handle,'')
+                #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,'']).start()
+            elif e.type==mesh.MESSAGE_MULTI or e.type==mesh.MESSAGE_UNI :
+                game_sharing.sharing_handler(e.type,e.handle,e.content)
+                #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,e.content]).start()
 
         desktop2.update()
         desktop2.draw()

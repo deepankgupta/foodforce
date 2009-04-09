@@ -32,6 +32,7 @@ import defaultStyle
 from load_images import *
 from display_panel import *
 from gui_buttons import *
+import chat
 
 
 
@@ -208,6 +209,7 @@ clock = pygame.time.Clock()
 
 
 def event_handling(e):
+    
     if e.type == pygame.QUIT:
         safe_exit()
     if e.type == QUIT:
@@ -240,7 +242,9 @@ def event_handling(e):
                 gui_obj.buysell_obj.buysell()
             if e.key == K_e:
                 earthquake()
-
+            if e.key == K_h:
+                chat.showChat(['Kamat','The goal of FreeIconTospeech is to provide a low-cost assistive / augmentative communication tool for people with speech, motor, and/or developmental challenges. The immediate opportunity is to create open source software to allow a user to select concepts through a menu of icons, and synthesize speech from those selected concepts. See the FreeIconToSpeech page for more information. ','Son','Commercial Text-To-Speech programs are getting very good now. The examples at the Digital Future Software Company site are very clear. They use AT&T technology and provide examples of Male and Female speech in English, French and Spanish. The XO needs open-source software that can approach this quality in a wide range of languages.--Ricardo 04:07, 17 August 2007 (EDT) ','Kamat','i\n will \ntell\n u','Son','ok father'])
+                #chat.showChat(['Kamat','its working fine you have done a great job','Son','yes, father what should i do?','Kamat','i will tell u','Son','ok father'])
     if e.type == KEYUP:
         if e.key == K_UP:
             transform_obj.stop_move('up')
@@ -720,6 +724,7 @@ surface_top = pygame.transform.scale(wfp_logo,resize_pos((1200,40)))
 def main():
 
     global panel
+    global chat_screen
     
     # Displaying the WFP logo
     intro_thread = threading.Thread(target = load_images, args=[])
@@ -728,8 +733,6 @@ def main():
     soundtrack.play(-1)
 
     pause_screen()
-
-
 
     intro_thread.join()
     initialize_facilities()
@@ -747,6 +750,7 @@ def main():
     update_thread = threading.Thread(target = threades.update_turn, args=[]).start()
     message_thread = threading.Thread(target = message_window, args=[]).start()
     mouse_flag = False
+    chat_screen=chat.chat()
         
     # The main infinite loop
     while True:

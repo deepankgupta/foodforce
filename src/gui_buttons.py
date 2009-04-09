@@ -38,7 +38,7 @@ class marketBarChart:
     #color3 = (85,71,50)
     color_rect = (50,100,150)
     
-    def drawValueChart(self,surface,initial_value = 10,maximum_value = 1000.0):
+    def drawValueChart(self,surface,initial_value = 10,maximum_value = 100.0):
         ''' Draws a barchart on the screen
         '''
         
@@ -50,7 +50,7 @@ class marketBarChart:
         
         pygame.draw.rect(surface,self.color_rect,resize_rect((440,200,200,30)),2)
         
-    def drawPriceChart(self,surface,initial_price = 10, maximum_value = 50):
+    def drawPriceChart(self,surface,initial_price = 10, maximum_value = 25):
         ''' Draws a barchart on the screen
         '''
         if self.price_flag == False:

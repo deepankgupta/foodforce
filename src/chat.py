@@ -43,9 +43,13 @@ class chat:
         self.chatWinFlag = False
         self.position = (15,10)
         self.initial_position = (15,10)
-        self.final_position = (15,690)
+        self.final_position = (15,600)
         self.imageBox = pygame.image.load(os.path.join('art', 'imageBox.png')).convert_alpha()
         self.chatBox = pygame.image.load(os.path.join('art', 'chatBox.png')).convert_alpha()
+        self.characterImage={}
+        self.characterImage['KAMAT']=pygame.image.load(os.path.join('art', 'kamat.png')).convert_alpha()
+        self.characterImage['SON']=pygame.image.load(os.path.join('art', 'son.png')).convert_alpha()
+        self.characterImage['AJMAL']=pygame.image.load(os.path.join('art', 'ajmal.png')).convert_alpha()
         
         
         
@@ -55,7 +59,7 @@ class chat:
         '''
         
         # Disable other gui
-        gui_obj.disable_buttons()   
+        gui_buttons.gui_obj.disable_buttons()   
         
         # Stopping the updation thread
         pause_update_thread()
@@ -66,8 +70,8 @@ class chat:
         win_style['bg-color'] = (0,0,0)
 
         # Calculating position and size of window from the size of the desktop        
-        position_win =resize_pos((150.0,100.0))
-        size_win = resize_pos((900,700))
+        position_win =resize_pos((150.0,75.0))
+        size_win = resize_pos((900,750))
 
         # Creating window
         self.chatWin = Window(position = position_win, size = size_win, parent = desktop, text = '' ,style = win_style,closeable = False,shadeable = False,moveable = False)
@@ -79,9 +83,10 @@ class chat:
     def closeChatWindow(self):
         
         # Enable the gui
-        gui_obj.enable_buttons()
+        gui_buttons.gui_obj.enable_buttons()
         self.chatWin.close()
-       
+        self.chatWinFlag=False
+        resume_update_thread()
         
     def addChat(self,playerName = None,message = ''):
         
@@ -96,21 +101,33 @@ class chat:
         
         self.myfont = pygame.font.Font("font.ttf",20)
         textColor = (0,0,0)
-        textSurface = renderText(message,self.myfont,True,textColor,(0,0),True,False)
+        textSurface = renderText(message,self.myfont,True,textColor,(635,500),False,True)    #here 500(y-coordinate) doesn't make any difference , not used in renderText
+        #my_rect=pygame.Rect((0,0,500,500))
+        #textSurface=render_textrect(message,self.myfont, my_rect, textColor, None, justification=0)
         tempsize = textSurface.get_size()
-        tempSurface = pygame.transform.scale(self.chatBox,(720,tempsize[1]))
-        tempSurface.blit(textSurface,(0,0))
+        print tempsize[0],tempsize[1]
+        tempsize2=tempsize[1]+50
+        if tempsize2>120:
+            tempSurface = pygame.transform.scale(self.chatBox,(720,tempsize[1]+50))
+        else:
+            tempSurface = pygame.transform.scale(self.chatBox,(720,120))
+        print 'color key is ',tempSurface.get_colorkey()
+        tempSurface.blit(textSurface,(50,25))
+        tempsize2=tempSurface.get_size()
+        print (tempSurface.get_size())[0],(tempSurface.get_size())[1]
         
         dim_y = 0
-        if tempsize[1]>150 :
-            dim_y = tempsize[1]
+        if tempsize2[1]>120 :
+            dim_y = tempsize2[1]
         else:
-            dim_y = 150
+            dim_y = 120
             
-        finalSurface = pygame.surface.Surface((900,dim_y)).convert()
+        finalSurface = pygame.surface.Surface((870,dim_y+30)).convert()
+        #pos_of_image_on_finalsurface=(((dim_y)/2)-60)+15
         finalSurface.blit(self.imageBox,(15,15))
-        finalSurface.blit(tempSurface,(165,15))
-        finalSurface.blit(playerCharactersImages[playerName],(24,24))
+        finalSurface.blit(tempSurface,(135,15))
+        #finalSurface.blit(playerCharactersImages[playerName],(24,24))
+        finalSurface.blit(self.characterImage[str.upper(playerName)],(24,15+9))
         
         finalSurface = pygame.transform.scale(finalSurface,resize_pos(finalSurface.get_size()))
         tempsize = finalSurface.get_size()
@@ -121,9 +138,11 @@ class chat:
             self.chatWindow()
             self.position = self.initial_position
             self.chatWin.surf.blit(finalSurface,self.position)
+            self.position=(self.position[0],self.position[1]+dim_y)
         else:
             self.chatWin.surf.blit(finalSurface,self.position)
-            self.position[1] += dim_y
+           # self.position[1] += dim_y
+            self.position=(self.position[0],self.position[1]+dim_y)
             
         
             
@@ -137,23 +156,37 @@ def showChat(chatText):
     chatObject.chatWindow()
     clock = pygame.time.Clock()
     i = 0   
+    i_incrementor =False
     run = True
     while run:
+        if len(chatText)==0:
+            break
         
         for e in gui.setEvents(pygame.event.get()):
                 if e.type == pygame.QUIT:
                     pygame.mixer.quit()
                     pygame.quit()
                     exit()
+                
+               
         if threades.global_time >= 5000:
+                if  i_incrementor==True:
+                    i+=2
                 threades.global_time = 0
-                i += 1
+                
+                
                 chatObject.addChat(chatText[i],chatText[i+1])
+                i_incrementor=True
+               
         
         desktop.update()
         desktop.draw()
         pygame.display.flip()
-        if i == chatText.size():
+        max_iterations=(len(chatText)-2)
+        if i == max_iterations:
+            while threades.global_time<5000:
+                threades.iteration_time = clock.tick()
+                threades.global_time += threades.iteration_time
             run = False
                      
         

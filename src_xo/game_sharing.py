@@ -13,7 +13,7 @@ from gui import *
 presenceService = presenceservice.get_instance()
 
 _is_shared=False
-_is_connectd=False
+_is_connected=False
 Flag_Trading_Unicast_Recieve_Sell = False
 Flag_Trading_Unicast_Recieve_Buy = False
 Flag_Trading_Unicast_Acknowledge = False
@@ -70,16 +70,26 @@ def setUnicastTradingFlag(signal):
         Flag_Trading_Unicast_Recieve_Buy = True
     if signal == 'sell':
         Flag_Trading_Unicast_Recieve_Sell = True
+        
+def setUncastTradingAcknowledgeFlag(signal):
+    
+    global Flag_Trading_Unicast_Acknowledge
+    Flag_Trading_Unicast_Acknowledge = signal
 
 def messageResponderBroadcast(handle,nick,message):
 
     global Flag_Trading_Unicast_Acknowledge
     if message[0] == 'Trade':
         object_trade = meshTrading()
-        object_trade.tradingWindow(handle,nick,message[1],message[2],message[3],message[4])
+        trade_thread = threading.Thread(target = object_trade.tradingWindow, args=[handle,nick,message[1],message[2],message[3],message[4]]).start()
+        #object_trade.tradingWindow(handle,nick,message[1],message[2],message[3],message[4])
         #Flag_Trading_Unicast_Acknowledge = True
         
 def messageResponderUnicast(handle,nick,message):
+    
+    global Flag_Trading_Unicast_Acknowledge
+    global Flag_Trading_Unicast_Recieve_Buy
+    global Flag_Trading_Unicast_Recieve_Sell
     
     if Flag_Trading_Unicast_Acknowledge:
         
@@ -95,7 +105,7 @@ def messageResponderUnicast(handle,nick,message):
                 threades.buy_res(res,quantity,price)
             if buysell == 'buy':
                 threades.sell_res(res,quantity,price)
-                
+            Flag_Trading_Unicast_Acknowledge = False
             threades.message.push_message('The Resources have been traded','low')
             
         if message[0] == 'decline_trade':
@@ -110,6 +120,7 @@ def messageResponderUnicast(handle,nick,message):
                 if res.get_name() == res_name:
                     break
             threades.buy_res(res,quantity,price)
+            Flag_Trading_Unicast_Recieve_Buy = False
             threades.message.push_message('The Resources have been traded with '+nick,'low')
             message[0] = 'acknowledge_trade'            
             unicast_msg(handle,message)
@@ -123,6 +134,7 @@ def messageResponderUnicast(handle,nick,message):
                 if res.get_name() == res_name:
                     break
             threades.sell_res(res,quantity,price)
+            Flag_Trading_Unicast_Recieve_Sell = False
             threades.message.push_message('The Resources have been traded with '+nick,'low')
             message[0] = 'acknowledge_trade'
             unicast_msg(handle,message)
@@ -142,6 +154,8 @@ def sharing_handler(type,handle,content):
     global _my_handle
     global players_in_game
     global check_withBuddy
+    global _is_shared
+    global _is_connected
     
     if type == mesh.CONNECT:
             _is_shared=True
@@ -206,9 +220,9 @@ def sharing_handler(type,handle,content):
                 player = players_in_game[handle]
                 try:
                     
-                    '''
+                    
                     print "got a broadcasted msg from %s" % (player.nick)
-
+                    '''
                     if content==types.IntType:
                         pass
                     if content==types.FloatType:
@@ -233,10 +247,12 @@ def sharing_handler(type,handle,content):
                         if p==player:
                             unicast_msg(p.handle, "Succeeded in unicasting")
                     '''
-                    messageResponderBroadcast(handle,player.nick(),content)
+                    for i,v in enumerate(content):
+                        print i,v
+                    messageResponderBroadcast(handle,player.nick,content)
                             
                 except:
-                    print "Error handling message: %s\n%s" % (e, sys.exc_info())
+                    print "Error handling message: %s\n%s" % (type, sys.exc_info())
                     
         else:
                 print "Message from unknown buddy?"
@@ -268,9 +284,11 @@ def sharing_handler(type,handle,content):
                    #     pass
                     for i,v in enumerate(content):
                         print i,v
+
+                    messageResponderUnicast(handle,player.nick,content)
                                
                 except:
-                    print "Error handling message: %s\n%s" % (e, sys.exc_info())
+                    print "Error handling message: %s\n%s" % (type, sys.exc_info())
                     
         else:
                 print "Message from unknown buddy?"
@@ -296,7 +314,7 @@ class meshTrading:
         self.replyhandle = handle
         self.replymessage = ['TradeReply',resource,quantity,price,trade]
         color_blue = (0,0,250)
-        myfont = pygame.font.Font("font.ttf", resize_pt(17))
+        myfont = pygame.font.Font("font.ttf", threades.resize_pt(17))
         # Custom Window Style
         win_style = gui.defaultWindowStyle.copy()
         win_style['font'] = myfont
@@ -304,8 +322,8 @@ class meshTrading:
         win_style['font-color'] = color_blue
         
         # Calculating position and size of window from the size of the desktop
-        position_win =resize_pos((725.0,42.0))
-        size_win =resize_pos((470.0,180.0))
+        position_win =threades.resize_pos((725.0,42.0))
+        size_win =threades.resize_pos((470.0,180.0))
     
         # Creating custom label style for the text to be displayed as a message
         labelStyleCopy = gui.defaultLabelStyle.copy()
@@ -315,33 +333,36 @@ class meshTrading:
         labelStyleCopy['font-color'] = color_blue
         #labelStyleCopy['font-color'] = font_color
     
-        self.win = Window(position = position_win, size = size_win, parent = threades.desktop, text = " Trade " ,style = win_style,shadeable = False, moveable = False)
+        self.win = Window(position = position_win, size = size_win, parent = threades.desktop, text = "Trade " ,style = win_style,shadeable = False, moveable = False)
         # Creating label
-        label_text = buddyName + ' wants to ' + trade + ' ' + quantity + ' units of '+ resource + ' at $ '+ price 
-        message_label = Label(position = resize_pos((5,5),(470.0,180.0),win.size),size = resize_pos((460,120),(470.0,180.0),win.size), parent = win, text = label_text, style = labelStyleCopy)
+        label_text = '\n'+buddyName + ' wants to ' + trade + ' ' + quantity + ' units of '+ resource + '\n at $ '+ price 
+        message_label = Label(position = threades.resize_pos((5,5),(470.0,180.0),self.win.size),size = threades.resize_pos((460,120),(470.0,180.0),self.win.size), parent = self.win, text = label_text, style = labelStyleCopy)
         
         # Creating button style
-        myfont2 = pygame.font.Font("font.ttf", resize_pt(16))
+        myfont2 = pygame.font.Font("font.ttf", threades.resize_pt(16))
         button_style = gui.defaultButtonStyle.copy()
         button_style['font'] = myfont2
 
-        self.button_accept = Button(position = resize_pos((100.0,130.0),(470.0,180.0),size_win), size = resize_pos((100.0,40.0),(470.0,180.0),size_win), parent = self.win, text = " Accept ",style = button_style)
-        self.button_reject = Button(position = resize_pos((300.0,130.0),(470.0,180.0),size_win), size = resize_pos((100.0,40.0),(470.0,180.0),size_win), parent = self.win, text = " Accept ",style = button_style)
+        self.button_accept = Button(position = threades.resize_pos((100.0,130.0),(470.0,180.0),size_win), size = threades.resize_pos((100.0,40.0),(470.0,180.0),size_win), parent = self.win, text = " Accept ",style = button_style)
+        self.button_reject = Button(position = threades.resize_pos((300.0,130.0),(470.0,180.0),size_win), size = threades.resize_pos((100.0,40.0),(470.0,180.0),size_win), parent = self.win, text = " Reject ",style = button_style)
         
         self.button_accept.onClick = self.checkTrade
-        self.button_accept.onClick = self.closeWin
+        self.button_reject.onClick = self.closeWin
         
         sleep(6)
-        self.win.close()
+        if self.win:
+            self.win.close()
                     
     def checkTrade(self,button = None):
         ''' Sends an acceptance request to the person who tried to trade 
         '''
         
         unicast_msg(self.replyhandle,self.replymessage)
+        setUncastTradingAcknowledgeFlag(True)
+        self.closeWin()
         
             
-    def closeWin(self):
+    def closeWin(self,button = None):
         self.win.close()
 
 

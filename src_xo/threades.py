@@ -183,6 +183,9 @@ def build_facility(facility_obj, list_food = ('0')):
     
     try:
         
+        if (facility_obj.check_manp_res(ppl) < 0):
+            raise Exceptions.Low_Manpower_Resources_Exception
+            
         resources=facility_obj.build_start(resources,ppl)
         
         if facility_obj.get_name() == 'FARM':
@@ -200,10 +203,10 @@ def build_facility(facility_obj, list_food = ('0')):
             
         ppl = facility_obj.update_manp_res(ppl)
         
-        
     except Exceptions.Resources_Underflow_Exception:
         text = 'You dont have enough resources to build the facility,  please try later'
         message.push_message(text,'high')
+        
         return text
     except Exceptions.Low_Manpower_Resources_Exception:
         text = 'You dont have enough manpower to build the facility, please try later'

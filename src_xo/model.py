@@ -321,6 +321,8 @@ def init_obj():
 
 
 
+
+
 class Indicator:
     """ A base class for one of the game indicators such as health, nutrition,
     and so on. Each indicator has a value e.g if health is 25% its value is 250

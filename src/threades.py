@@ -32,6 +32,7 @@ import os
 from pygame.locals import *
 pygame.init()
 from load_images import *
+from game_events import *
 
 
 original_screen_size = (1200.0,900.0)
@@ -39,19 +40,16 @@ original_screen_size = (1200.0,900.0)
 import gui
 from gui import *
 import defaultStyle
-'''
-# Detecting the maximum resolution the machine can support
-resolution_list = pygame.display.list_modes()
-resolution_list.sort()
-max_resolution = resolution_list.pop()
-new_screen_size = max_resolution
-'''
+
+
 # Detecting the current screen resolution of the device
 display_info = pygame.display.Info()
 new_screen_size = (display_info.current_w,display_info.current_h)
 # Max resolution detected and the screen size is set to it
-new_screen_size = (1000.0,800.0)
-screen = pygame.display.set_mode(new_screen_size,0,32)
+
+
+#new_screen_size = (1200.0,900.0)   # For testing purposes in a window
+screen = pygame.display.set_mode(new_screen_size,FULLSCREEN,32)
 
 # For initialising the style of the guI
 defaultStyle.init(gui)
@@ -94,6 +92,8 @@ def initialize_facilities():
 
 
 
+
+
 # A Switch for pausing the update thread
 update_thread_pause = True
 
@@ -107,6 +107,8 @@ def stop_facility(facility_obj):
     '''
     global resources
     message.push_message('Facility '+FACILITY_NAMES[facility_obj.get_name()]+' has been temporarily stopped due to insufficient resources to run the facility','high')
+    event = Event(type = STOPFACILITYEVENT, facility_name = facility_obj.get_name())
+    EventQueue.add(event)
     res_cost = facility_obj.get_consumption()
     facility_obj.stop_facility()
     a=1
@@ -124,6 +126,8 @@ def stop_facility(facility_obj):
 
     facility_obj.resume_facility()
     message.push_message('Facility '+FACILITY_NAMES[facility_obj.get_name()]+' has been resumed','low')
+    event = Event(type = RESUMEFACILITYEVENT, facility_name = facility_obj.get_name())
+    EventQueue.add(event)
     
 
 
@@ -169,11 +173,7 @@ def build_facility(facility_obj, list_food = ('0')):
     global resources
     global ppl
     
-    '''
-    if not check_level(facility_obj):
-        text = ' All the installations of ' + facility_obj.get_name() +' of this level have been made. Try setting up some other facilities'
-        return text
-    '''    
+    
     if facility_obj.get_number() == 0:
         
         if facility_obj.get_original_number() > 0:
@@ -183,11 +183,14 @@ def build_facility(facility_obj, list_food = ('0')):
     
     try:
         
+        if facility_obj.check_manp_res(ppl)<0:
+            raise Exceptions.Low_Manpower_Resources_Exception
+    
         resources=facility_obj.build_start(resources,ppl)
         
         if facility_obj.get_name() == 'FARM':
-         
-            
+     
+        
             qrice = list_food[0]*MAX_FOOD_PROD_PER_FARM/100
             qwheat = list_food[1]*MAX_FOOD_PROD_PER_FARM/100
             qbeans = list_food[2]*MAX_FOOD_PROD_PER_FARM/100
@@ -196,8 +199,7 @@ def build_facility(facility_obj, list_food = ('0')):
             prod['WHEAT'] = (prod['WHEAT']*facility_obj.get_number() + qwheat)/(facility_obj.get_number() + 1)
             prod['BEANS'] = (prod['BEANS']*facility_obj.get_number() + qbeans)/(facility_obj.get_number() + 1)
             facility_obj.set_production(prod)
-           
-            
+               
         ppl = facility_obj.update_manp_res(ppl)
         
         
@@ -253,44 +255,15 @@ def build_facility(facility_obj, list_food = ('0')):
     
     
     check_collide_villager(sprite) # Function to check if a sprite collides with the position of a villager
-
+    
+    event = Event(type = BUILDFACILITYEVENT, facility_name = facility_obj.get_name())
+    EventQueue.add(event)
+    
     return 'Facility has been build'
 
     
     
-def check_level(facility_obj):
-    ''' Function that checks whether a level has been completed or not and takes an appropriable action.
-    Returns True if the facility can be built in the prsent cluster else returns False. Sends a message to 
-    message queue when a level is completed.
-    '''
-    level_list = []
-    level = 0
-    for facility in facilities_list:
-        if facility.get_original_number() < VILLAGE_LEVEL[0][facility.get_name()]:
-            level = 0
-        elif facility.get_original_number() < VILLAGE_LEVEL[1][facility.get_name()]:
-            level = 1
-        elif facility.get_original_number() <= VILLAGE_LEVEL[2][facility.get_name()]:
-            level = 2
-        level_list.append(level)
-    level_list.sort()
-    level = level_list.pop(0)
-    if (facility_obj.get_original_number() +1) < VILLAGE_LEVEL[level][facility_obj.get_name()]:
-        return True
-    
-    if (facility_obj.get_original_number() +1) == VILLAGE_LEVEL[level][facility_obj.get_name()]:
-        flag = True
-        for facility in facilities_list:
-            if (not (facility == facility_obj)) and (not (facility.get_original_number() == VILLAGE_LEVEL[level][facility.get_name()])):
-                flag = False
-        if flag:
-            message.push_message(' You have completed level ' + str(level+1),'high')
-        return True
-    
-    if facility_obj.get_original_number() == VILLAGE_LEVEL[level][facility_obj.get_name()] and level < 2:
-        return False
-    
-    
+
     
     
     
@@ -355,6 +328,9 @@ def upgrade_facility(facility_obj):
     # Updation of sprites
     for i in range(len(facilities_list_sprites[facility_obj.get_name()])):
         facilities_list_sprites[facility_obj.get_name()][i].upgrade_level()
+    
+    event = Event(type = UPGRADEFACILITYEVENT, facility_name = facility_obj.get_name())
+    EventQueue.add(event)
     
     text = 'Facility has been upgraded'
     return text
@@ -472,6 +448,8 @@ def update_turn():
 
 
 
+
+
 # Functions for making the code resolution independent
 
 def resize_pos(original_pos,original_size = original_screen_size,new_size = new_screen_size):
@@ -515,6 +493,9 @@ def resize_rect(original_rect,original_size = original_screen_size,new_size = ne
 
 
 
+
+
+
 # Functions to perform various game operations
 def buy_res(res,res_quantity):
     ''' This method allows a user to buy resources
@@ -545,6 +526,10 @@ def buy_res(res,res_quantity):
         return text
         
     text = 'The Village has bought the resource you demanded'
+    
+    event = Event(type = BUYRESOURCESEVENT, res_name = res.get_name(), res_quantity = res_quantity)
+    EventQueue.add(event)
+    
     return text
         
 
@@ -579,11 +564,17 @@ def sell_res(res,res_quantity):
         text = 'The Village has sold the resource you demanded'
         return text
     text = 'The Village has sold the resource you demanded'
+    
+    event = Event(type = SELLRESOURCESEVENT, res_name = res.get_name(), res_quantity = res_quantity)
+    EventQueue.add(event)
+    
     return text
     
     
     
 
+
+# Functions for calamities
 def demolish_facility(facility_name):
     ''' Function to demolish a facility
     '''
@@ -594,31 +585,43 @@ def demolish_facility(facility_name):
         
         ppl = House.demolish(ppl)
         sprite = house_sprite_list.pop(0)
+        event = Event(type = DEMOLISHFACILITYEVENT, facility_name = House.get_name())
+        EventQueue.add(event)
         sprite.kill()
     
     if (facility_name == 'Hospital') and (Hospital.get_number()>0):
         ppl = Hospital.demolish(ppl)
         sprite = hospital_sprite_list.pop(0)
+        event = Event(type = DEMOLISHFACILITYEVENT, facility_name = Hospital.get_name())
+        EventQueue.add(event)
         sprite.kill()
     
     if (facility_name == 'Workshop') and (Workshop.get_number()>0):
         ppl = Workshop.demolish(ppl)
         sprite = workshop_sprite_list.pop(0)
+        event = Event(type = DEMOLISHFACILITYEVENT, facility_name = Workshop.get_name())
+        EventQueue.add(event)
         sprite.kill()
     
     if (facility_name == 'School') and (School.get_number()>0):
         ppl = School.demolish(ppl)
         sprite = school_sprite_list.pop(0)
+        event = Event(type = DEMOLISHFACILITYEVENT, facility_name = School.get_name())
+        EventQueue.add(event)
         sprite.kill()
     
     if (facility_name == 'Farm') and (Farm.get_number()>0):
         ppl = Farm.demolish(ppl)
         sprite = farm_sprite_list.pop(0)
+        event = Event(type = DEMOLISHFACILITYEVENT, facility_name = Farm.get_name())
+        EventQueue.add(event)
         sprite.kill()
     
     if (facility_name == 'Fountain') and (House.get_number()>0):
         ppl = Fountain.demolish(ppl)
         sprite = fountain_sprite_list.pop(0)
+        event = Event(type = DEMOLISHFACILITYEVENT, facility_name = Fountain.get_name())
+        EventQueue.add(event)
         sprite.kill()
     
 def flood():
@@ -667,8 +670,9 @@ def famine():
     Farm.resume_facility()
     
 
-# The messages Classes    
 
+
+# The messages Classes    
 class Messages:
     ''' Class which handles the messaging system
     '''
@@ -1086,6 +1090,8 @@ class Fountain_sprite(pygame.sprite.Sprite):
         self.update_flag = True
         
 
+
+# The work for drawing the background
 global back_image_level1
 back_image_level1 = [
         # 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66
@@ -1133,11 +1139,6 @@ for num_ver in range(10):
     for num_hor in range(12):
         rect = Rect(num_hor*250 + 10, num_ver*250 + 10, 230, 230)
         image_pos.append(rect)
-#transform_obj.ratio = 0.5
-#transform_obj.pos_x = 100
-#transform_obj.pos_y = 100
-#global screen        
-#screen = pygame.display.set_mode((1200,900),0,32)
 
 
 #Class to initialise the background
@@ -1246,6 +1247,8 @@ class Build(pygame.sprite.Sprite):
         
     
 
+
+
 # Functions to add sprites to groups
 def add_sprite_all(sprite):
     sprite.add(all)    
@@ -1256,6 +1259,8 @@ def add_sprite_facilities(sprite):
 
 
 
+
+# The screen sprite to clip all the sprites which are not in the drawable region
 class screen_sprite(pygame.sprite.Sprite):
     
     def __init__(self):
@@ -1265,6 +1270,8 @@ class screen_sprite(pygame.sprite.Sprite):
   
 
 
+
+# The villager class
 class Villager(pygame.sprite.Sprite):
     
     def __init__(self,(name,range_rect)):
@@ -1411,6 +1418,8 @@ class Villager(pygame.sprite.Sprite):
         return self.name
     
 
+
+
 # Function to check for villagers collision
 def check_villagers_self_collision():
     
@@ -1426,6 +1435,8 @@ def check_villagers_self_collision():
         villager = villagers_sprite_list.pop()
         villager.add(villagers)
          
+
+
 
 
 class Transform:
@@ -1520,12 +1531,12 @@ class Transform:
     def check_pos(self):
         if self.pos_x < 0:
             self.pos_x = 0
-        if self.pos_x > (int(self.ratio*9000) - 930):
-            self.pos_x = (int(self.ratio*9000) - 930)
+        if self.pos_x > (int(self.ratio*6000) - 930):
+            self.pos_x = (int(self.ratio*6000) - 930)
         if self.pos_y < 0:
             self.pos_y = 0
-        if self.pos_y > (int(self.ratio*6000) - 560):
-            self.pos_y = (int(self.ratio*6000) - 560)
+        if self.pos_y > (int(self.ratio*5000) - 560):
+            self.pos_y = (int(self.ratio*5000) - 560)
             
     
     def focus(self):
@@ -1580,6 +1591,8 @@ class Transform:
     
   
    
+
+
 
 class Animation:
     
@@ -1646,6 +1659,9 @@ class Animation:
             natural_calamities.draw(screen)
         transform_obj.prev_ratio = transform_obj.ratio
  
+
+
+
 
 natural_calamities = pygame.sprite.RenderUpdates()
 villagers = pygame.sprite.Group()
