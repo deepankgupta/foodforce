@@ -38,6 +38,7 @@ import chat
 import texts
 import load_images
 import model
+import level_change
 
 
 
@@ -202,7 +203,8 @@ def escape():
         pause_screen(False)
 
 def safe_exit(button = None):
-
+    print 'in safe_exit'
+    print 'in safe_exit'
     soundtrack.stop()
     pygame.mixer.quit()
     pygame.quit()
@@ -250,6 +252,8 @@ def event_handling(e):
             if e.key == K_h:
                 chat.showChat(['Kamat','The goal of FreeIconTospeech is to provide a low-cost assistive / augmentative communication tool for people with speech, motor, and/or developmental challenges. The immediate opportunity is to create open source software to allow a user to select concepts through a menu of icons, and synthesize speech from those selected concepts. See the FreeIconToSpeech page for more information. ','Son','Commercial Text-To-Speech programs are getting very good now. The examples at the Digital Future Software Company site are very clear. They use AT&T technology and provide examples of Male and Female speech in English, French and Spanish. The XO needs open-source software that can approach this quality in a wide range of languages.--Ricardo 04:07, 17 August 2007 (EDT) ','Kamat','i\n will \ntell\n u','Son','ok father'])
                 #chat.showChat(['Kamat','its working fine you have done a great job','Son','yes, father what should i do?','Kamat','i will tell u','Son','ok father'])
+            if e.key ==K_v:
+                level_setting.new_level_stats('data.pkl','graphics_layout.pkl')
     if e.type == KEYUP:
         if e.key == K_UP:
             threades.transform_obj.stop_move('up')
@@ -730,13 +734,14 @@ def main():
 
     global panel
     global chat_screen
+    global level_setting
     
     # Displaying the WFP logo
     intro_thread = threading.Thread(target = load_images.load_images, args=[])
     intro_thread.start()
     # Loading and starting the sound play
     soundtrack.play(-1)
-
+    level_setting=level_change.change_level()
     pause_screen()
 
     intro_thread.join()

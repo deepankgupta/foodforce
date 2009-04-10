@@ -96,7 +96,7 @@ def graphics_layout(file_name):
     global facilities_posn_list
     facilities_posn_list = pickle.load(data_file)
     # Saving the attributes for the villagers with each facility
-    global workshop_villagers, house_villagers, hospital_villagers, school_villagers, farm_villagers, fountain_villagers, facility_villagers 
+    global workshop_villagers, house_villagers, hospital_villagers, school_villagers, farm_villagers, fountain_villagers, facility_villagers,back_image_level1 
     workshop_villagers = pickle.load(data_file)
     house_villagers = pickle.load(data_file)
     hospital_villagers = pickle.load(data_file)
@@ -104,6 +104,7 @@ def graphics_layout(file_name):
     farm_villagers = pickle.load(data_file)
     fountain_villagers = pickle.load(data_file)
     facility_villagers = pickle.load(data_file)
+    back_image_level1=pickle.load(data_file)
     data_file.close()
 
 graphics_layout('graphics_layout.pkl')
