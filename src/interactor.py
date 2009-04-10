@@ -18,7 +18,7 @@
 #   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #
 
-from  threades import *
+import threades
 
 class interactor:
     '''Class meant for implementing the interaction messages'''

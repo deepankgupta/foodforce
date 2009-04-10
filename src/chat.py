@@ -21,12 +21,13 @@
 from sys import exit
 import os
 from time import *
-from threades import *
+#from threades import *
 import threades
 import threading
 import gui_buttons
 import gui
-from gui import *
+import pygame
+
 
 
 class chat:
@@ -62,7 +63,7 @@ class chat:
         gui_buttons.gui_obj.disable_buttons()   
         
         # Stopping the updation thread
-        pause_update_thread()
+        threades.pause_update_thread()
 
         
         # Custom Window Style
@@ -70,11 +71,11 @@ class chat:
         win_style['bg-color'] = (0,0,0)
 
         # Calculating position and size of window from the size of the desktop        
-        position_win =resize_pos((150.0,75.0))
-        size_win = resize_pos((900,750))
+        position_win =threades.resize_pos((150.0,75.0))
+        size_win = threades.resize_pos((900,750))
 
         # Creating window
-        self.chatWin = Window(position = position_win, size = size_win, parent = desktop, text = '' ,style = win_style,closeable = False,shadeable = False,moveable = False)
+        self.chatWin = gui.Window(position = position_win, size = size_win, parent = desktop, text = '' ,style = win_style,closeable = False,shadeable = False,moveable = False)
         self.chatWin.surf.set_alpha(140)
         
         self.chatWinFlag = True
@@ -86,7 +87,7 @@ class chat:
         gui_buttons.gui_obj.enable_buttons()
         self.chatWin.close()
         self.chatWinFlag=False
-        resume_update_thread()
+        threades.resume_update_thread()
         
     def addChat(self,playerName = None,message = ''):
         
@@ -101,7 +102,7 @@ class chat:
         
         self.myfont = pygame.font.Font("font.ttf",20)
         textColor = (0,0,0)
-        textSurface = renderText(message,self.myfont,True,textColor,(635,500),False,True)    #here 500(y-coordinate) doesn't make any difference , not used in renderText
+        textSurface = gui.renderText(message,self.myfont,True,textColor,(635,500),False,True)    #here 500(y-coordinate) doesn't make any difference , not used in gui.renderText
         #my_rect=pygame.Rect((0,0,500,500))
         #textSurface=render_textrect(message,self.myfont, my_rect, textColor, None, justification=0)
         tempsize = textSurface.get_size()
@@ -129,7 +130,7 @@ class chat:
         #finalSurface.blit(playerCharactersImages[playerName],(24,24))
         finalSurface.blit(self.characterImage[str.upper(playerName)],(24,15+9))
         
-        finalSurface = pygame.transform.scale(finalSurface,resize_pos(finalSurface.get_size()))
+        finalSurface = pygame.transform.scale(finalSurface,threades.resize_pos(finalSurface.get_size()))
         tempsize = finalSurface.get_size()
         dim_y = tempsize[1]
         
@@ -169,10 +170,10 @@ def showChat(chatText):
                     exit()
                 
                
-        if threades.global_time >= 5000:
+        if model.global_time >= 5000:
                 if  i_incrementor==True:
                     i+=2
-                threades.global_time = 0
+                model.global_time = 0
                 
                 
                 chatObject.addChat(chatText[i],chatText[i+1])
@@ -184,14 +185,14 @@ def showChat(chatText):
         pygame.display.flip()
         max_iterations=(len(chatText)-2)
         if i == max_iterations:
-            while threades.global_time<5000:
-                threades.iteration_time = clock.tick()
-                threades.global_time += threades.iteration_time
+            while model.global_time<5000:
+                model.iteration_time = clock.tick()
+                model.global_time += model.iteration_time
             run = False
                      
         
-        threades.iteration_time = clock.tick()
-        threades.global_time += threades.iteration_time  
+        model.iteration_time = clock.tick()
+        model.global_time += model.iteration_time  
         
         
     chatObject.closeChatWindow()

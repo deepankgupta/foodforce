@@ -21,14 +21,16 @@
 from sys import exit
 import os
 from time import *
-from threades import *
-from model import *
+#from threades import *
+#from model import *
 import threades
 import threading
 import gui_buttons
 import gui
-from gui import *
-from chat import *
+#from gui import *
+#from chat import *
+import model
+import chat
 
 
 
@@ -80,7 +82,7 @@ class condition:
         else:
             if self.type == FACILITYNUMBERCONDITION:
                 
-                for fac in facilities_list:                
+                for fac in model.facilities_list:                
                     if fac.get_name() == self.fac_name:
                         
                         if self.checktype == '==':
@@ -106,7 +108,7 @@ class condition:
 
             if self.type == FACILITYLEVELCONDITION:
                 
-                for fac in facilities_list:                
+                for fac in model.facilities_list:                
                     if fac.get_name() == self.fac_name:
                         
                         if self.checktype == '==':
@@ -131,7 +133,7 @@ class condition:
 
             if self.type == INDICATORVALUECONDITION:
                 
-                for ind in indicators_list:                
+                for ind in model.indicators_list:                
                     if ind.get_name() == self.ind_name:
                         
                         if self.checktype == '==':
@@ -157,7 +159,7 @@ class condition:
     
             if self.type == RESOURCEVALUECONDITION:
                 
-                for res in resources:                
+                for res in model.resources:                
                     if res.get_name() == self.res_name:
                         
                         if self.checktype == '==':
@@ -296,9 +298,9 @@ class Actions:
             
         '''
         surf_bckgnd = pygame.image.load(os.path.join('data',bckgnd)).convert()
-        surf_bckgnd = pygame.transform.scale(surf_bckgnd,resize_pos((1200,900)))
-        screen.blit(surf_bckgnd,(0,0))
-        showChat(text)
+        surf_bckgnd = pygame.transform.scale(surf_bckgnd,threades.resize_pos((1200,900)))
+        threades.screen.blit(surf_bckgnd,(0,0))
+        chat.showChat(text)
         
         
     def delay(self,time):
