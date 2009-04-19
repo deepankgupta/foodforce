@@ -3,7 +3,7 @@ import gui
 import pygame
 #from threades import *
 import threades
-from Foodforce2 import safe_exit
+#from Foodforce2 import safe_exit
 #from gui import *
 import threading
 #from model import *
@@ -159,9 +159,9 @@ class change_level:
         myfont = pygame.font.Font("font.ttf", threades.resize_pt(17))
 
         # Creating new button style
-        buttonsurf = pygame.image.load(os.path.join('art','button_green.png')).convert_alpha()
-        self.button_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
-        self.exit_button = gui.Button(position = threades.resize_pos((500,700)), size = threades.resize_pos((200,30)), parent = desktop_level, text = "Exit",style = self.button_style)
+        #buttonsurf = pygame.image.load(os.path.join('art','button_green.png')).convert_alpha()
+        #self.button_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
+        #self.exit_button = gui.Button(position = threades.resize_pos((500,700)), size = threades.resize_pos((200,30)), parent = desktop_level, text = "Exit",style = self.button_style)
         #self.exit_button.onClick = safe_exit()  
         
         #creating new label showing loading of level

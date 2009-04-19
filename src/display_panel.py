@@ -74,7 +74,7 @@ class indicator_panel:
         # Drawing main Indicator label
         label = gui.Label(position = threades.resize_pos((900,600)),size = threades.resize_pos((300,45)), parent = threades.desktop, text = "      Indicators", style = self.labelstyle1)
 
-        print " deawing indicator panel"
+        #print " deawing indicator panel"
         
         # Creating second custom label
         self.labelstyle2 = gui.defaultLabelStyle.copy()
@@ -120,7 +120,7 @@ class indicator_panel:
             if not (self.value_labels[i].text == str(int(model.indicators_list[i].get_value()))+'%'):
                 self.update_flag = True
                 
-        print 'update flag is',self.update_flag,'panel flag is',threades.panel_update_flag,'total is',threades.total_update_flag
+        #print 'update flag is',self.update_flag,'panel flag is',threades.panel_update_flag,'total is',threades.total_update_flag
         
         if self.update_flag or threades.panel_update_flag or threades.total_update_flag:
             pygame.draw.line(threades.screen,self.color_grey,threades.resize_pos((900,645)),threades.resize_pos((900,900)),1)
@@ -150,6 +150,8 @@ class resources_panel:
         
         self.update_flag = True
         self.money_flag = True
+        self.time_flag = False
+        self.time_help_value=0
         myfont1 = pygame.font.Font("font.ttf", threades.resize_pt(30))   # For main heading
         myfont2 = pygame.font.Font("font.ttf", threades.resize_pt(20))   # For model.resources name and their value
         myfont3 = pygame.font.Font("font.ttf", threades.resize_pt(16))
@@ -190,7 +192,7 @@ class resources_panel:
         self.labelstyle4['font'] = myfont4
         self.labelstyle4['font-color'] = (160,160,160)
         self.money_label = gui.Label(position = threades.resize_pos((850,10)), parent = threades.desktop, text = 'Money -:   '+str(int(model.money.get_money()))+'      ', style = self.labelstyle4)
-        
+        self.time_label= gui.Label(position = threades.resize_pos((300,10)), parent = threades.desktop, text = 'Time Elapsed -:   '+'Level Just Started''      ', style = self.labelstyle4)
         self.value_labels = []
         # Drawing general model.resources list
         list_gen_res = (' Water',' Building Materials',' Tools',' Medicines',' Books')
@@ -229,7 +231,22 @@ class resources_panel:
         if not (self.money_label.text == 'Money -:   '+str(int(model.money.get_money()))+'      '):
             self.money_flag = True
             self.money_label.text = 'Money -:   '+str(int(model.money.get_money()))+'      '
-
+         
+        #print 'no of days is',model.game_controller.get_days()
+        if self.time_flag==True:
+            #self.time_label.text=''
+            #NOTE: Here, I am not adding as if years is not 0 , then only it will be blitted becoz if do like that the things will keep on changing, not a nice view
+            self.time_label.text='Time Elapsed -:   '+'Years: '+str(model.game_controller.get_years())+'  Months: '+str(model.game_controller.get_months()) +'  Days: '+str(model.game_controller.get_days()) 
+            self.time_flag=False
+            
+        #to update the money flag
+        
+        #print 'global_time is',model.game_controller.get_global_time(),'while the time_help_value is',self.time_help_value
+        if (model.game_controller.get_global_time()>((model.game_controller.conversion_factor)+self.time_help_value)):
+            self.time_flag=True
+            self.time_help_value=model.game_controller.get_global_time()
+            
+            
         self.update_flag = False
         
     

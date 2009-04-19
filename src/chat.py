@@ -27,8 +27,10 @@ import threading
 import gui_buttons
 import gui
 import pygame
+import model
 
 
+desktopChat = gui.Desktop()
 
 class chat:
     
@@ -42,15 +44,17 @@ class chat:
         '''
         
         self.chatWinFlag = False
-        self.position = (15,10)
-        self.initial_position = (15,10)
-        self.final_position = (15,600)
+        self.position = threades.resize_pos((15,10))
+        self.initial_position = threades.resize_pos((15,10))
+        self.final_position = threades.resize_pos((15,750))
         self.imageBox = pygame.image.load(os.path.join('art', 'imageBox.png')).convert_alpha()
         self.chatBox = pygame.image.load(os.path.join('art', 'chatBox.png')).convert_alpha()
         self.characterImage={}
         self.characterImage['KAMAT']=pygame.image.load(os.path.join('art', 'kamat.png')).convert_alpha()
         self.characterImage['SON']=pygame.image.load(os.path.join('art', 'son.png')).convert_alpha()
         self.characterImage['AJMAL']=pygame.image.load(os.path.join('art', 'ajmal.png')).convert_alpha()
+        self.characterImage['SUKHDEV']=pygame.image.load(os.path.join('art', 'sukhdev.png')).convert_alpha() 
+        self.characterImage['FARMER']=pygame.image.load(os.path.join('art', 'villager.png')).convert_alpha() 
         
         
         
@@ -74,8 +78,9 @@ class chat:
         position_win =threades.resize_pos((150.0,75.0))
         size_win = threades.resize_pos((900,750))
 
+        
         # Creating window
-        self.chatWin = gui.Window(position = position_win, size = size_win, parent = desktop, text = '' ,style = win_style,closeable = False,shadeable = False,moveable = False)
+        self.chatWin = gui.Window(position = position_win, size = size_win, parent = desktopChat, text = '' ,style = win_style,closeable = False,shadeable = False,moveable = False)
         self.chatWin.surf.set_alpha(140)
         
         self.chatWinFlag = True
@@ -106,16 +111,16 @@ class chat:
         #my_rect=pygame.Rect((0,0,500,500))
         #textSurface=render_textrect(message,self.myfont, my_rect, textColor, None, justification=0)
         tempsize = textSurface.get_size()
-        print tempsize[0],tempsize[1]
+        #print tempsize[0],tempsize[1]
         tempsize2=tempsize[1]+50
         if tempsize2>120:
             tempSurface = pygame.transform.scale(self.chatBox,(720,tempsize[1]+50))
         else:
             tempSurface = pygame.transform.scale(self.chatBox,(720,120))
-        print 'color key is ',tempSurface.get_colorkey()
+        #print 'color key is ',tempSurface.get_colorkey()
         tempSurface.blit(textSurface,(50,25))
         tempsize2=tempSurface.get_size()
-        print (tempSurface.get_size())[0],(tempSurface.get_size())[1]
+        #print (tempSurface.get_size())[0],(tempSurface.get_size())[1]
         
         dim_y = 0
         if tempsize2[1]>120 :
@@ -133,14 +138,25 @@ class chat:
         finalSurface = pygame.transform.scale(finalSurface,threades.resize_pos(finalSurface.get_size()))
         tempsize = finalSurface.get_size()
         dim_y = tempsize[1]
-        
+        #print 'self.position is',self.position[1]
+        #print 'dim_y is',dim_y
+        #print 'final position is',self.final_position[1]
         if (self.position[1]+ dim_y) > self.final_position[1]:
+            #self.chatWin.size = threades.resize_pos((900,20))
+
+            #print 'its in this time'
+            #print 'self.position is',self.position[1]
+            #print 'dim_y is',dim_y
+            #print 'final position is',self.final_position[1]
             self.closeChatWindow()
             self.chatWindow()
             self.position = self.initial_position
             self.chatWin.surf.blit(finalSurface,self.position)
             self.position=(self.position[0],self.position[1]+dim_y)
         else:
+            #x_coordinate=threades.resize_pt_x(900)
+            #y_coordinate=self.chatWin.size[1]+dim_y
+            #self.chatWin.size=(x_coordinate,y_coordinate)
             self.chatWin.surf.blit(finalSurface,self.position)
            # self.position[1] += dim_y
             self.position=(self.position[0],self.position[1]+dim_y)
@@ -159,6 +175,7 @@ def showChat(chatText):
     i = 0   
     i_incrementor =False
     run = True
+    allowed=True
     while run:
         if len(chatText)==0:
             break
@@ -170,7 +187,9 @@ def showChat(chatText):
                     exit()
                 
                
-        if model.global_time >= 5000:
+        if (model.global_time >= 5000) or (i==0 and allowed==True):
+                if i==0:
+                    allowed=False
                 if  i_incrementor==True:
                     i+=2
                 model.global_time = 0
@@ -180,8 +199,8 @@ def showChat(chatText):
                 i_incrementor=True
                
         
-        desktop.update()
-        desktop.draw()
+        desktopChat.update()
+        desktopChat.draw()
         pygame.display.flip()
         max_iterations=(len(chatText)-2)
         if i == max_iterations:

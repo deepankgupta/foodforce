@@ -34,11 +34,15 @@ import display_panel
 #from gui_buttons import *
 import gui_buttons
 import chat
+import game_events
 #from model import *
 import texts
 import load_images
 import model
 import level_change
+import random
+import proceduralFlow
+import natural_calamities
 
 
 
@@ -85,100 +89,6 @@ def message_window():
         sleep(2)
 
 
-
-
-
-
-
-
-
-class Earthquake(pygame.sprite.Sprite):
-
-    def __init__(self):
-
-        pygame.sprite.Sprite.__init__(self)
-        mask= pygame.surface.Surface((1200,560),SRCALPHA)
-        mask.fill((0,0,0))
-        mask.set_alpha(0)
-        self.alpha = 0
-        self.image = mask
-        self.rect = self.image.get_rect()
-        self.rect.move((0,0))
-        self.counter = 0
-        self.prev_disp = (0,0)
-        self.move_dir = [(-20,-20),(-20,-10),(-20,0),(-20,10),(-20,20),(-10,-20),(-10,-20),(-10,0),(-10,10),(-10,20),(0,-20),(0,-10),(0,0),(0,10),(0,20),(10,-20),(10,-20),(10,0),(10,10),(10,20),(20,-20),(20,-10),(20,0),(20,10),(20,20)]
-        # To close all open windows
-        if gui_buttons.gui_obj.get_child_win_flag():
-            escape()
-            escape()
-        elif gui_buttons.gui_obj.get_win_flag():
-            escape()
-
-    def update(self):
-
-        global Hospital
-        global House
-        global School
-        global Workshop
-        global ppl
-
-
-        self.counter +=1
-        if self.counter <50:
-            threades.transform_obj.move_free((-self.prev_disp[0],-self.prev_disp[1]))
-            self.prev_disp = self.move_dir[int(random.random()*25)]
-            threades.transform_obj.move_free(self.prev_disp)
-        if self.counter >20 and self.counter <50:
-            self.alpha +=8
-            self.image.set_alpha(self.alpha)
-        if self.counter==40:
-            display_text = ' Your Village Sheylan has ben hit by an Earthquake'
-            threades.message.push_message(display_text,'high')
-        if self.counter == 80:
-            display_earthquake_images()
-            threades.demolish_facility('Hospital')
-            threades.demolish_facility('House')
-            threades.demolish_facility('House')
-            threades.demolish_facility('House')
-            threades.demolish_facility('School')
-            threades.demolish_facility('Workshop')
-            model.ppl.change_total_population(-10)
-        if self.counter > 81:
-            if self.alpha >2:
-                self.alpha -=2
-            self.image.set_alpha(self.alpha)
-        if self.counter >180:
-            threades.natural_calamities.remove(earthquake)
-
-def display_earthquake_images():
-
-    image1 = pygame.image.load(os.path.join('data', 'earthquake1.png')).convert()
-    threades.screen.blit(pygame.transform.scale(image1,threades.new_screen_size),(0,0))
-    pygame.display.flip()
-    sleep(3)
-
-    image2 = pygame.image.load(os.path.join('data', 'earthquake2.png')).convert()
-    threades.screen.blit(pygame.transform.scale(image2,threades.new_screen_size),(0,0))
-    pygame.display.flip()
-    sleep(3)
-
-    image3 = pygame.image.load(os.path.join('data', 'earthquake3.png')).convert()
-    threades.screen.blit(pygame.transform.scale(image3,threades.new_screen_size),(0,0))
-    pygame.display.flip()
-    sleep(3)
-
-earthquake = None
-def earthquake():
-    ''' This method needs to be called when there is an earthquake in the
-    village, it decreases the number of installations of some facilities and
-    also reduce the population
-    '''
-    global earthquake
-
-    earthquake  = Earthquake()
-    threades.natural_calamities.add(earthquake)
-
-
 def load_sound(name):
 
     if not pygame.mixer:
@@ -186,9 +96,9 @@ def load_sound(name):
     fullname = os.path.join(name)
     try:
         sound = pygame.mixer.Sound(fullname)
-    except pygame.error, threades.message:
+    except pygame.error, message:
 
-        raise SystemExit, threades.message
+        raise SystemExit, message
     return sound
 
 def escape():
@@ -203,8 +113,9 @@ def escape():
         pause_screen(False)
 
 def safe_exit(button = None):
-    print 'in safe_exit'
-    print 'in safe_exit'
+    #print 'in safe_exit'
+    #print 'in safe_exit'
+    proceduralFlow.closeStoryBoardFile()
     soundtrack.stop()
     pygame.mixer.quit()
     pygame.quit()
@@ -238,7 +149,7 @@ def event_handling(e):
             threades.transform_obj.defocus()
         if e.key == K_RETURN:
             gui_buttons.gui_obj.press_enter()
-
+        
         win_flag = gui_buttons.gui_obj.get_win_flag()
         if not win_flag:
             if e.key == K_s:
@@ -247,13 +158,8 @@ def event_handling(e):
                 gui_buttons.gui_obj.upgrade_obj.upgrade()
             if e.key == K_b:
                 gui_buttons.gui_obj.buysell_obj.buysell()
-            if e.key == K_e:
-                earthquake()
-            if e.key == K_h:
-                chat.showChat(['Kamat','The goal of FreeIconTospeech is to provide a low-cost assistive / augmentative communication tool for people with speech, motor, and/or developmental challenges. The immediate opportunity is to create open source software to allow a user to select concepts through a menu of icons, and synthesize speech from those selected concepts. See the FreeIconToSpeech page for more information. ','Son','Commercial Text-To-Speech programs are getting very good now. The examples at the Digital Future Software Company site are very clear. They use AT&T technology and provide examples of Male and Female speech in English, French and Spanish. The XO needs open-source software that can approach this quality in a wide range of languages.--Ricardo 04:07, 17 August 2007 (EDT) ','Kamat','i\n will \ntell\n u','Son','ok father'])
-                #chat.showChat(['Kamat','its working fine you have done a great job','Son','yes, father what should i do?','Kamat','i will tell u','Son','ok father'])
-            if e.key ==K_v:
-                level_setting.new_level_stats('data.pkl','graphics_layout.pkl')
+            
+            
     if e.type == KEYUP:
         if e.key == K_UP:
             threades.transform_obj.stop_move('up')
@@ -340,7 +246,7 @@ class starting_intro:
             self.resume_button = gui.Button(position = threades.resize_pos((500,500)), size = threades.resize_pos((200,30)), parent = desktop2, text = "Resume Game",style = self.button_style)
             self.resume_button.onClick = self.resume
 
-    #self.resume_button = gui.Button(position = threades.resize_pos((500,550)), size = threades.resize_pos((200,30)), parent = threades.desktop, text = "Resume Game",style = self.button_style)
+        #self.resume_button = gui.Button(position = threades.resize_pos((500,550)), size = threades.resize_pos((200,30)), parent = threades.desktop, text = "Resume Game",style = self.button_style)
         self.controls_button = gui.Button(position = threades.resize_pos((500,550)), size = threades.resize_pos((200,30)), parent = desktop2, text = "Controls",style = self.button_style)
         self.exit_button = gui.Button(position = threades.resize_pos((500,600)), size = threades.resize_pos((200,30)), parent = desktop2, text = "Exit",style = self.button_style)
         self.instructions_button = gui.Button(position = threades.resize_pos((800,20)), size = threades.resize_pos((150,30)), parent = desktop2, text = "Guide",style = self.button_style)
@@ -372,6 +278,7 @@ class starting_intro:
         win_style['font-color'] = self.green_color
         win_style['bg-color'] = (0,0,0)
         win_style['border-color'] = (0,150,0)
+        
         # Calculating position and size of window from the size of the threades.desktop
         position_win =threades.resize_pos((150.0,270.0))
         size_win =threades.resize_pos((900.0,600.0))
@@ -740,7 +647,7 @@ def main():
     intro_thread = threading.Thread(target = load_images.load_images, args=[])
     intro_thread.start()
     # Loading and starting the sound play
-    soundtrack.play(-1)
+    # soundtrack.play(-1)
     level_setting=level_change.change_level()
     pause_screen()
 
@@ -749,6 +656,10 @@ def main():
 
     #surface_middle = pygame.transform.scale(surface3,threades.resize_pos((1200,560)))
     
+    # Processing regarding the storyboard
+    proceduralFlow.openStoryBoardFile()
+    storyboardObj = proceduralFlow.storyboardFlow()
+    proceduralFlow.openStoryBoardFile()
 
     gui_buttons.initialize_gui()
 
@@ -762,9 +673,12 @@ def main():
     mouse_flag = False
     chat_screen=chat.chat()
         
+    model.game_controller.reset_time()
     # The main infinite loop
     while True:
         #clock.tick()
+        model.game_controller.update_level_time()
+        
 
         mouse_flag = False
             
@@ -791,6 +705,7 @@ def main():
         for e in gui.setEvents(pygame.event.get()):
             event_handling(e)
 
+        
         #pygame.draw.rect(threades.screen,(209,169,106),threades.resize_rect((0,40,1200,560)))
         animation_obj.update()
 
@@ -814,7 +729,9 @@ def main():
 
         model.iteration_time = clock.tick()
         model.global_time += model.iteration_time
+        storyboardObj.flow()
 
+        
 
 if __name__ == '__main__':
     main()
