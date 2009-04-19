@@ -81,4 +81,12 @@ setup(windows = [{"script":"Foodforce2.py"}],data_files=[('data', [os.path.join(
                                                                    ,os.path.join('art','button_green.png')])
                                                          ,('.',['font.ttf'
                                                                 ,'data.pkl'
+                                                                ,'data2.pkl'
+                                                                ,'data3.pkl'
+                                                                ,'data4.pkl'
+                                                                ,'data5.pkl'
+                                                                ,'data6.pkl'
+                                                                ,'data7.pkl'
+                                                                ,'data8.pkl'
+                                                                ,'storyboard.pkl'
                                                                 ,'graphics_layout.pkl']) ])
