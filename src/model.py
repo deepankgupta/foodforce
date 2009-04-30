@@ -788,12 +788,9 @@ class Facility:
         # Generating the change in manpower due to upgradation
         self.manp_dist_dict = MANP_DIST_DICT
         self.dict_res_change = FACILITY_MANP_DICT_CH[self._name]
-        print self.dict_res_change
-        print self.level_incr_prod
         for keying in self.manp_dist_dict.keys():
             if self.dict_res_change.has_key(keying):
                 self.manp_dist_dict[keying] +=  self.level_incr_prod*self._number*self.dict_res_change[keying]
-        print self.manp_dist_dict
         people_obj.change_population_dist(self.manp_dist_dict['TOTAL POPULATION'], self.manp_dist_dict['SHELTERED PEOPLE'], self.manp_dist_dict['EDUCATED PEOPLE'], self.manp_dist_dict['HEALTHY PEOPLE'], self.manp_dist_dict['PEOPLE FED'], self.manp_dist_dict['EMPLOYED PEOPLE IN CONSTRUCTION'], self.manp_dist_dict['EMPLOYED PEOPLE IN HOSPITAL'], self.manp_dist_dict['EMPLOYED PEOPLE IN SCHOOL'], self.manp_dist_dict['EMPLOYED PEOPLE IN WORKSHOP'], self.manp_dist_dict['EMPLOYED PEOPLE IN FARM'])
         MANP_DIST_DICT = { 'TOTAL POPULATION' : 0.0 , 'SHELTERED PEOPLE' : 0.0 , 'EDUCATED PEOPLE' : 0.0 , 'HEALTHY PEOPLE' : 0.0 , 'PEOPLE FED' : 0.0 , 'EMPLOYED PEOPLE IN CONSTRUCTION' : 0.0 , 'EMPLOYED PEOPLE IN HOSPITAL' : 0.0 , 'EMPLOYED PEOPLE IN SCHOOL' : 0.0 , 'EMPLOYED PEOPLE IN WORKSHOP' : 0.0 , 'EMPLOYED PEOPLE IN FARM' : 0.0 }
         return resources

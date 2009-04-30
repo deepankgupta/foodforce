@@ -11,42 +11,48 @@ p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'Hello Son. I hope your studies are going well in school. The studies done in the school give you a theoretical aspect of doing things; you need to learn about how to apply these learning in real life.'
 p5
-ag4
-aS'You need to know how to develop your village, as you might well become the Sarpanch after me. I will assist you in developing your skills...'
+aS'Hello Son. I hope your studies are going well in school. The studies done in the school give you a theoretical aspect of doing things; you need to learn about how to apply these learning in real life.'
 p6
-ag4
-aS'Let us go to the village of AbuJamara.'
+ag5
+aS'You need to know how to develop your village, as you might well become the Sarpanch after me. I will assist you in developing your skills...'
 p7
+ag5
+aS'Let us go to the village of AbuJamara.'
+p8
+aaS'Wfpwork.png'
+p9
 aaa.(lp0
 S'action'
 p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Son'
-p4
-aS'Father, this is no village, where are the villagers? A village without people is like lake without water.'
 p5
-aS'Kamat'
+aS'Father, this is no village, where are the villagers? A village without people is like lake without water.'
 p6
-aS'Yes, this is the place where the Abujamara people will move. The Abujmara village was situated on the banks or river Ganga. Mother Ganga cursed the people of Abujamara by changing its course of flow and flooding the Abujamara village.'
+aS'Kamat'
 p7
-ag6
-aS'The people of Abujamara are homeless right now. They came to our village seeking help and the Panchayat decided to clear this forest and provide the land to the poor people. It is our job to help them establish a village on this land.'
+aS'Yes, this is the place where the Abujamara people will move. The Abujmara village was situated on the banks or river Ganga. Mother Ganga cursed the people of Abujamara by changing its course of flow and flooding the Abujamara village.'
 p8
-ag6
-aS'If you had been at my place, how would you bring life back to this village?'
+ag7
+aS'The people of Abujamara are homeless right now. They came to our village seeking help and the Panchayat decided to clear this forest and provide the land to the poor people. It is our job to help them establish a village on this land.'
 p9
-ag4
-aS'Father, I feel that the first requirement of the people of the village is shelter.'
+ag7
+aS'If you had been at my place, how would you bring life back to this village?'
 p10
-ag6
-aS'Very rightly said son. Every person needs a house to live in. Shelter is among one of the most basic necessities of a person. Build 3 huts to shelter the people of Abujamara. You can build a hut by clicking on Build Facility->house.'
+ag5
+aS'Father, I feel that the first requirement of the people of the village is shelter.'
 p11
+ag7
+aS'Very rightly said son. Every person needs a house to live in. Shelter is among one of the most basic necessities of a person. Build 3 huts to shelter the people of Abujamara. You can build a hut by clicking on Build Facility->house.'
+p12
+aaS'Wfpwork.png'
+p13
 aaa.(lp0
 S'condition'
 p1
@@ -72,29 +78,35 @@ p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'When you build a hut, some amount of your resources are utilized. For each Hut that you build, 10 units of Building Material, 8 units of Tools and 8 units of Water are used. Also, some of your manpower is employed in making the hut. Similarly, resources are used to build each facility.'
 p5
-aS'Son'
+aS'When you build a hut, some amount of your resources are utilized. For each Hut that you build, 10 units of Building Material, 8 units of Tools and 8 units of Water are used. Also, some of your manpower is employed in making the hut. Similarly, resources are used to build each facility.'
 p6
-aS'Okay, Father.'
+aS'Son'
 p7
-ag4
-aS'When you build a Hut the Housing Indicator of the Village increases.The indicators are shown on the bottom right hand side of the screen. The indicators are a measure, which tell about the growth and prosperity of the village.'
+aS'Okay, Father.'
 p8
-ag6
+ag5
+aS'When you build a Hut the Housing Indicator of the Village increases.The indicators are shown on the bottom right hand side of the screen. The indicators are a measure, which tell about the growth and prosperity of the village.'
+p9
 ag7
+ag8
+aaS'construction.png'
+p10
 aaa.(lp0
 S'action'
 p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'Son, the next basic necessity of a village is Food. The people need food and water to survive. A well will draw water from the ground and provide fresh clean water to everybody. To build a well click on Build Facility->Well. Build a well now.'
 p5
+aS'Son, the next basic necessity of a village is Food. The people need food and water to survive. A well will draw water from the ground and provide fresh clean water to everybody. To build a well click on Build Facility->Well. Build a well now.'
+p6
+aaS'Farmconstruction.png'
+p7
 aaa.(lp0
 S'condition'
 p1
@@ -120,13 +132,16 @@ p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'Well done son, You are going good.'
 p5
-ag4
-aS'To grow food, you will need to build farms. Since the soil is fertile, we can grow any crop here. It is best to provide a healthy mix of Rice, Beans and Vegetables and Fruits. This will ensure healthy variety and nutrition. Build a farm now.'
+aS'Well done son, You are going good.'
 p6
+ag5
+aS'To grow food, you will need to build farms. Since the soil is fertile, we can grow any crop here. It is best to provide a healthy mix of Rice, Beans and Vegetables and Fruits. This will ensure healthy variety and nutrition. Build a farm now.'
+p7
+aaS'Farmconstruction.png'
+p8
 aaa.(lp0
 S'condition'
 p1
@@ -152,10 +167,13 @@ p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'Well done son. Let us go back and let the new village prosper.'
 p5
+aS'Well done son. Let us go back and let the new village prosper.'
+p6
+aaS'Wfpwork.png'
+p7
 aaa.(lp0
 S'action'
 p1
@@ -176,10 +194,13 @@ p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'The children of Abujamara have no place to study. Some of them are walking 10 miles and more to come to study at your school. Build a school for them.'
 p5
+aS'The children of Abujamara have no place to study. Some of them are walking 10 miles and more to come to study at your school. Build a school for them.'
+p6
+aaS'Wfpwork.png'
+p7
 aaa.(lp0
 S'condition'
 p1
@@ -213,14 +234,17 @@ p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'Son, the Schools require books to function properly. If there would be no books, the teachers would not be able to impart education to the children. Buy the books for the school from the market.'
 p5
-aS'Son'
+aS'Son, the Schools require books to function properly. If there would be no books, the teachers would not be able to impart education to the children. Buy the books for the school from the market.'
 p6
-aS'Okay, Father.'
+aS'Son'
 p7
+aS'Okay, Father.'
+p8
+aaS'setupschool.png'
+p9
 aaa.(lp0
 S'condition'
 p1
@@ -246,32 +270,36 @@ p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'Son, as the schools are functional now. You can see that the number of people educated in the Manpower Distribution table has increased. Also the education indicator in the Indicator table has increased.'
 p5
-aS'Son'
+aS'Son, as the schools are functional now. You can see that the number of people educated in the Manpower Distribution table has increased. Also the education indicator in the Indicator table has increased.'
 p6
-aS'Definitely father, it has. Now, I am able to realize the potential of education.'
+aS'Son'
 p7
-ag4
-aS'Good work son.'
+aS'Definitely father, it has. Now, I am able to realize the potential of education.'
 p8
+ag5
+aS'Good work son.'
+p9
+aaS'setupschool.png'
+p10
 aaa.(lp0
 S'action'
 p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'Son all the facilities require water to function properly, you must build a well for this purpose.'
 p5
-aS'Son'
+aS'Son all the facilities require water to function properly, you must build a well for this purpose.'
 p6
-aS'Okay, Father'
+aS'Son'
 p7
-aaa.(lp0
+aS'Okay, Father'
+p8
+aaNaaa.(lp0
 S'condition'
 p1
 a(lp2
@@ -296,14 +324,17 @@ p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'Son, as you can see a lot of people in the village are sitting idle. That is like a waste of their time and energy. You should build workshops for the people who are not involved in agriculture. The workshop would provide craftsmen, potters and metal workers a place to work. Build a workshop for them to work.'
 p5
-aS'Son'
+aS'Son, as you can see a lot of people in the village are sitting idle. That is like a waste of their time and energy. You should build workshops for the people who are not involved in agriculture. The workshop would provide craftsmen, potters and metal workers a place to work. Build a workshop for them to work.'
 p6
-aS'Definitely father.'
+aS'Son'
 p7
+aS'Definitely father.'
+p8
+aaS'construction.png'
+p9
 aaa.(lp0
 S'condition'
 p1
@@ -329,10 +360,13 @@ p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'Excellent, with the young learning and the grown-ups working, the village is on the path to prosperity. But can you spot something missing in this scheme. Yes, you are right. They do not have a hospital to care for the sick. Build a hospital now.'
 p5
+aS'Excellent, with the young learning and the grown-ups working, the village is on the path to prosperity. But can you spot something missing in this scheme. Yes, you are right. They do not have a hospital to care for the sick. Build a hospital now.'
+p6
+aaS'Wfpwork.png'
+p7
 aaa.(lp0
 S'condition'
 p1
@@ -358,11 +392,12 @@ p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'We have done all we can. You are learning fast, someday you will take my place.'
 p5
-aaa.(lp0
+aS'We have done all we can. You are learning fast, someday you will take my place.'
+p6
+aaNaaa.(lp0
 S'action'
 p1
 a(lp2
@@ -382,17 +417,18 @@ p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'How are your studies going? I see, you do not seem to have enough books at school. It is all caused when trading is neglected. Let us analyze the village stocks and I will help you learn the basics of trading.'
 p5
-ag4
-aS'You can see the buy/sell button in the highlighted portion in the lower panel of the screen. This provides information on the number of every resource present in the village. When you find yourself running low on a certain resource, you should go to the market to buy more of it.'
+aS'How are your studies going? I see, you do not seem to have enough books at school. It is all caused when trading is neglected. Let us analyze the village stocks and I will help you learn the basics of trading.'
 p6
-ag4
-aS'Let us buy more books. Click on the Buy/Sell button, select books and enter the quantity in the box. Finally click the BUY button to buy the books.'
+ag5
+aS'You can see the buy/sell button in the highlighted portion in the lower panel of the screen. This provides information on the number of every resource present in the village. When you find yourself running low on a certain resource, you should go to the market to buy more of it.'
 p7
-aaa.(lp0
+ag5
+aS'Let us buy more books. Click on the Buy/Sell button, select books and enter the quantity in the box. Finally click the BUY button to buy the books.'
+p8
+aaNaaa.(lp0
 S'condition'
 p1
 a(lp2
@@ -417,20 +453,21 @@ p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'Excellent Work , Son.'
 p5
-ag4
-aS'Son you would have noticed that the money present with the village, shown in the right hand top corner, decreases when you buy any resources from the market. You must maintain a good amount of money in the village account.'
+aS'Excellent Work , Son.'
 p6
-ag4
-aS'To increase money in the village account you can sell resources to the market.'
+ag5
+aS'Son you would have noticed that the money present with the village, shown in the right hand top corner, decreases when you buy any resources from the market. You must maintain a good amount of money in the village account.'
 p7
-ag4
-aS'Like, we have an excess of Tools and since we are not doing any new construction these days, we can safely sell it in the market. Sell 20 units of Tools.'
+ag5
+aS'To increase money in the village account you can sell resources to the market.'
 p8
-aaa.(lp0
+ag5
+aS'Like, we have an excess of Tools and since we are not doing any new construction these days, we can safely sell it in the market. Sell 20 units of Tools.'
+p9
+aaNaaa.(lp0
 S'condition'
 p1
 a(lp2
@@ -455,14 +492,15 @@ p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'Good work son. This is all you need to know about trading. You need to buy the resources when you are falling short of them and sell them when there is an excess of a resource in your village. The prices are governed by the amount of supply in the market.'
 p5
-ag4
-aS'Let us head back to a nice dinner at home.'
+aS'Good work son. This is all you need to know about trading. You need to buy the resources when you are falling short of them and sell them when there is an excess of a resource in your village. The prices are governed by the amount of supply in the market.'
 p6
-aaa.(lp0
+ag5
+aS'Let us head back to a nice dinner at home.'
+p7
+aaNaaa.(lp0
 S'action'
 p1
 a(lp2
@@ -475,37 +513,39 @@ p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'Meet Sukhdev, sarpanch of Abujamara. He has come to thank us for all we did for the village.'
 p5
-aS'Sukhdev'
+aS'Meet Sukhdev, sarpanch of Abujamara. He has come to thank us for all we did for the village.'
 p6
-aS'Yes, after you and your sons initial start, our village has prospered. How can I ever thank you for the wonderful work you did for my people.'
+aS'Sukhdev'
 p7
-ag4
-aS'It was our pleasure, Sukhdev. If men wont help fellow men in need, then who will.'
+aS'Yes, after you and your sons initial start, our village has prospered. How can I ever thank you for the wonderful work you did for my people.'
 p8
-ag6
-aS'This is your modesty, Kamat. I am really impressed with your village, your village has better building and efficient workers.'
+ag5
+aS'It was our pleasure, Sukhdev. If men wont help fellow men in need, then who will.'
 p9
-ag4
-aS'This is because we have kept up with the technology Sukhdev. My son and me will accompany you to your village to help install better technology in buildings.'
+ag7
+aS'This is your modesty, Kamat. I am really impressed with your village, your village has better building and efficient workers.'
 p10
-ag6
-aS'Thanks a lot, Kamat. We will hold a grand feast on your coming there.'
+ag5
+aS'This is because we have kept up with the technology Sukhdev. My son and me will accompany you to your village to help install better technology in buildings.'
 p11
-aaa.(lp0
+ag7
+aS'Thanks a lot, Kamat. We will hold a grand feast on your coming there.'
+p12
+aaNaaa.(lp0
 S'action'
 p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'You must know son, technology upgrades provide better buildings with capacity to house more workers and produce more resources. Thus, they are usually helpful in increasing the prosperity of the village. Do an upgrade of the workshop to level 2. Click on the UPGRADE Button and then select Workshop and click upgrade.'
 p5
-aaa.(lp0
+aS'You must know son, technology upgrades provide better buildings with capacity to house more workers and produce more resources. Thus, they are usually helpful in increasing the prosperity of the village. Do an upgrade of the workshop to level 2. Click on the UPGRADE Button and then select Workshop and click upgrade.'
+p6
+aaNaaa.(lp0
 S'condition'
 p1
 a(lp2
@@ -530,35 +570,37 @@ p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'Good work Son. You should notice that upgrading a facility increases its productivity. The amount of resources produced by the Workshop have been increased considerable, also the people working in workshop would get better working conditions.'
 p5
-aS'Son'
+aS'Good work Son. You should notice that upgrading a facility increases its productivity. The amount of resources produced by the Workshop have been increased considerable, also the people working in workshop would get better working conditions.'
 p6
-aS'Yes father, I can notice the changes. The indicators level has also increased.'
+aS'Son'
 p7
-ag4
-aS'Yes Son, upgrading a facility affects the overall prosperity of the village.'
+aS'Yes father, I can notice the changes. The indicators level has also increased.'
 p8
-aaa.(lp0
+ag5
+aS'Yes Son, upgrading a facility affects the overall prosperity of the village.'
+p9
+aaNaaa.(lp0
 S'action'
 p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'Son, now upgrade every facility type to level 2. You can also notice that information related to the upgrade is given in the upgrade window whenever you select any facility.'
 p5
-ag4
-aS'When you will upgrade all the facilities, you will notice a considerable change in the indicators of the village.'
+aS'Son, now upgrade every facility type to level 2. You can also notice that information related to the upgrade is given in the upgrade window whenever you select any facility.'
 p6
-aS'Son'
+ag5
+aS'When you will upgrade all the facilities, you will notice a considerable change in the indicators of the village.'
 p7
-aS'Okay, father.'
+aS'Son'
 p8
-aaa.(lp0
+aS'Okay, father.'
+p9
+aaNaaa.(lp0
 S'condition'
 p1
 a(lp2
@@ -619,11 +661,12 @@ p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'Excellent work. Let us join Sukhdev for the feast.'
 p5
-aaa.(lp0
+aS'Excellent work. Let us join Sukhdev for the feast.'
+p6
+aaNaaa.(lp0
 S'action'
 p1
 a(lp2
@@ -643,39 +686,40 @@ p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'I am really impressed with your work.'
 p5
-aS'Son'
+aS'I am really impressed with your work.'
 p6
-aS'Thank you, father.'
+aS'Son'
 p7
-ag4
-aS'But I wonder, if you are capable enough to work without my guidance now that you have learnt the basics of building a village.'
+aS'Thank you, father.'
 p8
-ag6
-aS'I think I will be father.'
+ag5
+aS'But I wonder, if you are capable enough to work without my guidance now that you have learnt the basics of building a village.'
 p9
-ag4
-aS'I will be leaving the village for the next 3 months to go to your Cousins wedding.'
+ag7
+aS'I think I will be father.'
 p10
-ag6
-aS'Will I not be accompanying you?'
+ag5
+aS'I will be leaving the village for the next 3 months to go to your Cousins wedding.'
 p11
-ag4
-aS'No son, I need someone to take care of the village.'
+ag7
+aS'Will I not be accompanying you?'
 p12
-ag4
-aS'Here is your mission: Take good care of our village for the next 3 months.'
+ag5
+aS'No son, I need someone to take care of the village.'
 p13
-ag4
-aS'Do not let the indicator levels fall below 20% for the next three months.'
+ag5
+aS'Here is your mission: Take good care of our village for the next 3 months.'
 p14
-ag6
-aS'Ok Father. I will not disappoint you.'
+ag5
+aS'Do not let the indicator levels fall below 20% for the next three months.'
 p15
-aaa.(lp0
+ag7
+aS'Ok Father. I will not disappoint you.'
+p16
+aaNaaa.(lp0
 S'condition'
 p1
 a(lp2
@@ -736,11 +780,12 @@ p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'Well done Son. It seems that you are capable of handling the village after me.'
 p5
-aaa.(lp0
+aS'Well done Son. It seems that you are capable of handling the village after me.'
+p6
+aaNaaa.(lp0
 S'actionTrue'
 p1
 a(lp2
@@ -767,95 +812,97 @@ p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'Welcome Ajmal, welcome. How did you find time to visit this small village again.'
 p5
-aS'Son'
+aS'Welcome Ajmal, welcome. How did you find time to visit this small village again.'
 p6
-aS'Welcome home bhaiyya.'
+aS'Son'
 p7
-aS'Ajmal'
+aS'Welcome home bhaiyya.'
 p8
-aS'It is so good to see you again Father, brother. All the comforts in the city are nowhere near the comfort of the home! I am so happy to be back again.'
+aS'Ajmal'
 p9
-ag4
-aS'I am glad to hear this. So finally, you are going to stay for long.'
+aS'It is so good to see you again Father, brother. All the comforts in the city are nowhere near the comfort of the home! I am so happy to be back again.'
 p10
-ag8
-aS'No father, I am afraid not. I am leaving tomorrow but I bring terrible news from the city.'
+ag5
+aS'I am glad to hear this. So finally, you are going to stay for long.'
 p11
-ag4
-aS'So soon... but what news troubles you Ajmal?'
+ag9
+aS'No father, I am afraid not. I am leaving tomorrow but I bring terrible news from the city.'
 p12
-ag8
-aS'The economy is in recession. Big companies have become bankrupt; traders are losing all their money, prices of the basic commodities falling...'
+ag5
+aS'So soon... but what news troubles you Ajmal?'
 p13
-ag4
-aS'Ajmal, as a part of the government, it is your job to improve the economy.'
+ag9
+aS'The economy is in recession. Big companies have become bankrupt; traders are losing all their money, prices of the basic commodities falling...'
 p14
-ag8
-aS'We are trying hard father, but the recession is here for some time. And you should prepare...'
+ag5
+aS'Ajmal, as a part of the government, it is your job to improve the economy.'
 p15
-ag4
-aS'Prepare for what?'
+ag9
+aS'We are trying hard father, but the recession is here for some time. And you should prepare...'
 p16
-ag8
-aS'The prices will fall and trade will decrease in a few days.'
+ag5
+aS'Prepare for what?'
 p17
-ag4
-aS'Our treasury is already low due to bad trade these days, I did not know, it was due to the mistakes of the city people.'
+ag9
+aS'The prices will fall and trade will decrease in a few days.'
 p18
-ag6
-aS'I will handle it father. I will sail us through these bad times.'
+ag5
+aS'Our treasury is already low due to bad trade these days, I did not know, it was due to the mistakes of the city people.'
 p19
-ag4
-aS'I have full faith in your capabilities son. I will leave the management of the village resources to you.'
+ag7
+aS'I will handle it father. I will sail us through these bad times.'
 p20
-ag8
-aS'I did not know, that you have stepped into our fathers shoes so soon.'
+ag5
+aS'I have full faith in your capabilities son. I will leave the management of the village resources to you.'
 p21
-ag6
-aS'I have bhaiyya, and I will do well.'
+ag9
+aS'I did not know, that you have stepped into our fathers shoes so soon.'
 p22
-ag8
-aS'Father, come with me to the city once. You will be able to appreciate the crisis better. Moreover, your grandchildren are eager to meet you.'
+ag7
+aS'I have bhaiyya, and I will do well.'
 p23
-ag4
-aS'Thats a good idea, it has been years since I saw them.'
+ag9
+aS'Father, come with me to the city once. You will be able to appreciate the crisis better. Moreover, your grandchildren are eager to meet you.'
 p24
-ag8
-aS'Thank you father.'
+ag5
+aS'Thats a good idea, it has been years since I saw them.'
 p25
-ag6
-aS'Bhaiyya, what do you reckon will happen in the coming days.'
+ag9
+aS'Thank you father.'
 p26
-ag8
-aS'Prices of the commodities will fall, do not try to build new things during this period and focus on trading well.'
+ag7
+aS'Bhaiyya, what do you reckon will happen in the coming days.'
 p27
-ag8
-aS'Smart trading will ensure that you do not lose the money in your treasury. According to my calculations, things will improve in the next year.'
+ag9
+aS'Prices of the commodities will fall, do not try to build new things during this period and focus on trading well.'
 p28
-ag8
-aS'So at the end of 4 months, do not allow the indicator values to below 20%. Also, maintain atleast Rs. 5,000 In the treasury at all times.'
+ag9
+aS'Smart trading will ensure that you do not lose the money in your treasury. According to my calculations, things will improve in the next year.'
 p29
-ag8
-aS'Farewell brother, hope you will do well.'
+ag9
+aS'So at the end of 4 months, do not allow the indicator values to below 20%. Also, maintain atleast Rs. 5,000 In the treasury at all times.'
 p30
-aaa.(lp0
+ag9
+aS'Farewell brother, hope you will do well.'
+p31
+aaNaaa.(lp0
 S'action'
 p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Son'
-p4
-aS'The prices of all the commodities have dropped. The resources required for proper functioning of the facilities are drying up .'
 p5
-ag4
-aS'It is indeed a tough time for the village. I wish father had been here to accompany me.'
+aS'The prices of all the commodities have dropped. The resources required for proper functioning of the facilities are drying up .'
 p6
-aaa.(lp0
+ag5
+aS'It is indeed a tough time for the village. I wish father had been here to accompany me.'
+p7
+aaNaaa.(lp0
 S'condition'
 p1
 a(lp2
@@ -924,15 +971,16 @@ p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'Well done Son. You have proved your capabilities once again.'
 p5
-aS'Son'
+aS'Well done Son. You have proved your capabilities once again.'
 p6
-aS'Thank you, father.'
+aS'Son'
 p7
-aaa.(lp0
+aS'Thank you, father.'
+p8
+aaNaaa.(lp0
 S'actionTrue'
 p1
 a(lp2
@@ -966,71 +1014,73 @@ p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Farmer'
-p4
-aS'Sarpanch ji, there is no water. The crops are dying. Help us'
 p5
-ag4
-aS'Help us Sarpanch ji, otherwise whole village will die due to hunger.'
+aS'Sarpanch ji, there is no water. The crops are dying. Help us'
 p6
-ag4
-aS' Is it the rain god: Indra who is displeased with us.'
+ag5
+aS'Help us Sarpanch ji, otherwise whole village will die due to hunger.'
 p7
-aS'Kamat'
+ag5
+aS' Is it the rain god: Indra who is displeased with us.'
 p8
-aS'No it is not the gods, but the failing monsoon.'
+aS'Kamat'
 p9
-ag8
-aS'Due to recent ecological disturbances, monsoon has not come this year. But dont worry I will handle it.'
+aS'No it is not the gods, but the failing monsoon.'
 p10
-ag4
-aS'Thank you sarpanch ji. We are also holding a pooja[prayers] for Indra.'
+ag9
+aS'Due to recent ecological disturbances, monsoon has not come this year. But dont worry I will handle it.'
 p11
-aaa.(lp0
+ag5
+aS'Thank you sarpanch ji. We are also holding a pooja[prayers] for Indra.'
+p12
+aaNaaa.(lp0
 S'action'
 p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'Son...'
 p5
-aS'Son'
+aS'Son...'
 p6
-aS'Yes father, is there anything I can do for you.'
+aS'Son'
 p7
-ag4
-aS'Yes son, the monsoon has deserted us. The crops are dying. Farmers believe it is the Indra god who is displeased, but you know better.'
+aS'Yes father, is there anything I can do for you.'
 p8
-ag6
-aS'Yes father.'
+ag5
+aS'Yes son, the monsoon has deserted us. The crops are dying. Farmers believe it is the Indra god who is displeased, but you know better.'
 p9
-ag4
-aS'They will be holding a pooja soon. But we need to do more than that.'
+ag7
+aS'Yes father.'
 p10
-ag6
-aS'Yes Father.'
+ag5
+aS'They will be holding a pooja soon. But we need to do more than that.'
 p11
-ag4
-aS'Due to lack of water, the productivity of farms have decreased. People are dying of hunger.'
+ag7
+aS'Yes Father.'
 p12
-ag4
-aS'Hospitals and Workshops are also not able to work properly due to shortage of water.'
+ag5
+aS'Due to lack of water, the productivity of farms have decreased. People are dying of hunger.'
 p13
-ag4
-aS'Build up some wells and take good care of crops. Do not let the nutrition indicator drop below 20% and also donot let the water level fall below 100.'
+ag5
+aS'Hospitals and Workshops are also not able to work properly due to shortage of water.'
 p14
-ag4
-aS'Good luck son.'
+ag5
+aS'Build up some wells and take good care of crops. Do not let the nutrition indicator drop below 20% and also donot let the water level fall below 100.'
 p15
-aaa.(lp0
+ag5
+aS'Good luck son.'
+p16
+aaNaaa.(lp0
 S'condition'
 p1
 a(lp2
 S'NOR'
 p3
-aI12
+aI120
 a(lp4
 (lp5
 I00
@@ -1058,19 +1108,20 @@ p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Farmer'
-p4
-aS'Thank you, Sarpanchji for bringing us out from such a grave problem. Without your help, we along with our families would have died of hunger.'
 p5
-aS'Kamat'
+aS'Thank you, Sarpanchji for bringing us out from such a grave problem. Without your help, we along with our families would have died of hunger.'
 p6
-aS'Well this time it wasnt me. Its my son, who should be getting the credit of all this work.'
+aS'Kamat'
 p7
-aS'Son'
+aS'Well this time it wasnt me. Its my son, who should be getting the credit of all this work.'
 p8
-aS'Thanks, father. But it was all due to your guidance and support only that I am able to serve for the prosperity of the village.'
+aS'Son'
 p9
-aaa.(lp0
+aS'Thanks, father. But it was all due to your guidance and support only that I am able to serve for the prosperity of the village.'
+p10
+aaNaaa.(lp0
 S'actionTrue'
 p1
 a(lp2
@@ -1104,18 +1155,19 @@ p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Kamat'
-p4
-aS'Son, I am getting old, but I have a faint feeling that something bad is about to happen.'
 p5
-aS'Son'
+aS'Son, I am getting old, but I have a faint feeling that something bad is about to happen.'
 p6
-aS'Why do you think so, father?'
+aS'Son'
 p7
-ag4
-aS'The signs are there in the animals. Look how the cattle and the sheep are getting restless. They are the ones who know first that the Gods are angry.'
+aS'Why do you think so, father?'
 p8
-aaa.(lp0
+ag5
+aS'The signs are there in the animals. Look how the cattle and the sheep are getting restless. They are the ones who know first that the Gods are angry.'
+p9
+aaNaaa.(lp0
 S'action'
 p1
 a(lp2
@@ -1135,24 +1187,25 @@ p1
 a(lp2
 I1
 a(lp3
+(lp4
 S'Ajmal'
-p4
-aS'Brother, the responsibility to manage the village is up to you now. you must help the people of the village in recovering from this calamity.'
 p5
-aS'Son'
+aS'Brother, the responsibility to manage the village is up to you now. you must help the people of the village in recovering from this calamity.'
 p6
-aS'But bhaiyya, I wouldnt  be able to do all this without Fathers help and support.'
+aS'Son'
 p7
-ag4
-aS'Father had a vision for this village. It had taken him a lifetime to build this village. You must work for his mission.'
+aS'But bhaiyya, I wouldnt  be able to do all this without Fathers help and support.'
 p8
-ag4
-aS'You must re build everything and get the village back on the path to progress and prosperity.'
+ag5
+aS'Father had a vision for this village. It had taken him a lifetime to build this village. You must work for his mission.'
 p9
-ag6
-aS'Dont worry brother; I will rebuild the village to its former glory.'
+ag5
+aS'You must re build everything and get the village back on the path to progress and prosperity.'
 p10
-aaa.(lp0
+ag7
+aS'Dont worry brother; I will rebuild the village to its former glory.'
+p11
+aaNaaa.(lp0
 S'action'
 p1
 a(lp2

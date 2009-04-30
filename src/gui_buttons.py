@@ -323,10 +323,10 @@ class setup_button:
         self.fountain_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(10)), parent = self.win, style = op_style, text = 'Well')
         self.fountain_box.onClick = self.on_select_setup_option_box
 
-        self.win.surf.set_alpha(255)
-        background = self.win.surf.subsurface(pygame.Rect(threades.resize_rect((400,180,200,200))))
-        self.background_pic = background.copy()
-        self.win.surf.set_alpha(140)
+        #self.win.surf.set_alpha(255)
+        #background = self.win.surf.subsurface(pygame.Rect(threades.resize_rect((400,180,200,200))))
+        #self.background_pic = background.copy()
+        #self.win.surf.set_alpha(140)
 
         # Creating buttons for Setting up the facility and closing the setup window
         button_style = gui.defaultButtonStyle.copy()
@@ -339,36 +339,36 @@ class setup_button:
 
     def on_select_setup_option_box(self,button):
 
-        self.win.surf.set_alpha(255)
-        self.win.surf.blit(self.background_pic,threades.resize_pos((450,250)))
-        self.win.surf.set_alpha(140)
+        #self.win.surf.set_alpha(255)
+        #self.win.surf.blit(self.background_pic,threades.resize_pos((450,250)))
+        #self.win.surf.set_alpha(140)
 
         if button.text == 'House':
             text = 'House: '
-            image = load_images. House_tiles_list[2][2]
+            #image = load_images. House_tiles_list[2][2]
             text += threades.get_setup_text(model.House)
         if button.text == 'Hospital':
             text = 'Hospital: '
-            image = load_images. Hospital_tiles_list[2][2]
+            #image = load_images. Hospital_tiles_list[2][2]
             text += threades.get_setup_text(model.Hospital)
         if button.text == 'School':
             text = 'School: '
-            image = load_images.School_tiles_list[2][2]
+            #image = load_images.School_tiles_list[2][2]
             text += threades.get_setup_text(model.School)
         if button.text == 'Workshop':
             text = 'Workshop: '
-            image = load_images.Workshop_tiles_list[2][2]
+            #image = load_images.Workshop_tiles_list[2][2]
             text += threades.get_setup_text(model.Workshop)
         if button.text == 'Farm':
             text = 'Farm: '
-            image = load_images.Farm_tiles[0][1]
+            #image = load_images.Farm_tiles[0][1]
             text += threades.get_setup_text(model.Farm)
         if button.text == 'Well':
             text = 'Well: '
-            image = load_images.Fountain_tiles[0][3]
+            #image = load_images.Fountain_tiles[0][3]
             text += threades.get_setup_text(model.Fountain)
-        display_image = pygame.transform.scale(image,threades.resize_pos((140,140)))
-        self.win.surf.blit(display_image,threades.resize_pos((450,250)))
+        #display_image = pygame.transform.scale(image,threades.resize_pos((140,140)))
+        #self.win.surf.blit(display_image,threades.resize_pos((450,250)))
         self.message_label2.text = text
 
 
@@ -585,10 +585,10 @@ class upgrade_button:
         button_style = gui.defaultButtonStyle.copy()
         button_style['font'] = myfont2
         
-        self.win.surf.set_alpha(255)
-        background = self.win.surf.subsurface(pygame.Rect(threades.resize_rect((400,180,200,200))))
-        self.background_pic = background.copy()
-        self.win.surf.set_alpha(140)
+        #self.win.surf.set_alpha(255)
+        #background = self.win.surf.subsurface(pygame.Rect(threades.resize_rect((400,180,200,200))))
+        #self.background_pic = background.copy()
+        #self.win.surf.set_alpha(140)
 
         self.button_upgrade = gui.Button(position = threades.resize_pos((600.0,420.0),(800.0,600.0),size_win), size = threades.resize_pos((120.0,50.0),(800.0,600.0),size_win), parent = self.win, text = "Upgrade",style = button_style)
         #self.button_close = gui.Button(position = threades.resize_pos((600.0,460.0),(800.0,600.0),size_win), size = threades.resize_pos((120.0,50.0),(800.0,600.0),size_win), parent = self.win, text = "Close",style = button_style)
@@ -597,31 +597,31 @@ class upgrade_button:
 
     def on_select_upgrade_option_box(self,button):
         
-        self.win.surf.set_alpha(255)
-        self.win.surf.blit(self.background_pic,threades.resize_pos((450,250)))
-        self.win.surf.set_alpha(140)
+        #self.win.surf.set_alpha(255)
+        #self.win.surf.blit(self.background_pic,threades.resize_pos((450,250)))
+        #self.win.surf.set_alpha(140)
 
         text = ''
         if button.text == 'House':
-            image = load_images. House_tiles_list[2][2]
+            #image = load_images. House_tiles_list[2][2]
             text += threades.get_upgrade_text(model.House)
         if button.text == 'Hospital':
-            image = load_images. Hospital_tiles_list[2][2]
+            #image = load_images. Hospital_tiles_list[2][2]
             text += threades.get_upgrade_text(model.Hospital)
         if button.text == 'School':
-            image = load_images.School_tiles_list[2][2]
+            #image = load_images.School_tiles_list[2][2]
             text += threades.get_upgrade_text(model.School)
         if button.text == 'Workshop':
-            image = load_images.Workshop_tiles_list[2][2]
+            #image = load_images.Workshop_tiles_list[2][2]
             text += threades.get_upgrade_text(model.Workshop)
         if button.text == 'Farm':
-            image = load_images.Farm_tiles[0][1]
+            #image = load_images.Farm_tiles[0][1]
             text += threades.get_upgrade_text(model.Farm)
         if button.text == 'Well':
-            image = load_images.Fountain_tiles[0][3]
+            #image = load_images.Fountain_tiles[0][3]
             text += threades.get_upgrade_text(model.Fountain)
-        display_image = pygame.transform.scale(image,threades.resize_pos((140,140)))
-        self.win.surf.blit(display_image,threades.resize_pos((450,250)))
+        #display_image = pygame.transform.scale(image,threades.resize_pos((140,140)))
+        #self.win.surf.blit(display_image,threades.resize_pos((450,250)))
         self.message_label2.text = text
         self.message_label.text = 'Upgrades ' + button.text
 

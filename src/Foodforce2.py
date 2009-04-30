@@ -247,9 +247,9 @@ class starting_intro:
             self.resume_button.onClick = self.resume
 
         #self.resume_button = gui.Button(position = threades.resize_pos((500,550)), size = threades.resize_pos((200,30)), parent = threades.desktop, text = "Resume Game",style = self.button_style)
-        self.controls_button = gui.Button(position = threades.resize_pos((500,550)), size = threades.resize_pos((200,30)), parent = desktop2, text = "Controls",style = self.button_style)
-        self.exit_button = gui.Button(position = threades.resize_pos((500,600)), size = threades.resize_pos((200,30)), parent = desktop2, text = "Exit",style = self.button_style)
-        self.instructions_button = gui.Button(position = threades.resize_pos((800,20)), size = threades.resize_pos((150,30)), parent = desktop2, text = "Guide",style = self.button_style)
+        self.controls_button = gui.Button(position = threades.resize_pos((500,600)), size = threades.resize_pos((200,30)), parent = desktop2, text = "Controls",style = self.button_style)
+        self.exit_button = gui.Button(position = threades.resize_pos((500,650)), size = threades.resize_pos((200,30)), parent = desktop2, text = "Exit",style = self.button_style)
+        self.instructions_button = gui.Button(position = threades.resize_pos((500,550)), size = threades.resize_pos((200,30)), parent = desktop2, text = "Guide",style = self.button_style)
         self.about_us_button = gui.Button(position = threades.resize_pos((1000,20)), size = threades.resize_pos((150,30)), parent = desktop2, text = "About Us",style = self.button_style)
         
                                       
@@ -710,6 +710,8 @@ def main():
         animation_obj.update()
 
 
+        # Calculate the values of the indicators
+        threades.calculate_indicators_starting()
         
         #For middle surface
         #surface_middle = pygame.transform.scale(surface3,threades.resize_pos((1200,560)))

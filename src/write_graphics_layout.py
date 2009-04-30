@@ -1,32 +1,6 @@
 import pickle
 output = open('graphics_layout.pkl', 'wb')
 
-# DICTIONARIES REGARDING RESOURCES REQD TO BUILD EACH FACILITY PER BUILDING
-
-House_tiles_list = []
-pickle.dump(House_tiles_list, output)
-Hospital_tiles_list = []
-pickle.dump(Hospital_tiles_list, output)
-Farm_tiles = []
-pickle.dump(Farm_tiles, output)
-Workshop_tiles_list = []
-pickle.dump(Workshop_tiles_list, output)
-School_tiles_list = []
-pickle.dump(School_tiles_list, output)
-Fountain_tiles = []
-pickle.dump(Fountain_tiles, output)
-Earthquake_tiles = []
-pickle.dump(Earthquake_tiles, output)
-Man_tiles = []
-pickle.dump(Man_tiles, output)
-Woman_tiles = []
-pickle.dump(Woman_tiles, output)
-Boy_tiles = []
-pickle.dump(Boy_tiles, output)
-Girl_tiles = []
-pickle.dump(Girl_tiles, output)
-Map_images = []
-pickle.dump(Map_images, output)
 
 # Saving the positions of all the facilities
 workshop_posn_list = [(200,2550),(2000,5000),  (6500,400),  (6000,5300)]

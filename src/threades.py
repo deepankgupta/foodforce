@@ -44,13 +44,19 @@ import gui
 import defaultStyle
 
 
-# Detecting the current screen resolution of the device
-display_info = pygame.display.Info()
-new_screen_size = (display_info.current_w,display_info.current_h)
-# Max resolution detected and the screen size is set to it
+pygame.display.init()
 
+try:
 
-#new_screen_size = (1024.0,768.0)   # For testing purposes in a window
+    # Detecting the current screen resolution of the device
+    display_info = pygame.display.Info()
+    new_screen_size = (display_info.current_w,display_info.current_h)
+    # Max resolution detected and the screen size is set to it
+except:
+    
+    new_screen_size = (800,600)
+    
+
 screen = pygame.display.set_mode(new_screen_size,FULLSCREEN|SRCALPHA,32)
 
 # For initialising the style of the guI
@@ -227,26 +233,32 @@ def build_facility(facility_obj, list_food = model.DEF_FARM_PROD):
     
     #model.ppl = facility_obj.build_end(model.ppl)
     if facility_obj.get_name() == 'HOUSE':
+        images_obj.initialize_facility('HOUSE')
         sprite = House_sprite()
         model.house_sprite_list.append(sprite)
         
     if facility_obj.get_name() == 'HOSPITAL':
+        images_obj.initialize_facility('HOSPITAL')
         sprite = Hospital_sprite()
         model.hospital_sprite_list.append(sprite)
         
     if facility_obj.get_name() == 'WORKSHOP':
+        images_obj.initialize_facility('WORKSHOP')
         sprite = Workshop_sprite()
         model.workshop_sprite_list.append(sprite)
         
     if facility_obj.get_name() == 'SCHOOL':
+        images_obj.initialize_facility('SCHOOL')
         sprite = School_sprite()
         model.school_sprite_list.append(sprite)
         
     if facility_obj.get_name() == 'FARM':
+        images_obj.initialize_facility('FARM')
         sprite = Farm_sprite()
         model.farm_sprite_list.append(sprite)
         
     if facility_obj.get_name() == 'FOUNTAIN':
+        images_obj.initialize_facility('FOUNTAIN')
         sprite = Fountain_sprite()
         model.fountain_sprite_list.append(sprite)
     add_sprite_all(sprite)
@@ -332,8 +344,19 @@ def upgrade_facility(facility_obj):
         message.push_message(text,'high')
         return text
     
-    
-    
+    if facility_obj.get_name() == 'HOUSE':
+        images_obj.House_flag = False
+        images_obj.initialize_facility(facility_obj.get_name())
+    if facility_obj.get_name() == 'HOSPITAL':
+        images_obj.Hospital_flag = False
+        images_obj.initialize_facility(facility_obj.get_name())
+    if facility_obj.get_name() == 'WORKSHOP':
+        images_obj.Workshop_flag = False
+        images_obj.initialize_facility(facility_obj.get_name())
+    if facility_obj.get_name() == 'SCHOOL':
+        images_obj.School_flag = False
+        images_obj.initialize_facility(facility_obj.get_name())
+    #load_images.load_images_facility(facility_obj.get_name(),facility_obj.get_level())
     # Updation of sprites
     for i in range(len(model.facilities_list_sprites[facility_obj.get_name()])):
         model.facilities_list_sprites[facility_obj.get_name()][i].upgrade_level()
@@ -788,7 +811,7 @@ class Workshop_sprite(pygame.sprite.Sprite):
         self.level = model.Workshop.get_level()
         self.built_flag = 0
         transform_obj.focus_at(load_images.workshop_posn_list[model.Workshop.get_number()-1])
-        self.image = transform_obj.transform_surface(load_images.Workshop_tiles_list[self.level][self.frame])
+        self.image = load_images.Workshop_tiles_list[self.level][self.frame]
         self.rect = self.image.get_rect()
         self.position = load_images.workshop_posn_list[model.Workshop.get_number()-1]
         self.position_rect = self.rect.move(self.position)
@@ -830,7 +853,7 @@ class Workshop_sprite(pygame.sprite.Sprite):
         
     def set_frame(self):
         if transform_obj.check_update_condition() or self.update_flag:
-            self.image = transform_obj.transform_surface(load_images.Workshop_tiles_list[self.level][self.frame])
+            self.image = load_images.Workshop_tiles_list[self.level][self.frame]
             self.update_flag = False
         self.rect = self.image.get_rect()
         self.rect = self.rect.move(transform_obj.transform_cordinates(self.position))
@@ -859,7 +882,7 @@ class House_sprite(pygame.sprite.Sprite):
         self.built_flag = 0
         self.ratio = transform_obj.ratio
         transform_obj.focus_at(load_images.house_posn_list[model.House.get_number()-1])
-        self.image = transform_obj.transform_surface(load_images.House_tiles_list[self.level][self.frame])
+        self.image = load_images.House_tiles_list[self.level][self.frame]
         self.rect = self.image.get_rect()
         self.position = load_images.house_posn_list[model.House.get_number()-1]
         self.position_rect = self.rect.move(self.position)
@@ -902,7 +925,7 @@ class House_sprite(pygame.sprite.Sprite):
         
     def set_frame(self):
         if transform_obj.check_update_condition() or self.update_flag:
-            self.image = transform_obj.transform_surface(load_images. House_tiles_list[self.level][self.frame])
+            self.image = load_images. House_tiles_list[self.level][self.frame]
             self.update_flag = False
         self.rect = self.image.get_rect()
         self.rect = self.rect.move(transform_obj.transform_cordinates(self.position))
@@ -930,7 +953,7 @@ class Hospital_sprite(pygame.sprite.Sprite):
         self.level = model.Hospital.get_level()
         self.built_flag = 0
         transform_obj.focus_at(load_images.hospital_posn_list[model.Hospital.get_number()-1])
-        self.image = transform_obj.transform_surface(load_images.Hospital_tiles_list[self.level][self.frame])
+        self.image = load_images.Hospital_tiles_list[self.level][self.frame]
         self.rect = self.image.get_rect()
         self.position = load_images.hospital_posn_list[model.Hospital.get_number()-1]
         self.position_rect = self.rect.move(self.position)
@@ -973,7 +996,7 @@ class Hospital_sprite(pygame.sprite.Sprite):
         
     def set_frame(self):
         if transform_obj.check_update_condition() or self.update_flag:
-            self.image = transform_obj.transform_surface(load_images.Hospital_tiles_list[self.level][self.frame])
+            self.image = load_images.Hospital_tiles_list[self.level][self.frame]
             self.update_flag = False
         self.rect = self.image.get_rect()
         self.rect = self.rect.move(transform_obj.transform_cordinates(self.position))
@@ -1003,7 +1026,7 @@ class School_sprite(pygame.sprite.Sprite):
         self.built_flag =0
         self.ratio = transform_obj.ratio
         transform_obj.focus_at(load_images.school_posn_list[model.School.get_number()-1])
-        self.image = transform_obj.transform_surface(load_images.School_tiles_list[self.level][self.frame])
+        self.image = load_images.School_tiles_list[self.level][self.frame]
         self.rect = self.image.get_rect()
         self.position = load_images.school_posn_list[model.School.get_number()-1]
         self.position_rect = self.rect.move(self.position)
@@ -1047,7 +1070,7 @@ class School_sprite(pygame.sprite.Sprite):
         
     def set_frame(self):
         if transform_obj.check_update_condition() or self.update_flag:
-            self.image = transform_obj.transform_surface(load_images.School_tiles_list[self.level][self.frame])
+            self.image = load_images.School_tiles_list[self.level][self.frame]
             self.update_flag = False
         self.rect = self.image.get_rect()
         self.rect = self.rect.move(transform_obj.transform_cordinates(self.position))
@@ -1074,7 +1097,7 @@ class Farm_sprite(pygame.sprite.Sprite):
         self.built_flag = 0
         self.ratio = transform_obj.ratio
         transform_obj.focus_at(load_images.farm_posn_list[model.Farm.get_number()-1])
-        self.image = transform_obj.transform_surface(load_images.Farm_tiles[0][self.frame])
+        self.image = load_images.Farm_tiles[0][self.frame]
         self.rect = self.image.get_rect()
         self.position = load_images.farm_posn_list[model.Farm.get_number()-1]
         self.position_rect = self.rect.move(self.position)
@@ -1109,7 +1132,7 @@ class Farm_sprite(pygame.sprite.Sprite):
 
     def set_frame(self):
         if transform_obj.check_update_condition() or self.update_flag:
-            self.image = transform_obj.transform_surface(load_images.Farm_tiles[0][self.frame])
+            self.image = load_images.Farm_tiles[0][self.frame]
             self.update_flag = False
         
         self.rect = self.image.get_rect()
@@ -1135,7 +1158,7 @@ class Fountain_sprite(pygame.sprite.Sprite):
         self.built_flag = 0
         transform_obj.focus_at(load_images.fountain_posn_list[model.Fountain.get_number()-1])
         self.ratio = transform_obj.ratio
-        self.image = transform_obj.transform_surface(load_images.Fountain_tiles[0][self.frame])
+        self.image = load_images.Fountain_tiles[0][self.frame]
         self.rect = self.image.get_rect()
         self.position = load_images.fountain_posn_list[model.Fountain.get_number()-1]
         self.position_rect = self.rect.move(self.position)
@@ -1167,7 +1190,7 @@ class Fountain_sprite(pygame.sprite.Sprite):
         
     def set_frame(self):
         if transform_obj.check_update_condition() or self.update_flag:
-            self.image = transform_obj.transform_surface(load_images.Fountain_tiles[0][self.frame])
+            self.image = load_images.Fountain_tiles[0][self.frame]
             self.update_flag = False
         self.rect = self.image.get_rect()
         self.rect = self.rect.move(transform_obj.transform_cordinates(self.position))
@@ -1341,23 +1364,21 @@ class Villager(pygame.sprite.Sprite):
         self.name = name
         self.dtiles_final = [0,0,0,0]
         self.range = range_rect
-        if name == 'Man':
+        if self.name == 'Man':
             self.tiles = load_images.Man_tiles[0]
         
-        if name == 'Woman':
+        if self.name == 'Woman':
             self.tiles = load_images.Woman_tiles[0]
         
-        if name == 'Boy':
+        if self.name == 'Boy':
             self.tiles = load_images.Boy_tiles[0]
         
-        if name == 'Girl':
+        if self.name == 'Girl':
             self.tiles = load_images.Girl_tiles[0]
         
         self.frame = 0
         self.set_direction()
         self.dtiles_final = self.dtiles
-        for i in range(len(self.dtiles)):
-            self.dtiles_final[i] = transform_obj.transform_surface(self.dtiles[i])
             
         self.image = self.dtiles_final[self.frame]
         self.rect = self.image.get_rect()
@@ -1383,6 +1404,18 @@ class Villager(pygame.sprite.Sprite):
     def set_direction(self):
         
         
+        if self.name == 'Man':
+            self.tiles = load_images.Man_tiles[0]
+        
+        if self.name == 'Woman':
+            self.tiles = load_images.Woman_tiles[0]
+        
+        if self.name == 'Boy':
+            self.tiles = load_images.Boy_tiles[0]
+        
+        if self.name == 'Girl':
+            self.tiles = load_images.Girl_tiles[0]
+        
         sp = self.speed
         if sp[0] > 0  and sp[1] == 0:
             self.dtiles = self.tiles[0:4]
@@ -1393,12 +1426,9 @@ class Villager(pygame.sprite.Sprite):
         elif sp[0] == 0  and sp[1] > 0:
             self.dtiles = self.tiles[12:16]
             
-        for i in range(len(self.dtiles)):
-            self.dtiles_final[i] = transform_obj.transform_surface(self.dtiles[i])
-        
+        self.dtiles_final = self.dtiles
             
     def collide_build(self):
-        #self.rect = self.rect.move([-2*self.speed[0], -2*self.speed[1]])
         
         self.set_speed(map(lambda x: -x, self.speed))
         
@@ -1461,10 +1491,9 @@ class Villager(pygame.sprite.Sprite):
         #self.rect.clamp_ip(ANIMRECT)    
     def set_frame(self):
         
+        self.set_direction()
         if transform_obj.check_update_condition() or self.update_flag:
-            for i in range(len(self.dtiles)):
-                self.dtiles_final[i] = transform_obj.transform_surface(self.dtiles[i])
-        
+            self.dtiles_final = self.dtiles
         self.image = self.dtiles_final[self.frame]
         
     def get_attributes(self):
@@ -1624,7 +1653,7 @@ class Transform:
     
     def focus_at(self,(x,y)):
         '''Used to focus at a particular position'''
-        self.ratio = 0.6
+        #self.ratio = 0.6
         self.pos_x = int(x*self.ratio) -500
         self.pos_y = int(y*self.ratio) - 80
   
@@ -1646,13 +1675,274 @@ class Transform:
     
   
    
+class update_images:
+    
+    def __init__(self):
+
+        self.House_flag = False
+        self.Workshop_flag = False
+        self.School_flag = False
+        self.Hospital_flag = False
+        self.Fountain_flag = False
+        self.Farm_flag = False
+        
+    def update_images(self):
+        
+        if transform_obj.check_update_condition():
+            if transform_obj.prev_ratio > transform_obj.ratio:
+                for i in range(len(load_images.House_tiles_list)):
+                    for j in range(len(load_images.House_tiles_list[i])):
+                        (x,y) = load_images.House_tiles_list[i][j].get_size()
+                        x *= transform_obj.ratio/transform_obj.prev_ratio
+                        y *= transform_obj.ratio/transform_obj.prev_ratio
+                        load_images.House_tiles_list[i][j] = pygame.transform.scale(load_images.House_tiles_list[i][j],(int(x),int(y)))
+                
+                for i in range(len(load_images.Hospital_tiles_list)):
+                    for j in range(len(load_images.Hospital_tiles_list[i])):
+                        (x,y) = load_images.Hospital_tiles_list[i][j].get_size()
+                        x *= transform_obj.ratio/transform_obj.prev_ratio
+                        y *= transform_obj.ratio/transform_obj.prev_ratio
+                        load_images.Hospital_tiles_list[i][j] = pygame.transform.scale(load_images.Hospital_tiles_list[i][j],(int(x),int(y)))
+
+                for i in range(len(load_images.Workshop_tiles_list)):
+                    for j in range(len(load_images.Workshop_tiles_list[i])):
+                        (x,y) = load_images.Workshop_tiles_list[i][j].get_size()
+                        x *= transform_obj.ratio/transform_obj.prev_ratio
+                        y *= transform_obj.ratio/transform_obj.prev_ratio
+                        load_images.Workshop_tiles_list[i][j] = pygame.transform.scale(load_images.Workshop_tiles_list[i][j],(int(x),int(y)))
+
+                for i in range(len(load_images.School_tiles_list)):
+                    for j in range(len(load_images.School_tiles_list[i])):
+                        (x,y) = load_images.School_tiles_list[i][j].get_size()
+                        x *= transform_obj.ratio/transform_obj.prev_ratio
+                        y *= transform_obj.ratio/transform_obj.prev_ratio
+                        load_images.School_tiles_list[i][j] = pygame.transform.scale(load_images.School_tiles_list[i][j],(int(x),int(y)))
+                
+                for i in range(len(load_images.Fountain_tiles)):
+                    for j in range(len(load_images.Fountain_tiles[i])):
+                        (x,y) = load_images.Fountain_tiles[i][j].get_size()
+                        x *= transform_obj.ratio/transform_obj.prev_ratio
+                        y *= transform_obj.ratio/transform_obj.prev_ratio
+                        load_images.Fountain_tiles[i][j] = pygame.transform.scale(load_images.Fountain_tiles[i][j],(int(x),int(y)))
+
+                for i in range(len(load_images.Farm_tiles)):
+                    for j in range(len(load_images.Farm_tiles[i])):
+                        (x,y) = load_images.Farm_tiles[i][j].get_size()
+                        x *= transform_obj.ratio/transform_obj.prev_ratio
+                        y *= transform_obj.ratio/transform_obj.prev_ratio
+                        load_images.Farm_tiles[i][j] = pygame.transform.scale(load_images.Farm_tiles[i][j],(int(x),int(y)))
+                
+                for i in range(len(load_images.Man_tiles)):
+                    for j in range(len(load_images.Man_tiles[i])):
+                        (x,y) = load_images.Man_tiles[i][j].get_size()
+                        x *= transform_obj.ratio/transform_obj.prev_ratio
+                        y *= transform_obj.ratio/transform_obj.prev_ratio
+                        load_images.Man_tiles[i][j] = pygame.transform.scale(load_images.Man_tiles[i][j],(int(x),int(y)))
+                
+                for i in range(len(load_images.Woman_tiles)):
+                    for j in range(len(load_images.Woman_tiles[i])):
+                        (x,y) = load_images.Woman_tiles[i][j].get_size()
+                        x *= transform_obj.ratio/transform_obj.prev_ratio
+                        y *= transform_obj.ratio/transform_obj.prev_ratio
+                        load_images.Woman_tiles[i][j] = pygame.transform.scale(load_images.Woman_tiles[i][j],(int(x),int(y)))
+                
+                for i in range(len(load_images.Boy_tiles)):
+                    for j in range(len(load_images.Boy_tiles[i])):
+                        (x,y) = load_images.Boy_tiles[i][j].get_size()
+                        x *= transform_obj.ratio/transform_obj.prev_ratio
+                        y *= transform_obj.ratio/transform_obj.prev_ratio
+                        load_images.Boy_tiles[i][j] = pygame.transform.scale(load_images.Boy_tiles[i][j],(int(x),int(y)))
+                
+                for i in range(len(load_images.Girl_tiles)):
+                    for j in range(len(load_images.Girl_tiles[i])):
+                        (x,y) = load_images.Girl_tiles[i][j].get_size()
+                        x *= transform_obj.ratio/transform_obj.prev_ratio
+                        y *= transform_obj.ratio/transform_obj.prev_ratio
+                        load_images.Girl_tiles[i][j] = pygame.transform.scale(load_images.Girl_tiles[i][j],(int(x),int(y)))
+                
+                        
+                        
+            else:
+                if self.House_flag:
+                    load_images.load_images_facility('HOUSE',model.House.get_level())
+    
+                    for i in range(len(load_images.House_tiles_list)):
+                        for j in range(len(load_images.House_tiles_list[i])):
+                            (x,y) = resize_pos(load_images.House_tiles_list[i][j].get_size())
+                            x *= transform_obj.ratio
+                            y *= transform_obj.ratio
+                            load_images.House_tiles_list[i][j] = pygame.transform.scale(load_images.House_tiles_list[i][j],(int(x),int(y)))
+                    
+                if self.Hospital_flag:
+                    load_images.load_images_facility('HOSPITAL',model.Hospital.get_level())
+                    
+                    for i in range(len(load_images.Hospital_tiles_list)):
+                        for j in range(len(load_images.Hospital_tiles_list[i])):
+                            (x,y) = resize_pos(load_images.Hospital_tiles_list[i][j].get_size())
+                            x *= transform_obj.ratio
+                            y *= transform_obj.ratio
+                            load_images.Hospital_tiles_list[i][j] = pygame.transform.scale(load_images.Hospital_tiles_list[i][j],(int(x),int(y)))
+
+                if self.Workshop_flag:
+                    load_images.load_images_facility('WORKSHOP',model.Workshop.get_level())
+    
+                    for i in range(len(load_images.Workshop_tiles_list)):
+                        for j in range(len(load_images.Workshop_tiles_list[i])):
+                            (x,y) = resize_pos(load_images.Workshop_tiles_list[i][j].get_size())
+                            x *= transform_obj.ratio
+                            y *= transform_obj.ratio
+                            load_images.Workshop_tiles_list[i][j] = pygame.transform.scale(load_images.Workshop_tiles_list[i][j],(int(x),int(y)))
+
+                if self.School_flag:                
+                    load_images.load_images_facility('SCHOOL',model.School.get_level())
+    
+                    for i in range(len(load_images.School_tiles_list)):
+                        for j in range(len(load_images.School_tiles_list[i])):
+                            (x,y) = resize_pos(load_images.School_tiles_list[i][j].get_size())
+                            x *= transform_obj.ratio
+                            y *= transform_obj.ratio
+                            load_images.School_tiles_list[i][j] = pygame.transform.scale(load_images.School_tiles_list[i][j],(int(x),int(y)))
+
+                if self.Fountain_flag:
+                    load_images.load_images_facility('FOUNTAIN',model.Fountain.get_level())
+                    
+                    for i in range(len(load_images.Fountain_tiles)):
+                        for j in range(len(load_images.Fountain_tiles[i])):
+                            (x,y) = resize_pos(load_images.Fountain_tiles[i][j].get_size())
+                            x *= transform_obj.ratio
+                            y *= transform_obj.ratio
+                            load_images.Fountain_tiles[i][j] = pygame.transform.scale(load_images.Fountain_tiles[i][j],(int(x),int(y)))
+                            
+                if self.Farm_flag:
+                    load_images.load_images_facility('FARM',model.Farm.get_level())
+                    
+                    for i in range(len(load_images.Farm_tiles)):
+                        for j in range(len(load_images.Farm_tiles[i])):
+                            (x,y) = resize_pos(load_images.Farm_tiles[i][j].get_size())
+                            x *= transform_obj.ratio
+                            y *= transform_obj.ratio
+                            load_images.Farm_tiles[i][j] = pygame.transform.scale(load_images.Farm_tiles[i][j],(int(x),int(y)))
+                    
+                load_images.load_images_ppl()
+                
+                for i in range(len(load_images.Man_tiles)):
+                    for j in range(len(load_images.Man_tiles[i])):
+                        (x,y) = resize_pos(load_images.Man_tiles[i][j].get_size())
+                        x *= transform_obj.ratio
+                        y *= transform_obj.ratio
+                        load_images.Man_tiles[i][j] = pygame.transform.scale(load_images.Man_tiles[i][j],(int(x),int(y)))
+                
+                for i in range(len(load_images.Woman_tiles)):
+                    for j in range(len(load_images.Woman_tiles[i])):
+                        (x,y) = resize_pos(load_images.Woman_tiles[i][j].get_size())
+                        x *= transform_obj.ratio
+                        y *= transform_obj.ratio
+                        load_images.Woman_tiles[i][j] = pygame.transform.scale(load_images.Woman_tiles[i][j],(int(x),int(y)))
+                
+                for i in range(len(load_images.Boy_tiles)):
+                    for j in range(len(load_images.Boy_tiles[i])):
+                        (x,y) = resize_pos(load_images.Boy_tiles[i][j].get_size())
+                        x *= transform_obj.ratio
+                        y *= transform_obj.ratio
+                        load_images.Boy_tiles[i][j] = pygame.transform.scale(load_images.Boy_tiles[i][j],(int(x),int(y)))
+                
+                for i in range(len(load_images.Girl_tiles)):
+                    for j in range(len(load_images.Girl_tiles[i])):
+                        (x,y) = resize_pos(load_images.Girl_tiles[i][j].get_size())
+                        x *= transform_obj.ratio
+                        y *= transform_obj.ratio
+                        load_images.Girl_tiles[i][j] = pygame.transform.scale(load_images.Girl_tiles[i][j],(int(x),int(y)))
+                
+                
+                    
+    
+    
+                    
+                    
+    def initialize_facility(self,facility_name = '',level = 0):
+        
+        if facility_name == 'HOUSE' and (not self.House_flag):
+            
+            load_images.load_images_facility('HOUSE',model.House.get_level())
+            self.House_flag = True    
+            for i in range(len(load_images.House_tiles_list)):
+                for j in range(len(load_images.House_tiles_list[i])):
+                    (x,y) = resize_pos(load_images.House_tiles_list[i][j].get_size())
+                    x *= transform_obj.ratio
+                    y *= transform_obj.ratio
+                    load_images.House_tiles_list[i][j] = pygame.transform.scale(load_images.House_tiles_list[i][j],(int(x),int(y)))
+            
+        if facility_name == 'HOSPITAL' and (not self.Hospital_flag):
+            
+            load_images.load_images_facility('HOSPITAL',model.Hospital.get_level())
+            self.Hospital_flag = True        
+            for i in range(len(load_images.Hospital_tiles_list)):
+                for j in range(len(load_images.Hospital_tiles_list[i])):
+                    (x,y) = resize_pos(load_images.Hospital_tiles_list[i][j].get_size())
+                    x *= transform_obj.ratio
+                    y *= transform_obj.ratio
+                    load_images.Hospital_tiles_list[i][j] = pygame.transform.scale(load_images.Hospital_tiles_list[i][j],(int(x),int(y)))
+
+        
+        if facility_name == 'WORKSHOP' and (not self.Workshop_flag):
+            
+            load_images.load_images_facility('WORKSHOP',model.Workshop.get_level())
+            self.Workshop_flag = True
+            for i in range(len(load_images.Workshop_tiles_list)):
+                for j in range(len(load_images.Workshop_tiles_list[i])):
+                    (x,y) = resize_pos(load_images.Workshop_tiles_list[i][j].get_size())
+                    x *= transform_obj.ratio
+                    y *= transform_obj.ratio
+                    load_images.Workshop_tiles_list[i][j] = pygame.transform.scale(load_images.Workshop_tiles_list[i][j],(int(x),int(y)))
+
+        
+        if facility_name == 'SCHOOL' and (not self.School_flag):
+            
+            load_images.load_images_facility('SCHOOL',model.School.get_level())
+            self.School_flag = True
+            for i in range(len(load_images.School_tiles_list)):
+                for j in range(len(load_images.School_tiles_list[i])):
+                    (x,y) = resize_pos(load_images.School_tiles_list[i][j].get_size())
+                    x *= transform_obj.ratio
+                    y *= transform_obj.ratio
+                    load_images.School_tiles_list[i][j] = pygame.transform.scale(load_images.School_tiles_list[i][j],(int(x),int(y)))
+
+        
+        if facility_name == 'FOUNTAIN' and (not self.Fountain_flag):
+            
+            load_images.load_images_facility('FOUNTAIN',model.Fountain.get_level())
+            self.Fountain_flag = True
+            for i in range(len(load_images.Fountain_tiles)):
+                for j in range(len(load_images.Fountain_tiles[i])):
+                    (x,y) = resize_pos(load_images.Fountain_tiles[i][j].get_size())
+                    x *= transform_obj.ratio
+                    y *= transform_obj.ratio
+                    load_images.Fountain_tiles[i][j] = pygame.transform.scale(load_images.Fountain_tiles[i][j],(int(x),int(y)))
+                    
+            
+        if facility_name == 'FARM' and (not self.Farm_flag):
+            
+            load_images.load_images_facility('FARM',model.Farm.get_level())
+            self.Farm_flag = True            
+            for i in range(len(load_images.Farm_tiles)):
+                for j in range(len(load_images.Farm_tiles[i])):
+                    (x,y) = resize_pos(load_images.Farm_tiles[i][j].get_size())
+                    x *= transform_obj.ratio
+                    y *= transform_obj.ratio
+                    load_images.Farm_tiles[i][j] = pygame.transform.scale(load_images.Farm_tiles[i][j],(int(x),int(y)))
+            
+                    
+            
+        
+         
 
 
+images_obj = update_images()
 
 class Animation:
     
     def __init__(self):
-        global surface3
+       
         
         #env = Environment()
         #self.background = env.get_background()
@@ -1664,15 +1954,17 @@ class Animation:
         mkt.add(all,market)
     
     
+    
     def update(self):
         ''' Creates the final surface with the background and all and with the sprites too '''
-        global surface3
+        
         transform_obj.move()
         transform_obj.check_pos() 
         if natural_calamities:
             #natural_calamities.clear(screen,self.background)
             natural_calamities.update()
         
+        images_obj.update_images()
         check_sprite = screen_sprite()
         #screen.blit(self.background,(0,resize_pt_y(40)))
         #all_drawable.clear(screen,self.background)
