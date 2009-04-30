@@ -336,10 +336,10 @@ class checkConditions:
         Flag = True
         
         for conditions in self.conditionslist:
-            print conditions.checkCondition(events)
+            #print conditions.checkCondition(events)
             Flag = Flag and conditions.checkCondition(events)
-            print Flag
-        print 'end'
+            #print Flag
+        #print 'end'
             
         if self.closure == 'AND':
             if Flag:
@@ -428,17 +428,26 @@ class Actions:
         
         
     
-    def Chat(self,text,bckgnd=None):
+    def Chat(self,data):
         ''' 
             Chat text should be a list with first the name
             of the character and then his dialogue,
             
         '''
+        if gui_buttons.gui_obj.get_child_win_flag():
+            gui_buttons.gui_obj.close_child_win()
+        if gui_buttons.gui_obj.get_win_flag():
+            gui_buttons.gui_obj.close_win()
         
+        text = data[0]
+        bckgnd = data[1]
         if bckgnd:
             surf_bckgnd = pygame.image.load(os.path.join('data',bckgnd)).convert()
             surf_bckgnd = pygame.transform.scale(surf_bckgnd,threades.resize_pos((1200,900)))
             threades.screen.blit(surf_bckgnd,(0,0))
+            surf_bckgnd = None
+            pygame.display.flip()
+            sleep(0.5)
         chat.showChat(text)
         event = game_events.Event(type = game_events.ACTIONCOMPLETEEVENT, facility_name = '', res_name = '' , res_quantity = 0)
         game_events.EventQueue.add(event)
@@ -557,7 +566,7 @@ class Actions:
         ff_logo = pygame.transform.scale(logo,threades.resize_pos((500,500)))
         position_blit = threades.resize_pos((100,100))
         self.win.surf.blit(ff_logo,position_blit)
-        
+        update_rect = pygame.Rect(threades.resize_rect((150,100,700,600)))
         
         #self.instructions_counter = 0
         label = gui.Label(position = threades.resize_pos((50.0,100.0),(700.0,600.0),self.win.size),size = threades.resize_pos((600.0,440.0),(700.0,600.0),self.win.size), parent = self.win, text = text, style = labelStyleCopy)
@@ -578,7 +587,8 @@ class Actions:
                 
             st_desktop.update()
             st_desktop.draw()
-            pygame.display.update()
+            pygame.display.update([update_rect])
+        self.win.close()
         
         event = game_events.Event(type = game_events.ACTIONCOMPLETEEVENT, facility_name = '', res_name = '' , res_quantity = 0)
         game_events.EventQueue.add(event)
@@ -622,6 +632,8 @@ class Actions:
         labelStyleCopy['font-color'] = self.brown_color
         labelStyleCopy['border-color'] = self.black_color
         
+        update_rect = pygame.Rect(threades.resize_rect((150,100,900,500)))
+        
         self.storyboardwin_run = True
         #logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
         #ff_logo = pygame.transform.scale(logo,threades.resize_pos((1111,250)))
@@ -630,6 +642,10 @@ class Actions:
         label = gui.Label(position = threades.resize_pos((100.0,100.0),(900.0,500.0),self.win.size),size = threades.resize_pos((700.0,340.0),(900.0,500.0),self.win.size), parent = self.win, text = text, style = labelStyleCopy)
 
         gl_time = 0
+        
+        st_desktop.update()
+        st_desktop.draw()
+        pygame.display.update([update_rect])
         
         while self.storyboardwin_run:
             pygame.display.set_caption('FoodForce2')
@@ -643,13 +659,10 @@ class Actions:
             if gl_time >= 17000:
                 self.storyboardwin_run = False
                 
-            st_desktop.update()
-            st_desktop.draw()
-            pygame.display.update()
             
+            
+        self.win.close()
         
-        event = game_events.Event(type = game_events.ACTIONCOMPLETEEVENT, facility_name = '', res_name = '' , res_quantity = 0)
-        game_events.EventQueue.add(event)
         event = game_events.Event(type = game_events.ACTIONCOMPLETEEVENT, facility_name = '', res_name = '' , res_quantity = 0)
         game_events.EventQueue.add(event)
         
@@ -700,6 +713,10 @@ class Actions:
 
         gl_time = 0
         
+        st_desktop.update()
+        st_desktop.draw()
+        pygame.display.update()
+        
         while self.storyboardwin_run:
             pygame.display.set_caption('FoodForce2')
             
@@ -712,9 +729,7 @@ class Actions:
             if gl_time >= 17000:
                 self.storyboardwin_run = False
                 
-            st_desktop.update()
-            st_desktop.draw()
-            pygame.display.update()
+            
             
             
         event = game_events.Event(type = game_events.ACTIONCOMPLETEEVENT, facility_name = '', res_name = '' , res_quantity = 0)
