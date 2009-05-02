@@ -51,7 +51,7 @@ p11
 ag7
 aS'Very rightly said son. Every person needs a house to live in. Shelter is among one of the most basic necessities of a person. Build 3 huts to shelter the people of Abujamara. You can build a hut by clicking on Build Facility->house.'
 p12
-aaS'Wfpwork.png'
+aaS'Barren-Land.png'
 p13
 aaa.(lp0
 S'condition'
@@ -92,7 +92,7 @@ aS'When you build a Hut the Housing Indicator of the Village increases.The indic
 p9
 ag7
 ag8
-aaS'construction.png'
+aaS'thatched-huts.png'
 p10
 aaa.(lp0
 S'action'
@@ -105,7 +105,7 @@ S'Kamat'
 p5
 aS'Son, the next basic necessity of a village is Food. The people need food and water to survive. A well will draw water from the ground and provide fresh clean water to everybody. To build a well click on Build Facility->Well. Build a well now.'
 p6
-aaS'Farmconstruction.png'
+aaS'thatched-huts.png'
 p7
 aaa.(lp0
 S'condition'
@@ -140,7 +140,7 @@ p6
 ag5
 aS'To grow food, you will need to build farms. Since the soil is fertile, we can grow any crop here. It is best to provide a healthy mix of Rice, Beans and Vegetables and Fruits. This will ensure healthy variety and nutrition. Build a farm now.'
 p7
-aaS'Farmconstruction.png'
+aaS'farm2.png'
 p8
 aaa.(lp0
 S'condition'
@@ -172,7 +172,7 @@ S'Kamat'
 p5
 aS'Well done son. Let us go back and let the new village prosper.'
 p6
-aaS'Wfpwork.png'
+aaS'Happy.png'
 p7
 aaa.(lp0
 S'action'
@@ -199,7 +199,7 @@ S'Kamat'
 p5
 aS'The children of Abujamara have no place to study. Some of them are walking 10 miles and more to come to study at your school. Build a school for them.'
 p6
-aaS'Wfpwork.png'
+aaS'withbooks.png'
 p7
 aaa.(lp0
 S'condition'
@@ -243,7 +243,7 @@ aS'Son'
 p7
 aS'Okay, Father.'
 p8
-aaS'setupschool.png'
+aaS'withbooks.png'
 p9
 aaa.(lp0
 S'condition'
@@ -282,7 +282,7 @@ p8
 ag5
 aS'Good work son.'
 p9
-aaS'setupschool.png'
+aaS'withbooks.png'
 p10
 aaa.(lp0
 S'action'
@@ -299,7 +299,9 @@ aS'Son'
 p7
 aS'Okay, Father'
 p8
-aaNaaa.(lp0
+aaS'withbooks.png'
+p9
+aaa.(lp0
 S'condition'
 p1
 a(lp2
@@ -333,7 +335,7 @@ aS'Son'
 p7
 aS'Definitely father.'
 p8
-aaS'construction.png'
+aaS'cover09.png'
 p9
 aaa.(lp0
 S'condition'
@@ -365,7 +367,7 @@ S'Kamat'
 p5
 aS'Excellent, with the young learning and the grown-ups working, the village is on the path to prosperity. But can you spot something missing in this scheme. Yes, you are right. They do not have a hospital to care for the sick. Build a hospital now.'
 p6
-aaS'Wfpwork.png'
+aaS'hospital.png'
 p7
 aaa.(lp0
 S'condition'
@@ -428,7 +430,9 @@ p7
 ag5
 aS'Let us buy more books. Click on the Buy/Sell button, select books and enter the quantity in the box. Finally click the BUY button to buy the books.'
 p8
-aaNaaa.(lp0
+aaS'trading.png'
+p9
+aaa.(lp0
 S'condition'
 p1
 a(lp2
@@ -467,7 +471,9 @@ p8
 ag5
 aS'Like, we have an excess of Tools and since we are not doing any new construction these days, we can safely sell it in the market. Sell 20 units of Tools.'
 p9
-aaNaaa.(lp0
+aaS'trading.png'
+p10
+aaa.(lp0
 S'condition'
 p1
 a(lp2
@@ -500,7 +506,9 @@ p6
 ag5
 aS'Let us head back to a nice dinner at home.'
 p7
-aaNaaa.(lp0
+aaS'trading.png'
+p8
+aaa.(lp0
 S'action'
 p1
 a(lp2
@@ -534,7 +542,9 @@ p11
 ag7
 aS'Thanks a lot, Kamat. We will hold a grand feast on your coming there.'
 p12
-aaNaaa.(lp0
+aaS'tech.png'
+p13
+aaa.(lp0
 S'action'
 p1
 a(lp2
@@ -545,7 +555,9 @@ S'Kamat'
 p5
 aS'You must know son, technology upgrades provide better buildings with capacity to house more workers and produce more resources. Thus, they are usually helpful in increasing the prosperity of the village. Do an upgrade of the workshop to level 2. Click on the UPGRADE Button and then select Workshop and click upgrade.'
 p6
-aaNaaa.(lp0
+aaS'tech.png'
+p7
+aaa.(lp0
 S'condition'
 p1
 a(lp2
@@ -582,7 +594,9 @@ p8
 ag5
 aS'Yes Son, upgrading a facility affects the overall prosperity of the village.'
 p9
-aaNaaa.(lp0
+aaS'tech.png'
+p10
+aaa.(lp0
 S'action'
 p1
 a(lp2
@@ -600,7 +614,9 @@ aS'Son'
 p8
 aS'Okay, father.'
 p9
-aaNaaa.(lp0
+aaS'tech.png'
+p10
+aaa.(lp0
 S'condition'
 p1
 a(lp2
@@ -666,7 +682,9 @@ S'Kamat'
 p5
 aS'Excellent work. Let us join Sukhdev for the feast.'
 p6
-aaNaaa.(lp0
+aaS'tech.png'
+p7
+aaa.(lp0
 S'action'
 p1
 a(lp2
@@ -719,7 +737,9 @@ p15
 ag7
 aS'Ok Father. I will not disappoint you.'
 p16
-aaNaaa.(lp0
+aaS'prosper.png'
+p17
+aaa.(lp0
 S'condition'
 p1
 a(lp2
@@ -785,7 +805,9 @@ S'Kamat'
 p5
 aS'Well done Son. It seems that you are capable of handling the village after me.'
 p6
-aaNaaa.(lp0
+aaS'prosper.png'
+p7
+aaa.(lp0
 S'actionTrue'
 p1
 a(lp2
@@ -888,7 +910,9 @@ p30
 ag9
 aS'Farewell brother, hope you will do well.'
 p31
-aaNaaa.(lp0
+aaS'rec2.png'
+p32
+aaa.(lp0
 S'action'
 p1
 a(lp2
@@ -902,7 +926,9 @@ p6
 ag5
 aS'It is indeed a tough time for the village. I wish father had been here to accompany me.'
 p7
-aaNaaa.(lp0
+aaS'rec2.png'
+p8
+aaa.(lp0
 S'condition'
 p1
 a(lp2
@@ -1035,7 +1061,9 @@ p11
 ag5
 aS'Thank you sarpanch ji. We are also holding a pooja[prayers] for Indra.'
 p12
-aaNaaa.(lp0
+aaS'drought.png'
+p13
+aaa.(lp0
 S'action'
 p1
 a(lp2
@@ -1074,7 +1102,9 @@ p15
 ag5
 aS'Good luck son.'
 p16
-aaNaaa.(lp0
+aaS'drought.png'
+p17
+aaa.(lp0
 S'condition'
 p1
 a(lp2
@@ -1121,7 +1151,9 @@ aS'Son'
 p9
 aS'Thanks, father. But it was all due to your guidance and support only that I am able to serve for the prosperity of the village.'
 p10
-aaNaaa.(lp0
+aaS'happy.png'
+p11
+aaa.(lp0
 S'actionTrue'
 p1
 a(lp2
@@ -1167,7 +1199,9 @@ p8
 ag5
 aS'The signs are there in the animals. Look how the cattle and the sheep are getting restless. They are the ones who know first that the Gods are angry.'
 p9
-aaNaaa.(lp0
+aaS'earthquake 3.png'
+p10
+aaa.(lp0
 S'action'
 p1
 a(lp2
@@ -1205,7 +1239,9 @@ p10
 ag7
 aS'Dont worry brother; I will rebuild the village to its former glory.'
 p11
-aaNaaa.(lp0
+aaS'earthquake 3.png'
+p12
+aaa.(lp0
 S'action'
 p1
 a(lp2

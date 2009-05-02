@@ -51,7 +51,7 @@ def write_data():
     'Son','Father, I feel that the first requirement of the people of the village is shelter.',
     'Kamat','Very rightly said son. Every person needs a house to live in. Shelter is among one of the most basic necessities of a person. Build 3 huts to shelter the people of Abujamara. You can build a hut by clicking on Build Facility->house.']
     
-    action = [1,[chatText,'Wfpwork.png']]
+    action = [1,[chatText,'Barren-Land.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
@@ -66,13 +66,13 @@ def write_data():
     'Kamat','When you build a Hut the Housing Indicator of the Village increases.The indicators are shown on the bottom right hand side of the screen. The indicators are a measure, which tell about the growth and prosperity of the village.',
     'Son','Okay, Father.']
     
-    action = [1,[chatText,'construction.png']]
+    action = [1,[chatText,'thatched-huts.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
     chatText = ['Kamat','Son, the next basic necessity of a village is Food. The people need food and water to survive. A well will draw water from the ground and provide fresh clean water to everybody. To build a well click on Build Facility->Well. Build a well now.']
 
-    action = [1,[chatText,'Farmconstruction.png']]
+    action = [1,[chatText,'thatched-huts.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
@@ -86,7 +86,7 @@ def write_data():
     chatText = ['Kamat','Well done son, You are going good.',
     'Kamat','To grow food, you will need to build farms. Since the soil is fertile, we can grow any crop here. It is best to provide a healthy mix of Rice, Beans and Vegetables and Fruits. This will ensure healthy variety and nutrition. Build a farm now.']
     
-    action = [1,[chatText,'Farmconstruction.png']]
+    action = [1,[chatText,'farm2.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
@@ -98,7 +98,7 @@ def write_data():
 
     chatText = ['Kamat','Well done son. Let us go back and let the new village prosper.']
     
-    action = [1,[chatText,'Wfpwork.png']]
+    action = [1,[chatText,'Happy.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
@@ -116,7 +116,7 @@ def write_data():
 
     chatText = ['Kamat','The children of Abujamara have no place to study. Some of them are walking 10 miles and more to come to study at your school. Build a school for them.']
     
-    action = [1,[chatText,'Wfpwork.png']]
+    action = [1,[chatText,'withbooks.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
@@ -130,7 +130,7 @@ def write_data():
     chatText = ['Kamat','Son, the Schools require books to function properly. If there would be no books, the teachers would not be able to impart education to the children. Buy the books for the school from the market.',
     'Son','Okay, Father.']
     
-    action = [1,[chatText,'setupschool.png']]
+    action = [1,[chatText,'withbooks.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
@@ -144,14 +144,14 @@ def write_data():
     'Son','Definitely father, it has. Now, I am able to realize the potential of education.',
     'Kamat','Good work son.']
     
-    action = [1,[chatText,'setupschool.png']]
+    action = [1,[chatText,'withbooks.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
     chatText = ['Kamat','Son all the facilities require water to function properly, you must build a well for this purpose.',
                 'Son','Okay, Father']
     
-    action = [1,[chatText,None]]
+    action = [1,[chatText,'withbooks.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
@@ -164,7 +164,7 @@ def write_data():
     chatText = ['Kamat','Son, as you can see a lot of people in the village are sitting idle. That is like a waste of their time and energy. You should build workshops for the people who are not involved in agriculture. The workshop would provide craftsmen, potters and metal workers a place to work. Build a workshop for them to work.',
     'Son','Definitely father.']
 
-    action = [1,[chatText,'construction.png']]
+    action = [1,[chatText,'cover09.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
@@ -177,7 +177,7 @@ def write_data():
     
     chatText = ['Kamat','Excellent, with the young learning and the grown-ups working, the village is on the path to prosperity. But can you spot something missing in this scheme. Yes, you are right. They do not have a hospital to care for the sick. Build a hospital now.']
     
-    action = [1,[chatText,'Wfpwork.png']]
+    action = [1,[chatText,'hospital.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
@@ -210,7 +210,7 @@ def write_data():
     'Kamat','You can see the buy/sell button in the highlighted portion in the lower panel of the screen. This provides information on the number of every resource present in the village. When you find yourself running low on a certain resource, you should go to the market to buy more of it.',
     'Kamat','Let us buy more books. Click on the Buy/Sell button, select books and enter the quantity in the box. Finally click the BUY button to buy the books.']
 
-    action = [1,[chatText,None]]
+    action = [1,[chatText,'trading.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
@@ -227,7 +227,7 @@ def write_data():
     'Kamat','To increase money in the village account you can sell resources to the market.',
     'Kamat','Like, we have an excess of Tools and since we are not doing any new construction these days, we can safely sell it in the market. Sell 20 units of Tools.']
     
-    action = [1,[chatText,None]]
+    action = [1,[chatText,'trading.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
@@ -243,7 +243,7 @@ def write_data():
     'Kamat','Let us head back to a nice dinner at home.']
     
 
-    action = [1,[chatText,None]]
+    action = [1,[chatText,'trading.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
@@ -261,13 +261,13 @@ def write_data():
     'Kamat','This is because we have kept up with the technology Sukhdev. My son and me will accompany you to your village to help install better technology in buildings.',
     'Sukhdev','Thanks a lot, Kamat. We will hold a grand feast on your coming there.']
     
-    action = [1,[chatText,None]]
+    action = [1,[chatText,'tech.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
     chatText = ['Kamat','You must know son, technology upgrades provide better buildings with capacity to house more workers and produce more resources. Thus, they are usually helpful in increasing the prosperity of the village. Do an upgrade of the workshop to level 2. Click on the UPGRADE Button and then select Workshop and click upgrade.']
 
-    action = [1,[chatText,None]]
+    action = [1,[chatText,'tech.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
@@ -281,7 +281,7 @@ def write_data():
     'Son','Yes father, I can notice the changes. The indicators level has also increased.',
     'Kamat','Yes Son, upgrading a facility affects the overall prosperity of the village.']
     
-    action = [1,[chatText,None]]
+    action = [1,[chatText,'tech.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
@@ -289,7 +289,7 @@ def write_data():
     'Kamat','When you will upgrade all the facilities, you will notice a considerable change in the indicators of the village.',
     'Son','Okay, father.']
     
-    action = [1,[chatText,None]]
+    action = [1,[chatText,'tech.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
@@ -305,7 +305,7 @@ def write_data():
     
     chatText = ['Kamat','Excellent work. Let us join Sukhdev for the feast.']
     
-    action = [1,[chatText,None]]
+    action = [1,[chatText,'tech.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
@@ -335,7 +335,7 @@ def write_data():
     'Son','Ok Father. I will not disappoint you.']
 
     
-    action = [1,[chatText,None]]
+    action = [1,[chatText,'prosper.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
@@ -351,7 +351,7 @@ def write_data():
     
     chatText = ['Kamat','Well done Son. It seems that you are capable of handling the village after me.']
     
-    action = [1,[chatText,None]]
+    action = [1,[chatText,'prosper.png']]
     actionData = ['actionTrue',action]
     pickle.dump(actionData,output)
 
@@ -397,14 +397,14 @@ def write_data():
     'Ajmal','So at the end of 4 months, do not allow the indicator values to below 20%. Also, maintain atleast Rs. 5,000 In the treasury at all times.',
     'Ajmal','Farewell brother, hope you will do well.']
     
-    action = [1,[chatText,None]]
+    action = [1,[chatText,'rec2.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
     chatText = ['Son','The prices of all the commodities have dropped. The resources required for proper functioning of the facilities are drying up .',
     'Son','It is indeed a tough time for the village. I wish father had been here to accompany me.']
 
-    action = [1,[chatText,None]]
+    action = [1,[chatText,'rec2.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
@@ -457,7 +457,7 @@ def write_data():
     'Kamat','Due to recent ecological disturbances, monsoon has not come this year. But dont worry I will handle it.',
     'Farmer','Thank you sarpanch ji. We are also holding a pooja[prayers] for Indra.']
     
-    action = [1,[chatText,None]]
+    action = [1,[chatText,'drought.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
@@ -473,7 +473,7 @@ def write_data():
                 'Kamat','Good luck son.']
     
     
-    action = [1,[chatText,None]]
+    action = [1,[chatText,'drought.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
@@ -493,7 +493,7 @@ def write_data():
                 'Son','Thanks, father. But it was all due to your guidance and support only that I am able to serve for the prosperity of the village.']
 
 
-    action = [1,[chatText,None]]
+    action = [1,[chatText,'happy.png']]
     actionData = ['actionTrue',action]
     pickle.dump(actionData,output)
 
@@ -528,7 +528,7 @@ def write_data():
                 'Son','Why do you think so, father?',
                 'Kamat','The signs are there in the animals. Look how the cattle and the sheep are getting restless. They are the ones who know first that the Gods are angry.']
     
-    action = [1,[chatText,None]]
+    action = [1,[chatText,'earthquake 3.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
@@ -549,7 +549,7 @@ def write_data():
                 'Son','Dont worry brother; I will rebuild the village to its former glory.']
     
 
-    action = [1,[chatText,None]]
+    action = [1,[chatText,'earthquake 3.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
