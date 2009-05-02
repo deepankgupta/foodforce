@@ -441,14 +441,7 @@ class Actions:
         
         text = data[0]
         bckgnd = data[1]
-        if bckgnd:
-            surf_bckgnd = pygame.image.load(os.path.join('data',bckgnd)).convert()
-            surf_bckgnd = pygame.transform.scale(surf_bckgnd,threades.resize_pos((1200,900)))
-            threades.screen.blit(surf_bckgnd,(0,0))
-            surf_bckgnd = None
-            pygame.display.flip()
-            sleep(0.5)
-        chat.showChat(text)
+        chat.showChat(text,bckgnd)
         event = game_events.Event(type = game_events.ACTIONCOMPLETEEVENT, facility_name = '', res_name = '' , res_quantity = 0)
         game_events.EventQueue.add(event)
         

@@ -647,7 +647,7 @@ def main():
     intro_thread = threading.Thread(target = load_images.load_images, args=[])
     intro_thread.start()
     # Loading and starting the sound play
-    # soundtrack.play(-1)
+    soundtrack.play(-1)
     level_setting=level_change.change_level()
     pause_screen()
 
@@ -685,16 +685,16 @@ def main():
         (x,y) = (0,0)
         x,y = pygame.mouse.get_pos()
         
-        if ((x < threades.new_screen_size[0]) and (x > (threades.new_screen_size[0]-60))):
+        if (x > (threades.new_screen_size[0]-60)):
             threades.transform_obj.move_free((-10,0))
             
-        if (x < 60 and x > 0):
+        if x < threades.resize_pt_x(60) :
             threades.transform_obj.move_free((10,0))
             
-        if (y < threades.resize_pt_y(900)) and (y > threades.resize_pt_y(840)):
+        if  y > threades.resize_pt_y(840):
             threades.transform_obj.move_free((0,-10))
             
-        if ((y < threades.resize_pt_y(60)) and (y > threades.resize_pt_y(0))):
+        if y < threades.resize_pt_y(60):
             threades.transform_obj.move_free((0,10))
             
         if (x > threades.resize_pt_x(0)) and (x < threades.resize_pt_x(600)) and (y > threades.resize_pt_y(845)) and (y < threades.resize_pt_y(900)):

@@ -57,10 +57,6 @@ class chat:
         self.update_win_pos=pygame.Rect(threades.resize_pos((150.0,50.0)),threades.resize_pos((900,800)))
         self.imageBox = pygame.image.load(os.path.join('art', 'imageBox.png')).convert_alpha()
         self.chatBox = pygame.image.load(os.path.join('art', 'chatBox.png')).convert_alpha()
-        if background_image!=None:
-            self.background_image=pygame.image.load(os.path.join('art',background_image)).convert_alpha()
-        else:
-            self.background_image=None
         self.characterImage={}
         self.characterImage['KAMAT']=pygame.image.load(os.path.join('art', 'kamat.png')).convert_alpha()
         self.characterImage['SON']=pygame.image.load(os.path.join('art', 'son.png')).convert_alpha()
@@ -118,9 +114,7 @@ class chat:
         
         # Creating window
         self.chatWin = gui.Window(position = position_win, size = size_win, parent = desktopChat, text = '' ,style = win_style,closeable = False,shadeable = False,moveable = False)
-        self.chatWin.surf.set_alpha(140)
-        if background_image!=None:
-            self.chatWin.surf.blit(self.background_image,threades.resize_pos(0,0))
+        self.chatWin.surf.fill((0,0,0,140))
         self.chatWinFlag = True
         
         #NOTE: This part will be used once we know how to blit buttons on the chat window
@@ -185,7 +179,8 @@ class chat:
         else:
             dim_y = 120
             
-        finalSurface = pygame.surface.Surface((870,dim_y+30)).convert()
+        finalSurface = pygame.surface.Surface((870,dim_y+30)).convert_alpha()
+        finalSurface.fill((0,0,0,0))
         #pos_of_image_on_finalsurface=(((dim_y)/2)-60)+15
         finalSurface.blit(self.imageBox,(15,15))
         finalSurface.blit(tempSurface,(135,15))
@@ -213,10 +208,12 @@ class chat:
                         chat_event_handle(e)
                         
                     
-                    
+                    if background_image:
+                        threades.screen.blit(surf_bckgnd,(0,0))
+                        
                     desktopChat.update()
                     desktopChat.draw()
-                    pygame.display.update(self.update_win_pos) 
+                    pygame.display.update() 
                     model.iteration_time = clock.tick()
                     model.global_time += model.iteration_time
                     if run==False:
@@ -260,6 +257,8 @@ def chat_event_handle(e):
                 
                 move_to_next_chatwin_flag=True
 
+
+surf_bckgnd = None
 def showChat(chatText,back_image=None):
     
     ''' Chat text should be a list with first the name
@@ -271,9 +270,14 @@ def showChat(chatText,back_image=None):
     global move_to_next_chatwin_flag
     global clock
     global background_image
+    global surf_bckgnd    
     
-    background_image=back_image
+    background_image= back_image
 
+    if back_image:
+        surf_bckgnd = pygame.image.load(os.path.join('data',back_image)).convert()
+        surf_bckgnd = pygame.transform.scale(surf_bckgnd,threades.resize_pos((1200,900)))
+         
     chatObject = chat()
     chatObject.chatWindow()
     clock = pygame.time.Clock()
@@ -290,13 +294,16 @@ def showChat(chatText,back_image=None):
         
         for e in gui.setEvents(pygame.event.get()):
             chat_event_handle(e)
-                    
+        
+        if back_image:
+            threades.screen.blit(surf_bckgnd,(0,0))
+            
         desktopChat.update()
         
         
         desktopChat.draw()
        
-        pygame.display.update(chatObject.update_win_pos) 
+        pygame.display.update() 
         #print chatObject.button_skip.enabled
                 
                
@@ -324,9 +331,12 @@ def showChat(chatText,back_image=None):
                 model.global_time += model.iteration_time
                 for e in gui.setEvents(pygame.event.get()):
                     chat_event_handle(e)
+                if back_image:
+                    threades.screen.blit(surf_bckgnd,(0,0))
+                    
                 desktopChat.update()
                 desktopChat.draw()
-                pygame.display.update(chatObject.update_win_pos)
+                pygame.display.flip()
                 if run==False:
                     break
             run = False
@@ -336,7 +346,7 @@ def showChat(chatText,back_image=None):
         model.global_time += model.iteration_time  
        
         
-        
+    surf_bckgnd = None
     chatObject.closeChatWindow()
     
         
