@@ -323,8 +323,8 @@ class checkConditions:
         if not (self.timer == -1):
             self.time = 0
             self.init_days = model.game_controller.get_total_days()
-            print "initial days = "            
-            print self.init_days
+            #print "initial days = "            
+            #print self.init_days
             
     def checkConditions(self,events):
         ''' Returns 0/1/2 depending upon the state of conditions
@@ -336,7 +336,7 @@ class checkConditions:
         Flag = True
         
         for conditions in self.conditionslist:
-            #print conditions.checkCondition(events)
+            conditions.checkCondition(events)
             Flag = Flag and conditions.checkCondition(events)
             #print Flag
         #print 'end'
@@ -363,8 +363,8 @@ class checkConditions:
         '''
         
         self.currentdays = model.game_controller.get_total_days()
-        print "current days = "            
-        print self.currentdays
+        #print "current days = "            
+        #print self.currentdays
         if self.currentdays >= self.timer + self.init_days:
             return True
         else:

@@ -277,7 +277,7 @@ class setup_button:
         self.win_flag = True
         
         # Pausing the update thread
-        threades.pause_update_thread()
+        #threades.pause_update_thread()
         
         #  Creating Custom label style
         myfont2 = pygame.font.Font("font.ttf", threades.resize_pt(16))
@@ -534,7 +534,7 @@ class upgrade_button:
         self.win_flag = True
 
         # Pausing the update thread
-        threades.pause_update_thread()
+        #threades.pause_update_thread()
         
         #  Creating Custom label style
         myfont2 = pygame.font.Font("font.ttf", threades.resize_pt(16))
@@ -704,7 +704,7 @@ class buysell_button:
         self.win_flag = True
 
         # Pausing the update thread
-        threades.pause_update_thread()
+        #threades.pause_update_thread()
 
         # Creating custom label style1
         myfont2 = pygame.font.Font("font.ttf",threades.resize_pt(16))

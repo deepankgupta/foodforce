@@ -37,7 +37,7 @@ aS'Father, this is no village, where are the villagers? A village without people
 p6
 aS'Kamat'
 p7
-aS'Yes, this is the place where the Abujamara people will move. The Abujmara village was situated on the banks or river Ganga. Mother Ganga cursed the people of Abujamara by changing its course of flow and flooding the Abujamara village.'
+aS'Yes, this is the place where the Abujamara people will move. The Abujmara village was situated on the banks of river Ganga. Mother Ganga cursed the people of Abujamara by changing its course of flow and flooding the Abujamara village.'
 p8
 ag7
 aS'The people of Abujamara are homeless right now. They came to our village seeking help and the Panchayat decided to clear this forest and provide the land to the poor people. It is our job to help them establish a village on this land.'
@@ -553,7 +553,7 @@ a(lp3
 (lp4
 S'Kamat'
 p5
-aS'You must know son, technology upgrades provide better buildings with capacity to house more workers and produce more resources. Thus, they are usually helpful in increasing the prosperity of the village. Do an upgrade of the workshop to level 2. Click on the UPGRADE Button and then select Workshop and click upgrade.'
+aS'You must know son, technology upgrades provide better buildings with capacity to house more workers and produce more resources. Thus, they are usually helpful in increasing the prosperity of the village. Do an upgrade of the workshop to level 2. Click on the Upgrade Button and then select Workshop and click upgrade.'
 p6
 aaS'tech.png'
 p7
@@ -605,7 +605,7 @@ a(lp3
 (lp4
 S'Kamat'
 p5
-aS'Son, now upgrade every facility type to level 2. You can also notice that information related to the upgrade is given in the upgrade window whenever you select any facility.'
+aS'Son, now upgrade every facility type to level 1. You can also notice that information related to the upgrade is given in the upgrade window whenever you select any facility.'
 p6
 ag5
 aS'When you will upgrade all the facilities, you will notice a considerable change in the indicators of the village.'
@@ -1199,7 +1199,7 @@ p8
 ag5
 aS'The signs are there in the animals. Look how the cattle and the sheep are getting restless. They are the ones who know first that the Gods are angry.'
 p9
-aaS'earthquake 3.png'
+aaS'earthquake_st.png'
 p10
 aaa.(lp0
 S'action'
@@ -1239,7 +1239,7 @@ p10
 ag7
 aS'Dont worry brother; I will rebuild the village to its former glory.'
 p11
-aaS'earthquake 3.png'
+aaS'earthquake_st.png'
 p12
 aaa.(lp0
 S'action'

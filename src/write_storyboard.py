@@ -45,7 +45,7 @@ def write_data():
     pickle.dump(actionData,output)
     
     chatText = ['Son','Father, this is no village, where are the villagers? A village without people is like lake without water.''',
-    'Kamat','Yes, this is the place where the Abujamara people will move. The Abujmara village was situated on the banks or river Ganga. Mother Ganga cursed the people of Abujamara by changing its course of flow and flooding the Abujamara village.',
+    'Kamat','Yes, this is the place where the Abujamara people will move. The Abujmara village was situated on the banks of river Ganga. Mother Ganga cursed the people of Abujamara by changing its course of flow and flooding the Abujamara village.',
     'Kamat','The people of Abujamara are homeless right now. They came to our village seeking help and the Panchayat decided to clear this forest and provide the land to the poor people. It is our job to help them establish a village on this land.',
     'Kamat','If you had been at my place, how would you bring life back to this village?',
     'Son','Father, I feel that the first requirement of the people of the village is shelter.',
@@ -265,7 +265,7 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
-    chatText = ['Kamat','You must know son, technology upgrades provide better buildings with capacity to house more workers and produce more resources. Thus, they are usually helpful in increasing the prosperity of the village. Do an upgrade of the workshop to level 2. Click on the UPGRADE Button and then select Workshop and click upgrade.']
+    chatText = ['Kamat','You must know son, technology upgrades provide better buildings with capacity to house more workers and produce more resources. Thus, they are usually helpful in increasing the prosperity of the village. Do an upgrade of the workshop to level 2. Click on the Upgrade Button and then select Workshop and click upgrade.']
 
     action = [1,[chatText,'tech.png']]
     actionData = ['action',action]
@@ -285,7 +285,7 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
-    chatText = ['Kamat','Son, now upgrade every facility type to level 2. You can also notice that information related to the upgrade is given in the upgrade window whenever you select any facility.',
+    chatText = ['Kamat','Son, now upgrade every facility type to level 1. You can also notice that information related to the upgrade is given in the upgrade window whenever you select any facility.',
     'Kamat','When you will upgrade all the facilities, you will notice a considerable change in the indicators of the village.',
     'Son','Okay, father.']
     
@@ -528,7 +528,7 @@ def write_data():
                 'Son','Why do you think so, father?',
                 'Kamat','The signs are there in the animals. Look how the cattle and the sheep are getting restless. They are the ones who know first that the Gods are angry.']
     
-    action = [1,[chatText,'earthquake 3.png']]
+    action = [1,[chatText,'earthquake_st.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
@@ -549,7 +549,7 @@ def write_data():
                 'Son','Dont worry brother; I will rebuild the village to its former glory.']
     
 
-    action = [1,[chatText,'earthquake 3.png']]
+    action = [1,[chatText,'earthquake_st.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
