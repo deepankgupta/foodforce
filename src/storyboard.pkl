@@ -399,7 +399,9 @@ S'Kamat'
 p5
 aS'We have done all we can. You are learning fast, someday you will take my place.'
 p6
-aaNaaa.(lp0
+aaS'sharpergirl.png'
+p7
+aaa.(lp0
 S'action'
 p1
 a(lp2
@@ -1006,7 +1008,9 @@ aS'Son'
 p7
 aS'Thank you, father.'
 p8
-aaNaaa.(lp0
+aaS'happy2.png'
+p9
+aaa.(lp0
 S'actionTrue'
 p1
 a(lp2

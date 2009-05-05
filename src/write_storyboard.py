@@ -189,7 +189,7 @@ def write_data():
 
     chatText = ['Kamat','We have done all we can. You are learning fast, someday you will take my place.']
 
-    action = [1,[chatText,None]]
+    action = [1,[chatText,'sharpergirl.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
@@ -422,7 +422,7 @@ def write_data():
     chatText = ['Kamat','Well done Son. You have proved your capabilities once again.',
     'Son','Thank you, father.']
 
-    action = [1,[chatText,None]]
+    action = [1,[chatText,'happy2.png']]
     actionData = ['actionTrue',action]
     pickle.dump(actionData,output)
 
