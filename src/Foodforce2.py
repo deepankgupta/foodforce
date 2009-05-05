@@ -673,6 +673,7 @@ def main():
     mouse_flag = False
     chat_screen=chat.chat()
         
+    
     model.game_controller.reset_time()
     # The main infinite loop
     while True:

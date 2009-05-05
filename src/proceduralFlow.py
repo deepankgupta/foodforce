@@ -336,10 +336,10 @@ class checkConditions:
         Flag = True
         
         for conditions in self.conditionslist:
-            conditions.checkCondition(events)
+            print conditions.checkCondition(events)
             Flag = Flag and conditions.checkCondition(events)
-            #print Flag
-        #print 'end'
+            print Flag
+        print 'end'
             
         if self.closure == 'AND':
             if Flag:
