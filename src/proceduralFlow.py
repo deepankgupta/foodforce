@@ -744,6 +744,7 @@ def openStoryBoardFile(file = 'storyboard.pkl'):
 def closeStoryBoardFile():
     storyboardfile.close()
 
+
 # Functions to handle events and conditions
 class storyboardFlow:
     

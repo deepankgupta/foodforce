@@ -49,7 +49,7 @@ def write_data():
     'Kamat','The people of Abujamara are homeless right now. They came to our village seeking help and the Panchayat decided to clear this forest and provide the land to the poor people. It is our job to help them establish a village on this land.',
     'Kamat','If you had been at my place, how would you bring life back to this village?',
     'Son','Father, I feel that the first requirement of the people of the village is shelter.',
-    'Kamat','Very rightly said son. Every person needs a house to live in. Shelter is among one of the most basic necessities of a person. Build 3 huts to shelter the people of Abujamara. You can build a hut by clicking on Build Facility->house.']
+    'Kamat','Very rightly said son. Every person needs a house to live in. Shelter is among one of the most basic necessities of a person. Build 3 huts to shelter the people of Abujamara. You can setup a hut by clicking on Build Facility->house.']
     
     action = [1,[chatText,'Barren-Land.png']]
     actionData = ['action',action]
@@ -61,16 +61,16 @@ def write_data():
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
     
-    chatText = ['Kamat','When you build a hut, some amount of your resources are utilized. For each Hut that you build, 10 units of Building Material, 8 units of Tools and 8 units of Water are used. Also, some of your manpower is employed in making the hut. Similarly, resources are used to build each facility.',
+    chatText = ['Kamat','When you setup a hut, some amount of your resources are utilized. For each Hut that you setup, 10 units of Building Material, 8 units of Tools and 8 units of Water are used. Also, some of your manpower is employed in making the hut. Similarly, resources are used to setup each facility.',
     'Son','Okay, Father.',
-    'Kamat','When you build a Hut the Housing Indicator of the Village increases.The indicators are shown on the bottom right hand side of the screen. The indicators are a measure, which tell about the growth and prosperity of the village.',
+    'Kamat','When you setup a Hut the Housing Indicator of the Village increases.The indicators are shown on the bottom right hand side of the screen. The indicators are a measure, which tell about the growth and prosperity of the village.',
     'Son','Okay, Father.']
     
     action = [1,[chatText,'thatched-huts.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    chatText = ['Kamat','Son, the next basic necessity of a village is Food. The people need food and water to survive. A well will draw water from the ground and provide fresh clean water to everybody. To build a well click on Build Facility->Well. Build a well now.']
+    chatText = ['Kamat','Son, the next basic necessity of a village is Food. The people need food and water to survive. A well will draw water from the ground and provide fresh clean water to everybody. To setup a well click on Build Facility->Well. Build a well now.']
 
     action = [1,[chatText,'thatched-huts.png']]
     actionData = ['action',action]
@@ -84,7 +84,7 @@ def write_data():
     pickle.dump(condnData,output)
     
     chatText = ['Kamat','Well done son, You are going good.',
-    'Kamat','To grow food, you will need to build farms. Since the soil is fertile, we can grow any crop here. It is best to provide a healthy mix of Rice, Beans and Vegetables and Fruits. This will ensure healthy variety and nutrition. Build a farm now.']
+    'Kamat','To grow food, you will need to setup farms. Since the soil is fertile, we can grow any crop here. It is best to provide a healthy mix of Rice, Beans and Vegetables and Fruits. This will ensure healthy variety and nutrition. Build a farm now.']
     
     action = [1,[chatText,'farm2.png']]
     actionData = ['action',action]
@@ -148,7 +148,7 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    chatText = ['Kamat','Son all the facilities require water to function properly, you must build a well for this purpose.',
+    chatText = ['Kamat','Son all the facilities require water to function properly, you must setup a well for this purpose.',
                 'Son','Okay, Father']
     
     action = [1,[chatText,'withbooks.png']]
@@ -161,7 +161,7 @@ def write_data():
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
 
-    chatText = ['Kamat','Son, as you can see a lot of people in the village are sitting idle. That is like a waste of their time and energy. You should build workshops for the people who are not involved in agriculture. The workshop would provide craftsmen, potters and metal workers a place to work. Build a workshop for them to work.',
+    chatText = ['Kamat','Son, as you can see a lot of people in the village are sitting idle. That is like a waste of their time and energy. You should setup workshops for the people who are not involved in agriculture. The workshop would provide craftsmen, potters and metal workers a place to work. Build a workshop for them to work.',
     'Son','Definitely father.']
 
     action = [1,[chatText,'cover09.png']]
@@ -293,11 +293,11 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
-    condn1 = [True,2,'HOSPITAL','','==','',0]
-    condn2 = [True,2,'HOUSE','','==','',0]
-    condn3 = [True,2,'SCHOOL','','==','',0]
-    condn4 = [True,2,'FARM','','==','',0]
-    condn5 = [True,2,'FOUNTAIN','','==','',0]
+    condn1 = [False,2,'HOSPITAL','','>=','',1]
+    condn2 = [False,2,'HOUSE','','>=','',1]
+    condn3 = [False,2,'SCHOOL','','>=','',1]
+    condn4 = [False,2,'FARM','','>=','',1]
+    condn5 = [False,2,'FOUNTAIN','','>=','',1]
     condnlist = [condn1,condn2,condn3,condn4,condn5]
     condnGlobal = ['AND',-1,condnlist]
     condnData = ['condition',condnGlobal]
@@ -392,7 +392,7 @@ def write_data():
     'Kamat','Thats a good idea, it has been years since I saw them.',
     'Ajmal','Thank you father.',
     'Son','Bhaiyya, what do you reckon will happen in the coming days.',
-    'Ajmal','Prices of the commodities will fall, do not try to build new things during this period and focus on trading well.',
+    'Ajmal','Prices of the commodities will fall, do not try to setup new things during this period and focus on trading well.',
     'Ajmal','Smart trading will ensure that you do not lose the money in your treasury. According to my calculations, things will improve in the next year.',
     'Ajmal','So at the end of 4 months, do not allow the indicator values to below 20%. Also, maintain atleast Rs. 5,000 In the treasury at all times.',
     'Ajmal','Farewell brother, hope you will do well.']

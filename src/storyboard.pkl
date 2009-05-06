@@ -49,7 +49,7 @@ ag5
 aS'Father, I feel that the first requirement of the people of the village is shelter.'
 p11
 ag7
-aS'Very rightly said son. Every person needs a house to live in. Shelter is among one of the most basic necessities of a person. Build 3 huts to shelter the people of Abujamara. You can build a hut by clicking on Build Facility->house.'
+aS'Very rightly said son. Every person needs a house to live in. Shelter is among one of the most basic necessities of a person. Build 3 huts to shelter the people of Abujamara. You can setup a hut by clicking on Build Facility->house.'
 p12
 aaS'Barren-Land.png'
 p13
@@ -81,14 +81,14 @@ a(lp3
 (lp4
 S'Kamat'
 p5
-aS'When you build a hut, some amount of your resources are utilized. For each Hut that you build, 10 units of Building Material, 8 units of Tools and 8 units of Water are used. Also, some of your manpower is employed in making the hut. Similarly, resources are used to build each facility.'
+aS'When you setup a hut, some amount of your resources are utilized. For each Hut that you setup, 10 units of Building Material, 8 units of Tools and 8 units of Water are used. Also, some of your manpower is employed in making the hut. Similarly, resources are used to setup each facility.'
 p6
 aS'Son'
 p7
 aS'Okay, Father.'
 p8
 ag5
-aS'When you build a Hut the Housing Indicator of the Village increases.The indicators are shown on the bottom right hand side of the screen. The indicators are a measure, which tell about the growth and prosperity of the village.'
+aS'When you setup a Hut the Housing Indicator of the Village increases.The indicators are shown on the bottom right hand side of the screen. The indicators are a measure, which tell about the growth and prosperity of the village.'
 p9
 ag7
 ag8
@@ -103,7 +103,7 @@ a(lp3
 (lp4
 S'Kamat'
 p5
-aS'Son, the next basic necessity of a village is Food. The people need food and water to survive. A well will draw water from the ground and provide fresh clean water to everybody. To build a well click on Build Facility->Well. Build a well now.'
+aS'Son, the next basic necessity of a village is Food. The people need food and water to survive. A well will draw water from the ground and provide fresh clean water to everybody. To setup a well click on Build Facility->Well. Build a well now.'
 p6
 aaS'thatched-huts.png'
 p7
@@ -138,7 +138,7 @@ p5
 aS'Well done son, You are going good.'
 p6
 ag5
-aS'To grow food, you will need to build farms. Since the soil is fertile, we can grow any crop here. It is best to provide a healthy mix of Rice, Beans and Vegetables and Fruits. This will ensure healthy variety and nutrition. Build a farm now.'
+aS'To grow food, you will need to setup farms. Since the soil is fertile, we can grow any crop here. It is best to provide a healthy mix of Rice, Beans and Vegetables and Fruits. This will ensure healthy variety and nutrition. Build a farm now.'
 p7
 aaS'farm2.png'
 p8
@@ -293,7 +293,7 @@ a(lp3
 (lp4
 S'Kamat'
 p5
-aS'Son all the facilities require water to function properly, you must build a well for this purpose.'
+aS'Son all the facilities require water to function properly, you must setup a well for this purpose.'
 p6
 aS'Son'
 p7
@@ -329,7 +329,7 @@ a(lp3
 (lp4
 S'Kamat'
 p5
-aS'Son, as you can see a lot of people in the village are sitting idle. That is like a waste of their time and energy. You should build workshops for the people who are not involved in agriculture. The workshop would provide craftsmen, potters and metal workers a place to work. Build a workshop for them to work.'
+aS'Son, as you can see a lot of people in the village are sitting idle. That is like a waste of their time and energy. You should setup workshops for the people who are not involved in agriculture. The workshop would provide craftsmen, potters and metal workers a place to work. Build a workshop for them to work.'
 p6
 aS'Son'
 p7
@@ -627,52 +627,52 @@ p3
 aI-1
 a(lp4
 (lp5
-I01
+I00
 aI2
 aS'HOSPITAL'
 p6
 aS''
 p7
-aS'=='
+aS'>='
 p8
 ag7
-aI0
+aI1
 aa(lp9
-I01
+I00
 aI2
 aS'HOUSE'
 p10
 ag7
 ag8
 ag7
-aI0
+aI1
 aa(lp11
-I01
+I00
 aI2
 aS'SCHOOL'
 p12
 ag7
 ag8
 ag7
-aI0
+aI1
 aa(lp13
-I01
+I00
 aI2
 aS'FARM'
 p14
 ag7
 ag8
 ag7
-aI0
+aI1
 aa(lp15
-I01
+I00
 aI2
 aS'FOUNTAIN'
 p16
 ag7
 ag8
 ag7
-aI0
+aI1
 aaaa.(lp0
 S'action'
 p1
@@ -901,7 +901,7 @@ ag7
 aS'Bhaiyya, what do you reckon will happen in the coming days.'
 p27
 ag9
-aS'Prices of the commodities will fall, do not try to build new things during this period and focus on trading well.'
+aS'Prices of the commodities will fall, do not try to setup new things during this period and focus on trading well.'
 p28
 ag9
 aS'Smart trading will ensure that you do not lose the money in your treasury. According to my calculations, things will improve in the next year.'
