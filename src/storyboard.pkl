@@ -1235,7 +1235,7 @@ p7
 aS'But bhaiyya, I wouldnt  be able to do all this without Fathers help and support.'
 p8
 ag5
-aS'Father had a vision for this village. It had taken him a lifetime to build this village. You must work for his mission.'
+aS'Father had a vision for this village. It had taken him a lifetime to setup this village. You must work for his mission.'
 p9
 ag5
 aS'You must re build everything and get the village back on the path to progress and prosperity.'

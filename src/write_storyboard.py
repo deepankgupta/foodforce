@@ -544,7 +544,7 @@ def write_data():
     
     chatText = ['Ajmal','Brother, the responsibility to manage the village is up to you now. you must help the people of the village in recovering from this calamity.',
                 'Son','But bhaiyya, I wouldnt  be able to do all this without Fathers help and support.',
-                'Ajmal','Father had a vision for this village. It had taken him a lifetime to build this village. You must work for his mission.',
+                'Ajmal','Father had a vision for this village. It had taken him a lifetime to setup this village. You must work for his mission.',
                 'Ajmal','You must re build everything and get the village back on the path to progress and prosperity.',
                 'Son','Dont worry brother; I will rebuild the village to its former glory.']
     
