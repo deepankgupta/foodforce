@@ -20,6 +20,8 @@
 
 import Exceptions
 import pickle
+import pygame
+#import gui_buttons
 
 def init_cons(file_name):
     """ used to read the values of constant from data file file_name
@@ -69,13 +71,14 @@ def init_cons(file_name):
     CONS_FOUNTAIN = pickle.load(data_file)
 
     # DICTIONARIES OF RESOURCES BEING PRODUCED BY THE FACILITY PER BUILDING
-    global PROD_HOUSE, PROD_HOSPITAL, PROD_SCHOOL, PROD_WORKSHOP, MAX_FOOD_PROD_PER_FARM, PROD_FARM,PROD_FOUNTAIN
+    global PROD_HOUSE, PROD_HOSPITAL, PROD_SCHOOL, PROD_WORKSHOP, MAX_FOOD_PROD_PER_FARM, PROD_FARM,DEF_FARM_PROD,PROD_FOUNTAIN
     PROD_HOUSE = pickle.load(data_file)
     PROD_HOSPITAL = pickle.load(data_file)
     PROD_SCHOOL = pickle.load(data_file)
     PROD_WORKSHOP = pickle.load(data_file)
     MAX_FOOD_PROD_PER_FARM = pickle.load(data_file)
     PROD_FARM = pickle.load(data_file)
+    DEF_FARM_PROD = pickle.load(data_file)
     PROD_FOUNTAIN = pickle.load(data_file)
 
     # MANPOWER DISTRIBUTION CHANGED BY EACH FACILITY TO RUN THE FACILITY, THIS WILL INCREASE OR DECREASE AT BUILDIN OR UPGRADATION OF A FACILITY AND NOT AT EVERY TURN
@@ -140,6 +143,10 @@ def init_cons(file_name):
     INIT_MONEY = pickle.load(data_file)
     MAX_MONEY = pickle.load(data_file)
 
+    #Initial Level
+    global INIT_LEVEL
+    INIT_LEVEL = pickle.load(data_file)
+    
     ## VILLAGE QUANTITY
     # RESOURCES
     global INIT_WATER, INIT_BUILDMAT, INIT_TOOLS, INIT_MEDICINE, INIT_BOOKS 
@@ -216,10 +223,11 @@ def init_cons(file_name):
     FOOD_DIST_DICT_INIT = pickle.load(data_file)
 
     #MANPOWER REGARDING CONSTANTS
-    global INIT_PEOPLE, FOOD_PP, MAX_PER_FOOD_CONS
+    global INIT_PEOPLE, FOOD_PP, MAX_PER_FOOD_CONS,POPULATION_CHANGE
     INIT_PEOPLE = pickle.load(data_file)
     FOOD_PP= pickle.load(data_file)
     MAX_PER_FOOD_CONS = pickle.load(data_file)
+    POPULATION_CHANGE = pickle.load(data_file)
 
     # DICTIONARY OF PARAMETERS ON WHICH THE INDICATORS DEPEND WITH THEIR WEIGHT (AS RATIO)
     global PDICT_HOUSING, PDICT_HEALTH, PDICT_NUTRITION, PDICT_EDUCATION, PDICT_TRAINING 
@@ -228,7 +236,7 @@ def init_cons(file_name):
     PDICT_NUTRITION = pickle.load(data_file)
     PDICT_EDUCATION = pickle.load(data_file)
     PDICT_TRAINING = pickle.load(data_file)
-
+    
 init_cons('data.pkl')
 
 def init_obj():
@@ -244,17 +252,17 @@ def init_obj():
     '''facility initializaion '''
     #house
     global House, School, Hospital, Farm, Workshop, Fountain
-    House = Facility('HOUSE',COST_HOUSE,COST_LEVEL_HOUSE,PROD_HOUSE,CONS_HOUSE)
+    House = Facility('HOUSE',COST_HOUSE,COST_LEVEL_HOUSE,PROD_HOUSE,CONS_HOUSE,level = INIT_LEVEL)
     #school
-    School = Facility('SCHOOL',COST_SCHOOL,COST_LEVEL_SCHOOL,PROD_SCHOOL,CONS_SCHOOL)
+    School = Facility('SCHOOL',COST_SCHOOL,COST_LEVEL_SCHOOL,PROD_SCHOOL,CONS_SCHOOL,level = INIT_LEVEL)
     #hospital
-    Hospital = Facility('HOSPITAL',COST_HOSPITAL,COST_LEVEL_HOSPITAL,PROD_HOSPITAL,CONS_HOSPITAL)
+    Hospital = Facility('HOSPITAL',COST_HOSPITAL,COST_LEVEL_HOSPITAL,PROD_HOSPITAL,CONS_HOSPITAL,level = INIT_LEVEL)
     #farm
-    Farm = Facility('FARM',COST_FARM,COST_LEVEL_FARM,PROD_FARM,CONS_FARM)
+    Farm = Facility('FARM',COST_FARM,COST_LEVEL_FARM,PROD_FARM,CONS_FARM,level = INIT_LEVEL)
     #workshop
-    Workshop = Facility('WORKSHOP',COST_WORKSHOP,COST_LEVEL_WORKSHOP,PROD_WORKSHOP,CONS_WORKSHOP)
+    Workshop = Facility('WORKSHOP',COST_WORKSHOP,COST_LEVEL_WORKSHOP,PROD_WORKSHOP,CONS_WORKSHOP,level = INIT_LEVEL)
     #fountain
-    Fountain = Facility('FOUNTAIN',COST_FOUNTAIN,COST_LEVEL_FOUNTAIN,PROD_FOUNTAIN,CONS_FOUNTAIN)
+    Fountain = Facility('FOUNTAIN',COST_FOUNTAIN,COST_LEVEL_FOUNTAIN,PROD_FOUNTAIN,CONS_FOUNTAIN,level = INIT_LEVEL)
 
     ''' initialization of resources   '''
     global Water, Buildmat, Tools, Medicine, Book, Rice, Wheat, Beans, Sugar, Salt, Oil
@@ -318,8 +326,6 @@ def init_obj():
 
     global facilities_list_sprites
     facilities_list_sprites = { 'HOUSE':house_sprite_list, 'HOSPITAL':hospital_sprite_list, 'FARM':farm_sprite_list, 'SCHOOL':school_sprite_list, 'WORKSHOP':workshop_sprite_list, 'FOUNTAIN':fountain_sprite_list}
-
-
 
 
 
@@ -1164,7 +1170,7 @@ class Resource:
         
     #Buy and sell methods
 
-    def buy(self, quantity, money, price = None):
+    def buy(self, quantity, money):
         """ This method is used to buy resources from the market.
         It takes quantity that is to be bought and the total money present
         with the village as parameters. It generates exception when the market
@@ -1180,10 +1186,7 @@ class Resource:
         
         if quantity > self.mquantity:
             raise Exceptions.Resources_Underflow_Exception
-        if price:
-            buy_price = price
-        else:
-            buy_price = self.price
+        buy_price = self.price
         cost = quantity * buy_price
         if cost < money.get_money():
             self.change_vquantity(quantity)
@@ -1193,7 +1196,7 @@ class Resource:
         else:
             raise Exceptions.Money_Underflow_Exception
 
-    def sell(self, quantity, money,price = None):
+    def sell(self, quantity, money):
         """ This method is used to sell resources to the market
         It generates an exeption when the village has less resources
         than what is demanded to sell. returns the cost that the village
@@ -1208,10 +1211,7 @@ class Resource:
         """
         if quantity > self.vquantity:
             raise Exceptions.Resources_Underflow_Exception
-        if price:
-            sell_price = price
-        else:
-            sell_price = self.price
+        sell_price = self.price
         cost = quantity * sell_price
         self.change_vquantity(-quantity)
         self.change_mquantity(quantity)
@@ -1766,20 +1766,20 @@ class People:
 
         for i in range(len(facilities_list)):
             name = facilities_list[i].get_name()
-            if name == 'HOUSING':
-                self.no_of_ppl_sheltered = facilities_list[i].get_number() * MANP_CH_HOUSE['SHELTERED PEOPLE']
+            if name == 'HOUSE':
+                self.no_of_ppl_sheltered = facilities_list[i].get_number() * MANP_CH_HOUSE['SHELTERED PEOPLE']*(1+facilities_list[i].get_level()*facilities_list[i].level_incr_prod)
 
         
         for i in range(len(facilities_list)):
             name = facilities_list[i].get_name()
             if name == 'HOSPITAL':
-                self.no_of_ppl_healthy = facilities_list[i].get_number() * MANP_CH_HOSPITAL['HEALTHY PEOPLE']
+                self.no_of_ppl_healthy = facilities_list[i].get_number() * MANP_CH_HOSPITAL['HEALTHY PEOPLE']*(1+facilities_list[i].get_level()*facilities_list[i].level_incr_prod)
 
 
         for i in range(len(facilities_list)):
             name = facilities_list[i].get_name()
             if name == 'SCHOOL':
-                self.no_of_ppl_educated = facilities_list[i].get_number() * MANP_CH_SCHOOL['EDUCATED PEOPLE']
+                self.no_of_ppl_educated = facilities_list[i].get_number() * MANP_CH_SCHOOL['EDUCATED PEOPLE']*(1+facilities_list[i].get_level()*facilities_list[i].level_incr_prod)
 
         self.check_bounds()
         return resources
@@ -1835,6 +1835,79 @@ class Money:
             self.money = MAX_MONEY
         if(self.money < 0):
             raise Exceptions.Money_Underflow_Exception
+        
+class game_time():
+    def __init__(self,conversion_factor=3000):
+        self.level_iteration_time=0
+        self.level_global_time=0
+        self.clock = pygame.time.Clock()
+        self.years=0
+        self.months=0
+        self.total_days = 0
+        self.days=0
+        self.time_help=0                                 #this is not of any use right now, I have put it for future use, so no need to worry now
+        self.conversion_factor= conversion_factor       #this variable allows you to decide how many seconds(in milli) should be counted as a day      
+        self.help_update_value=0                    #it is used while updating the value of days etc
+        
+    def update_level_time(self,check_flag=True):
+        if check_flag==True:
+            if True:
+                self.level_iteration_time=self.clock.tick()
+                if self.level_iteration_time<1000:
+                    #print 'global time updated'
+                    self.level_global_time+=self.level_iteration_time
+        else :
+            self.level_iteration_time=self.clock.tick()
+            if self.level_iteration_time<1000:
+                self.level_global_time+=self.level_iteration_time
+                #print 'global time updated'
+                
+        self.update_converted_global_time()
+                
+    def get_global_time(self):
+        return self.level_global_time
+    
+    def get_iteration_time(self):
+        return self.level_iteration_time
+            
+    def reset_time(self):
+        self.level_iteration_time=0
+        self.level_global_time=0
+        self.years=0
+        self.total_days = 0
+        self.months=0
+        self.days=0
+        self.help_update_value=0
+        
+    def update_converted_global_time(self):
+        self.time_help=self.level_global_time-self.help_update_value
+        
+        #self.years=(self.level_global_time/(3000*365))
+        #self.time_help=int(self.level_global_time%(3000*365))
+        #print 'time_help is ', self.time_help
+        #print 'conversion factor is',self.conversion_factor
+        if self.time_help>=self.conversion_factor:
+            self.days=int(self.days+(self.time_help/self.conversion_factor))
+            self.total_days += int((self.time_help/self.conversion_factor))
+            self.help_update_value=self.level_global_time
+        #print 'days in updated part is', self.days
+        if self.days>31:
+            self.months=int(self.months+(self.days/31))
+            self.days=int(self.days%31)
+        if self.months>12:
+            self.years=int(self.years+(self.months/12))
+            self.months=int(self.months%12)
+            
+    def get_days(self):
+        return self.days
+    def get_total_days(self):
+        return self.total_days
+    def get_months(self):
+        return self.months
+    def get_years(self):
+        return self.years
+        
+game_controller=game_time()
 
 
 init_obj()

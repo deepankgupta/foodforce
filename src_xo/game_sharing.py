@@ -2,13 +2,14 @@ import olpcgames.mesh as mesh
 from sugar.presence import presenceservice
 import sys
 import types
-
+import pygame
 #from threades import *
 import threades
 import threading
 
+from time import sleep,time,ctime
 import gui
-from gui import *
+#from gui import *
 
 presenceService = presenceservice.get_instance()
 
@@ -333,18 +334,18 @@ class meshTrading:
         labelStyleCopy['font-color'] = color_blue
         #labelStyleCopy['font-color'] = font_color
     
-        self.win = Window(position = position_win, size = size_win, parent = threades.desktop, text = "Trade " ,style = win_style,shadeable = False, moveable = False)
+        self.win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = "Trade " ,style = win_style,shadeable = False, moveable = False)
         # Creating label
         label_text = '\n'+buddyName + ' wants to ' + trade + ' ' + quantity + ' units of '+ resource + '\n at $ '+ price 
-        message_label = Label(position = threades.resize_pos((5,5),(470.0,180.0),self.win.size),size = threades.resize_pos((460,120),(470.0,180.0),self.win.size), parent = self.win, text = label_text, style = labelStyleCopy)
+        message_label = gui.Label(position = threades.resize_pos((5,5),(470.0,180.0),self.win.size),size = threades.resize_pos((460,120),(470.0,180.0),self.win.size), parent = self.win, text = label_text, style = labelStyleCopy)
         
         # Creating button style
         myfont2 = pygame.font.Font("font.ttf", threades.resize_pt(16))
         button_style = gui.defaultButtonStyle.copy()
         button_style['font'] = myfont2
 
-        self.button_accept = Button(position = threades.resize_pos((100.0,130.0),(470.0,180.0),size_win), size = threades.resize_pos((100.0,40.0),(470.0,180.0),size_win), parent = self.win, text = " Accept ",style = button_style)
-        self.button_reject = Button(position = threades.resize_pos((300.0,130.0),(470.0,180.0),size_win), size = threades.resize_pos((100.0,40.0),(470.0,180.0),size_win), parent = self.win, text = " Reject ",style = button_style)
+        self.button_accept = gui.Button(position = threades.resize_pos((100.0,130.0),(470.0,180.0),size_win), size = threades.resize_pos((100.0,40.0),(470.0,180.0),size_win), parent = self.win, text = " Accept ",style = button_style)
+        self.button_reject = gui.Button(position = threades.resize_pos((300.0,130.0),(470.0,180.0),size_win), size = threades.resize_pos((100.0,40.0),(470.0,180.0),size_win), parent = self.win, text = " Reject ",style = button_style)
         
         self.button_accept.onClick = self.checkTrade
         self.button_reject.onClick = self.closeWin

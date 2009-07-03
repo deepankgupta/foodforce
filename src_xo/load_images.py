@@ -71,20 +71,7 @@ def graphics_layout(file_name):
     """
     data_file = open(file_name,'rb')
 
-    global House_tiles_list, Hospital_tiles_list, Farm_tiles, Workshop_tiles_list, School_tiles_list, Fountain_tiles, Earthquake_tiles, Man_tiles, Woman_tiles, Boy_tiles, Girl_tiles, Map_images
-    House_tiles_list = pickle.load(data_file)
-    Hospital_tiles_list = pickle.load(data_file)
-    Farm_tiles = pickle.load(data_file) 
-    Workshop_tiles_list = pickle.load(data_file)
-    School_tiles_list = pickle.load(data_file) 
-    Fountain_tiles = pickle.load(data_file)
-    Earthquake_tiles = pickle.load(data_file)
-    Man_tiles = pickle.load(data_file)
-    Woman_tiles = pickle.load(data_file)
-    Boy_tiles = pickle.load(data_file)
-    Girl_tiles = pickle.load(data_file)
-    Map_images = pickle.load(data_file)
-
+    
     # Saving the positions of all the facilities
     global workshop_posn_list, house_posn_list, hospital_posn_list, school_posn_list, farm_posn_list, fountain_posn_list
     workshop_posn_list = pickle.load(data_file)
@@ -96,7 +83,7 @@ def graphics_layout(file_name):
     global facilities_posn_list
     facilities_posn_list = pickle.load(data_file)
     # Saving the attributes for the villagers with each facility
-    global workshop_villagers, house_villagers, hospital_villagers, school_villagers, farm_villagers, fountain_villagers, facility_villagers 
+    global workshop_villagers, house_villagers, hospital_villagers, school_villagers, farm_villagers, fountain_villagers, facility_villagers,back_image_level1 
     workshop_villagers = pickle.load(data_file)
     house_villagers = pickle.load(data_file)
     hospital_villagers = pickle.load(data_file)
@@ -104,6 +91,7 @@ def graphics_layout(file_name):
     farm_villagers = pickle.load(data_file)
     fountain_villagers = pickle.load(data_file)
     facility_villagers = pickle.load(data_file)
+    back_image_level1=pickle.load(data_file)
     data_file.close()
 
 graphics_layout('graphics_layout.pkl')
@@ -122,92 +110,24 @@ def load_images():
     global Woman_tiles 
     global Boy_tiles 
     global Girl_tiles 
+    global Map_images
     
-    # Loading images of School
-    ss = Spritesheet('school_upgrade0.png')
-    tiles = ss.imgsat([( 0, 0, 410, 450),( 410, 0, 440, 450),( 850, 0, 440, 450),( 1290, 0, 440, 450)], -1)
-    School_tiles_list.append(tiles)        
     
-    ss = Spritesheet('school_upgrade1.png')
-    tiles = ss.imgsat([( 0, 0, 420, 450),( 420, 0, 420, 450),( 840, 0, 420, 450)], -1)
-    School_tiles_list.append(tiles)
-  
-    ss = Spritesheet('school_upgrade2.png')
-    tiles = ss.imgsat([( 0, 0, 420, 450),( 420, 0, 420, 450),( 840, 0, 420, 450)], -1)
-    School_tiles_list.append(tiles)
-  
-    ss = Spritesheet('school_upgrade3.png')
-    tiles = ss.imgsat([( 0, 0, 420, 450),( 420, 0, 420, 450),( 840, 0, 420, 450)], -1)
-    School_tiles_list.append(tiles)
+    House_tiles_list = [[],[],[],[]]
+    Hospital_tiles_list = [[],[],[],[]]
+    Farm_tiles = [[]]
+    Workshop_tiles_list = [[],[],[],[]]
+    School_tiles_list = [[],[],[],[]]
+    Fountain_tiles = [[]]
+    Man_tiles = []
+    Woman_tiles = []
+    Boy_tiles = []
+    Girl_tiles = []
+    Map_images = []
     
     
     
-    # Loading images of Workshop
-    ss = Spritesheet('workshop_upgrade0.png')
-    tiles = ss.imgsat([(   0, 0, 480, 500),( 480, 0,520, 500),( 1000, 0, 520, 500)], -1)
-    Workshop_tiles_list.append(tiles)        
     
-    ss = Spritesheet('workshop_upgrade1.png')
-    tiles = ss.imgsat([( 0, 0, 520, 500),( 520, 0, 520, 500),( 1040, 0, 520, 500)], -1)
-    Workshop_tiles_list.append(tiles)
- 
-    ss = Spritesheet('workshop_upgrade2.png')
-    tiles = ss.imgsat([(   0, 0, 515, 500),( 515, 0, 515, 500),( 1030, 0, 515, 500)], -1)
-    Workshop_tiles_list.append(tiles)
-    
-    ss = Spritesheet('workshop_upgrade3.png')
-    tiles = ss.imgsat([(   0, 0, 520, 520),( 520, 0, 520, 520),( 1040, 0, 760, 520)], -1)
-    Workshop_tiles_list.append(tiles)
-    
-    
-    # Loading images of House
-    ss = Spritesheet('house_upgrade0.png')
-    tiles = ss.imgsat([(   0, 0, 250, 300),( 250, 0, 280, 300),( 530, 0, 280, 300),( 810, 0, 280, 300)], -1)
-    House_tiles_list.append(tiles)        
-    
-    ss = Spritesheet('house_upgrade1.png')
-    tiles = ss.imgsat([(   0, 0, 260, 300),( 260, 0, 260, 300),( 520, 0, 260, 300)], -1)
-    House_tiles_list.append(tiles)
- 
-    ss = Spritesheet('house_upgrade2.png')
-    tiles = ss.imgsat([(   0, 0, 260, 300),( 260, 0, 260, 300),( 520, 0, 360, 300)], -1)
-    House_tiles_list.append(tiles)
-    
-    ss = Spritesheet('house_upgrade3.png')
-    tiles = ss.imgsat([(   0, 0, 260, 300),( 260, 0, 260, 300),( 520, 0, 360, 300)], -1)
-    House_tiles_list.append(tiles)
-    
-    
-    # Loading images of Hospital
-    
-    ss = Spritesheet('hospital_upgrade0.png')
-    tiles = ss.imgsat([(   0, 0, 340, 500),( 340, 0, 370, 500),( 710, 0, 370, 500),( 1080, 0, 363, 500)], -1)
-    Hospital_tiles_list.append(tiles)        
-    
-    ss = Spritesheet('hospital_upgrade1.png')
-    tiles = ss.imgsat([(   0, 0, 370, 500),( 370, 0, 370, 500),( 740, 0, 370, 500)], -1)
-    Hospital_tiles_list.append(tiles)
-    
-    ss = Spritesheet('hospital_upgrade2.png')
-    tiles = ss.imgsat([(   0, 0, 370, 500),( 370, 0, 370, 500),( 740, 0, 370, 500)], -1)
-    Hospital_tiles_list.append(tiles)
-    
-    ss = Spritesheet('hospital_upgrade3.png')
-    tiles = ss.imgsat([(   0, 0, 370, 500),( 370, 0, 370, 500),( 740, 0, 370, 500)], -1)
-    Hospital_tiles_list.append(tiles)
-    
-    # Loading of images of Farm
-    
-    ss = Spritesheet('farm.png')
-    tiles = ss.imgsat([(   0, 0, 500, 500),( 516, 0, 480, 500),( 1000, 0, 516, 500)], -1)
-    Farm_tiles.append(tiles)
-    
-    # Loading images of Fountain
-    
-    ss = Spritesheet('fountain.png')
-    tiles = ss.imgsat([( 0, 0, 140, 192),( 150, 0, 115, 192),( 285, 0, 130, 192),( 435, 0, 197, 192)], -1)
-    Fountain_tiles.append(tiles)
-
     # Loading images of People
     ss = Spritesheet('People.png')
     Man_tiles.append(ss.imgsat([(0,0,60,115),(60,1,60,115),(120,0,60,115),(60,1,60,115),    (0,117,60,113),(62,117,60,115),(120,117,60,112),(62,117,60,113),  (172,116,60,115),(172,116,60,115),(172,116,60,115),(172,116,60,115),  (170,0,60,115),(170,0,60,115),(170,0,60,115),(170,0,60,115)],-1))
@@ -247,3 +167,143 @@ def load_images():
     ss = Spritesheet('dot_market.png')
     tiles = ss.imgat(( 0, 0, 15, 15), -1)
     Map_images.append(tiles)
+    
+def load_images_facility(facility_name = '',level = 0):
+    ''' Loads the images of a facility of any level
+    '''
+    
+    global House_tiles_list
+    global Hospital_tiles_list
+    global Farm_tiles
+    global Workshop_tiles_list
+    global School_tiles_list
+    global Fountain_tiles
+    
+    
+    if facility_name == 'HOUSE':
+        
+        House_tiles_list = [[],[],[],[]]
+        if level == 0:
+            ss = Spritesheet('house_upgrade0.png')
+            tiles = ss.imgsat([(   0, 0, 250, 300),( 250, 0, 280, 300),( 530, 0, 280, 300),( 810, 0, 280, 300)], -1)
+            House_tiles_list[0] = tiles        
+            
+        if level == 1:
+            ss = Spritesheet('house_upgrade1.png')
+            tiles = ss.imgsat([(   0, 0, 260, 300),( 260, 0, 260, 300),( 520, 0, 260, 300)], -1)
+            House_tiles_list[1]= tiles
+            
+        if level == 2:
+            ss = Spritesheet('house_upgrade2.png')
+            tiles = ss.imgsat([(   0, 0, 260, 300),( 260, 0, 260, 300),( 520, 0, 360, 300)], -1)
+            House_tiles_list[2] = tiles
+            
+        if level == 3:
+            ss = Spritesheet('house_upgrade3.png')
+            tiles = ss.imgsat([(   0, 0, 260, 300),( 260, 0, 260, 300),( 520, 0, 360, 300)], -1)
+            House_tiles_list[3] = tiles
+                
+    if facility_name == 'WORKSHOP':
+        Workshop_tiles_list = [[],[],[],[]]
+        if level == 0:
+            ss = Spritesheet('workshop_upgrade0.png')
+            tiles = ss.imgsat([(   0, 0, 480, 500),( 480, 0,520, 500),( 1000, 0, 520, 500)], -1)
+            Workshop_tiles_list[0] = tiles
+        
+        if level == 1:
+            ss = Spritesheet('workshop_upgrade1.png')
+            tiles = ss.imgsat([( 0, 0, 520, 500),( 520, 0, 520, 500),( 1040, 0, 520, 500)], -1)
+            Workshop_tiles_list[1] = tiles
+        
+        if level == 2:
+            ss = Spritesheet('workshop_upgrade2.png')
+            tiles = ss.imgsat([(   0, 0, 515, 500),( 515, 0, 515, 500),( 1030, 0, 515, 500)], -1)
+            Workshop_tiles_list[2] = tiles
+        
+        if level == 3:
+            ss = Spritesheet('workshop_upgrade3.png')
+            tiles = ss.imgsat([(   0, 0, 520, 520),( 520, 0, 520, 520),( 1040, 0, 760, 520)], -1)
+            Workshop_tiles_list[3] = tiles
+            
+    if facility_name == 'SCHOOL':
+        School_tiles_list = [[],[],[],[]]
+        if level == 0:
+            ss = Spritesheet('school_upgrade0.png')
+            tiles = ss.imgsat([( 0, 0, 410, 450),( 410, 0, 440, 450),( 850, 0, 440, 450),( 1290, 0, 440, 450)], -1)
+            School_tiles_list[0] = tiles
+            
+        if level == 1:
+            ss = Spritesheet('school_upgrade1.png')
+            tiles = ss.imgsat([( 0, 0, 420, 450),( 420, 0, 420, 450),( 840, 0, 420, 450)], -1)
+            School_tiles_list[1] = tiles
+        
+        if level == 2:
+            ss = Spritesheet('school_upgrade2.png')
+            tiles = ss.imgsat([( 0, 0, 420, 450),( 420, 0, 420, 450),( 840, 0, 420, 450)], -1)
+            School_tiles_list[2] = tiles
+          
+        if level == 3:
+            ss = Spritesheet('school_upgrade3.png')
+            tiles = ss.imgsat([( 0, 0, 420, 450),( 420, 0, 420, 450),( 840, 0, 420, 450)], -1)
+            School_tiles_list[3] = tiles
+    
+    if facility_name == 'HOSPITAL':
+        Hospital_tiles_list = [[],[],[],[]]
+        if level == 0:
+            ss = Spritesheet('hospital_upgrade0.png')
+            tiles = ss.imgsat([(   0, 0, 340, 500),( 340, 0, 370, 500),( 710, 0, 370, 500),( 1080, 0, 363, 500)], -1)
+            Hospital_tiles_list[0] = tiles
+            
+        if level == 1:
+            ss = Spritesheet('hospital_upgrade1.png')
+            tiles = ss.imgsat([(   0, 0, 370, 500),( 370, 0, 370, 500),( 740, 0, 370, 500)], -1)
+            Hospital_tiles_list[1] = tiles
+            
+        if level == 2:
+            ss = Spritesheet('hospital_upgrade2.png')
+            tiles = ss.imgsat([(   0, 0, 370, 500),( 370, 0, 370, 500),( 740, 0, 370, 500)], -1)
+            Hospital_tiles_list[2] = tiles
+            
+        if level == 3:
+            ss = Spritesheet('hospital_upgrade3.png')
+            tiles = ss.imgsat([(   0, 0, 370, 500),( 370, 0, 370, 500),( 740, 0, 370, 500)], -1)
+            Hospital_tiles_list[3] = tiles
+                    
+    if facility_name == 'FARM':
+        Farm_tiles = [[]]
+        ss = Spritesheet('farm.png')
+        tiles = ss.imgsat([(   0, 0, 500, 500),( 516, 0, 480, 500),( 1000, 0, 516, 500)], -1)
+        Farm_tiles[0] = tiles
+        
+    if facility_name == 'FOUNTAIN':
+        Fountain_tiles = [[]]
+        ss = Spritesheet('fountain.png')
+        tiles = ss.imgsat([( 0, 0, 140, 192),( 150, 0, 115, 192),( 285, 0, 130, 192),( 435, 0, 197, 192)], -1)
+        Fountain_tiles[0] = tiles
+
+    
+    
+def load_images_ppl():
+    
+    global Man_tiles 
+    global Woman_tiles 
+    global Boy_tiles 
+    global Girl_tiles 
+    
+    Man_tiles = []
+    Woman_tiles = []
+    Boy_tiles = []
+    Girl_tiles = []
+    
+    # Loading images of People
+    ss = Spritesheet('People.png')
+    Man_tiles.append(ss.imgsat([(0,0,60,115),(60,1,60,115),(120,0,60,115),(60,1,60,115),    (0,117,60,113),(62,117,60,115),(120,117,60,112),(62,117,60,113),  (172,116,60,115),(172,116,60,115),(172,116,60,115),(172,116,60,115),  (170,0,60,115),(170,0,60,115),(170,0,60,115),(170,0,60,115)],-1))
+    
+    Woman_tiles.append(ss.imgsat([(225,0,60,115),(287,0,60,115),(346,0,60,115),(287,0,60,115),  (230,117,60,115),(288,117,60,115),(343,117,60,115),(288,117,60,115),  (398,115,60,115),(398,115,60,115),(398,115,60,115),(398,115,60,115),  (397,0,60,115),(397,0,60,115),(397,0,60,115),(397,0,60,115)],-1))
+    
+    Boy_tiles.append(ss.imgsat([(455,26,45,74),(517,26,45,74),(575,26,45,74),(517,26,45,74),  (455,130,45,74),(517,130,45,74),(575,130,45,74),(517,130,45,74),  (621,133,45,74),(621,133,45,74),(621,133,45,74),(621,133,45,74),  (621,26,45,74),(621,26,45,74),(621,26,45,74),(621,26,45,74)],-1))
+    
+    Girl_tiles.append(ss.imgsat([(670,18,45,90),(730,18,45,90),(786,19,45,90),(730,18,45,90),  (670,127,45,90),(730,127,45,90),(791,127,45,90),(730,127,45,90),  (842,119,45,90),(842,119,45,90),(842,119,45,90),(842,119,45,90),  (844,14,45,90),(844,14,45,90),(844,14,45,90),(844,14,45,90)],-1))
+    
+    
+    

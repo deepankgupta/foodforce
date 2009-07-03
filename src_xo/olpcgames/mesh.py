@@ -481,12 +481,12 @@ class PygameTube(ExportedGObject):
         log.debug("sending NewParticipants: %s" % ordered_bus_names)
         pass
 
-    @signal(dbus_interface=DBUS_IFACE, signature='s')
+    @signal(dbus_interface=DBUS_IFACE, signature='as')
     def Broadcast(self, content):
         '''This is the Broadcast signal; it sends a message to all other activity participants.'''
         pass
 
-    @method(dbus_interface=DBUS_IFACE, in_signature='s', out_signature='', sender_keyword='sender')
+    @method(dbus_interface=DBUS_IFACE, in_signature='as', out_signature='', sender_keyword='sender')
     def Tell(self, content, sender=None):
         '''This is the targeted-message interface; called when a message is received that was sent directly to me.'''
         PEvent.post(PEvent.Event(MESSAGE_UNI, handle=sender, content=content))
