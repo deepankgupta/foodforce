@@ -486,8 +486,50 @@ class starting_intro:
             model.iteration_time = clock.tick()
             model.global_time += model.iteration_time
         win.close()
+        
+
+        # Creating gui to select which storyboard to start
+        
+        self.sbWin = gui.Window(position = position_win, size = size_win, parent = desktop2, text = " FOODFORCE II : Choose Storyboard  " ,style = win_style,shadeable = False, closeable = False,moveable = False)
+
+        self.sbWin.surf.fill((0,0,0,170))
+        
+        # creating custom style for option box
+        op_style = gui.defaultOptionBoxStyle.copy()
+        op_style['font'] = myfont2
+        op_style['font-color'] = color_brown
+        op_style['autosize'] = True
+        op_style['word wrap'] = False
+        position_optionbox = threades.resize_pos((200.0,150.0),(800.0,600.0),size_win)        
+        self.storyboard1 = gui.OptionBox(position = position_optionbox, parent = self.sbWin, style = op_style, text = 'Storyboard1')
+        self.storyboard2 = gui.OptionBox(position = self.sbWin.nextPosition(threades.resize_pt_y(10)), parent = self.sbWin, style = op_style, text = 'Storyboard2')
+        
+        # Creating a button style
+        button_style = gui.defaultButtonStyle.copy()
+        button_style['font'] = myfont2
+        
+        self.select_button = gui.Button(position = threades.resize_pos((600,550),(800.0,600.0),size_win), size = threades.resize_pos((150,30),(800.0,600.0),size_win), parent = self.sbWin, text = "  Select  ",style = button_style)
+        self.select_button.onClick = self.set_selected_storyboard
+           
+        
 
         
+        
+    def set_selected_storyboard(self,button = None):
+        
+                
+        storyBoardFileName = ""
+        if self.storyboard1.value:
+            storyBoardFileName = "storyboard.pkl"
+            proceduralFlow.openStoryBoardFile(storyBoardFileName)
+            self.sbWin.close()
+        elif self.storyboard2.value:
+            storyBoardFileName = "storyboard.pkl"
+            proceduralFlow.openStoryBoardFile(storyBoardFileName)
+            self.sbWin.close()
+        else:
+            print "return"
+            return
         self.run = False
 
     def turnoff_startup_run(self,button = None):
@@ -656,9 +698,9 @@ def main():
     #surface_middle = pygame.transform.scale(surface3,threades.resize_pos((1200,560)))
     
     # Processing regarding the storyboard
-    proceduralFlow.openStoryBoardFile()
+    #proceduralFlow.openStoryBoardFile()
     storyboardObj = proceduralFlow.storyboardFlow()
-    proceduralFlow.openStoryBoardFile()
+    #proceduralFlow.openStoryBoardFile()
 
     gui_buttons.initialize_gui()
 
