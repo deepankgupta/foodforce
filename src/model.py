@@ -1170,7 +1170,7 @@ class Resource:
         """ This method is used to buy resources from the market.
         It takes quantity that is to be bought and the total money present
         with the village as parameters. It generates exception when the market
-        resources are less than that to be bought or if the village doesnot have
+        resources are less than that to be bought or if the village does not have
         enough money to buy the resources. returns the cost to buy the resources
         @ivar quantity quantity of resource to be bought from the market
         @type quantity integer
@@ -1183,7 +1183,11 @@ class Resource:
         if quantity > self.mquantity:
             raise Exceptions.Resources_Underflow_Exception
         buy_price = self.price
-        cost = quantity * buy_price
+        
+        print "in model price is", buy_price
+        print "in model quantity is",  quantity
+        cost = quantity * int(buy_price)
+        print "in model cost of buying is",  cost
         if cost < money.get_money():
             self.change_vquantity(quantity)
             self.change_mquantity(-quantity)
@@ -1208,7 +1212,7 @@ class Resource:
         if quantity > self.vquantity:
             raise Exceptions.Resources_Underflow_Exception
         sell_price = self.price
-        cost = quantity * sell_price
+        cost = quantity * int(sell_price)
         self.change_vquantity(-quantity)
         self.change_mquantity(quantity)
         money.change_money(cost)

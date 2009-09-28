@@ -55,8 +55,8 @@ except:
     
     new_screen_size = (800,600)
     
-#new_screen_size = original_screen_size
-screen = pygame.display.set_mode(new_screen_size,FULLSCREEN|SRCALPHA,32)
+new_screen_size = original_screen_size
+screen = pygame.display.set_mode(new_screen_size,0,32)
 
 # For initialising the style of the guI
 defaultStyle.init(gui)
@@ -598,16 +598,16 @@ def buy_res(res,res_quantity):
     
     
     try:
-        #print "The initial value of model.resources with the village is" , model.resources[i].get_vquantity()
-        #print "The initial value of model.resources with the market is" , model.resources[i].get_mquantity()
-        quantity=res_quantity
-        #print 'initial model.money is'
-        #print model.money.get_money()
+        print "The initial value of model.resources with the village is" , res.get_vquantity()
+        print "The initial value of model.resources with the market is" , res.get_mquantity()
+        quantity=int(res_quantity)
+        print 'initial model.money is'
+        print model.money.get_money()
         model.money = res.buy(quantity , model.money)
-        #print 'final model.money is'
-        #print model.money.get_money()
-        #print "The final value of model.resources with the village is" , model.resources[i].get_vquantity()
-        #print "The final value of model.resources with the market is" , model.resources[i].get_mquantity()
+        print 'final model.money is'
+        print model.money.get_money()
+        print "The final value of model.resources with the village is" , res.get_vquantity()
+        print "The final value of model.resources with the market is" , res.get_mquantity()
     except Exceptions.Money_Underflow_Exception:
         text ='You dont have enough money to buy this resource. Please change the quantity or try later'
         return text
@@ -641,15 +641,17 @@ def sell_res(res,res_quantity):
     
 
     try:
-        #print "The initial value of model.resources with the village is" , model.resources[i].get_vquantity()
-        #print "The initial value of model.resources with the market is" , model.resources[i].get_mquantity()
-        quantity=res_quantity
+        print "The initial value of model.resources with the village is" , res.get_vquantity()
+        print "The initial value of model.resources with the market is" , res.get_mquantity()
+        print "the price is", res.get_price()
+        print "quantity is",  res_quantity
+        quantity=int(res_quantity)
         model.money = res.sell(quantity , model.money)       
-        #print 'final model.money is'
-        #print model.money.get_money()
+        print 'final model.money is'
+        print model.money.get_money()
          
-        #print "The final value of model.resources with the village is" , model.resources[i].get_vquantity()
-        #print "The final value of model.resources with the market is" , model.resources[i].get_mquantity()
+        print "The final value of model.resources with the village is" , res.get_vquantity()
+        print "The final value of model.resources with the market is" , res.get_mquantity()
     except Exceptions.Resources_Underflow_Exception:
         text = 'The village doesnot have enough quantity to sell this resource to market'
         return text

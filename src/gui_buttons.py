@@ -148,8 +148,10 @@ class barChart:
             pygame.draw.rect(surface,(0,0,0),threades.resize_rect((100,50,350,200)))
             change = self.bar1Val - (threades.resize_pt_y(400)-y)*100/threades.resize_pt_y(200.0)
             self.bar1Val = self.bar1Val - change
-            self.bar2Val = self.bar2Val +change/2
-            self.bar3Val = self.bar3Val +change/2
+            ratio1 = self.bar2Val/(self.bar2Val +self.bar3Val)
+            ratio2 = self.bar3Val/(self.bar2Val +self.bar3Val)
+            self.bar2Val = self.bar2Val + ratio1*change
+            self.bar3Val = self.bar3Val + ratio2*change
             
             if self.bar1Val > 100:
                 self.bar1Val = 100
@@ -178,8 +180,10 @@ class barChart:
             pygame.draw.rect(surface,(0,0,0),threades.resize_rect((100,50,350,200)))
             change = self.bar2Val - (threades.resize_pt_y(400)-y)*100/threades.resize_pt_y(200.0)
             self.bar2Val = self.bar2Val - change
-            self.bar1Val = self.bar1Val + change/2
-            self.bar3Val = self.bar3Val + change/2
+            ratio1 = self.bar1Val/(self.bar1Val +self.bar3Val)
+            ratio2 = self.bar3Val/(self.bar1Val +self.bar3Val)
+            self.bar1Val = self.bar1Val + ratio1*change
+            self.bar3Val = self.bar3Val + ratio2*change
             
             if self.bar1Val > 100:
                 self.bar1Val = 100
@@ -208,8 +212,10 @@ class barChart:
             pygame.draw.rect(surface,(0,0,0),threades.resize_rect((100,50,350,200)))
             change = self.bar3Val - (threades.resize_pt_y(400)-y)*100/threades.resize_pt_y(200.0)
             self.bar3Val = self.bar3Val - change
-            self.bar2Val = self.bar2Val + change/2
-            self.bar1Val = self.bar1Val + change/2
+            ratio1 = self.bar2Val/(self.bar2Val +self.bar1Val)
+            ratio2 = self.bar1Val/(self.bar2Val +self.bar1Val)
+            self.bar2Val = self.bar2Val + ratio1*change
+            self.bar1Val = self.bar1Val + ratio2*change
             
             if self.bar1Val > 100:
                 self.bar1Val = 100
@@ -270,7 +276,7 @@ class setup_button:
 
         # Creating window
         self.win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = "Set up a facility for your village " ,style = win_style,shadeable = False)
-        #self.win.surf.blit(load_images.School_tiles_list[3][2],(0,0))
+        
         self.win.surf.set_alpha(140) 
         self.win.onClose = lambda button: self.close_win_safe()
         self.win_flag = True
@@ -703,7 +709,7 @@ class buysell_button:
         self.win_flag = True
 
         # Pausing the update thread
-        #threades.pause_update_thread()
+        threades.pause_update_thread()
 
         # Creating custom label style1
         myfont2 = pygame.font.Font("font.ttf",threades.resize_pt(16))

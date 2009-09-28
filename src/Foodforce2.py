@@ -679,7 +679,7 @@ def main():
     # The main infinite loop
     while True:
         #clock.tick()
-        model.game_controller.update_level_time()
+        model.game_controller.update_level_time(threades.update_thread_pause)
         
 
         mouse_flag = False
