@@ -56,7 +56,7 @@ except:
     new_screen_size = (800,600)
     
 new_screen_size = original_screen_size
-screen = pygame.display.set_mode(new_screen_size,0,32)
+screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
 
 # For initialising the style of the guI
 defaultStyle.init(gui)
@@ -1676,6 +1676,12 @@ class Transform:
         surface = pygame.transform.scale(surface, (int(x),int(y)))
         return surface
     
+    def village_boundary_covered(self):
+        min_x =  int(self.pos_x/self.ratio)
+        min_y = int(self.pos_y/self.ratio)
+        max_x = int((self.pos_x+930) /self.ratio)
+        max_y = int((self.pos_y+560) /self.ratio)
+        return [min_x, min_y, max_x, max_y]
     
   
    

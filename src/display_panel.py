@@ -431,9 +431,11 @@ class mini_map:
             threades.screen.blit(load_images.Map_images[6],posn)
             for i in range(len(model.facilities_list)):
                 for j in range(model.facilities_list[i].get_original_number()):
-                    posn = threades.resize_pos((930+int(load_images.facilities_posn_list[i][j][0]/33.3),390+int(load_images.facilities_posn_list[i][j][1]/28.57)))
+                    posn = threades.resize_pos((930+int(model.facilities_list_sprites[model.facilities_list[i].get_name()][j].position[0]/33.3),390+int(model.facilities_list_sprites[model.facilities_list[i].get_name()][j].position[1]/28.57)))
                     threades.screen.blit(load_images.Map_images[i],posn)
-        
+        rect_draw = threades.transform_obj.village_boundary_covered()
+        rect_final = threades.resize_rect((930+rect_draw[0]/33.33, 390 + rect_draw[1]/28.57, (rect_draw[2]-rect_draw[0])/33.33, (rect_draw[3]-rect_draw[1])/28.57))
+        pygame.draw.rect(threades.screen, (47, 47, 255, 180), rect_final, 2)
         self.update_flag = False
     
 
