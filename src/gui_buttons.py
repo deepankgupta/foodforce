@@ -308,7 +308,7 @@ class setup_button:
 
         #Creating new button style
         buttonsurf = pygame.image.load(os.path.join('art','button.png')).convert_alpha()
-        buttonsurf = pygame.transform.scale(buttonsurf, threades.resize_pos((36, 40)))
+        buttonsurf = pygame.transform.scale(buttonsurf, (36, threades.resize_pt_y( 40)))
         bt_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
         
         
@@ -555,7 +555,7 @@ class upgrade_button:
         
         #Creating new button style
         buttonsurf = pygame.image.load(os.path.join('art','button.png')).convert_alpha()
-        buttonsurf = pygame.transform.scale(buttonsurf, threades.resize_pos((36, 40)))
+        buttonsurf = pygame.transform.scale(buttonsurf, (36, threades.resize_pt_y( 40)))
         bt_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
         
         
@@ -811,7 +811,7 @@ class buysell_button:
 
         #Creating new button style
         buttonsurf = pygame.image.load(os.path.join('art','button.png')).convert_alpha()
-        buttonsurf = pygame.transform.scale(buttonsurf, threades.resize_pos((36, 40)))
+        buttonsurf = pygame.transform.scale(buttonsurf, (36, threades.resize_pt_y( 40)))
         button_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
 
         self.button_buy = gui.Button(position = threades.resize_pos((560.0,350.0),(800.0,600.0),size_win), size = threades.resize_pos((100.0,50.0),(800.0,600.0),size_win), parent = self.win, text = " Buy ",style = button_style)
