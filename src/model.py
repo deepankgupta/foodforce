@@ -818,7 +818,7 @@ class Facility:
                     resources[i].change_vquantity(-self.cost_build[name])
         if self.check_manp_res(people_obj) < 0:
             raise Exceptions.Low_Manpower_Resources_Exception
-        self.change_number(1)
+        
         return resources
 
     def build_end(self, people_obj):
@@ -833,6 +833,7 @@ class Facility:
         self.dict_res_build = FACILITY_MANP_DICT_BUILD[self._name]
         change = -self.dict_res_build['EMPLOYED PEOPLE IN CONSTRUCTION']
         people_obj.change_no_of_ppl_emp_in_cons(change)
+        self.change_number(1)
         
         return people_obj
 
