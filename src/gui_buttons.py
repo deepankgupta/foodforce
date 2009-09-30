@@ -148,10 +148,11 @@ class barChart:
             pygame.draw.rect(surface,(0,0,0),threades.resize_rect((100,50,350,200)))
             change = self.bar1Val - (threades.resize_pt_y(400)-y)*100/threades.resize_pt_y(200.0)
             self.bar1Val = self.bar1Val - change
-            ratio1 = self.bar2Val/(self.bar2Val +self.bar3Val)
-            ratio2 = self.bar3Val/(self.bar2Val +self.bar3Val)
+            ratio1 = self.bar2Val/(self.bar2Val +self.bar3Val+0.0)
+            ratio2 = self.bar3Val/(self.bar2Val +self.bar3Val+0.0)
             self.bar2Val = self.bar2Val + ratio1*change
             self.bar3Val = self.bar3Val + ratio2*change
+            
             
             if self.bar1Val > 100:
                 self.bar1Val = 100
@@ -180,8 +181,8 @@ class barChart:
             pygame.draw.rect(surface,(0,0,0),threades.resize_rect((100,50,350,200)))
             change = self.bar2Val - (threades.resize_pt_y(400)-y)*100/threades.resize_pt_y(200.0)
             self.bar2Val = self.bar2Val - change
-            ratio1 = self.bar1Val/(self.bar1Val +self.bar3Val)
-            ratio2 = self.bar3Val/(self.bar1Val +self.bar3Val)
+            ratio1 = self.bar1Val/(self.bar1Val +self.bar3Val+0.0)
+            ratio2 = self.bar3Val/(self.bar1Val +self.bar3Val+0.0)
             self.bar1Val = self.bar1Val + ratio1*change
             self.bar3Val = self.bar3Val + ratio2*change
             
@@ -212,8 +213,8 @@ class barChart:
             pygame.draw.rect(surface,(0,0,0),threades.resize_rect((100,50,350,200)))
             change = self.bar3Val - (threades.resize_pt_y(400)-y)*100/threades.resize_pt_y(200.0)
             self.bar3Val = self.bar3Val - change
-            ratio1 = self.bar2Val/(self.bar2Val +self.bar1Val)
-            ratio2 = self.bar1Val/(self.bar2Val +self.bar1Val)
+            ratio1 = self.bar2Val/(self.bar2Val +self.bar1Val+0.0)
+            ratio2 = self.bar1Val/(self.bar2Val +self.bar1Val+0.0)
             self.bar2Val = self.bar2Val + ratio1*change
             self.bar1Val = self.bar1Val + ratio2*change
             
@@ -268,7 +269,7 @@ class setup_button:
         win_style = gui.defaultWindowStyle.copy()
         win_style['font'] = myfont
         win_style['font-color'] = self.rect_color
-        win_style['bg-color'] = (0,0,0)
+        win_style['bg-color'] = (0,0,0, 180)
 
         # Calculating position and size of window from the size of the threades.desktop        
         position_win =threades.resize_pos((200.0,50.0))
@@ -294,7 +295,7 @@ class setup_button:
         labelStyleCopy['font'] = myfont2
         labelStyleCopy['font-color'] = self.rect_color
         labelStyleCopy['border-color'] = self.color_grey
-        default_text = 'What would you like to set up? Choose a facility from the list and press the Set Up button.'
+        default_text = 'What would you like to set up? '
         self.message_label = gui.Label(position = threades.resize_pos((450,120),(800.0,600.0),self.win.size),size = threades.resize_pos((250,100),(800.0,600.0),self.win.size), parent = self.win, text = default_text, style = labelStyleCopy)
         text ='Please select a Facility to see its status and Requirements' 
         labelStyleCopy2 = gui.defaultLabelStyle.copy()
@@ -307,40 +308,35 @@ class setup_button:
 
         self.message_label2 = gui.Label(position = threades.resize_pos((20,400),(800.0,600.0),self.win.size),size = threades.resize_pos((570,120),(800.0,600.0),self.win.size), parent = self.win, text = text, style = labelStyleCopy2)
 
-        # creating custom style for option box
-        op_style = gui.defaultOptionBoxStyle.copy()
-        op_style['font'] = myfont
-        op_style['font-color'] = self.rect_color
-        op_style['autosize'] = True
-        op_style['word wrap'] = False
+        #Creating new button style
+        buttonsurf = pygame.image.load(os.path.join('art','button_win.png')).convert_alpha()
+        bt_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
+        
+        
+        
         # Creating option boxes for all the facilities
-        position_optionbox = threades.resize_pos((200.0,150.0),(800.0,600.0),size_win)        
-        self.housing_box = gui.OptionBox(position = position_optionbox, parent = self.win, style = op_style, text = 'House')
-        self.housing_box.onClick =  self.on_select_setup_option_box
-        self.hospital_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(10)), parent = self.win, style = op_style, text = 'Hospital')
-        self.hospital_box.onClick = self.on_select_setup_option_box
-        self.workshop_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(10)), parent = self.win, style = op_style, text = 'Workshop')
-        self.workshop_box.onClick = self.on_select_setup_option_box
-        self.school_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(10)), parent = self.win, style = op_style, text = 'School')
-        self.school_box.onClick = self.on_select_setup_option_box
-        self.farm_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(10)), parent = self.win, style = op_style, text = 'Farm')
-        self.farm_box.onClick = self.on_select_setup_option_box
-        self.fountain_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(10)), parent = self.win, style = op_style, text = 'Well')
-        self.fountain_box.onClick = self.on_select_setup_option_box
+        position_bt = threades.resize_pos((50.0,90.0),(800.0,600.0),size_win) 
+        size_bt = threades.resize_pos((320.0,200.0),(800.0,600.0),size_win) 
+        self.housing_box = gui.Button(position = position_bt, size = size_bt,  parent = self.win, style = bt_style, text = 'House')
+        self.housing_box.onMouseOver =  self.on_select_setup_option_box
+        self.housing_box.onClick = self.setup_facility
+        self.hospital_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'Hospital')
+        self.hospital_box.onMouseOver = self.on_select_setup_option_box
+        self.hospital_box.onClick = self.setup_facility
+        self.workshop_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'Workshop')
+        self.workshop_box.onMouseOver = self.on_select_setup_option_box
+        self.workshop_box.onClick = self.setup_facility
+        self.school_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'School')
+        self.school_box.onMouseOver = self.on_select_setup_option_box
+        self.school_box.onClick = self.setup_facility
+        self.farm_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'Farm')
+        self.farm_box.onMouseOver = self.on_select_setup_option_box
+        self.farm_box.onClick = self.setup_facility
+        self.fountain_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'Well')
+        self.fountain_box.onMouseOver = self.on_select_setup_option_box
+        self.fountain_box.onClick = self.setup_facility
 
-        #self.win.surf.set_alpha(255)
-        #background = self.win.surf.subsurface(pygame.Rect(threades.resize_rect((400,180,200,200))))
-        #self.background_pic = background.copy()
-        #self.win.surf.set_alpha(140)
-
-        # Creating buttons for Setting up the facility and closing the setup window
-        button_style = gui.defaultButtonStyle.copy()
-        button_style['font'] = myfont2
-
-        self.button_setup = gui.Button(position = threades.resize_pos((600.0,420.0),(800.0,600.0),size_win), size = threades.resize_pos((120.0,50.0),(800.0,600.0),size_win), parent = self.win, text = "Set Up",style = button_style)
-        #self.button_close = gui.Button(position = threades.resize_pos((600.0,460.0),(800.0,600.0),size_win), size = threades.resize_pos((120.0,50.0),(800.0,600.0),size_win), parent = self.win, text = "Close",style = button_style)
-        #self.button_close.onClick  = self.close_win
-        self.button_setup.onClick = self.setup_facility
+        
 
     def on_select_setup_option_box(self,button):
 
@@ -393,17 +389,17 @@ class setup_button:
         '''
 
 
-        if self.housing_box.value:
+        if button.text == 'House':
             label_text =  threades.build_facility(model.House)
-        elif self.hospital_box.value:
+        elif button.text == 'Hospital':
             label_text =  threades.build_facility(model.Hospital)
-        elif self.workshop_box.value:
+        elif button.text == 'Workshop':
             label_text =  threades.build_facility(model.Workshop)
-        elif self.fountain_box.value:
+        elif button.text == 'Fountain':
             label_text =  threades.build_facility(model.Fountain)
-        elif self.school_box.value:
+        elif button.text == 'School':
             label_text =  threades.build_facility(model.School)
-        elif self.farm_box.value:
+        elif button.text == 'Farm':
             label_text =  self.build_facility_farm()
         else:
             label_text = ' Please select a Facility for building'
@@ -497,6 +493,8 @@ class setup_button:
     def enable_parent_win(self):
         self.child_win_flag = False
         self.win.enabled = True
+        self.close_win()
+        self.setup()
 
     def get_win_flag(self):
         return self.win_flag
@@ -526,7 +524,7 @@ class upgrade_button:
         win_style = gui.defaultWindowStyle.copy()
         win_style['font'] = myfont
         win_style['font-color'] = self.rect_color
-        win_style['bg-color'] = (0,0,0)
+        win_style['bg-color'] = (0,0,0, 180)
 
         # Calculating position and size of window from the size of the threades.desktop        
         position_win =threades.resize_pos((200.0,50.0))
@@ -554,51 +552,48 @@ class upgrade_button:
         self.message_label = gui.Label(position = threades.resize_pos((450,150),(800.0,600.0),self.win.size),size = threades.resize_pos((200,100),(800.0,600.0),self.win.size), parent = self.win, text = text, style = labelStyleCopy)
 
 
-        # creating custom style for option box
-        op_style = gui.defaultOptionBoxStyle.copy()
-        op_style['font'] = myfont
-        op_style['font-color'] = self.rect_color
-        op_style['autosize'] = True
-        op_style['word wrap'] = False
-        # Creating option boxes for all the facilities
-        position_optionbox = threades.resize_pos((200.0,150.0),(800.0,600.0),size_win)        
-        self.housing_box = gui.OptionBox(position = position_optionbox, parent = self.win, style = op_style, text = 'House')
-        self.housing_box.onClick =  self.on_select_upgrade_option_box
-        self.hospital_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(10)), parent = self.win, style = op_style, text = 'Hospital')
-        self.hospital_box.onClick = self.on_select_upgrade_option_box
-        self.workshop_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(10)), parent = self.win, style = op_style, text = 'Workshop')
-        self.workshop_box.onClick = self.on_select_upgrade_option_box
-        self.school_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(10)), parent = self.win, style = op_style, text = 'School')
-        self.school_box.onClick = self.on_select_upgrade_option_box
-        self.farm_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(10)), parent = self.win, style = op_style, text = 'Farm')
-        self.farm_box.onClick = self.on_select_upgrade_option_box
-        self.fountain_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(10)), parent = self.win, style = op_style, text = 'Well')
-        self.fountain_box.onClick = self.on_select_upgrade_option_box
-        myfont3 = pygame.font.Font("font.ttf", threades.resize_pt(14))
+
+        
+        # Creating new button style
+        buttonsurf = pygame.image.load(os.path.join('art','button_win.png')).convert_alpha()
+        bt_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
+        
+        
+        # Creating buttons for all the facilities
+        position_bt = threades.resize_pos((50.0,90.0),(800.0,600.0),size_win) 
+        size_bt = threades.resize_pos((320.0,200.0),(800.0,600.0),size_win) 
+        self.housing_box = gui.Button(position = position_bt, size = size_bt,  parent = self.win, style = bt_style, text = 'House')
+        self.housing_box.onMouseOver =  self.on_select_upgrade_option_box
+        self.housing_box.onClick = self.upgrade_facility
+        self.hospital_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'Hospital')
+        self.hospital_box.onMouseOver = self.on_select_upgrade_option_box
+        self.hospital_box.onClick = self.upgrade_facility
+        self.workshop_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'Workshop')
+        self.workshop_box.onMouseOver = self.on_select_upgrade_option_box
+        self.workshop_box.onClick = self.upgrade_facility
+        self.school_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'School')
+        self.school_box.onMouseOver = self.on_select_upgrade_option_box
+        self.school_box.onClick = self.upgrade_facility
+        self.farm_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'Farm')
+        self.farm_box.onMouseOver = self.on_select_upgrade_option_box
+        self.farm_box.onClick = self.upgrade_facility
+        self.fountain_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'Well')
+        self.fountain_box.onMouseOver = self.on_select_upgrade_option_box
+        self.fountain_box.onClick = self.upgrade_facility
+
+        
         text ='Please select a Facility to see its next upgrade' 
         labelStyleCopy2 = gui.defaultLabelStyle.copy()
         labelStyleCopy2['border-width'] = 1
         labelStyleCopy2['wordwrap'] = True
         labelStyleCopy2['autosize'] = False
-        labelStyleCopy2['font'] = myfont3
+        labelStyleCopy2['font'] = myfont2
         labelStyleCopy2['font-color'] = self.rect_color
         labelStyleCopy2['border-color'] = self.color_grey
 
         self.message_label2 = gui.Label(position = threades.resize_pos((20,400),(800.0,600.0),self.win.size),size = threades.resize_pos((570,120),(800.0,600.0),self.win.size), parent = self.win, text = text, style = labelStyleCopy2)
 
-        # Creating buttons for Setting up the facility and closing the setup window
-        button_style = gui.defaultButtonStyle.copy()
-        button_style['font'] = myfont2
         
-        #self.win.surf.set_alpha(255)
-        #background = self.win.surf.subsurface(pygame.Rect(threades.resize_rect((400,180,200,200))))
-        #self.background_pic = background.copy()
-        #self.win.surf.set_alpha(140)
-
-        self.button_upgrade = gui.Button(position = threades.resize_pos((600.0,420.0),(800.0,600.0),size_win), size = threades.resize_pos((120.0,50.0),(800.0,600.0),size_win), parent = self.win, text = "Upgrade",style = button_style)
-        #self.button_close = gui.Button(position = threades.resize_pos((600.0,460.0),(800.0,600.0),size_win), size = threades.resize_pos((120.0,50.0),(800.0,600.0),size_win), parent = self.win, text = "Close",style = button_style)
-        #self.button_close.onClick  = self.close_win
-        self.button_upgrade.onClick = self.upgrade_facility
 
     def on_select_upgrade_option_box(self,button):
         
@@ -635,17 +630,17 @@ class upgrade_button:
         '''
 
 
-        if self.housing_box.value:
+        if button.text == 'House':
             label_text =  threades.upgrade_facility(model.House)
-        elif self.hospital_box.value:
+        elif button.text == 'Hospital':
             label_text =  threades.upgrade_facility(model.Hospital)
-        elif self.workshop_box.value:
+        elif button.text == 'Workshop':
             label_text =  threades.upgrade_facility(model.Workshop)
-        elif self.fountain_box.value:
+        elif button.text == 'Fountain':
             label_text =  threades.upgrade_facility(model.Fountain)
-        elif self.school_box.value:
+        elif button.text == 'School':
             label_text =  threades.upgrade_facility(model.School)
-        elif self.farm_box.value:
+        elif button.text == 'Farm':
             label_text =  threades.upgrade_facility(model.Farm)
         else:
             label_text = ' Please select a Facility for Upgrading'
@@ -693,7 +688,7 @@ class buysell_button:
         win_style = gui.defaultWindowStyle.copy()
         win_style['font'] = myfont
         win_style['font-color'] = self.rect_color
-        win_style['bg-color'] = (0,0,0)
+        win_style['bg-color'] = (0,0,0, 180)
 
         # Focus the animation window on the market
         threades.transform_obj.focus_at((3200,2600)) # Replace this with the coordinates ofthe market in the base surface

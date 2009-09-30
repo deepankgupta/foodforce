@@ -423,7 +423,7 @@ class starting_intro:
         win_style = gui.defaultWindowStyle.copy()
         win_style['font'] = myfont
         win_style['font-color'] = color_brown
-        win_style['bg-color'] = (0,0,0)
+        win_style['bg-color'] = (0,0,0, 180)
         win_style['border-color'] = color_brown
         position_win =threades.resize_pos((200.0,50.0))
         size_win =threades.resize_pos((800.0,600.0))
