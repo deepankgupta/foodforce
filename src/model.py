@@ -818,7 +818,7 @@ class Facility:
                     resources[i].change_vquantity(-self.cost_build[name])
         if self.check_manp_res(people_obj) < 0:
             raise Exceptions.Low_Manpower_Resources_Exception
-        self.change_number(1)
+        
         return resources
 
     def build_end(self, people_obj):
@@ -833,6 +833,7 @@ class Facility:
         self.dict_res_build = FACILITY_MANP_DICT_BUILD[self._name]
         change = -self.dict_res_build['EMPLOYED PEOPLE IN CONSTRUCTION']
         people_obj.change_no_of_ppl_emp_in_cons(change)
+        self.change_number(1)
         
         return people_obj
 
@@ -1170,7 +1171,7 @@ class Resource:
         """ This method is used to buy resources from the market.
         It takes quantity that is to be bought and the total money present
         with the village as parameters. It generates exception when the market
-        resources are less than that to be bought or if the village does not have
+        resources are less than that to be bought or if the village doesnot have
         enough money to buy the resources. returns the cost to buy the resources
         @ivar quantity quantity of resource to be bought from the market
         @type quantity integer
@@ -1183,11 +1184,7 @@ class Resource:
         if quantity > self.mquantity:
             raise Exceptions.Resources_Underflow_Exception
         buy_price = self.price
-        
-        print "in model price is", buy_price
-        print "in model quantity is",  quantity
-        cost = quantity * int(buy_price)
-        print "in model cost of buying is",  cost
+        cost = quantity * buy_price
         if cost < money.get_money():
             self.change_vquantity(quantity)
             self.change_mquantity(-quantity)
@@ -1212,7 +1209,7 @@ class Resource:
         if quantity > self.vquantity:
             raise Exceptions.Resources_Underflow_Exception
         sell_price = self.price
-        cost = quantity * int(sell_price)
+        cost = quantity * sell_price
         self.change_vquantity(-quantity)
         self.change_mquantity(quantity)
         money.change_money(cost)

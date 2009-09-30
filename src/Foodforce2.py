@@ -19,6 +19,7 @@
 
 import pygame
 from pygame.locals import *
+from pygame.display import *
 from sys import exit
 import os
 from time import *
@@ -49,6 +50,8 @@ import natural_calamities
 
 
 desktop2 = gui.Desktop()
+set_icon(pygame.image.load(os.path.join('data', 'WFPLOGO.png')).convert_alpha())
+
 def message_window():
     ''' Thread to display the messages'''
 
@@ -278,14 +281,14 @@ class starting_intro:
         win_style['font'] = myfont1
         win_style['font-color'] = self.green_color
         win_style['bg-color'] = (0,0,0)
-        win_style['border-color'] = (0,150,0)
+        win_style['border-color'] = (0,0,0)
         
         # Calculating position and size of window from the size of the threades.desktop
-        position_win =threades.resize_pos((150.0,270.0))
+        position_win =threades.resize_pos((150.0,310.0))
         size_win =threades.resize_pos((900.0,600.0))
 
         # Creating window
-        self.win = gui.Window(position = position_win, size = size_win, parent = desktop2, text = "     Guide" , style = win_style, shadeable = False, closeable = False,moveable = False)
+        self.win = gui.Window(position = position_win, size = size_win, parent = desktop2, text = "     -Guide-" , style = win_style, shadeable = False, closeable = False,moveable = False)
         self.win.onClose = lambda button: self.main_menu(self.pause_flag)
         #self.win.surf.set_alpha(140) This seems to be redundant as translucency doesnt seems to work properly
 
@@ -360,9 +363,9 @@ class starting_intro:
         win_style['font'] = myfont1
         win_style['font-color'] = self.green_color
         win_style['bg-color'] = (0,0,0)
-        win_style['border-color'] = (0,150,0)
+        win_style['border-color'] = (0,0,0)
         # Calculating position and size of window from the size of the threades.desktop
-        position_win =threades.resize_pos((150.0,270.0))
+        position_win =threades.resize_pos((150.0,280.0))
         size_win =threades.resize_pos((900.0,600.0))
 
         # Creating window
@@ -653,7 +656,7 @@ def main():
     pause_screen()
 
     intro_thread.join()
-    threades.initialize_facilities()
+    threades.initialize_facilities(True)
 
     #surface_middle = pygame.transform.scale(surface3,threades.resize_pos((1200,560)))
     

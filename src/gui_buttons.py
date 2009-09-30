@@ -294,7 +294,6 @@ class setup_button:
         labelStyleCopy['autosize'] = False
         labelStyleCopy['font'] = myfont2
         labelStyleCopy['font-color'] = self.rect_color
-        labelStyleCopy['border-color'] = self.color_grey
         default_text = 'What would you like to set up? '
         self.message_label = gui.Label(position = threades.resize_pos((450,120),(800.0,600.0),self.win.size),size = threades.resize_pos((250,100),(800.0,600.0),self.win.size), parent = self.win, text = default_text, style = labelStyleCopy)
         text ='Please select a Facility to see its status and Requirements' 
@@ -304,9 +303,8 @@ class setup_button:
         labelStyleCopy2['autosize'] = False
         labelStyleCopy2['font'] = myfont3
         labelStyleCopy2['font-color'] = self.rect_color
-        labelStyleCopy2['border-color'] = self.color_grey
 
-        self.message_label2 = gui.Label(position = threades.resize_pos((20,400),(800.0,600.0),self.win.size),size = threades.resize_pos((570,120),(800.0,600.0),self.win.size), parent = self.win, text = text, style = labelStyleCopy2)
+        self.message_label2 = gui.Label(position = threades.resize_pos((30,450),(800.0,600.0),self.win.size),size = threades.resize_pos((570,120),(800.0,600.0),self.win.size), parent = self.win, text = text, style = labelStyleCopy2)
 
         #Creating new button style
         buttonsurf = pygame.image.load(os.path.join('art','button_win.png')).convert_alpha()
@@ -332,7 +330,7 @@ class setup_button:
         self.farm_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'Farm')
         self.farm_box.onMouseOver = self.on_select_setup_option_box
         self.farm_box.onClick = self.setup_facility
-        self.fountain_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'Well')
+        self.fountain_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'Fountain')
         self.fountain_box.onMouseOver = self.on_select_setup_option_box
         self.fountain_box.onClick = self.setup_facility
 
@@ -364,7 +362,7 @@ class setup_button:
             text = 'Farm: '
             #image = load_images.Farm_tiles[0][1]
             text += threades.get_setup_text(model.Farm)
-        if button.text == 'Well':
+        if button.text == 'Fountain':
             text = 'Well: '
             #image = load_images.Fountain_tiles[0][3]
             text += threades.get_setup_text(model.Fountain)
@@ -402,7 +400,7 @@ class setup_button:
         elif button.text == 'Farm':
             label_text =  self.build_facility_farm()
         else:
-            label_text = ' Please select a Facility for building'
+            label_text = 'Please select a Facility for building'
         self.message_label.text = label_text
         if label_text== 'Facility has been build':
             self.close_win()
@@ -589,9 +587,8 @@ class upgrade_button:
         labelStyleCopy2['autosize'] = False
         labelStyleCopy2['font'] = myfont2
         labelStyleCopy2['font-color'] = self.rect_color
-        labelStyleCopy2['border-color'] = self.color_grey
 
-        self.message_label2 = gui.Label(position = threades.resize_pos((20,400),(800.0,600.0),self.win.size),size = threades.resize_pos((570,120),(800.0,600.0),self.win.size), parent = self.win, text = text, style = labelStyleCopy2)
+        self.message_label2 = gui.Label(position = threades.resize_pos((20,450),(800.0,600.0),self.win.size),size = threades.resize_pos((570,120),(800.0,600.0),self.win.size), parent = self.win, text = text, style = labelStyleCopy2)
 
         
 
@@ -643,7 +640,7 @@ class upgrade_button:
         elif button.text == 'Farm':
             label_text =  threades.upgrade_facility(model.Farm)
         else:
-            label_text = ' Please select a Facility for Upgrading'
+            label_text = 'Please select a Facility for Upgrading'
         self.message_label.text = label_text
         if label_text== 'Facility has been upgraded':
             self.close_win()
@@ -844,7 +841,7 @@ class buysell_button:
         labelStyleCopy['autosize'] = False
         labelStyleCopy['font'] = myfont2
         labelStyleCopy['font-color'] = self.rect_color
-        labelStyleCopy['border-color'] = self.color_grey
+
         text = 'Welcome to the market of SHEYLAN, where you can trade resources. Select which item you would like to buy or sell on the left-hand column, enter the amount, and then choose buy or sell'
         self.message_label = gui.Label(position = threades.resize_pos((80,470),(800.0,600.0),self.win.size),size = threades.resize_pos((500,100),(800.0,600.0),self.win.size), parent = self.win, text = text, style = labelStyleCopy)
 

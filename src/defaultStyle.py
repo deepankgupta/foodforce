@@ -21,7 +21,7 @@ def init(gui):
                           'autosize': False,
                           "antialias": True,
                           'border-width': 0,
-                          'border-color': (255,255,255),
+                          'border-color': (0,0,0,140),
                           'wordwrap': True}
     
     #Button style
