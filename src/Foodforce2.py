@@ -94,13 +94,13 @@ def message_window():
 def load_sound(name):
 
     if not pygame.mixer:
-        return NoneSound()
+        return None
     fullname = os.path.join(name)
     try:
         sound = pygame.mixer.Sound(fullname)
     except pygame.error, message:
 
-        raise SystemExit, message
+        return None
     return sound
 
 def escape():
@@ -120,7 +120,8 @@ def safe_exit(button = None):
     
     proceduralFlow.openStoryBoardFile()
     proceduralFlow.closeStoryBoardFile()
-    soundtrack.stop()
+    if soundtrack:
+        soundtrack.stop()
     pygame.mixer.quit()
     pygame.quit()
     exit()
@@ -651,7 +652,8 @@ def main():
     intro_thread = threading.Thread(target = load_images.load_images, args=[])
     intro_thread.start()
     # Loading and starting the sound play
-    soundtrack.play(-1)
+    if soundtrack:
+        soundtrack.play(-1)
     level_setting=level_change.change_level()
     pause_screen()
 

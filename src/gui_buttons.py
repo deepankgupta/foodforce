@@ -307,7 +307,8 @@ class setup_button:
         self.message_label2 = gui.Label(position = threades.resize_pos((30,450),(800.0,600.0),self.win.size),size = threades.resize_pos((570,120),(800.0,600.0),self.win.size), parent = self.win, text = text, style = labelStyleCopy2)
 
         #Creating new button style
-        buttonsurf = pygame.image.load(os.path.join('art','button_win.png')).convert_alpha()
+        buttonsurf = pygame.image.load(os.path.join('art','button.png')).convert_alpha()
+        buttonsurf = pygame.transform.scale(buttonsurf, threades.resize_pos((36, 40)))
         bt_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
         
         
@@ -330,7 +331,7 @@ class setup_button:
         self.farm_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'Farm')
         self.farm_box.onMouseOver = self.on_select_setup_option_box
         self.farm_box.onClick = self.setup_facility
-        self.fountain_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'Fountain')
+        self.fountain_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'Well')
         self.fountain_box.onMouseOver = self.on_select_setup_option_box
         self.fountain_box.onClick = self.setup_facility
 
@@ -362,7 +363,7 @@ class setup_button:
             text = 'Farm: '
             #image = load_images.Farm_tiles[0][1]
             text += threades.get_setup_text(model.Farm)
-        if button.text == 'Fountain':
+        if button.text == 'Well':
             text = 'Well: '
             #image = load_images.Fountain_tiles[0][3]
             text += threades.get_setup_text(model.Fountain)
@@ -393,7 +394,7 @@ class setup_button:
             label_text =  threades.build_facility(model.Hospital)
         elif button.text == 'Workshop':
             label_text =  threades.build_facility(model.Workshop)
-        elif button.text == 'Fountain':
+        elif button.text == 'Well':
             label_text =  threades.build_facility(model.Fountain)
         elif button.text == 'School':
             label_text =  threades.build_facility(model.School)
@@ -552,8 +553,9 @@ class upgrade_button:
 
 
         
-        # Creating new button style
-        buttonsurf = pygame.image.load(os.path.join('art','button_win.png')).convert_alpha()
+        #Creating new button style
+        buttonsurf = pygame.image.load(os.path.join('art','button.png')).convert_alpha()
+        buttonsurf = pygame.transform.scale(buttonsurf, threades.resize_pos((36, 40)))
         bt_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
         
         
@@ -633,7 +635,7 @@ class upgrade_button:
             label_text =  threades.upgrade_facility(model.Hospital)
         elif button.text == 'Workshop':
             label_text =  threades.upgrade_facility(model.Workshop)
-        elif button.text == 'Fountain':
+        elif button.text == 'Well':
             label_text =  threades.upgrade_facility(model.Fountain)
         elif button.text == 'School':
             label_text =  threades.upgrade_facility(model.School)
@@ -807,12 +809,13 @@ class buysell_button:
         self.win.textbox = TextBox(position = threades.resize_pos((350.0, 200.0),(800.0,600.0),self.win.size), size = threades.resize_pos((100,20),(800.0,600.0),self.win.size), parent = self.win, style = textbox_style) 
         '''
 
-        # Creating buttons for buying and selling and closing the window
-        button_style = gui.defaultButtonStyle.copy()
-        button_style['font'] = myfont2
+        #Creating new button style
+        buttonsurf = pygame.image.load(os.path.join('art','button.png')).convert_alpha()
+        buttonsurf = pygame.transform.scale(buttonsurf, threades.resize_pos((36, 40)))
+        button_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
 
-        self.button_buy = gui.Button(position = threades.resize_pos((560.0,350.0),(800.0,600.0),size_win), size = threades.resize_pos((70.0,50.0),(800.0,600.0),size_win), parent = self.win, text = " Buy ",style = button_style)
-        self.button_sell = gui.Button(position = threades.resize_pos((460.0,350.0),(800.0,600.0),size_win), size = threades.resize_pos((70.0,50.0),(800.0,600.0),size_win), parent = self.win, text = " Sell ",style = button_style)
+        self.button_buy = gui.Button(position = threades.resize_pos((560.0,350.0),(800.0,600.0),size_win), size = threades.resize_pos((100.0,50.0),(800.0,600.0),size_win), parent = self.win, text = " Buy ",style = button_style)
+        self.button_sell = gui.Button(position = threades.resize_pos((460.0,350.0),(800.0,600.0),size_win), size = threades.resize_pos((100.0,50.0),(800.0,600.0),size_win), parent = self.win, text = " Sell ",style = button_style)
         self.button_close = gui.Button(position = threades.resize_pos((650.0,500.0),(800.0,600.0),size_win), size = threades.resize_pos((120.0,50.0),(800.0,600.0),size_win), parent = self.win, text = "Close",style = button_style)
         self.button_buy.onClick = self.buy_resources
         self.button_sell.onClick = self.sell_resources

@@ -56,9 +56,9 @@ except:
     
     new_screen_size = (800,600)
     
-new_screen_size = original_screen_size
-#screen = pygame.display.set_mode(new_screen_size,FULLSCREEN|SRCALPHA,32)
-screen = pygame.display.set_mode(new_screen_size,0,32)
+#new_screen_size = original_screen_size
+screen = pygame.display.set_mode(new_screen_size,FULLSCREEN|SRCALPHA,32)
+#screen = pygame.display.set_mode(new_screen_size,0,32)
 
 # For initialising the style of the guI
 defaultStyle.init(gui)
