@@ -56,7 +56,7 @@ except:
     
     new_screen_size = (800,600)
     
-#new_screen_size = (800, 600)
+#new_screen_size = (1200, 900)
 screen = pygame.display.set_mode(new_screen_size,FULLSCREEN|SRCALPHA,32)
 #screen = pygame.display.set_mode(new_screen_size,0,32)
 
@@ -69,6 +69,9 @@ desktop = gui.Desktop()
 
 #initializing objects
 #model.init_obj()
+
+# Facility placement flag
+buildFacilityPlacementFlag = ""
 
 #Screen Initialization Flags
 total_update_flag = True
@@ -86,7 +89,7 @@ def initialize_facilities(autobuild_flag = True):
     
     for i in range(len(PLACING_DATA_LIST)):
         if PLACING_DATA_LIST[i][0] == 'HOUSE':
-            build_facility(model.House,PLACING_DATA_LIST[i], autobuild_flag = autobuild_flag)
+            build_facility(model.House,PLACING_DATA_LIST = PLACING_DATA_LIST[i], autobuild_flag = autobuild_flag)
         if PLACING_DATA_LIST[i][0] == 'HOSPITAL':
             build_facility(model.Hospital,PLACING_DATA_LIST[i], autobuild_flag = autobuild_flag)
         if PLACING_DATA_LIST[i][0] == 'SCHOOL':
@@ -226,8 +229,8 @@ class facility_placement_data():
         self.data_file = data_file
         self.PLACING_LIST = []
         self.PLACING_LIST_TEMP = []
-    def store_placement_data(self,facility_obj,place_pos_x,place_pos_y):
-        self.PLACING_LIST_TEMP = [facility_obj.get_name(),place_pos_x,place_pos_y]
+    def store_placement_data(self,facility_name,place_pos_x,place_pos_y):
+        self.PLACING_LIST_TEMP = [facility_name,place_pos_x,place_pos_y]
         output = open(self.data_file,'ab')
         pickle.dump(self.PLACING_LIST_TEMP,output)
         output.close()
@@ -248,47 +251,57 @@ class facility_placement_data():
 
 facility_placement_data_obj = facility_placement_data('facplace.pkl')
 facility_placement_data_obj.clear_placement_data()
+
+def set_build_facility_placement_flag(facility_obj = None):
+    global buildFacilityPlacementFlag
+    if facility_obj:
+        buildFacilityPlacementFlag = facility_obj.get_name()
+    else :
+        buildFacilityPlacementFlag = ""
+    print buildFacilityPlacementFlag
     
-def build_placed_facility(facility_obj, autobuild_flag, PLACING_DATA_LIST):
+def build_placed_facility(facility_name, autobuild_flag, PLACING_DATA_LIST):
     '''Builds the placed facility according to placed position
     Args:
      facility_obj: The to be built facility object
      place_facility_thread: Thread for placing facility
     '''
+    
+    
+    facility_name = PLACING_DATA_LIST[0]
+    place_pos_x = PLACING_DATA_LIST[1]
+    place_pos_y = PLACING_DATA_LIST[2]
+        
     if autobuild_flag == False:
-        place_pos_x,place_pos_y = place_facility()
-        facility_placement_data_obj.store_placement_data(facility_obj,place_pos_x,place_pos_y)
+        facility_placement_data_obj.store_placement_data(facility_name,place_pos_x,place_pos_y)
         
-    elif autobuild_flag == True:
-        place_pos_x = PLACING_DATA_LIST[1]
-        place_pos_y = PLACING_DATA_LIST[2]
         
-    if facility_obj.get_name() == 'HOUSE':
+    if facility_name == 'HOUSE':
         images_obj.initialize_facility('HOUSE')
         sprite = House_sprite((place_pos_x,place_pos_y))
         model.house_sprite_list.append(sprite)
         
-    if facility_obj.get_name() == 'HOSPITAL':
+    if facility_name == 'HOSPITAL':
         images_obj.initialize_facility('HOSPITAL')
         sprite = Hospital_sprite((place_pos_x,place_pos_y))
         model.hospital_sprite_list.append(sprite)
         
-    if facility_obj.get_name() == 'WORKSHOP':
+    if facility_name == 'WORKSHOP':
         images_obj.initialize_facility('WORKSHOP')
         sprite = Workshop_sprite((place_pos_x,place_pos_y))
         model.workshop_sprite_list.append(sprite)
         
-    if facility_obj.get_name() == 'SCHOOL':
+    if facility_name == 'SCHOOL':
         images_obj.initialize_facility('SCHOOL')
         sprite = School_sprite((place_pos_x,place_pos_y))
         model.school_sprite_list.append(sprite)
         
-    if facility_obj.get_name() == 'FARM':
+    if facility_name == 'FARM':
         images_obj.initialize_facility('FARM')
         sprite = Farm_sprite((place_pos_x,place_pos_y))
         model.farm_sprite_list.append(sprite)
         
-    if facility_obj.get_name() == 'FOUNTAIN':
+    if facility_name == 'FOUNTAIN':
         images_obj.initialize_facility('FOUNTAIN')
         sprite = Fountain_sprite((place_pos_x,place_pos_y))
         model.fountain_sprite_list.append(sprite)
@@ -297,6 +310,10 @@ def build_placed_facility(facility_obj, autobuild_flag, PLACING_DATA_LIST):
     
     # Generating villagers for each facility
     speeds = [[2,0],[-2,0],[0,2],[0,-2]]
+    facility_obj = model.facilities_list[0]
+    for i in range(len(model.facilities_list)):
+        if model.facilities_list[i].get_name() == facility_name:
+            facility_obj = model.facilities_list[i]
     for attribute in load_images.facility_villagers[facility_obj.get_name()][facility_obj.get_original_number()-1]:
         #print attribute
         dir = int(random.random()*4)
@@ -313,6 +330,10 @@ def build_placed_facility(facility_obj, autobuild_flag, PLACING_DATA_LIST):
 def place_facility():
     '''Thread to place the facility using the mouse interrupts
     '''
+    global facilityPlacingFlag
+    
+    facilityPlacingFlag = True
+    clock = pygame.time.Clock()
     while(True):
         x,y = pygame.mouse.get_pos()
         r = pygame.Rect(x-20,y-20,40,40)
@@ -324,6 +345,8 @@ def place_facility():
             #text = str(x) + ' ' +str(y)
             #message.push_message(text,'high')
             return x,y
+        clock.tick(10)
+    facilityPlacingFlag = False
         
 def build_facility(facility_obj, PLACING_DATA_LIST = [], list_food = model.DEF_FARM_PROD, autobuild_flag = False):
     ''' Thread to build a new building of any facility
@@ -377,190 +400,15 @@ def build_facility(facility_obj, PLACING_DATA_LIST = [], list_food = model.DEF_F
         text = 'You cannot setup more buildings of this facility, try setting up some other facility'
         message.push_message(text,'high')
         return text
-    
-    build_placed_facility_thread = threading.Thread(target = build_placed_facility, args=[facility_obj,autobuild_flag, PLACING_DATA_LIST]).start()
+    if autobuild_flag == False:
+        set_build_facility_placement_flag(facility_obj)
+    else:
+        build_placed_facility("",False,PLACING_DATA_LIST)
+        
+    #build_placed_facility_thread = threading.Thread(target = build_placed_facility, args=[facility_obj,autobuild_flag, PLACING_DATA_LIST]).start()
         
     return 'Facility has been build'
 
-#def check_collide_villager(sprite):
-    #''' Checks if an installation collides with a position of a villager, If yes, then it deletes 
-    #the villager sprite and create similar villager sprites at safe positions
-    #'''
-    
-    #while True:
-        
-        #sprites_list = pygame.sprite.spritecollide(sprite,villagers,False)
-        #if sprites_list:
-            #for sprites in sprites_list:
-                #new_sprite = Villager(sprites.get_attributes())
-                #sprites.remove(all,villagers)
-                #sprites.kill()
-                
-                #new_sprite.add(villagers,all)    
-        #else:
-            #break
-    
-
-
-#def build_end_facility(facility_obj):
-    ##global model.ppl
-    #model.ppl = facility_obj.build_end(model.ppl)
-    
-
-
-
-#def upgrade_facility(facility_obj):
-    #''' Upgrades a facility
-    #COMMENT : change the view of facility if you want to do so
-    #'''
-    #if facility_obj.get_number() == 0:
-        
-        #if facility_obj.get_original_number() > 0:
-            #text = 'You cannot upgrade a facility when it has been temporarily stopped, try upgrading it when it is resumed'
-            #message.push_message(text,'high')
-            #return text
-        #text = 'You need to setup a facility first to upgrade it'
-        #message.push_message(text,'high')
-        #return text
-        
-    ##global model.resources
-    #try:
-        #model.resources = facility_obj.update_level(model.resources,model.ppl)
-    #except Exceptions.Resources_Underflow_Exception:
-        #text =  "You don't have enough resources to upgrade the facility please try later"
-        #message.push_message(text,'high')
-        #return text
-    #except Exceptions.Maximum_Level_Reached:
-        #text =  'Facility has reached its maximum level you cant upgrade it now'
-        #message.push_message(text,'high')
-        #return text
-    
-    #if facility_obj.get_name() == 'HOUSE':
-        #images_obj.House_flag = False
-        #images_obj.initialize_facility(facility_obj.get_name())
-    #if facility_obj.get_name() == 'HOSPITAL':
-        #images_obj.Hospital_flag = False
-        #images_obj.initialize_facility(facility_obj.get_name())
-    #if facility_obj.get_name() == 'WORKSHOP':
-        #images_obj.Workshop_flag = False
-        #images_obj.initialize_facility(facility_obj.get_name())
-    #if facility_obj.get_name() == 'SCHOOL':
-        #images_obj.School_flag = False
-        #images_obj.initialize_facility(facility_obj.get_name())
-    ##load_images.load_images_facility(facility_obj.get_name(),facility_obj.get_level())
-    ## Updation of sprites
-    #for i in range(len(model.facilities_list_sprites[facility_obj.get_name()])):
-        #model.facilities_list_sprites[facility_obj.get_name()][i].upgrade_level()
-    
-    #event = game_events.Event(type = game_events.UPGRADEFACILITYEVENT, facility_name = facility_obj.get_name())
-    #game_events.EventQueue.add(event)
-    
-    #text = 'Facility has been upgraded'
-    #return text
-
-#def build_facility(facility_obj, list_food = model.DEF_FARM_PROD):
-    #''' Thread to build a new building of any facility
-    #'''
-    ##global model.resources
-    ##global model.ppl
-    
-    
-    #if facility_obj.get_number() == 0:
-        
-        #if facility_obj.get_original_number() > 0:
-            #text = 'You cannot build a facility when it has been temporarily stopped, try building it when it is resumed'
-            #message.push_message(text,'high')
-            #return text
-    
-    #try:
-        
-        #if facility_obj.check_manp_res(model.ppl)<0:
-            #raise Exceptions.Low_Manpower_Resources_Exception
-    
-        #model.resources=facility_obj.build_start(model.resources,model.ppl)
-        
-        #if facility_obj.get_name() == 'FARM':
-     
-            ##print list_food
-        
-            #qrice = int(list_food[0])*model.MAX_FOOD_PROD_PER_FARM/100
-            #qwheat = int(list_food[1])*model.MAX_FOOD_PROD_PER_FARM/100
-            #qbeans = int(list_food[2])*model.MAX_FOOD_PROD_PER_FARM/100
-            #prod = facility_obj.get_prod_dict()
-            #prod['RICE'] = (prod['RICE']*facility_obj.get_number() + qrice)/(facility_obj.get_number() + 1)
-            #prod['WHEAT'] = (prod['WHEAT']*facility_obj.get_number() + qwheat)/(facility_obj.get_number() + 1)
-            #prod['BEANS'] = (prod['BEANS']*facility_obj.get_number() + qbeans)/(facility_obj.get_number() + 1)
-            #facility_obj.set_production(prod)
-               
-        #model.ppl = facility_obj.update_manp_res(model.ppl)
-        
-        
-    #except Exceptions.Resources_Underflow_Exception:
-        #text = 'You dont have enough resources to build the facility,  please try later'
-        #message.push_message(text,'high')
-        #return text
-    #except Exceptions.Low_Manpower_Resources_Exception:
-        #text = 'You dont have enough manpower to build the facility, please try later'
-        #message.push_message(text,'high')
-        #return text
-    #except Exceptions.Maximum_Number_Reached:
-        #text = 'You cannot setup more buildings of this facility, try setting up some other facility'
-        #message.push_message(text,'high')
-        #return text
-    
-    
-    ##model.ppl = facility_obj.build_end(model.ppl)
-    #if facility_obj.get_name() == 'HOUSE':
-        #images_obj.initialize_facility('HOUSE')
-        #sprite = House_sprite()
-        #model.house_sprite_list.append(sprite)
-        
-    #if facility_obj.get_name() == 'HOSPITAL':
-        #images_obj.initialize_facility('HOSPITAL')
-        #sprite = Hospital_sprite()
-        #model.hospital_sprite_list.append(sprite)
-        
-    #if facility_obj.get_name() == 'WORKSHOP':
-        #images_obj.initialize_facility('WORKSHOP')
-        #sprite = Workshop_sprite()
-        #model.workshop_sprite_list.append(sprite)
-        
-    #if facility_obj.get_name() == 'SCHOOL':
-        #images_obj.initialize_facility('SCHOOL')
-        #sprite = School_sprite()
-        #model.school_sprite_list.append(sprite)
-        
-    #if facility_obj.get_name() == 'FARM':
-        #images_obj.initialize_facility('FARM')
-        #sprite = Farm_sprite()
-        #model.farm_sprite_list.append(sprite)
-        
-    #if facility_obj.get_name() == 'FOUNTAIN':
-        #images_obj.initialize_facility('FOUNTAIN')
-        #sprite = Fountain_sprite()
-        #model.fountain_sprite_list.append(sprite)
-    #add_sprite_all(sprite)
-    #add_sprite_facilities(sprite)
-    
-    ## Generating villagers for each facility
-    #speeds = [[2,0],[-2,0],[0,2],[0,-2]]
-    #for attribute in load_images.facility_villagers[facility_obj.get_name()][facility_obj.get_original_number()-1]:
-        ##print attribute
-        #dir = int(random.random()*4)
-        #villager = Villager(attribute)
-        #villager.set_speed(speeds[dir])
-        #villager.add(villagers,all)
-    
-    
-    #check_collide_villager(sprite) # Function to check if a sprite collides with the position of a villager
-    
-    #event = game_events.Event(type = game_events.BUILDFACILITYEVENT, facility_name = facility_obj.get_name())
-    #game_events.EventQueue.add(event)
-
-    
-    #return 'Facility has been build'
-
-    
     
 
     

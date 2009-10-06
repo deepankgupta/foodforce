@@ -686,19 +686,40 @@ def main():
         #clock.tick()
         model.game_controller.update_level_time(threades.update_thread_pause)
         
+        animation_obj.update()
+
 
         mouse_flag = False
             
         (x,y) = (0,0)
         x,y = pygame.mouse.get_pos()
         
-        if (x > (threades.new_screen_size[0]-60)):
+        if len(threades.buildFacilityPlacementFlag):
+            if x > threades.resize_pt_x(930):
+                pygame.mouse.set_pos(threades.resize_pt_x(930),y)
+            if y > threades.resize_pt_y(600):
+                pygame.mouse.set_pos(x,threades.resize_pt_y(600))
+            r = pygame.Rect(x-20,y-20,40,40)
+            place_rect=pygame.draw.rect(threades.screen,(205,200,100),r,5)
+            l,m,r = pygame.mouse.get_pressed()
+            if l == 1:
+                (x,y) = threades.transform_obj.inverse_transform_cordinate((x-20,y-20))
+                PLACING_DATA_LIST = [threades.buildFacilityPlacementFlag,x,y] 
+                threades.build_placed_facility(threades.buildFacilityPlacementFlag,False,PLACING_DATA_LIST)
+                threades.set_build_facility_placement_flag()
+                
+                
+                    
+                
+                
+                
+        if (x > (threades.resize_pt_x(890)) and x < threades.resize_pt_x(930)):
             threades.transform_obj.move_free((-10,0))
             
         if x < threades.resize_pt_x(60) :
             threades.transform_obj.move_free((10,0))
             
-        if  y > threades.resize_pt_y(840):
+        if  y > threades.resize_pt_y(560) and y< threades.resize_pt_y(600):
             threades.transform_obj.move_free((0,-10))
             
         if y < threades.resize_pt_y(60):
@@ -713,9 +734,7 @@ def main():
             event_handling(e)
 
         
-        #pygame.draw.rect(threades.screen,(209,169,106),threades.resize_rect((0,40,1200,560)))
-        animation_obj.update()
-
+        
 
         # Calculate the values of the indicators
         threades.calculate_indicators_starting()

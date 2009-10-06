@@ -1044,11 +1044,16 @@ class gui_buttons:
         ''' Initialises the buttons for setting up facility, upgrading it and for buy/sell operations
         '''
         myfont = pygame.font.Font("font.ttf", threades.resize_pt(17))
-        button_style = gui.defaultButtonStyle.copy()
+        
+        #Creating new button style
+        buttonsurf = pygame.image.load(os.path.join('art','button.png')).convert_alpha()
+        buttonsurf = pygame.transform.scale(buttonsurf, (36, threades.resize_pt_y( 40)))
+        button_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
         button_style['font'] = myfont
-        self.setup_button = gui.Button(position = threades.resize_pos((50,865)), size = threades.resize_pos((200,25)), parent = threades.desktop, text = "Setup Facility",style = button_style)
-        self.upgrade_button = gui.Button(position = threades.resize_pos((350,865)), size = threades.resize_pos((200,25)), parent = threades.desktop, text = "Upgrade Facility",style = button_style)
-        self.buysell_button = gui.Button(position = threades.resize_pos((650,865)), size = threades.resize_pos((200,25)), parent = threades.desktop, text = "Buy/Sell Resources",style = button_style)
+        
+        self.setup_button = gui.Button(position = threades.resize_pos((7,859)), size = threades.resize_pos((290,25)), parent = threades.desktop, text = "Setup Facility",style = button_style)
+        self.upgrade_button = gui.Button(position = threades.resize_pos((307,859)), size = threades.resize_pos((290,25)), parent = threades.desktop, text = "Upgrade Facility",style = button_style)
+        self.buysell_button = gui.Button(position = threades.resize_pos((607,859)), size = threades.resize_pos((290,25)), parent = threades.desktop, text = "Buy/Sell Resources",style = button_style)
         self.setup_obj = setup_button()
         self.upgrade_obj = upgrade_button()
         self.buysell_obj = buysell_button()
