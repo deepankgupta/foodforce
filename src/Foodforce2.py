@@ -157,11 +157,11 @@ def event_handling(e):
         
         win_flag = gui_buttons.gui_obj.get_win_flag()
         if not win_flag:
-            if e.key == K_s:
+            if e.key == K_s and gui_buttons.gui_obj.setup_button.enabled:
                 gui_buttons.gui_obj.setup_obj.setup()
-            if e.key == K_u:
+            if e.key == K_u and gui_buttons.gui_obj.upgrade_button.enabled:
                 gui_buttons.gui_obj.upgrade_obj.upgrade()
-            if e.key == K_b:
+            if e.key == K_b and gui_buttons.gui_obj.buysell_button.enabled:
                 gui_buttons.gui_obj.buysell_obj.buysell()
             
             
@@ -641,7 +641,50 @@ def pause_screen(pause_flag = True):
 
 wfp_logo = pygame.image.load(os.path.join('data', 'top.png')).convert()
 surface_top = pygame.transform.scale(wfp_logo,threades.resize_pos((1200,40)))
-   
+
+def facility_placement():
+    (x,y) = (0,0)
+    x,y = pygame.mouse.get_pos()
+    gui_buttons.gui_obj.setup_button.enabled = False
+    facility_name = threades.buildFacilityPlacementFlag
+    
+    for i in range(len(model.Facility_Size)):
+        if model.Facility_Size[i][0] == facility_name:
+            height = model.Facility_Size[i][1]
+            width = model.Facility_Size[i][2]
+            
+            height_temp = threades.resize_pt_y((model.Facility_Size[i][1])*threades.transform_obj.ratio)
+            width_temp = threades.resize_pt_x((model.Facility_Size[i][2])*threades.transform_obj.ratio)
+            
+    
+    if x > threades.resize_pt_x(930):    
+        pygame.mouse.set_pos(threades.resize_pt_x(930),y)
+    if y > threades.resize_pt_y(600):
+        pygame.mouse.set_pos(x,threades.resize_pt_y(600))
+    
+    rect = (x,y,width,height)
+    rect_temp = (x,y,width_temp,height_temp)
+    rect_obj = pygame.Rect(rect)
+    rect_obj_temp = pygame.Rect(rect_temp)
+     
+    collide_check = threades.place_facility_collide_check(rect_obj)
+    if collide_check:
+        color = (205,0,0)
+    else:
+        color = (205,200,100)
+    place_rect=pygame.draw.rect(threades.screen,color,rect_obj_temp,5)
+    
+    l,m,r = pygame.mouse.get_pressed()
+    if l == 1 and collide_check == False:
+        PLACING_DATA_LIST = [threades.buildFacilityPlacementFlag,rect_obj] 
+        threades.build_placed_facility(threades.buildFacilityPlacementFlag,False,PLACING_DATA_LIST)
+        threades.set_build_facility_placement_flag()
+        gui_buttons.gui_obj.setup_button.enabled = True
+    if r == 1:
+        threades.set_build_facility_placement_flag()
+        gui_buttons.gui_obj.setup_button.enabled = True
+            
+                
 def main():
 
     global panel
@@ -695,24 +738,7 @@ def main():
         x,y = pygame.mouse.get_pos()
         
         if len(threades.buildFacilityPlacementFlag):
-            if x > threades.resize_pt_x(930):
-                pygame.mouse.set_pos(threades.resize_pt_x(930),y)
-            if y > threades.resize_pt_y(600):
-                pygame.mouse.set_pos(x,threades.resize_pt_y(600))
-            r = pygame.Rect(x-20,y-20,40,40)
-            place_rect=pygame.draw.rect(threades.screen,(205,200,100),r,5)
-            l,m,r = pygame.mouse.get_pressed()
-            if l == 1:
-                (x,y) = threades.transform_obj.inverse_transform_cordinate((x-20,y-20))
-                PLACING_DATA_LIST = [threades.buildFacilityPlacementFlag,x,y] 
-                threades.build_placed_facility(threades.buildFacilityPlacementFlag,False,PLACING_DATA_LIST)
-                threades.set_build_facility_placement_flag()
-                
-                
-                    
-                
-                
-                
+            facility_placement()               
         if (x > (threades.resize_pt_x(890)) and x < threades.resize_pt_x(930)):
             threades.transform_obj.move_free((-10,0))
             

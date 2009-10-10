@@ -22,6 +22,11 @@ import pickle
 import pygame
 #import gui_buttons
 
+
+#facility size values
+Facility_Size = [['HOUSE',360,300],['HOSPITAL',370,300],['FARM',516,500],['FOUNTAIN',197,192],['SCHOOL',420,450],['WORKSHOP',760,520]]
+
+
 def init_cons(file_name):
     """ used to read the values of constant from data file file_name
     @ivar file_name data file containing values of constant
@@ -240,32 +245,31 @@ init_cons('data.pkl')
 def save_cons():
     ''' Used to save constants
     '''
-    #COST_HOUSE = house.
+    COST_HOUSE = House.get_cost_build()
     pickle.dump(COST_HOUSE, output)
-    COST_HOSPITAL = {'BUILDING MATERIAL' : 25.0 , 'TOOLS' : 20.0 , 'WATER' : 8.0 }
+    COST_HOSPITAL = Hospital.get_cost_build()
     pickle.dump(COST_HOSPITAL, output)
-    COST_SCHOOL = {'BUILDING MATERIAL' : 20.0 , 'TOOLS' : 20.0 , 'WATER' : 8.0 }
+    COST_SCHOOL = School.get_cost_build()
     pickle.dump(COST_SCHOOL, output)
-    COST_WORKSHOP = {'BUILDING MATERIAL' : 25.0 , 'TOOLS' : 10.0 , 'WATER' : 10.0 }
+    COST_WORKSHOP = Workshop.get_cost_build()
     pickle.dump(COST_WORKSHOP, output)
-    COST_FARM = {'BUILDING MATERIAL' : 0.0 , 'TOOLS' : 5.0 , 'WATER' : 15.0 }
-    pickle.dump(COST_FARM, output)
-    COST_FOUNTAIN = {'BUILDING MATERIAL' : 10.0 , 'TOOLS' : 20.0 , 'WATER' : 0.0 }
+    COST_FARM = Farm.get_cost_build()
+    COST_FOUNTAIN = Fountain.get_cost_build()
     pickle.dump(COST_FOUNTAIN, output)
     
     # MANPOWER REQD TO BUILD EACH FACILITY PER BUILDING
     
-    MANP_REQD_BUILD_HOUSE = { 'EMPLOYED PEOPLE IN CONSTRUCTION' : 2.0 }
+    MANP_REQD_BUILD_HOUSE = House.get_manp_req_build()
     pickle.dump(MANP_REQD_BUILD_HOUSE, output)
-    MANP_REQD_BUILD_HOSPITAL = { 'EMPLOYED PEOPLE IN CONSTRUCTION' : 4.0 } #10.0 
+    MANP_REQD_BUILD_HOSPITAL = Hospital.get_manp_req_build()
     pickle.dump(MANP_REQD_BUILD_HOSPITAL, output)
-    MANP_REQD_BUILD_SCHOOL = { 'EMPLOYED PEOPLE IN CONSTRUCTION' : 6.0 } #8.0
+    MANP_REQD_BUILD_SCHOOL = School.get_manp_req_build()
     pickle.dump(MANP_REQD_BUILD_SCHOOL, output)
-    MANP_REQD_BUILD_WORKSHOP = { 'EMPLOYED PEOPLE IN CONSTRUCTION' : 4.0 }
+    MANP_REQD_BUILD_WORKSHOP = Workshop.get_manp_req_build()
     pickle.dump(MANP_REQD_BUILD_WORKSHOP, output)
-    MANP_REQD_BUILD_FARM = { 'EMPLOYED PEOPLE IN CONSTRUCTION' : 2.0 }
+    MANP_REQD_BUILD_FARM = Farm.get_manp_req_build()
     pickle.dump(MANP_REQD_BUILD_FARM, output)
-    MANP_REQD_BUILD_FOUNTAIN = { 'EMPLOYED PEOPLE IN CONSTRUCTION' : 4.0 }
+    MANP_REQD_BUILD_FOUNTAIN = Fountain.get_manp_req_build()
     pickle.dump(MANP_REQD_BUILD_FOUNTAIN, output)
     # DICTIONARY OF ALL THE MANPOWER DISTRIBUTION CHANGES WHEN SETTING A FACILITY
     
@@ -280,17 +284,17 @@ def save_cons():
     
     # DICTIONARIES OF RESOURCES REQD TO UPGRADE A FACILITY PER BUILDING  ( ASSUMPTION : NO MANPOWER IS REQD TO UPGRADE A FACILITY )
     
-    COST_LEVEL_HOUSE = {'BUILDING MATERIAL' : 2.0 , 'TOOLS' : 2.0 }
+    COST_LEVEL_HOUSE = House.get_cost_inc_level()
     pickle.dump(COST_LEVEL_HOUSE, output)
-    COST_LEVEL_HOSPITAL = {'BUILDING MATERIAL' : 10.0 , 'TOOLS' : 5.0 }
+    COST_LEVEL_HOSPITAL = Hospital.get_cost_inc_level()
     pickle.dump(COST_LEVEL_HOSPITAL, output)
-    COST_LEVEL_SCHOOL = {'BUILDING MATERIAL' : 8.0 , 'TOOLS' : 5.0 }
+    COST_LEVEL_SCHOOL = School.get_cost_inc_level()
     pickle.dump(COST_LEVEL_SCHOOL, output)
-    COST_LEVEL_WORKSHOP = {'BUILDING MATERIAL' : 10.0 , 'TOOLS' : 5.0 }
+    COST_LEVEL_WORKSHOP = Workshop.get_cost_inc_level()
     pickle.dump(COST_LEVEL_WORKSHOP, output)
-    COST_LEVEL_FARM = {'BUILDING MATERIAL' : 0.0 , 'TOOLS' : 3.0 }
+    COST_LEVEL_FARM = Farm.get_cost_inc_level()
     pickle.dump(COST_LEVEL_FARM, output)
-    COST_LEVEL_FOUNTAIN = {'BUILDING MATERIAL' : 2.0 , 'TOOLS' : 5.0 }
+    COST_LEVEL_FOUNTAIN = Fountain.get_cost_inc_level()
     pickle.dump(COST_LEVEL_FOUNTAIN, output) 
     
     
@@ -300,15 +304,15 @@ def save_cons():
     
     CONS_HOUSE = { }                                                                                 # Remember that resources are being                                                                                                                     # consumed by manpower also so we need to                                                                                                                       # make that thing too... a TODO for 
     pickle.dump(CONS_HOUSE, output)                                                                                                          # controller
-    CONS_HOSPITAL = { 'MEDICINE' : 2.0 , 'WATER' : 5.0 }
+    CONS_HOSPITAL = Hospital.get_cons_dict()
     pickle.dump(CONS_HOSPITAL, output)
-    CONS_SCHOOL = { 'BOOKS' : 2.0 , 'WATER' : 2.0 }
+    CONS_SCHOOL = School.get_cons_dict()
     pickle.dump(CONS_SCHOOL, output)
-    CONS_WORKSHOP = { }
+    CONS_WORKSHOP = Workshop.get_cons_dict()
     pickle.dump(CONS_WORKSHOP, output)
-    CONS_FARM = { 'WATER' : 10.0 }
+    CONS_FARM = Farm.get_cons_dict()
     pickle.dump(CONS_FARM, output)
-    CONS_FOUNTAIN = { }
+    CONS_FOUNTAIN = Fountain.get_cons_dict()
     pickle.dump(CONS_FOUNTAIN, output)
     
     # DICTIONARIES OF RESOURCES BEING PRODUCED BY THE FACILITY PER BUILDING
@@ -987,6 +991,11 @@ class Facility:
         """
 
         self.manp_req_build = manp_req_build
+        
+    def get_manp_req_build(self):
+        """Gets the manpower required to build
+        """
+        return self.manp_req_build
 
     def set_manp_rq_run(self, manp_req_run):
         """ Sets the manpower requirement to run a facility
@@ -1150,6 +1159,16 @@ class Facility:
         MANP_DIST_DICT = { 'TOTAL POPULATION' : 0.0 , 'SHELTERED PEOPLE' : 0.0 , 'EDUCATED PEOPLE' : 0.0 , 'HEALTHY PEOPLE' : 0.0 , 'PEOPLE FED' : 0.0 , 'EMPLOYED PEOPLE IN CONSTRUCTION' : 0.0 , 'EMPLOYED PEOPLE IN HOSPITAL' : 0.0 , 'EMPLOYED PEOPLE IN SCHOOL' : 0.0 , 'EMPLOYED PEOPLE IN WORKSHOP' : 0.0 , 'EMPLOYED PEOPLE IN FARM' : 0.0 }
         return resources
 
+    def check_resources_reqd(self, resources):
+        ''' Checks if the village has the reqd resources to build a facility
+        '''
+        for i in range(len(resources)):
+            name = resources[i].get_name()
+            if self.cost_build.has_key(name):
+                if resources[i].get_vquantity() < self.cost_build[name]:
+                    raise Exceptions.Resources_Underflow_Exception
+        
+        
     def build_start(self, resources , people_obj):
         """ Starts Building a new installation of a facility. Check whether the resources are sufficient.
         If yes than adds one to the number of installations.If not then raises an exception
@@ -1165,6 +1184,7 @@ class Facility:
         """
         self.change_number(1)
         self.change_number(-1)
+        self.check_resources_reqd(resources)
         for i in range(len(resources)):
             name = resources[i].get_name()
             if self.cost_build.has_key(name):

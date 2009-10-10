@@ -78,7 +78,9 @@ total_update_flag = True
 panel_update_flag = True
 map_update_flag = True
 top_update_flag = True
-facilities_update_flag = True    
+facilities_update_flag = True   
+
+PLACING_LIST_TEMP = []
     
 
 def initialize_facilities(autobuild_flag = True):
@@ -87,19 +89,41 @@ def initialize_facilities(autobuild_flag = True):
     
     PLACING_DATA_LIST = facility_placement_data_obj.read_placement_data()
     
+
+    HOUSE_NO = model.INIT_HOUSE
+    HOSP_NO = model.INIT_HOSPITAL
+    SCHOOL_NO = model.INIT_SCHOOL
+    FARM_NO = model.INIT_FARM
+    FOUNTAIN_NO = model.INIT_FOUNTAIN
+    WORKS_NO = model.INIT_WORKSHOP
+    
+        
+    
     for i in range(len(PLACING_DATA_LIST)):
-        if PLACING_DATA_LIST[i][0] == 'HOUSE':
+        if PLACING_DATA_LIST[i][0] == 'HOUSE' and HOUSE_NO>0:
             build_facility(model.House,PLACING_DATA_LIST = PLACING_DATA_LIST[i], autobuild_flag = autobuild_flag)
-        if PLACING_DATA_LIST[i][0] == 'HOSPITAL':
+            HOUSE_NO = HOUSE_NO -1 
+            
+        if PLACING_DATA_LIST[i][0] == 'HOSPITAL' and HOSP_NO>0:
             build_facility(model.Hospital,PLACING_DATA_LIST[i], autobuild_flag = autobuild_flag)
-        if PLACING_DATA_LIST[i][0] == 'SCHOOL':
+            HOSP_NO = HOSP_NO -1
+            
+        if PLACING_DATA_LIST[i][0] == 'SCHOOL' and SCHOOL_NO>0:
             build_facility(model.School,PLACING_DATA_LIST[i], autobuild_flag = autobuild_flag)
-        if PLACING_DATA_LIST[i][0] == 'FARM':
+            SCHOOL_NO = SCHOOL_NO -1
+            
+        if PLACING_DATA_LIST[i][0] == 'FARM' and FARM_NO>0:
             build_facility(model.Farm,PLACING_DATA_LIST[i], autobuild_flag = autobuild_flag)
-        if PLACING_DATA_LIST[i][0] == 'FOUNTAIN':
+            FARM_NO = FARM_NO -1
+            
+        if PLACING_DATA_LIST[i][0] == 'FOUNTAIN' and FOUNTAIN_NO>0:
             build_facility(model.Fountain,PLACING_DATA_LIST[i], autobuild_flag = autobuild_flag)
-        if PLACING_DATA_LIST[i][0] == 'WORKSHOP':
+            FOUNTAIN_NO = FOUNTAIN_NO -1
+            
+        if PLACING_DATA_LIST[i][0] == 'WORKSHOP' and WORKS_NO>0:
             build_facility(model.Workshop,PLACING_DATA_LIST[i], autobuild_flag = autobuild_flag)
+            WORKS_NO = WORKS_NO -1
+            
     #for i in range(model.INIT_HOUSE):
         #build_facility(model.House)
     #for i in range(model.INIT_HOSPITAL):
@@ -224,22 +248,23 @@ def get_upgrade_text(facility_obj):
 
 
 class facility_placement_data():
-    
+        
     def __init__(self,data_file):
         self.data_file = data_file
         self.PLACING_LIST = []
-        self.PLACING_LIST_TEMP = []
-    def store_placement_data(self,facility_name,place_pos_x,place_pos_y):
-        self.PLACING_LIST_TEMP = [facility_name,place_pos_x,place_pos_y]
+        self._PLACING_LIST_TEMP = []
+    def store_placement_data(self,PLACING_DATA_LIST):
+        self._PLACING_LIST_TEMP = PLACING_DATA_LIST
         output = open(self.data_file,'ab')
-        pickle.dump(self.PLACING_LIST_TEMP,output)
+        pickle.dump(self._PLACING_LIST_TEMP,output)
         output.close()
+        PLACING_LIST_TEMP.append(self._PLACING_LIST_TEMP)
     def read_placement_data(self):
         output = open(self.data_file,'rb')
         while True:
             try:
-                self.PLACING_LIST_TEMP = pickle.load(output)
-                self.PLACING_LIST.append(self.PLACING_LIST_TEMP)
+                self._PLACING_LIST_TEMP = pickle.load(output)
+                self.PLACING_LIST.append(self._PLACING_LIST_TEMP)
             except EOFError:
                 break
         output.close()
@@ -269,11 +294,13 @@ def build_placed_facility(facility_name, autobuild_flag, PLACING_DATA_LIST):
     
     
     facility_name = PLACING_DATA_LIST[0]
-    place_pos_x = PLACING_DATA_LIST[1]
-    place_pos_y = PLACING_DATA_LIST[2]
+    rect_obj = PLACING_DATA_LIST[1]
+    
+    place_pos_x = rect_obj[0]
+    place_pos_y = rect_obj[1]
         
     if autobuild_flag == False:
-        facility_placement_data_obj.store_placement_data(facility_name,place_pos_x,place_pos_y)
+        facility_placement_data_obj.store_placement_data(PLACING_DATA_LIST)
         
         
     if facility_name == 'HOUSE':
@@ -326,28 +353,32 @@ def build_placed_facility(facility_name, autobuild_flag, PLACING_DATA_LIST):
     game_events.EventQueue.add(event)
     
         
-        
-def place_facility():
-    '''Thread to place the facility using the mouse interrupts
-    '''
-    global facilityPlacingFlag
+def place_facility_collide_check(rect_obj):
+    FACILITY_RECT_LIST = []
     
-    facilityPlacingFlag = True
-    clock = pygame.time.Clock()
-    while(True):
-        x,y = pygame.mouse.get_pos()
-        r = pygame.Rect(x-20,y-20,40,40)
-        place_rect=pygame.draw.rect(screen,(205,200,100),r,5)
-        place_rect=pygame.draw.rect(screen,(205,200,100),r,5)
-        l,m,r = pygame.mouse.get_pressed()
-        if l == 1:
-            (x,y)=transform_obj.inverse_transform_cordinate((x-20,y-20))
-            #text = str(x) + ' ' +str(y)
-            #message.push_message(text,'high')
-            return x,y
-        clock.tick(10)
-    facilityPlacingFlag = False
+    (rect_obj[0],rect_obj[1]) = transform_obj.inverse_transform_cordinate((rect_obj[0],rect_obj[1]))
+    
+    
+    #offset settings
+    #rect_obj_temp[0] = rect_obj_temp[0] + 0
+    #rect_obj_temp[1] = rect_obj_temp[1] + 0
+    #rect_obj_temp[2] = rect_obj_temp[2] + 0
+    #rect_obj_temp[3] = rect_obj_temp[3] + 0
+    
+    market_rect = pygame.Rect(2850,2600,516,600)  
+    
+    for i in range(len(PLACING_LIST_TEMP)):
+        FACILITY_RECT_LIST.append(PLACING_LIST_TEMP[i][1])
+    result = rect_obj.collidelist(FACILITY_RECT_LIST)
+    if rect_obj.colliderect(market_rect):
+        result = 1
         
+    if result == -1:
+        return False
+    else:
+        return True
+                                        
+    
 def build_facility(facility_obj, PLACING_DATA_LIST = [], list_food = model.DEF_FARM_PROD, autobuild_flag = False):
     ''' Thread to build a new building of any facility
     Args:
@@ -403,17 +434,9 @@ def build_facility(facility_obj, PLACING_DATA_LIST = [], list_food = model.DEF_F
     if autobuild_flag == False:
         set_build_facility_placement_flag(facility_obj)
     else:
-        build_placed_facility("",False,PLACING_DATA_LIST)
-        
-    #build_placed_facility_thread = threading.Thread(target = build_placed_facility, args=[facility_obj,autobuild_flag, PLACING_DATA_LIST]).start()
-        
+        build_placed_facility("",True,PLACING_DATA_LIST)
+    
     return 'Facility has been build'
-
-    
-
-    
-    
-    
 
 def check_collide_villager(sprite):
     ''' Checks if an installation collides with a position of a villager, If yes, then it deletes 

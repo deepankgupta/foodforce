@@ -73,7 +73,7 @@ class change_level:
             if self.run==False:
                 break
            
-        print 'now reached here\n'
+        #print 'now reached here\n'
         
             
         self.ff_logo = 0
@@ -178,10 +178,7 @@ class change_level:
         labelStyleCopy['font'] = myfont
         labelStyleCopy['font-color'] = (0,200,0)
         
-        if self.level_no==-1:
-            text1='Loading New Level...'
-        else:
-            text1='Loading Level No:'+str(self.level_no)
+        text1='Loading....'
             
         #creating the label
         label = gui.Label(position = threades.resize_pos((500,600)), size = threades.resize_pos((250,50)), parent = desktop_level,style=labelStyleCopy,text=text1)
