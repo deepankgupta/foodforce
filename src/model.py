@@ -22,6 +22,9 @@ import pickle
 import pygame
 #import gui_buttons
 
+#Flag to check the operating system
+FLAG_XO = False
+
 
 #facility size values
 Facility_Size = [['HOUSE',360,300],['HOSPITAL',370,300],['FARM',516,500],['FOUNTAIN',197,192],['SCHOOL',420,450],['WORKSHOP',760,520]]
@@ -1120,6 +1123,15 @@ class Facility:
 
     #Other Methods
 
+    def check_resources_reqd_upgrade(self, resources):
+        ''' Checks if the village has the reqd resources to build a facility
+        '''
+        for i in range(len(resources)):
+            name = resources[i].get_name()
+            if self.cost_inc_level.has_key(name):
+                if resources[i].get_vquantity() < self.cost_inc_level[name]:
+                    raise Exceptions.Resources_Underflow_Exception
+        
     def update_level(self, resources,people_obj):
         """ Updates the level of facility installed, all the buildings of a facility installed
         are upgraded at the same time. First check whether the resources are sufficient. If yes
@@ -1138,6 +1150,8 @@ class Facility:
 
         self.change_level(1)
         self.change_level(-1)
+        self.check_resources_reqd_upgrade(resources)
+        
         for i in range(len(resources)):
             name = resources[i].get_name()
             if self.cost_inc_level.has_key(name):
@@ -1159,7 +1173,7 @@ class Facility:
         MANP_DIST_DICT = { 'TOTAL POPULATION' : 0.0 , 'SHELTERED PEOPLE' : 0.0 , 'EDUCATED PEOPLE' : 0.0 , 'HEALTHY PEOPLE' : 0.0 , 'PEOPLE FED' : 0.0 , 'EMPLOYED PEOPLE IN CONSTRUCTION' : 0.0 , 'EMPLOYED PEOPLE IN HOSPITAL' : 0.0 , 'EMPLOYED PEOPLE IN SCHOOL' : 0.0 , 'EMPLOYED PEOPLE IN WORKSHOP' : 0.0 , 'EMPLOYED PEOPLE IN FARM' : 0.0 }
         return resources
 
-    def check_resources_reqd(self, resources):
+    def check_resources_reqd_build(self, resources):
         ''' Checks if the village has the reqd resources to build a facility
         '''
         for i in range(len(resources)):
@@ -1184,7 +1198,7 @@ class Facility:
         """
         self.change_number(1)
         self.change_number(-1)
-        self.check_resources_reqd(resources)
+        self.check_resources_reqd_build(resources)
         for i in range(len(resources)):
             name = resources[i].get_name()
             if self.cost_build.has_key(name):

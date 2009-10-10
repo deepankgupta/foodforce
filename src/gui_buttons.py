@@ -547,7 +547,7 @@ class upgrade_button:
         labelStyleCopy['font'] = myfont2
         labelStyleCopy['font-color'] = self.rect_color
         labelStyleCopy['border-color'] = self.color_grey
-        text = 'Please select a Facility and press Upgrade button to upgrade.'
+        text = 'Please select a Facility to upgrade.'
         self.message_label = gui.Label(position = threades.resize_pos((450,150),(800.0,600.0),self.win.size),size = threades.resize_pos((200,100),(800.0,600.0),self.win.size), parent = self.win, text = text, style = labelStyleCopy)
 
 

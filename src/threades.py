@@ -1,20 +1,21 @@
 #! /usr/bin/env python
 #
-
-# ***** BEGIN LICENSE BLOCK *****
-# Version: CPAL 1.0
+#   Author : Mohit Taneja (mohitgenii@gmail.com)
+#   Date : 9/06/2008 
 #
-# The contents of this file are subject to the Common Public Attribution
-# License Version 1.0 (CPAL); you may not use this file except in
-# compliance with the License. You may obtain a copy of the License at
-# http://opensource.org/licenses/cpal_1.0
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
 #
-# Software distributed under the License is distributed on an "AS IS" basis,
-# WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
-# for the specific language governing rights and limitations under the
-# License.
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
 #
-# ***** END LICENSE BLOCK ****
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #
 
 #from model import *
@@ -70,8 +71,14 @@ desktop = gui.Desktop()
 #initializing objects
 #model.init_obj()
 
+###### FLAGS ####
+
+
 # Facility placement flag
 buildFacilityPlacementFlag = ""
+
+# Level start Facility build flag 
+levelStartFacilityBuildFlag = 0
 
 #Screen Initialization Flags
 total_update_flag = True
@@ -86,6 +93,7 @@ PLACING_LIST_TEMP = []
 def initialize_facilities(autobuild_flag = True):
     
     model.ppl.change_total_population(1000)
+    global levelStartFacilityBuildFlag 
     
     PLACING_DATA_LIST = facility_placement_data_obj.read_placement_data()
     
@@ -97,7 +105,9 @@ def initialize_facilities(autobuild_flag = True):
     FOUNTAIN_NO = model.INIT_FOUNTAIN
     WORKS_NO = model.INIT_WORKSHOP
     
-        
+    levelStartFacilityBuildFlag = HOUSE_NO + HOSP_NO + SCHOOL_NO + FARM_NO + FOUNTAIN_NO + WORKS_NO
+    print "level start val = "
+    print levelStartFacilityBuildFlag
     
     for i in range(len(PLACING_DATA_LIST)):
         if PLACING_DATA_LIST[i][0] == 'HOUSE' and HOUSE_NO>0:
@@ -123,25 +133,11 @@ def initialize_facilities(autobuild_flag = True):
         if PLACING_DATA_LIST[i][0] == 'WORKSHOP' and WORKS_NO>0:
             build_facility(model.Workshop,PLACING_DATA_LIST[i], autobuild_flag = autobuild_flag)
             WORKS_NO = WORKS_NO -1
-            
-    #for i in range(model.INIT_HOUSE):
-        #build_facility(model.House)
-    #for i in range(model.INIT_HOSPITAL):
-        #build_facility(model.Hospital)
-    #for i in range(model.INIT_SCHOOL):
-        #build_facility(model.School)
-    #for i in range(model.INIT_FARM):
-        #build_facility(model.Farm)
-    #for i in range(model.INIT_FOUNTAIN):
-        #build_facility(model.Fountain)
-    #for i in range(model.INIT_WORKSHOP):
-        #build_facility(model.Workshop)
-        
+  
+  
     model.ppl.change_total_population(-1000)
     
-    #model.Water.set_variables('WATER',model.INIT_WATER,model.INIT_M_WATER,model.COST_WATER)
-    #model.Buildmat.set_variables('BUILDING MATERIAL',model.INIT_BUILDMAT,model.INIT_M_BUILDMAT,model.COST_BUILDMAT)
-    #model.Tools.set_variables('TOOLS',model.INIT_TOOLS,model.INIT_M_TOOLS,model.COST_TOOLS)
+    
     transform_obj.focus_at((1000,2000))
     transform_obj.set_ratio(0.5)
     calculate_indicators_starting()
@@ -349,8 +345,6 @@ def build_placed_facility(facility_name, autobuild_flag, PLACING_DATA_LIST):
         villager.add(villagers,all)
         
     check_collide_villager(sprite) # Function to check if a sprite collides with the position of a villager
-    event = game_events.Event(type = game_events.BUILDFACILITYEVENT, facility_name = facility_obj.get_name())
-    game_events.EventQueue.add(event)
     
         
 def place_facility_collide_check(rect_obj):
@@ -461,8 +455,14 @@ def check_collide_villager(sprite):
 
 
 def build_end_facility(facility_obj):
-    #global model.ppl
+    global levelStartFacilityBuildFlag
     model.ppl = facility_obj.build_end(model.ppl)
+    event = game_events.Event(type = game_events.BUILDFACILITYEVENT, facility_name = facility_obj.get_name())
+    game_events.EventQueue.add(event)
+    if levelStartFacilityBuildFlag > 0:
+        levelStartFacilityBuildFlag -= 1
+    print "now ",facility_obj.get_name(),levelStartFacilityBuildFlag
+    calculate_indicators_starting()
     
 
 
@@ -1054,15 +1054,15 @@ class House_sprite(pygame.sprite.Sprite):
                     build_end_facility(model.House)
                     self.built_flag = 1
             elif (self.frame >= 2 and self.level ==1) :
-                if (self.frame == 3 and self.built_flag == 0) :
+                if (self.frame == 2 and self.built_flag == 0) :
                     build_end_facility(model.House)
                     self.built_flag = 1
             elif (self.frame >= 2 and self.level ==2) :
-                if (self.frame == 3 and self.built_flag == 0) :
+                if (self.frame == 2 and self.built_flag == 0) :
                     build_end_facility(model.House)
                     self.built_flag = 1
             elif (self.frame >= 2 and self.level ==3) :
-                if (self.frame == 3 and self.built_flag == 0) :
+                if (self.frame == 2 and self.built_flag == 0) :
                     build_end_facility(model.House)
                     self.built_flag = 1
             else:
@@ -1116,6 +1116,7 @@ class Hospital_sprite(pygame.sprite.Sprite):
         self.update_flag = True
 
     def update(self):
+        
         if self.tile_time < 2000:
             self.tile_time += model.iteration_time
         else:
@@ -1126,15 +1127,15 @@ class Hospital_sprite(pygame.sprite.Sprite):
                     build_end_facility(model.Hospital)
                     self.built_flag = 1
             elif (self.frame >= 2 and self.level ==1) :
-                if (self.frame == 3 and self.built_flag == 0) :
+                if (self.frame == 2 and self.built_flag == 0) :
                     build_end_facility(model.Hospital)
                     self.built_flag = 1
             elif (self.frame >= 2 and self.level ==2) :
-                if (self.frame == 3 and self.built_flag == 0) :
+                if (self.frame == 2 and self.built_flag == 0) :
                     build_end_facility(model.Hospital)
                     self.built_flag = 1
             elif (self.frame >= 2 and self.level ==3) :
-                if (self.frame == 3 and self.built_flag == 0) :
+                if (self.frame == 2 and self.built_flag == 0) :
                     build_end_facility(model.Hospital)
                     self.built_flag = 1
             else:
@@ -1191,6 +1192,7 @@ class School_sprite(pygame.sprite.Sprite):
         
 
     def update(self):
+        
         if self.tile_time < 2000:
             self.tile_time += model.iteration_time
         else:
@@ -1201,15 +1203,15 @@ class School_sprite(pygame.sprite.Sprite):
                     build_end_facility(model.School)
                     self.built_flag = 1
             elif (self.frame >= 2 and self.level ==1) :
-                if (self.frame == 3 and self.built_flag == 0) :
+                if (self.frame == 2 and self.built_flag == 0) :
                     build_end_facility(model.School)
                     self.built_flag = 1
             elif (self.frame >= 2 and self.level ==2) :
-                if (self.frame == 3 and self.built_flag == 0) :
+                if (self.frame == 2 and self.built_flag == 0) :
                     build_end_facility(model.School)
                     self.built_flag = 1
             elif (self.frame >= 2 and self.level ==3) :
-                if (self.frame == 3 and self.built_flag == 0) :
+                if (self.frame == 2 and self.built_flag == 0) :
                     build_end_facility(model.School)
                     self.built_flag = 1
             else:
@@ -1263,6 +1265,7 @@ class Farm_sprite(pygame.sprite.Sprite):
         
 
     def update(self):
+        
         
         if self.tile_time < 2000:
             self.tile_time += model.iteration_time
@@ -1325,6 +1328,7 @@ class Fountain_sprite(pygame.sprite.Sprite):
         
 
     def update(self):
+        
         
         if self.tile_time < 2000:
             self.tile_time += model.iteration_time

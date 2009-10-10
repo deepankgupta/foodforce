@@ -1,20 +1,21 @@
 #! /usr/bin/env python
 #
-
-# ***** BEGIN LICENSE BLOCK *****
-# Version: CPAL 1.0
+#   Author : Mohit Taneja (mohitgenii@gmail.com)
+#   Date : 9/06/2008
 #
-# The contents of this file are subject to the Common Public Attribution
-# License Version 1.0 (CPAL); you may not use this file except in
-# compliance with the License. You may obtain a copy of the License at
-# http://opensource.org/licenses/cpal_1.0
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
 #
-# Software distributed under the License is distributed on an "AS IS" basis,
-# WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
-# for the specific language governing rights and limitations under the
-# License.
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
 #
-# ***** END LICENSE BLOCK ****
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #
 
 import pygame
@@ -44,6 +45,10 @@ import random
 import proceduralFlow
 import natural_calamities
 
+if model.FLAG_XO:
+    import GameSounds
+    import game_sharing
+    import olpcgames.mesh as mesh
 
 
     
@@ -190,6 +195,19 @@ def event_handling(e):
                 threades.transform_obj.focus()
             if e.button == 5:
                 threades.transform_obj.defocus()
+    if model.FLAG_XO:
+        
+        if e.type==mesh.CONNECT :
+            game_sharing.sharing_handler(e.type,None,'')
+        #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,None,'']).start()
+        elif e.type==mesh.PARTICIPANT_ADD or e.type==mesh.PARTICIPANT_REMOVE :
+            game_sharing.sharing_handler(e.type,e.handle,'')
+        #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,'']).start()
+        elif e.type==mesh.MESSAGE_MULTI or e.type==mesh.MESSAGE_UNI :
+            game_sharing.sharing_handler(e.type,e.handle,e.content)
+        #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,e.content]).start()
+
+
 
 soundtrack = load_sound(os.path.join('data', 'soundtrack.ogg'))
 
@@ -333,6 +351,17 @@ class starting_intro:
                     if e.key == K_LEFT:
                         if self.instructions_counter > 0 :
                             self.instructions_counter -= 1
+                if model.FLAG_XO:
+                    if e.type==mesh.CONNECT :
+                        game_sharing.sharing_handler(e.type,None,'')
+                    #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,None,'']).start()
+                    elif e.type==mesh.PARTICIPANT_ADD or e.type==mesh.PARTICIPANT_REMOVE :
+                        game_sharing.sharing_handler(e.type,e.handle,'')
+                    #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,'']).start()
+                    elif e.type==mesh.MESSAGE_MULTI or e.type==mesh.MESSAGE_UNI :
+                        game_sharing.sharing_handler(e.type,e.handle,e.content)
+                    #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,e.content]).start()
+
 
             desktop2.update()
             desktop2.draw()
@@ -406,6 +435,17 @@ class starting_intro:
                     if e.key == 27:  # For escape key
                         self.about_us_run = False
                         self.win.close()
+                if model.FLAG_XO:
+                    if e.type==mesh.CONNECT :
+                        game_sharing.sharing_handler(e.type,None,'')
+                    #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,None,'']).start()
+                    elif e.type==mesh.PARTICIPANT_ADD or e.type==mesh.PARTICIPANT_REMOVE :
+                        game_sharing.sharing_handler(e.type,e.handle,'')
+                    #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,'']).start()
+                    elif e.type==mesh.MESSAGE_MULTI or e.type==mesh.MESSAGE_UNI :
+                        game_sharing.sharing_handler(e.type,e.handle,e.content)
+                    #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,e.content]).start()
+
          
             desktop2.update()
             desktop2.draw()
@@ -470,6 +510,17 @@ class starting_intro:
                         self.startup_text_run = False
                     if e.key == K_RETURN:
                         counter += 1
+                if model.FLAG_XO:
+                    if e.type==mesh.CONNECT :
+                        game_sharing.sharing_handler(e.type,None,'')
+                    #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,None,'']).start()
+                    elif e.type==mesh.PARTICIPANT_ADD or e.type==mesh.PARTICIPANT_REMOVE :
+                        game_sharing.sharing_handler(e.type,e.handle,'')
+                    #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,'']).start()
+                    elif e.type==mesh.MESSAGE_MULTI or e.type==mesh.MESSAGE_UNI :
+                        game_sharing.sharing_handler(e.type,e.handle,e.content)
+                    #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,e.content]).start()
+
             
             if model.global_time >= 5000:
                 first_display = False                
@@ -584,7 +635,18 @@ class starting_intro:
                     if e.key == 27:  # For escape key
                         self.controls_run = False
                         self.win.close()
+                if model.FLAG_XO:
+                    if e.type==mesh.CONNECT :
+                        game_sharing.sharing_handler(e.type,None,'')
+                    #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,None,'']).start()
+                    elif e.type==mesh.PARTICIPANT_ADD or e.type==mesh.PARTICIPANT_REMOVE :
+                        game_sharing.sharing_handler(e.type,e.handle,'')
+                    #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,'']).start()
+                    elif e.type==mesh.MESSAGE_MULTI or e.type==mesh.MESSAGE_UNI :
+                        game_sharing.sharing_handler(e.type,e.handle,e.content)
+                    #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,e.content]).start()
 
+                
             desktop2.update()
             desktop2.draw()
             pygame.display.update()
