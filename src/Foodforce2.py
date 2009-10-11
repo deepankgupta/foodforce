@@ -46,7 +46,6 @@ import proceduralFlow
 import natural_calamities
 
 if model.FLAG_XO:
-    import GameSounds
     import game_sharing
     import olpcgames.mesh as mesh
 

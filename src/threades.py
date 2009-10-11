@@ -38,7 +38,7 @@ import load_images
 import pickle
 
 
-original_screen_size = (1200.0,900.0)
+original_screen_size = [1200.0,900.0]
 
 import gui
 #from gui import *
@@ -49,27 +49,25 @@ pygame.display.init()
 
 try:
 
-    # Detecting the current screen resolution of the device
     display_info = pygame.display.Info()
-    new_screen_size = (display_info.current_w,display_info.current_h)
-    # Max resolution detected and the screen size is set to it
+    new_screen_size = [display_info.current_w,display_info.current_h]
+    
 except:
     
-    new_screen_size = (800,600)
-    
-#new_screen_size = (1200, 900)
-screen = pygame.display.set_mode(new_screen_size,FULLSCREEN|SRCALPHA,32)
-#screen = pygame.display.set_mode(new_screen_size,0,32)
+    new_screen_size = [800,600]
 
-# For initialising the style of the guI
+global screen   
+if model.FLAG_XO:
+    global screen
+    new_screen_size[1] -= 70.0/900.0*new_screen_size[1]
+    screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
+else:
+    
+    screen = pygame.display.set_mode(new_screen_size,FULLSCREEN|SRCALPHA,32)
+
 defaultStyle.init(gui)
 
 desktop = gui.Desktop()
-# initializing values for constant
-#model.init_cons('data.pkl')
-
-#initializing objects
-#model.init_obj()
 
 ###### FLAGS ####
 
@@ -745,16 +743,16 @@ def buy_res(res,res_quantity):
     
     
     try:
-        print "The initial value of model.resources with the village is" , res.get_vquantity()
-        print "The initial value of model.resources with the market is" , res.get_mquantity()
+        #print "The initial value of model.resources with the village is" , res.get_vquantity()
+        #print "The initial value of model.resources with the market is" , res.get_mquantity()
         quantity=int(res_quantity)
-        print 'initial model.money is'
-        print model.money.get_money()
+        #print 'initial model.money is'
+        #print model.money.get_money()
         model.money = res.buy(quantity , model.money)
-        print 'final model.money is'
-        print model.money.get_money()
-        print "The final value of model.resources with the village is" , res.get_vquantity()
-        print "The final value of model.resources with the market is" , res.get_mquantity()
+        #print 'final model.money is'
+        #print model.money.get_money()
+        #print "The final value of model.resources with the village is" , res.get_vquantity()
+        #print "The final value of model.resources with the market is" , res.get_mquantity()
     except Exceptions.Money_Underflow_Exception:
         text ='You dont have enough money to buy this resource. Please change the quantity or try later'
         return text
@@ -788,17 +786,17 @@ def sell_res(res,res_quantity):
     
 
     try:
-        print "The initial value of model.resources with the village is" , res.get_vquantity()
-        print "The initial value of model.resources with the market is" , res.get_mquantity()
-        print "the price is", res.get_price()
-        print "quantity is",  res_quantity
+        #print "The initial value of model.resources with the village is" , res.get_vquantity()
+        #print "The initial value of model.resources with the market is" , res.get_mquantity()
+        #print "the price is", res.get_price()
+        #print "quantity is",  res_quantity
         quantity=int(res_quantity)
         model.money = res.sell(quantity , model.money)       
-        print 'final model.money is'
-        print model.money.get_money()
+        #print 'final model.money is'
+        #print model.money.get_money()
          
-        print "The final value of model.resources with the village is" , res.get_vquantity()
-        print "The final value of model.resources with the market is" , res.get_mquantity()
+        #print "The final value of model.resources with the village is" , res.get_vquantity()
+        #print "The final value of model.resources with the market is" , res.get_mquantity()
     except Exceptions.Resources_Underflow_Exception:
         text = 'The village does not have enough quantity to sell this resource to market'
         return text
@@ -1370,14 +1368,16 @@ class Fountain_sprite(pygame.sprite.Sprite):
 # The work for drawing the background
 #global back_image_level1
 
-global image_to_scale
-image_to_scale = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35]
-global image_pos
-image_pos = []
-for num_ver in range(10):
-    for num_hor in range(12):
-        rect = Rect(num_hor*250 + 10, num_ver*250 + 10, 230, 230)
-        image_pos.append(rect)
+if not model.FLAG_XO:
+
+    global image_to_scale
+    image_to_scale = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35]
+    global image_pos
+    image_pos = []
+    for num_ver in range(10):
+        for num_hor in range(12):
+            rect = Rect(num_hor*250 + 10, num_ver*250 + 10, 230, 230)
+            image_pos.append(rect)
 
 
 #Class to initialise the background
@@ -1433,23 +1433,19 @@ class Environment2():
             self.img_x += 1
             self.pos_x += self.x_inc
 
-'''
+
 class Environment(pygame.sprite.Sprite):
     
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        spritesheet = Spritesheet('tileset.png')
+        spritesheet = load_images.Spritesheet('tileset.png')
         self.tiles = spritesheet.imgat((0,0,930,560))
         self.tiles = pygame.transform.scale(self.tiles,resize_pos((930,560)))
         
-    def get_background(self):
+    def update_background(self):
         
-        background = pygame.Surface(resize_pos((930,560))).convert()
-        
-        background.blit(self.tiles, (0,0))     
-        
-        return background
-'''    
+        screen.blit(self.tiles,(0,resize_pt_y(40)))
+    
 
 
 class Build(pygame.sprite.Sprite):
@@ -2124,11 +2120,12 @@ class Animation:
     def __init__(self):
        
         
-        #env = Environment()
-        #self.background = env.get_background()
-        #screen.blit(self.background,(0,40))
+        
         global env
-        env = Environment2()
+        if model.FLAG_XO:
+            env = Environment()
+        else:
+            env = Environment2()
         env.update_background()
         mkt = Build('market.png',2800,2500)
         mkt.add(all,market)

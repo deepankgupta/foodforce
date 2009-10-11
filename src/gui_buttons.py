@@ -1,20 +1,21 @@
 #! /usr/bin/env python
 #
-
-# ***** BEGIN LICENSE BLOCK *****
-# Version: CPAL 1.0
+#   Author : Mohit Taneja (mohitgenii@gmail.com)
+#   Date : 9/06/2008 
 #
-# The contents of this file are subject to the Common Public Attribution
-# License Version 1.0 (CPAL); you may not use this file except in
-# compliance with the License. You may obtain a copy of the License at
-# http://opensource.org/licenses/cpal_1.0
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
 #
-# Software distributed under the License is distributed on an "AS IS" basis,
-# WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
-# for the specific language governing rights and limitations under the
-# License.
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
 #
-# ***** END LICENSE BLOCK ****
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #
 
 from sys import exit
@@ -30,7 +31,8 @@ import pygame
 import load_images
 #from model import *
 import model
-ActivitySharedFlag = False
+if model.FLAG_XO:
+    import game_sharing
 
 class marketBarChart:
     '''Class which displays the bar chart in the market window
@@ -753,12 +755,14 @@ class buysell_button:
         self.barObject = marketBarChart()
         self.barObject.drawValueChart(self.win.surf)
         
-        if ActivitySharedFlag:
+        if model.FLAG_XO:
+        
+            if game_sharing.test_connected():
             
-            #Creating Checkbox for share trade with peer villages
-            self.shareCheckBox = CheckBox(position = threades.resize_pos((440, 140), (800, 600), self.win.size),  parent = self.win,  style = ch_style,  text = 'Trade with Peer Villages' )
-            self.shareCheckBox.value = False        
-            self.shareCheckBox.onValueChanged = self.drawPriceChart()
+                #Creating Checkbox for share trade with peer villages
+                self.shareCheckBox = gui.CheckBox(position = threades.resize_pos((440, 140), (800, 600), self.win.size),  parent = self.win,  style = ch_style,  text = 'Trade with Peer Villages' )
+                self.shareCheckBox.value = False        
+                self.shareCheckBox.onValueChanged = self.drawPriceChart()
         
 
 
@@ -781,11 +785,12 @@ class buysell_button:
         
         #Creating a label for value to be printed
         self.label_quantity = gui.Label(position = threades.resize_pos((440.0,170.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Quantity ', style = labelstyle1)
-                    
-        if ActivitySharedFlag:
-            if self.shareCheckBox.value:
-                self.label_price = gui.Label(position = threades.resize_pos((400.0,250.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Price ', style = labelstyle1)
-                self.label_res_price = gui.Label(position = threades.resize_pos((650.0,280.0),(800.0,600.0),self.win.size), parent = self.win, text = str(int(self.barObject.bar2Val)), style = labelstyle1)
+        
+        if model.FLAG_XO:            
+            if game_sharing.test_connected():
+                if self.shareCheckBox.value:
+                    self.label_price = gui.Label(position = threades.resize_pos((400.0,250.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Price ', style = labelstyle1)
+                    self.label_res_price = gui.Label(position = threades.resize_pos((650.0,280.0),(800.0,600.0),self.win.size), parent = self.win, text = str(int(self.barObject.bar2Val)), style = labelstyle1)
         
         # Creating labels for prices of Resources 
         self.price_vwater = gui.Label(position = threades.resize_pos((370.0,140.0),(800.0,600.0),self.win.size), parent = self.win, text = str(int(model.Water.get_price())), style = labelstyle1)
@@ -850,34 +855,37 @@ class buysell_button:
 
     def updateMarketLabelValues(self,button = None):
         self.label_res_value.text = str(int(self.barObject.bar1Val))
-        if ActivitySharedFlag:
-            if self.shareCheckBox.value:
-                self.label_res_price.text = str(int(self.barObject.bar2Val))
+        if model.FLAG_XO:
+        
+            if game_sharing.test_connected():
+                if self.shareCheckBox.value:
+                    self.label_res_price.text = str(int(self.barObject.bar2Val))
                 
     def drawPriceChart(self,button = None):
         
         # Creating custom label style1
+        if model.FLAG_XO:
         
-        if ActivitySharedFlag:
-            if self.shareCheckBox.value:
-                myfont2 = pygame.font.Font("font.ttf",threades.resize_pt(16))
-                labelstyle1 = gui.defaultLabelStyle.copy()
-                labelstyle1['border-width'] = 0
-                labelstyle1['wordwrap'] = False
-                labelstyle1['autosize'] = True
-                labelstyle1['font'] = myfont2
-                labelstyle1['font-color'] = self.rect_color
-                #print self.shareCheckBox.value
+            if game_sharing.test_connected():
+                if self.shareCheckBox.value:
+                    myfont2 = pygame.font.Font("font.ttf",threades.resize_pt(16))
+                    labelstyle1 = gui.defaultLabelStyle.copy()
+                    labelstyle1['border-width'] = 0
+                    labelstyle1['wordwrap'] = False
+                    labelstyle1['autosize'] = True
+                    labelstyle1['font'] = myfont2
+                    labelstyle1['font-color'] = self.rect_color
+                    #print self.shareCheckBox.value
     
             
-                self.barObject.drawPriceChart(self.win.surf)
-                if not self.label_res_price_flag:            
-                    self.label_price = gui.Label(position = threades.resize_pos((440.0,250.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Price ', style = labelstyle1)
-                    self.label_res_price = gui.Label(position = threades.resize_pos((650.0,280.0),(800.0,600.0),self.win.size), parent = self.win, text = str(int(self.barObject.bar2Val)), style = labelstyle1)
-                    self.label_res_price_flag = True
+                    self.barObject.drawPriceChart(self.win.surf)
+                    if not self.label_res_price_flag:            
+                        self.label_price = gui.Label(position = threades.resize_pos((440.0,250.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Price ', style = labelstyle1)
+                        self.label_res_price = gui.Label(position = threades.resize_pos((650.0,280.0),(800.0,600.0),self.win.size), parent = self.win, text = str(int(self.barObject.bar2Val)), style = labelstyle1)
+                        self.label_res_price_flag = True
             
-            else:
-                self.barObject.deletePriceChart()
+                else:
+                    self.barObject.deletePriceChart()
             
             
     def buy_resources(self,button):
@@ -885,63 +893,101 @@ class buysell_button:
         '''
         # Checking whether the user has entered the value in text box properly
         quantity = self.barObject.bar1Val  
-
+        price = 0
+        if model.FLAG_XO:
+            if game_sharing.test_connected() and self.shareCheckBox.value:
+                price = int(self.barObject.bar2Val)
+                
+        label_text = self.message_label.text  
         # Checking whether the user has selected the appropriate option box for the resource or not, and do the appropriate action
         if self.water_box.value:
-            label_text =  threades.buy_res(model.Water,quantity)
-            if label_text == 'The Village has bought the resource you demanded':
-                self.label_vwater.text = str(int(model.Water.get_vquantity()))
-                self.label_mwater.text = str(int(model.Water.get_mquantity()))
+            if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
+                initiateTrade(True,model.Water,quantity,price)
+            else:    
+                label_text =  threades.buy_res(model.Water,quantity)
+                if label_text == 'The Village has bought the resource you demanded':
+                    self.label_vwater.text = str(int(model.Water.get_vquantity()))
+                    self.label_mwater.text = str(int(model.Water.get_mquantity()))
         elif self.buildmat_box.value:
-            label_text =  threades.buy_res(model.Buildmat,quantity)
-            if label_text == 'The Village has bought the resource you demanded':
-                self.label_vbuildmat.text = str(int(model.Buildmat.get_vquantity()))
-                self.label_mbuildmat.text = str(int(model.Buildmat.get_mquantity()))
+            if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
+                initiateTrade(True,model.Buildmat,quantity,price)
+            else:    
+                label_text =  threades.buy_res(model.Buildmat,quantity)
+                if label_text == 'The Village has bought the resource you demanded':
+                    self.label_vwater.text = str(int(model.Buildmat.get_vquantity()))
+                    self.label_mwater.text = str(int(model.Buildmat.get_mquantity()))
         elif self.tools_box.value:
-            label_text =  threades.buy_res(model.Tools,quantity)
-            if label_text == 'The Village has bought the resource you demanded':
-                self.label_vtools.text = str(int(model.Tools.get_vquantity()))
-                self.label_mtools.text = str(int(model.Tools.get_mquantity()))
+            if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
+                initiateTrade(True,model.Tools,quantity,price)
+            else:    
+                label_text =  threades.buy_res(model.Tools,quantity)
+                if label_text == 'The Village has bought the resource you demanded':
+                    self.label_vwater.text = str(int(model.Tools.get_vquantity()))
+                    self.label_mwater.text = str(int(model.Tools.get_mquantity()))
         elif self.medicine_box.value:
-            label_text =  threades.buy_res(model.Medicine,quantity)
-            if label_text == 'The Village has bought the resource you demanded':
-                self.label_vmedicine.text = str(int(model.Medicine.get_vquantity()))
-                self.label_mmedicine.text = str(int(model.Medicine.get_mquantity()))
+            if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
+                initiateTrade(True,model.Medicine,quantity,price)
+            else:    
+                label_text =  threades.buy_res(model.Medicine,quantity)
+                if label_text == 'The Village has bought the resource you demanded':
+                    self.label_vwater.text = str(int(model.Medicine.get_vquantity()))
+                    self.label_mwater.text = str(int(model.Medicine.get_mquantity()))
         elif self.books_box.value:
-            label_text =  threades.buy_res(model.Book,quantity)
-            if label_text == 'The Village has bought the resource you demanded':
-                self.label_vbooks.text = str(int(model.Book.get_vquantity()))
-                self.label_mbooks.text = str(int(model.Book.get_mquantity()))
+            if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
+                initiateTrade(True,model.Books,quantity,price)
+            else:    
+                label_text =  threades.buy_res(model.Books,quantity)
+                if label_text == 'The Village has bought the resource you demanded':
+                    self.label_vwater.text = str(int(model.Books.get_vquantity()))
+                    self.label_mwater.text = str(int(model.Books.get_mquantity()))
         elif self.rice_box.value:
-            label_text =  threades.buy_res(model.Rice,quantity)
-            if label_text == 'The Village has bought the resource you demanded':
-                self.label_vrice.text = str(int(model.Rice.get_vquantity()))
-                self.label_mrice.text = str(int(model.Rice.get_mquantity()))
+            if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
+                initiateTrade(True,model.Rice,quantity,price)
+            else:    
+                label_text =  threades.buy_res(model.Rice,quantity)
+                if label_text == 'The Village has bought the resource you demanded':
+                    self.label_vwater.text = str(int(model.Rice.get_vquantity()))
+                    self.label_mwater.text = str(int(model.Rice.get_mquantity()))
         elif self.wheat_box.value:
-            label_text =  threades.buy_res(model.Wheat,quantity)
-            if label_text == 'The Village has bought the resource you demanded':
-                self.label_vwheat.text = str(int(model.Wheat.get_vquantity()))
-                self.label_mwheat.text = str(int(model.Wheat.get_mquantity()))
+            if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
+                initiateTrade(True,model.Wheat,quantity,price)
+            else:    
+                label_text =  threades.buy_res(model.Wheat,quantity)
+                if label_text == 'The Village has bought the resource you demanded':
+                    self.label_vwater.text = str(int(model.Wheat.get_vquantity()))
+                    self.label_mwater.text = str(int(model.Wheat.get_mquantity()))
         elif self.beans_box.value:
-            label_text =  threades.buy_res(model.Beans,quantity)
-            if label_text == 'The Village has bought the resource you demanded':
-                self.label_vbeans.text = str(int(model.Beans.get_vquantity()))
-                self.label_mbeans.text = str(int(model.Beans.get_mquantity()))
+            if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
+                initiateTrade(True,model.Beans,quantity,price)
+            else:    
+                label_text =  threades.buy_res(model.Beans,quantity)
+                if label_text == 'The Village has bought the resource you demanded':
+                    self.label_vwater.text = str(int(model.Beans.get_vquantity()))
+                    self.label_mwater.text = str(int(model.Beans.get_mquantity()))
         elif self.sugar_box.value:
-            label_text =  threades.buy_res(model.Sugar,quantity)
-            if label_text == 'The Village has bought the resource you demanded':
-                self.label_vsugar.text = str(int(model.Sugar.get_vquantity()))
-                self.label_msugar.text = str(int(model.Sugar.get_mquantity()))
+            if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
+                initiateTrade(True,model.Sugar,quantity,price)
+            else:    
+                label_text =  threades.buy_res(model.Sugar,quantity)
+                if label_text == 'The Village has bought the resource you demanded':
+                    self.label_vwater.text = str(int(model.Sugar.get_vquantity()))
+                    self.label_mwater.text = str(int(model.Sugar.get_mquantity()))
         elif self.salt_box.value:
-            label_text =  threades.buy_res(model.Salt,quantity)
-            if label_text == 'The Village has bought the resource you demanded':
-                self.label_vsalt.text = str(int(model.Salt.get_vquantity()))
-                self.label_msalt.text = str(int(model.Salt.get_mquantity()))
+            if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
+                initiateTrade(True,model.Salt,quantity,price)
+            else:    
+                label_text =  threades.buy_res(model.Salt,quantity)
+                if label_text == 'The Village has bought the resource you demanded':
+                    self.label_vwater.text = str(int(model.Salt.get_vquantity()))
+                    self.label_mwater.text = str(int(model.Salt.get_mquantity()))
         elif self.oil_box.value:
-            label_text =  threades.buy_res(model.Oil,quantity)
-            if label_text == 'The Village has bought the resource you demanded':
-                self.label_voil.text = str(int(model.Oil.get_vquantity()))
-                self.label_moil.text = str(int(model.Oil.get_mquantity()))
+            if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
+                initiateTrade(True,model.Oil,quantity,price)
+            else:    
+                label_text =  threades.buy_res(model.Oil,quantity)
+                if label_text == 'The Village has bought the resource you demanded':
+                    self.label_vwater.text = str(int(model.Oil.get_vquantity()))
+                    self.label_mwater.text = str(int(model.Oil.get_mquantity()))
         else:
             label_text = ' Please select a Resource for Trading'
 
@@ -955,63 +1001,101 @@ class buysell_button:
         '''
         # Checking whether the user has entered the value in text box properly
         quantity = self.barObject.bar1Val
-
+        price = 0
+        if model.FLAG_XO:
+            if game_sharing.test_connected() and self.shareCheckBox.value:
+                price = int(self.barObject.bar2Val)
+                
+        label_text = self.message_label.text  
         # Checking whether the user has selected the appropriate option box for the resource or not, and do the appropriate action
         if self.water_box.value:
-            label_text =  threades.sell_res(model.Water,quantity)
-            if label_text == 'The Village has sold the resource you demanded':
-                self.label_vwater.text = str(int(model.Water.get_vquantity()))
-                self.label_mwater.text = str(int(model.Water.get_mquantity()))
+            if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
+                initiateTrade(False,model.Water,quantity,price)
+            else:    
+                label_text =  threades.sell_res(model.Water,quantity)
+                if label_text == 'The Village has bought the resource you demanded':
+                    self.label_vwater.text = str(int(model.Water.get_vquantity()))
+                    self.label_mwater.text = str(int(model.Water.get_mquantity()))
         elif self.buildmat_box.value:
-            label_text =  threades.sell_res(model.Buildmat,quantity)
-            if label_text == 'The Village has sold the resource you demanded':
-                self.label_vbuildmat.text = str(int(model.Buildmat.get_vquantity()))
-                self.label_mbuildmat.text = str(int(model.Buildmat.get_mquantity()))
+            if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
+                initiateTrade(False,model.Buildmat,quantity,price)
+            else:    
+                label_text =  threades.sell_res(model.Buildmat,quantity)
+                if label_text == 'The Village has bought the resource you demanded':
+                    self.label_vwater.text = str(int(model.Buildmat.get_vquantity()))
+                    self.label_mwater.text = str(int(model.Buildmat.get_mquantity()))
         elif self.tools_box.value:
-            label_text =  threades.sell_res(model.Tools,quantity)
-            if label_text == 'The Village has sold the resource you demanded':
-                self.label_vtools.text = str(int(model.Tools.get_vquantity()))
-                self.label_mtools.text = str(int(model.Tools.get_mquantity()))
+            if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
+                initiateTrade(False,model.Tools,quantity,price)
+            else:    
+                label_text =  threades.sell_res(model.Tools,quantity)
+                if label_text == 'The Village has bought the resource you demanded':
+                    self.label_vwater.text = str(int(model.Tools.get_vquantity()))
+                    self.label_mwater.text = str(int(model.Tools.get_mquantity()))
         elif self.medicine_box.value:
-            label_text =  threades.sell_res(model.Medicine,quantity)
-            if label_text == 'The Village has sold the resource you demanded':
-                self.label_vmedicine.text = str(int(model.Medicine.get_vquantity()))
-                self.label_mmedicine.text = str(int(model.Medicine.get_mquantity()))
+            if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
+                initiateTrade(False,model.Medicine,quantity,price)
+            else:    
+                label_text =  threades.sell_res(model.Medicine,quantity)
+                if label_text == 'The Village has bought the resource you demanded':
+                    self.label_vwater.text = str(int(model.Medicine.get_vquantity()))
+                    self.label_mwater.text = str(int(model.Medicine.get_mquantity()))
         elif self.books_box.value:
-            label_text =  threades.sell_res(model.Book,quantity)
-            if label_text == 'The Village has sold the resource you demanded':
-                self.label_vbooks.text = str(int(model.Book.get_vquantity()))
-                self.label_mbooks.text = str(int(model.Book.get_mquantity()))
+            if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
+                initiateTrade(False,model.Books,quantity,price)
+            else:    
+                label_text =  threades.sell_res(model.Books,quantity)
+                if label_text == 'The Village has bought the resource you demanded':
+                    self.label_vwater.text = str(int(model.Books.get_vquantity()))
+                    self.label_mwater.text = str(int(model.Books.get_mquantity()))
         elif self.rice_box.value:
-            label_text =  threades.sell_res(model.Rice,quantity)
-            if label_text == 'The Village has sold the resource you demanded':
-                self.label_vrice.text = str(int(model.Rice.get_vquantity()))
-                self.label_mrice.text = str(int(model.Rice.get_mquantity()))
+            if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
+                initiateTrade(False,model.Rice,quantity,price)
+            else:    
+                label_text =  threades.sell_res(model.Rice,quantity)
+                if label_text == 'The Village has bought the resource you demanded':
+                    self.label_vwater.text = str(int(model.Rice.get_vquantity()))
+                    self.label_mwater.text = str(int(model.Rice.get_mquantity()))
         elif self.wheat_box.value:
-            label_text =  threades.sell_res(model.Wheat,quantity)
-            if label_text == 'The Village has sold the resource you demanded':
-                self.label_vwheat.text = str(int(model.Wheat.get_vquantity()))
-                self.label_mwheat.text = str(int(model.Wheat.get_mquantity()))
+            if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
+                initiateTrade(False,model.Wheat,quantity,price)
+            else:    
+                label_text =  threades.sell_res(model.Wheat,quantity)
+                if label_text == 'The Village has bought the resource you demanded':
+                    self.label_vwater.text = str(int(model.Wheat.get_vquantity()))
+                    self.label_mwater.text = str(int(model.Wheat.get_mquantity()))
         elif self.beans_box.value:
-            label_text =  threades.sell_res(model.Beans,quantity)
-            if label_text == 'The Village has sold the resource you demanded':
-                self.label_vbeans.text = str(int(model.Beans.get_vquantity()))
-                self.label_mbeans.text = str(int(model.Beans.get_mquantity()))
+            if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
+                initiateTrade(False,model.Beans,quantity,price)
+            else:    
+                label_text =  threades.sell_res(model.Beans,quantity)
+                if label_text == 'The Village has bought the resource you demanded':
+                    self.label_vwater.text = str(int(model.Beans.get_vquantity()))
+                    self.label_mwater.text = str(int(model.Beans.get_mquantity()))
         elif self.sugar_box.value:
-            label_text =  threades.sell_res(model.Sugar,quantity)
-            if label_text == 'The Village has sold the resource you demanded':
-                self.label_vsugar.text = str(int(model.Sugar.get_vquantity()))
-                self.label_msugar.text = str(int(model.Sugar.get_mquantity()))
+            if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
+                initiateTrade(False,model.Sugar,quantity,price)
+            else:    
+                label_text =  threades.sell_res(model.Sugar,quantity)
+                if label_text == 'The Village has bought the resource you demanded':
+                    self.label_vwater.text = str(int(model.Sugar.get_vquantity()))
+                    self.label_mwater.text = str(int(model.Sugar.get_mquantity()))
         elif self.salt_box.value:
-            label_text =  threades.sell_res(model.Salt,quantity)
-            if label_text == 'The Village has sold the resource you demanded':
-                self.label_vsalt.text = str(int(model.Salt.get_vquantity()))
-                self.label_msalt.text = str(int(model.Salt.get_mquantity()))
+            if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
+                initiateTrade(False,model.Salt,quantity,price)
+            else:    
+                label_text =  threades.sell_res(model.Salt,quantity)
+                if label_text == 'The Village has bought the resource you demanded':
+                    self.label_vwater.text = str(int(model.Salt.get_vquantity()))
+                    self.label_mwater.text = str(int(model.Salt.get_mquantity()))
         elif self.oil_box.value:
-            label_text =  threades.sell_res(model.Oil,quantity)
-            if label_text == 'The Village has sold the resource you demanded':
-                self.label_voil.text = str(int(model.Oil.get_vquantity()))
-                self.label_moil.text = str(int(model.Oil.get_mquantity()))
+            if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
+                initiateTrade(False,model.Oil,quantity,price)
+            else:    
+                label_text =  threades.sell_res(model.Oil,quantity)
+                if label_text == 'The Village has bought the resource you demanded':
+                    self.label_vwater.text = str(int(model.Oil.get_vquantity()))
+                    self.label_mwater.text = str(int(model.Oil.get_mquantity()))
         else:
             label_text = ' Please select a Resource for Trading'
         self.message_label.text = label_text
@@ -1132,59 +1216,28 @@ def initialize_gui():
     global gui_obj
     gui_obj.initialize()     
     
-    
-class meshTrading:
-    '''Class which handles matters regarding the trading over
-       Mesh Network
-    '''    
-    def tradingWindow(self,buddyName = 'Friend',resource = 'Water',price = '10',trade = 'sell'):
-        '''Opens the trading window at the reciever end for trading
-        '''        
 
-        #self.font_color = (255,214,150) # Brown
-        color_blue = (0,0,250)
-        myfont = pygame.font.Font("font.ttf", threades.resize_pt(17))
-        # Custom gui.Window Style
-        win_style = gui.defaultWindowStyle.copy()
-        win_style['font'] = myfont
-        win_style['bg-color'] = (0,0,0)
-        win_style['font-color'] = color_blue
+def initiateTrade(buysell,resource,quantity,price):
+    ''' buysell is a flag if True : Buy , if False : Sell
+        resource tells which resource is to be traded
+        price : price at which the resource will be traded
+    '''
+    if not buysell:
+        cost  = quantity*price
+        if cost > model.money.get_money():
+            gui_obj.buysell_obj.message_label.text = " Village doesn't have enough money to buy the resources"
+            return
+        game_sharing.broadcast_msg(['Trade',resource.get_name(),str(quantity),str(price),'sell'])
+        game_sharing.setUnicastTradingFlag('sell')
+    else:
+        if quantity > resource.get_vquantity():
+            gui_obj.buysell_obj.message_label.text = " There are not enough resources in the village to trade"
+            return
+        game_sharing.broadcast_msg(['Trade',resource.get_name(),str(quantity),str(price),'buy'])
+        game_sharing.setUnicastTradingFlag('buy')
         
-        # Calculating position and size of window from the size of the threades.desktop
-        position_win =threades.resize_pos((725.0,42.0))
-        size_win =threades.resize_pos((470.0,180.0))
-    
-        # Creating custom label style for the text to be displayed as a message
-        labelStyleCopy = gui.defaultLabelStyle.copy()
-        labelStyleCopy['wordwrap'] = True
-        labelStyleCopy['autosize'] = False
-        labelStyleCopy['font'] = myfont
-        labelStyleCopy['font-color'] = color_blue
-        #labelStyleCopy['font-color'] = font_color
-    
-        self.win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = " Trade " ,style = win_style,shadeable = False, moveable = False)
-        # Creating label
-        label_text = buddyName + ' wants to ' + trade + ' ' + resource + ' at $ '+ price 
-        message_label = gui.Label(position = threades.resize_pos((5,5),(470.0,180.0),win.size),size = threades.resize_pos((460,120),(470.0,180.0),win.size), parent = win, text = label_text, style = labelStyleCopy)
+    if gui_obj.buysell_obj.get_win_flag():
+        gui_obj.buysell_obj.close_win()
         
-        # Creating button style
-        myfont2 = pygame.font.Font("font.ttf", threades.resize_pt(16))
-        button_style = gui.defaultButtonStyle.copy()
-        button_style['font'] = myfont2
+    
 
-        self.button_accept = gui.Button(position = threades.resize_pos((100.0,130.0),(470.0,180.0),size_win), size = threades.resize_pos((100.0,40.0),(470.0,180.0),size_win), parent = self.win, text = " Accept ",style = button_style)
-        self.button_reject = gui.Button(position = threades.resize_pos((300.0,130.0),(470.0,180.0),size_win), size = threades.resize_pos((100.0,40.0),(470.0,180.0),size_win), parent = self.win, text = " Accept ",style = button_style)
-        
-        self.button_accept.onClick = self.checkTrade
-        self.button_accept.onClick = self.closeWin
-        
-        sleep(6)
-        self.win.close()
-                    
-    def checkTrade(self,button = None):
-        ''' Sends an acceptance request to the person who tried to trade 
-        '''
-        
-            
-    def closeWin(self):
-        self.win.close()
