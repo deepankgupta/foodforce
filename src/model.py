@@ -26,6 +26,14 @@ import pygame
 #Flag to check the operating system
 FLAG_XO = False
 
+try:
+   import olpcgames, olpcgames.util
+   if not olpcgames.ACTIVITY: raise RuntimeError
+   FLAG_XO = True
+except (RuntimeError,ImportError):
+    FLAG_XO = False
+
+
 
 #facility size values
 Facility_Size = [['HOUSE',360,300],['HOSPITAL',370,300],['FARM',516,500],['FOUNTAIN',197,192],['SCHOOL',420,450],['WORKSHOP',760,520]]
