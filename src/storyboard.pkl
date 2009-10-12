@@ -49,7 +49,7 @@ ag5
 aS'Father, I feel that the first requirement of the people of the village is shelter.'
 p11
 ag7
-aS'Very rightly said son. Every person needs a house to live in. Shelter is among one of the most basic necessities of a person. Build 3 huts to shelter the people of Abujamara. You can setup a hut by clicking on Build Facility->house.'
+aS'Very rightly said son. Every person needs a house to live in. Shelter is among one of the most basic necessities of a person. Build 3 huts to shelter the people of Abujamara. You can setup a hut by clicking on Build -> house.'
 p12
 aaS'Barren-Land.png'
 p13
@@ -88,7 +88,7 @@ p7
 aS'Okay, Father.'
 p8
 ag5
-aS'When you setup a Hut the Housing Indicator of the Village increases.The indicators are shown on the bottom right hand side of the screen. The indicators are a measure, which tell about the growth and prosperity of the village.'
+aS'When you setup a Hut the Housing Progress Bar of the Village increases.The progress bars are shown on the bottom right hand side of the screen. The progress bars are a measure, which tell about the growth and prosperity of the village.'
 p9
 ag7
 ag8
@@ -103,7 +103,7 @@ a(lp3
 (lp4
 S'Kamat'
 p5
-aS'Son, the next basic necessity of a village is Food. The people need food and water to survive. A well will draw water from the ground and provide fresh clean water to everybody. To setup a well click on Build Facility->Well. Build a well now.'
+aS'Son, the next basic necessity of a village is Food. The people need food and water to survive. A well will draw water from the ground and provide fresh clean water to everybody. To setup a well click on Build -> Well. Build a well now.'
 p6
 aaS'thatched-huts.png'
 p7
@@ -273,7 +273,7 @@ a(lp3
 (lp4
 S'Kamat'
 p5
-aS'Son, as the schools are functional now. You can see that the number of people educated in the Manpower Distribution table has increased. Also the education indicator in the Indicator table has increased.'
+aS'Son, as the schools are functional now. You can see that the number of people educated in the Manpower Distribution table has increased. Also the education progress bar in the Progress Bar table has increased.'
 p6
 aS'Son'
 p7
@@ -591,7 +591,7 @@ aS'Good work Son. You should notice that upgrading a facility increases its prod
 p6
 aS'Son'
 p7
-aS'Yes father, I can notice the changes. The indicators level has also increased.'
+aS'Yes father, I can notice the changes. The progress bar levels has also increased.'
 p8
 ag5
 aS'Yes Son, upgrading a facility affects the overall prosperity of the village.'
@@ -610,7 +610,7 @@ p5
 aS'Son, now upgrade every facility type to level 1. You can also notice that information related to the upgrade is given in the upgrade window whenever you select any facility.'
 p6
 ag5
-aS'When you will upgrade all the facilities, you will notice a considerable change in the indicators of the village.'
+aS'When you will upgrade all the facilities, you will notice a considerable change in the progress bars of the village.'
 p7
 aS'Son'
 p8
@@ -734,7 +734,7 @@ ag5
 aS'Here is your mission: Take good care of our village for the next 3 months.'
 p14
 ag5
-aS'Do not let the indicator levels fall below 20% for the next three months.'
+aS'Do not let the progress levels fall below 20% for the next three months.'
 p15
 ag7
 aS'Ok Father. I will not disappoint you.'
@@ -821,7 +821,7 @@ S'actionFalse'
 p1
 a(lp2
 I8
-aS'You were not able to maintain the village properly. Your indicators fell below 20%.\n\n You must retry this level to reach the next level.'
+aS'You were not able to maintain the village properly. Your progress bar levels fell below 20%.\n\n You must retry this level to reach the next level.'
 p3
 aa.(lp0
 S'actionFalse'
@@ -907,7 +907,7 @@ ag9
 aS'Smart trading will ensure that you do not lose the money in your treasury. According to my calculations, things will improve in the next year.'
 p29
 ag9
-aS'So at the end of 4 months, do not allow the indicator values to below 20%. Also, maintain atleast Rs. 5,000 In the treasury at all times.'
+aS'So at the end of 4 months, do not allow the progress bar values to below 20%. Also, maintain atleast Rs. 5,000 In the treasury at all times.'
 p30
 ag9
 aS'Farewell brother, hope you will do well.'
@@ -1029,7 +1029,7 @@ S'actionFalse'
 p1
 a(lp2
 I8
-aS'You were not able to maintain the village properly. Your indicators fell below 20% or the money in your bank is less than Rs. 5000.\n\nYou must retry this level to reach the next level.'
+aS'You were not able to maintain the village properly. Your progress bar levels fell below 20% or the money in your bank is less than Rs. 5000.\n\nYou must retry this level to reach the next level.'
 p3
 aa.(lp0
 S'actionFalse'
@@ -1101,7 +1101,7 @@ ag5
 aS'Hospitals and Workshops are also not able to work properly due to shortage of water.'
 p14
 ag5
-aS'Build up some wells and take good care of crops. Do not let the nutrition indicator drop below 20% and also donot let the water level fall below 100.'
+aS'Build up some wells and take good care of crops. Do not let the nutrition progress bar drop below 20% and also donot let the water level fall below 100.'
 p15
 ag5
 aS'Good luck son.'
@@ -1250,7 +1250,7 @@ S'action'
 p1
 a(lp2
 I7
-aS'Mission Objective: \n\nRebuild the village and bring the indicators to 40% within\nnext 2 years.'
+aS'Mission Objective: \n\nRebuild the village and bring the progress bars to 40% within\nnext 2 years.'
 p3
 aa.(lp0
 S'condition'

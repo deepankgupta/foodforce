@@ -48,7 +48,7 @@ def write_data():
     'Kamat','The people of Abujamara are homeless right now. They came to our village seeking help and the Panchayat decided to clear this forest and provide the land to the poor people. It is our job to help them establish a village on this land.',
     'Kamat','If you had been at my place, how would you bring life back to this village?',
     'Son','Father, I feel that the first requirement of the people of the village is shelter.',
-    'Kamat','Very rightly said son. Every person needs a house to live in. Shelter is among one of the most basic necessities of a person. Build 3 huts to shelter the people of Abujamara. You can setup a hut by clicking on Build Facility->house.']
+    'Kamat','Very rightly said son. Every person needs a house to live in. Shelter is among one of the most basic necessities of a person. Build 3 huts to shelter the people of Abujamara. You can setup a hut by clicking on Build -> house.']
     
     action = [1,[chatText,'Barren-Land.png']]
     actionData = ['action',action]
@@ -69,7 +69,7 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    chatText = ['Kamat','Son, the next basic necessity of a village is Food. The people need food and water to survive. A well will draw water from the ground and provide fresh clean water to everybody. To setup a well click on Build Facility->Well. Build a well now.']
+    chatText = ['Kamat','Son, the next basic necessity of a village is Food. The people need food and water to survive. A well will draw water from the ground and provide fresh clean water to everybody. To setup a well click on Build -> Well. Build a well now.']
 
     action = [1,[chatText,'thatched-huts.png']]
     actionData = ['action',action]
@@ -277,7 +277,7 @@ def write_data():
     pickle.dump(condnData,output)
     
     chatText = ['Kamat','Good work Son. You should notice that upgrading a facility increases its productivity. The amount of resources produced by the Workshop have been increased considerable, also the people working in workshop would get better working conditions.',
-    'Son','Yes father, I can notice the changes. The indicators level has also increased.',
+    'Son','Yes father, I can notice the changes. The progress level has also increased.',
     'Kamat','Yes Son, upgrading a facility affects the overall prosperity of the village.']
     
     action = [1,[chatText,'tech.png']]
@@ -330,7 +330,7 @@ def write_data():
     'Son','Will I not be accompanying you?',
     'Kamat','No son, I need someone to take care of the village.',
     'Kamat','Here is your mission: Take good care of our village for the next 3 months.',
-    'Kamat','Do not let the indicator levels fall below 20% for the next three months.',
+    'Kamat','Do not let the progress levels fall below 20% for the next three months.',
     'Son','Ok Father. I will not disappoint you.']
 
     
@@ -358,7 +358,7 @@ def write_data():
     actionData = ['actionTrue',action]
     pickle.dump(actionData,output)
  
-    text = "You were not able to maintain the village properly. Your indicators fell below 20%.\n\n You must retry this level to reach the next level."
+    text = "You were not able to maintain the village properly. Your progress fell below 20%.\n\n You must retry this level to reach the next level."
     
     action = [8,text]
     actionData = ['actionFalse',action]
@@ -393,7 +393,7 @@ def write_data():
     'Son','Bhaiyya, what do you reckon will happen in the coming days.',
     'Ajmal','Prices of the commodities will fall, do not try to setup new things during this period and focus on trading well.',
     'Ajmal','Smart trading will ensure that you do not lose the money in your treasury. According to my calculations, things will improve in the next year.',
-    'Ajmal','So at the end of 4 months, do not allow the indicator values to below 20%. Also, maintain atleast Rs. 5,000 In the treasury at all times.',
+    'Ajmal','So at the end of 4 months, do not allow the progress values to below 20%. Also, maintain atleast Rs. 5,000 In the treasury at all times.',
     'Ajmal','Farewell brother, hope you will do well.']
     
     action = [1,[chatText,'rec2.png']]
@@ -436,7 +436,7 @@ def write_data():
     pickle.dump(actionData,output)
  
 
-    text = "You were not able to maintain the village properly. Your indicators fell below 20% or the money in your bank is less than Rs. 5000.\n\nYou must retry this level to reach the next level."
+    text = "You were not able to maintain the village properly. Your progress fell below 20% or the money in your bank is less than Rs. 5000.\n\nYou must retry this level to reach the next level."
     
     
     action = [8,text]
@@ -468,7 +468,7 @@ def write_data():
                 'Son','Yes Father.',
                 'Kamat','Due to lack of water, the productivity of farms have decreased. People are dying of hunger.',
                 'Kamat','Hospitals and Workshops are also not able to work properly due to shortage of water.',
-                'Kamat','Build up some wells and take good care of crops. Do not let the nutrition indicator drop below 20% and also donot let the water level fall below 100.',
+                'Kamat','Build up some wells and take good care of crops. Do not let the nutrition progress drop below 20% and also donot let the water level fall below 100.',
                 'Kamat','Good luck son.']
     
     
@@ -552,7 +552,7 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    text = 'Mission Objective: \n\nRebuild the village and bring the indicators to 40% within\nnext 2 years.'
+    text = 'Mission Objective: \n\nRebuild the village and bring the progress levels to 40% within\nnext 2 years.'
     
     action = [7,text]
     actionData = ['action',action]

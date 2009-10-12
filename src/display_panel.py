@@ -91,7 +91,7 @@ class indicator_panel:
         self.labelstyle1['font-color'] = self.font_color
         self.labelstyle1['border-color'] = self.color_grey
         # Drawing main Indicator label
-        label = gui.Label(position = threades.resize_pos((900,600)),size = threades.resize_pos((300,45)), parent = threades.desktop, text = "      Indicators", style = self.labelstyle1)
+        label = gui.Label(position = threades.resize_pos((900,600)),size = threades.resize_pos((300,45)), parent = threades.desktop, text = "  Progress Bars", style = self.labelstyle1)
 
         #print " deawing indicator panel"
         
