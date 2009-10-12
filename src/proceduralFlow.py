@@ -64,9 +64,9 @@ class condition:
     checktype = '=='
     ind_name = ''
     value = 0
-    
+
     def __init__(self,Flag = False,eventBased = True,eventType = 0,fac_name = '',res_name = '',checktype = '==',ind_name = '',value = 0):
-        
+
         self.Flag = Flag
         self.eventBased = eventBased
         self.eventType = eventType
@@ -75,224 +75,224 @@ class condition:
         self.checktype = checktype
         self.ind_name = ind_name
         self.value = value
-        
+
     def checkCondition(self,events = []):
         ''' Checks whether the condition is true or not
         '''
-        
+
         # Check for event based conditions
         if self.eventBased :
             if self.Flag == False:
                 for event in events:
                     if (event.type == self.eventType) and (event.facility_name == self.fac_name) and (event.res_name == self.res_name) :
                         self.Flag = True
-                        
+
         # Check for non event based conditions
         else:
             if self.eventType == FACILITYNUMBERCONDITION:
-                
-                for fac in model.facilities_list:                
+
+                for fac in model.facilities_list:
                     if fac.get_name() == self.fac_name:
-                        
+
                         if self.checktype == '==':
                             if fac.get_original_number() == self.value:
                                 self.Flag = True
                             else:
                                 self.Flag = False
-                    
+
                         if self.checktype == '<=':
                             if fac.get_original_number() <= self.value:
                                 self.Flag = True
                             else:
                                 self.Flag = False
-                    
-                        
+
+
                         if self.checktype == '>=':
                             if fac.get_original_number() >= self.value:
                                 self.Flag = True
                             else:
                                 self.Flag = False
-                    
+
 
                         if self.checktype == '<':
                             if  fac.get_original_number() < self.value :
                                 self.Flag = True
                             else:
                                 self.Flag = False
-                    
-                        
+
+
                         if self.checktype == '>':
                             if  fac.get_original_number() > self.value :
                                 self.Flag = True
                             else:
                                 self.Flag = False
-                    
+
 
 
             if self.eventType == FACILITYLEVELCONDITION:
-                
-                for fac in model.facilities_list:                
+
+                for fac in model.facilities_list:
                     if fac.get_name() == self.fac_name:
-                        
+
                         if self.checktype == '==':
                             if fac.get_level() == self.value:
                                 self.Flag = True
                             else:
                                 self.Flag = False
-                    
-                    
+
+
                         if self.checktype == '<=':
                             if  fac.get_level() <= self.value :
                                 self.Flag = True
                             else:
                                 self.Flag = False
-                    
-                        
+
+
                         if self.checktype == '>=':
                             if fac.get_level() >= self.value :
                                 self.Flag = True
                             else:
                                 self.Flag = False
-                    
+
 
                         if self.checktype == '<':
                             if fac.get_level() < self.value :
                                 self.Flag = True
                             else:
                                 self.Flag = False
-                    
-                        
+
+
                         if self.checktype == '>':
                             if fac.get_level() > self.value :
                                 self.Flag = True
                             else:
                                 self.Flag = False
-                    
+
 
             if self.eventType == INDICATORVALUECONDITION:
-                
-                for ind in model.indicators_list:                
+
+                for ind in model.indicators_list:
                     if ind.get_name() == self.ind_name:
-                        
+
                         if self.checktype == '==':
                             if ind.get_value() == self.value:
                                 self.Flag = True
                             else:
                                 self.Flag = False
-                    
-                    
+
+
                         if self.checktype == '<=':
                             if  ind.get_value() <= self.value :
                                 self.Flag = True
                             else:
                                 self.Flag = False
-                    
-                        
+
+
                         if self.checktype == '>=':
                             if  ind.get_value() >= self.value :
                                 self.Flag = True
                             else:
                                 self.Flag = False
-                    
+
 
                         if self.checktype == '<':
                             if ind.get_value() < self.value :
                                 self.Flag = True
                             else:
                                 self.Flag = False
-                    
-                        
+
+
                         if self.checktype == '>':
                             if ind.get_value() > self.value :
                                 self.Flag = True
                             else:
                                 self.Flag = False
-                    
 
-    
+
+
             if self.eventType == RESOURCEVALUECONDITION:
-                
-                for res in model.resources:                
+
+                for res in model.resources:
                     if res.get_name() == self.res_name:
-                        
+
                         if self.checktype == '==':
                             if res.get_vquantity() == self.value:
                                 self.Flag = True
                             else:
                                 self.Flag = False
-                    
-                    
+
+
                         if self.checktype == '<=':
                             if  res.get_vquantity() <= self.value :
                                 self.Flag = True
                             else:
                                 self.Flag = False
-                    
-                        
+
+
                         if self.checktype == '>=':
                             if  res.get_vquantity() >= self.value :
                                 self.Flag = True
                             else:
                                 self.Flag = False
-                    
+
 
                         if self.checktype == '<':
                             if  res.get_vquantity() > self.value :
                                 self.Flag = True
                             else:
                                 self.Flag = False
-                    
-                        
+
+
                         if self.checktype == '>':
                             if  res.get_vquantity() > self.value :
                                 self.Flag = True
                             else:
                                 self.Flag = False
-                    
+
 
             if self.eventType == MONEYVALUECONDITION:
-                
-                
+
+
                 if self.checktype == '==':
                     if model.money.get_money() == self.value:
                         self.Flag = True
                     else:
                         self.Flag = False
-                    
-            
+
+
                 if self.checktype == '<=':
                     if  model.money.get_money() <= self.value :
                         self.Flag = True
                     else:
                         self.Flag = False
-                    
-                
+
+
                 if self.checktype == '>=':
                     if  model.money.get_money() >= self.value :
                         self.Flag = True
                     else:
                         self.Flag = False
-                    
+
 
                 if self.checktype == '<':
                     if model.money.get_money() < self.value :
                         self.Flag = True
                     else:
                         self.Flag = False
-                    
-                
+
+
                 if self.checktype == '>':
                     if  model.money.get_money() > self.value :
                         self.Flag = True
                     else:
                         self.Flag = False
-                    
 
-                             
+
+
         return self.Flag
-                                
 
-                        
+
+
 
 
 
@@ -305,8 +305,8 @@ class checkConditions:
     timer = -1
     time = 0
     conditionslist = []
-    
-    
+
+
     def __init__(self,condn):
         ''' Initializes the variables of the class
         '''
@@ -314,55 +314,55 @@ class checkConditions:
         self.timer = condn[1]   # TODO timer here should be in days
         condnlist = condn[2]
         self.conditionslist = []
-        
+
         for Conditions in condnlist:
             addcondition = condition(False,Conditions[0],Conditions[1],Conditions[2],Conditions[3],Conditions[4],Conditions[5],Conditions[6])
             self.conditionslist.append(addcondition)
-            
+
         if not (self.timer == -1):
             self.time = 0
             self.init_days = model.game_controller.get_total_days()
-            #print "initial days = "            
+            #print "initial days = "
             #print self.init_days
-            
+
     def checkConditions(self,events):
         ''' Returns 0/1/2 depending upon the state of conditions
             0 : The conditions are still being tested and the player has neither failed the mission nor has he passed it
             1 : The player has passed the mission
             2 : The player has failed the mission
         '''
-        
+
         Flag = True
         if threades.levelStartFacilityBuildFlag > 0:
             return 0
-            
+
         for conditions in self.conditionslist:
-            
+
             Flag = conditions.checkCondition(events) and Flag
-            
+
         if self.closure == 'AND':
             if Flag:
                 return 1
             else:
                 return 0
-            
+
         if self.closure == 'NOR':
-            
+
             if Flag and (not self.getTimerFlag()):
                 return 0
             if Flag and self.getTimerFlag():
                 return 1
             if (not Flag):
                 return 2
-                
-                
-            
+
+
+
     def getTimerFlag(self):
         '''Returns True if time got over else returns False
         '''
-        
+
         self.currentdays = model.game_controller.get_total_days()
-        #print "current days = "            
+        #print "current days = "
         #print self.currentdays
         if self.currentdays >= self.timer + self.init_days:
             return True
@@ -379,6 +379,7 @@ EARTHQUAKEACTION = 4
 DELAYACTION = 5
 WFPWINDOWACTION = 6
 STORYBOARDWINDOWACTION = 7
+SBINSTRUCTIONMESSAGE = 8
 
 # Global variable for storyboard level
 storyboard_level = 1
@@ -386,23 +387,25 @@ storyboard_level = 1
 # Action Related classes
 
 class actionTemplate:
+
     ''' The template for the actions which will take place
     '''
     actionType = 0
-    
+
     def __init__(self,actionType = 0,data = None):
         self.actionType = actionType
         self.data = data
+
 
 class Actions:
     ''' Class which contains a list of all the events
         which can happen in the game while the sequential flow
     '''
-    
+
     def __init__(self,action):
         ''' Initialises the action and takes the corresponding action
         '''
-        
+
         self.curentLevel = 1
         self.time = 0
         self.timer = 0
@@ -424,26 +427,26 @@ class Actions:
             self.showFailureWindow(action.data)
 
 
-        
-        
-    
+
+
+
     def Chat(self,data):
-        ''' 
+        '''
             Chat text should be a list with first the name
             of the character and then his dialogue,
-            
+
         '''
         if gui_buttons.gui_obj.get_child_win_flag():
             gui_buttons.gui_obj.close_child_win()
         if gui_buttons.gui_obj.get_win_flag():
             gui_buttons.gui_obj.close_win()
-        
+
         text = data[0]
         bckgnd = data[1]
         chat.showChat(text,bckgnd)
         event = game_events.Event(type = game_events.ACTIONCOMPLETEEVENT, facility_name = '', res_name = '' , res_quantity = 0)
         game_events.EventQueue.add(event)
-        
+
     def initDelay(self,time):
         ''' To be called when initialising the delay
         '''
@@ -451,7 +454,7 @@ class Actions:
         self.timerClock.tick()
         self.time = 0
         self.timer = time
-            
+
     def checkDelay(self):
         ''' To be called when checking the delay
         '''
@@ -464,17 +467,17 @@ class Actions:
             event = game_events.Event(type = game_events.ACTIONCOMPLETEEVENT, facility_name = '', res_name = '' , res_quantity = 0)
             game_events.EventQueue.add(event)
             return True
-            
-        
-        
-            
+
+
+
+
     def callEarthquake(self):
         natural_calamities.earthquake()
-        
+
     def loadNextLevel(self):
-        
+
         global storyboard_level
-        
+
         data_file = 'data'+str(storyboard_level+1)+'.pkl'
         print data_file
         graphics_file = 'graphics_layout.pkl'
@@ -482,15 +485,15 @@ class Actions:
         load_level_obj.new_level_stats(data_file,graphics_file)
         event = game_events.Event(type = game_events.ACTIONCOMPLETEEVENT, facility_name = '', res_name = '' , res_quantity = 0)
         game_events.EventQueue.add(event)
-        
-        
+
+
     def loadLevelAgain(self):
         data_file = 'data'+str(storyboard_level)+'.pkl'
         graphics_file = 'graphics_layout.pkl'
         load_level_obj.new_level_stats(data_file,graphics_file)
- 
+
         # Seeking in the storyboard to the current level
-        
+
         closeStoryBoardFile()
         openStoryBoardFile()
         lev = 1
@@ -502,23 +505,23 @@ class Actions:
         if not storyboard_level == 1:
             run = True
             if obj[0] == 'actionTrue':
-                    
+
                 while run :
                     obj = pickle.load(storyboardfile)
                     if obj[1][0] == 3:
                         run = False
-        
+
         # End of seeking
-            
-            
+
+
         event = game_events.Event(type = game_events.ACTIONCOMPLETEEVENT, facility_name = '', res_name = '' , res_quantity = 0)
         game_events.EventQueue.add(event)
-        
-        
+
+
     def showWFPWindow(self,text):
-        
-        
-        self.brown_color = (255,214,150) 
+
+
+        self.brown_color = (255,214,150)
         self.green_color = (0,250,0)
         self.black_color = (0,0,0)
         myfont1 = pygame.font.Font("font.ttf", threades.resize_pt(40))
@@ -530,11 +533,11 @@ class Actions:
         win_style['bg-color'] = (0,0,0)
         win_style['border-color'] = self.brown_color
         win_style['border-width'] = 2
-        
+
         st_desktop = gui.Desktop()
         clock = pygame.time.Clock()
         clock.tick()
-        
+
         # Calculating position and size of window from the size of the threades.desktop
         position_win =threades.resize_pos((150.0,100.0))
         size_win =threades.resize_pos((700.0,600.0))
@@ -552,44 +555,61 @@ class Actions:
         labelStyleCopy['font'] = myfont2
         labelStyleCopy['font-color'] = self.brown_color
         labelStyleCopy['border-color'] = self.black_color
-        
+
         self.storyboardwin_run = True
         logo =  pygame.image.load(os.path.join('data', 'WFPLOGO.png')).convert()
         ff_logo = pygame.transform.scale(logo,threades.resize_pos((500,500)))
         position_blit = threades.resize_pos((100,100))
         self.win.surf.blit(ff_logo,position_blit)
         update_rect = pygame.Rect(threades.resize_rect((150,100,700,600)))
-        
+
         #self.instructions_counter = 0
         label = gui.Label(position = threades.resize_pos((50.0,100.0),(700.0,600.0),self.win.size),size = threades.resize_pos((600.0,440.0),(700.0,600.0),self.win.size), parent = self.win, text = text, style = labelStyleCopy)
 
         gl_time = 0
-        
+
         while self.storyboardwin_run:
             pygame.display.set_caption('FoodForce2')
-            
+
             for e in gui.setEvents(pygame.event.get()):
                 if e.type == KEYDOWN:
                     if e.key == 27:  # For escape key
                         self.storyboardwin_run = False
-                        
+
             gl_time += clock.tick()
             if gl_time >= 17000:
                 self.storyboardwin_run = False
-                
+
             st_desktop.update()
             st_desktop.draw()
             pygame.display.update([update_rect])
         self.win.close()
-        
+
         event = game_events.Event(type = game_events.ACTIONCOMPLETEEVENT, facility_name = '', res_name = '' , res_quantity = 0)
         game_events.EventQueue.add(event)
-        
-    
-        
+
+    def showInstructionMessage(self,text):
+        font_color = (255,214,150)
+        myfont = pygame.font.Font("font.ttf", threades.resize_pt(17))
+        # Custom gui.Window Style
+        win_style = gui.defaultWindowStyle.copy()
+        win_style['font'] = myfont
+        win_style['bg-color'] = (0,0,0)
+
+        # Calculating position and size of window from the size of the threades.desktop
+        position_win =threades.resize_pos((745.0,42.0))
+        size_win =threades.resize_pos((450.0,150.0))
+
+        # Creating custom label style for the text to be displayed as a threades.message
+        labelStyleCopy = gui.defaultLabelStyle.copy()
+        labelStyleCopy['wordwrap'] = True
+        labelStyleCopy['autosize'] = False
+        labelStyleCopy['font'] = myfont
+        #labelStyleCopy['font-color'] = font_color
+
     def showStoryboardWindow(self,text):
-        
-        self.brown_color = (255,214,150) 
+
+        self.brown_color = (255,214,150)
         self.green_color = (0,250,0)
         self.black_color = (0,0,0)
         myfont1 = pygame.font.Font("font.ttf", threades.resize_pt(40))
@@ -601,11 +621,11 @@ class Actions:
         win_style['bg-color'] = (0,0,0)
         win_style['border-color'] = self.brown_color
         win_style['border-width'] = 2
-        
+
         st_desktop = gui.Desktop()
         clock = pygame.time.Clock()
         clock.tick()
-        
+
         # Calculating position and size of window from the size of the threades.desktop
         position_win =threades.resize_pos((150.0,100.0))
         size_win =threades.resize_pos((900.0,500.0))
@@ -623,45 +643,45 @@ class Actions:
         labelStyleCopy['font'] = myfont2
         labelStyleCopy['font-color'] = self.brown_color
         labelStyleCopy['border-color'] = self.black_color
-        
+
         update_rect = pygame.Rect(threades.resize_rect((150,100,900,500)))
-        
+
         self.storyboardwin_run = True
         #logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
         #ff_logo = pygame.transform.scale(logo,threades.resize_pos((1111,250)))
-        
+
         #self.instructions_counter = 0
         label = gui.Label(position = threades.resize_pos((100.0,100.0),(900.0,500.0),self.win.size),size = threades.resize_pos((700.0,340.0),(900.0,500.0),self.win.size), parent = self.win, text = text, style = labelStyleCopy)
 
         gl_time = 0
-        
+
         st_desktop.update()
         st_desktop.draw()
         pygame.display.update([update_rect])
-        
+
         while self.storyboardwin_run:
             pygame.display.set_caption('FoodForce2')
-            
+
             for e in gui.setEvents(pygame.event.get()):
                 if e.type == KEYDOWN:
                     if e.key == 27:  # For escape key
                         self.storyboardwin_run = False
-                        
+
             gl_time += clock.tick()
             if gl_time >= 17000:
                 self.storyboardwin_run = False
-                
-            
-            
+
+
+
         self.win.close()
-        
+
         event = game_events.Event(type = game_events.ACTIONCOMPLETEEVENT, facility_name = '', res_name = '' , res_quantity = 0)
         game_events.EventQueue.add(event)
-        
-    
+
+
     def showFailureWindow(self,text):
-        
-        self.brown_color = (255,214,150) 
+
+        self.brown_color = (255,214,150)
         self.green_color = (0,250,0)
         self.black_color = (0,0,0)
         myfont1 = pygame.font.Font("font.ttf", threades.resize_pt(40))
@@ -673,11 +693,11 @@ class Actions:
         win_style['bg-color'] = (0,0,0)
         win_style['border-color'] = self.brown_color
         win_style['border-width'] = 2
-        
+
         st_desktop = gui.Desktop()
         clock = pygame.time.Clock()
         clock.tick()
-        
+
         # Calculating position and size of window from the size of the threades.desktop
         position_win =threades.resize_pos((150.0,100.0))
         size_win =threades.resize_pos((900.0,500.0))
@@ -695,42 +715,42 @@ class Actions:
         labelStyleCopy['font'] = myfont2
         labelStyleCopy['font-color'] = self.brown_color
         labelStyleCopy['border-color'] = self.black_color
-        
+
         self.storyboardwin_run = True
         #logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
         #ff_logo = pygame.transform.scale(logo,threades.resize_pos((1111,250)))
-        
+
         #self.instructions_counter = 0
         label = gui.Label(position = threades.resize_pos((100.0,100.0),(900.0,500.0),self.win.size),size = threades.resize_pos((700.0,340.0),(900.0,500.0),self.win.size), parent = self.win, text = text, style = labelStyleCopy)
 
         gl_time = 0
-        
+
         st_desktop.update()
         st_desktop.draw()
         pygame.display.update()
-        
+
         while self.storyboardwin_run:
             pygame.display.set_caption('FoodForce2')
-            
+
             for e in gui.setEvents(pygame.event.get()):
                 if e.type == KEYDOWN:
                     if e.key == 27:  # For escape key
                         self.storyboardwin_run = False
-                        
+
             gl_time += clock.tick()
             if gl_time >= 17000:
                 self.storyboardwin_run = False
-                
-            
-            
-            
+
+
+
+
         event = game_events.Event(type = game_events.ACTIONCOMPLETEEVENT, facility_name = '', res_name = '' , res_quantity = 0)
         game_events.EventQueue.add(event)
-        
-        
+
+
     def showCredentials(self):
         pass
-    
+
 
 
 # Storyboard Related Functions
@@ -746,7 +766,7 @@ def closeStoryBoardFile():
 
 # Functions to handle events and conditions
 class storyboardFlow:
-    
+
 
     def __init__(self):
         self.runFlag = True
@@ -754,19 +774,19 @@ class storyboardFlow:
         self.conditionTestingFlag = False
         self.prevConditionResult = -1
         self.norConditionFlag = False
-        
+
     def flow(self):
-    
+
 
         events_list = game_events.EventQueue.get_events()
-            
+
         if self.actionRunningFlag:
             if not self.action.timer == 0:
                 self.action.checkDelay()
             for event in events_list:
                 if event.type == game_events.ACTIONCOMPLETEEVENT:
                     self.actionRunningFlag = False
-        
+
         elif self.conditionTestingFlag:
 
             if self.checkConditionsObj.checkConditions(events_list) == 1:
@@ -775,9 +795,9 @@ class storyboardFlow:
             if self.checkConditionsObj.checkConditions(events_list) == 2:
                 self.prevConditionResult = 2
                 self.conditionTestingFlag = False
-            
+
         else:
-                
+
             try:
                 variable = pickle.load(storyboardfile)
                 if variable[0] == 'action':
@@ -785,8 +805,8 @@ class storyboardFlow:
                     self.action = Actions(tempAction)
                     self.actionRunningFlag = True
                     self.norConditionFlag = False
-                        
-    
+
+
                 if variable[0] == 'condition':
                     self.checkConditionsObj = checkConditions(variable[1])
                     self.conditionTestingFlag = True
@@ -794,21 +814,21 @@ class storyboardFlow:
                         self.norConditionFlag = True
                     else:
                         self.norConditionFlag = False
-                
+
                 if self.norConditionFlag:
                     if (variable[0] == 'actionTrue') and (self.prevConditionResult == 1):
-                        
+
                         tempAction = actionTemplate(variable[1][0],variable[1][1])
                         self.action = Actions(tempAction)
                         self.actionRunningFlag = True
-                            
+
                     if (variable[0] == 'actionFalse') and (self.prevConditionResult == 2):
-                        
+
                         tempAction = actionTemplate(variable[1][0],variable[1][1])
                         self.action = Actions(tempAction)
                         self.actionRunningFlag = True
-                    
-                    
+
+
             except EOFError:
                 self.action.showCredentials()
-                
+

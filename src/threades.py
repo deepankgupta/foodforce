@@ -459,6 +459,8 @@ def build_end_facility(facility_obj):
     game_events.EventQueue.add(event)
     if levelStartFacilityBuildFlag > 0:
         levelStartFacilityBuildFlag -= 1
+        if levelStartFacilityBuildFlag == 0:
+            model.resources = model.ppl.update_turn(model.resources,model.facilities_list)
     print "now ",facility_obj.get_name(),levelStartFacilityBuildFlag
     calculate_indicators_starting()
     
