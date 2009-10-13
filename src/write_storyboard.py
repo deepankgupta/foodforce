@@ -224,7 +224,7 @@ def write_data():
     chatText = ['Kamat','Excellent Work , Son.',
     'Kamat','Son you would have noticed that the money present with the village, shown in the right hand top corner, decreases when you buy any resources from the market. You must maintain a good amount of money in the village account.',
     'Kamat','To increase money in the village account you can sell resources to the market.',
-    'Kamat','Like, we have an excess of Tools and since we are not doing any new construction these days, we can safely sell it in the market. Sell 20 units of Tools.']
+    'Kamat','Like, we have an excess of Tools and since we are not doing any new construction these days, we can safely sell it in the market. Sell some Tools.']
     
     action = [1,[chatText,'trading.png']]
     actionData = ['action',action]
@@ -264,7 +264,7 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
-    chatText = ['Kamat','You must know son, technology upgrades provide better buildings with capacity to house more workers and produce more resources. Thus, they are usually helpful in increasing the prosperity of the village. Do an upgrade of the workshop to level 2. Click on the Upgrade Button and then select Workshop and click upgrade.']
+    chatText = ['Kamat','You must know son, technology upgrades provide better buildings with capacity to house more workers and produce more resources. Thus, they are usually helpful in increasing the prosperity of the village. Do an upgrade of the workshop to level 1. Click on the Upgrade Button and then select Workshop and click upgrade.']
 
     action = [1,[chatText,'tech.png']]
     actionData = ['action',action]
