@@ -191,7 +191,7 @@ def get_setup_text(facility_obj):
     text += str(int(facility_obj.get_level()))
     text +='\n'
     cost_build = facility_obj.get_cost_build()
-    text +='Resources required to build :  BUILDING MATERIAL:'+str(int(cost_build['BUILDING MATERIAL']))+' TOOLS :'+str(int(cost_build['TOOLS']))+' WATER :'+str(int(cost_build['WATER']))+'\n'
+    text +='Resources required to build :  BRICKS:'+str(int(cost_build['BUILDING MATERIAL']))+' TOOLS :'+str(int(cost_build['TOOLS']))+' WATER :'+str(int(cost_build['WATER']))+'\n'
     cost_run = facility_obj.get_cons_dict()
     if cost_run:
         text +='Resources required to run : '
@@ -213,7 +213,7 @@ def get_setup_text(facility_obj):
         text += '\nInsufficient Resources available.\n'
     
     else:
-        text +='\nResources after building facility :  BUILDING MATERIAL:'+str(rem_build_mat)+' TOOLS :'+str(rem_tools)+' WATER :'+str(rem_water) + '\n'
+        text +='\nResources after building facility :  BRICKS:'+str(rem_build_mat)+' TOOLS :'+str(rem_tools)+' WATER :'+str(rem_water) + '\n'
 
         
     return text
@@ -225,7 +225,7 @@ def get_upgrade_text(facility_obj):
         text += texts.upgrade_text[facility_obj.get_name()][facility_obj.get_level()]
         text += '\n'
         cost_upgrade = facility_obj.get_cost_inc_level()
-        text += 'Resources required to upgrade :  BUILDING MATERIAL:'+str(int(cost_upgrade['BUILDING MATERIAL']))+' TOOLS :'+str(int(cost_upgrade['TOOLS']))
+        text += 'Resources required to upgrade :  BRICKS:'+str(int(cost_upgrade['BUILDING MATERIAL']))+' TOOLS :'+str(int(cost_upgrade['TOOLS']))
     else:
         text = 'You cannot upgrade the facility anymore, it has reached its maximum level'
     
@@ -236,7 +236,7 @@ def get_upgrade_text(facility_obj):
         text += '\nInsufficient Resources available for upgrade.\n'
     
     else:
-        text +='\nResources after upgrading facility :  BUILDING MATERIAL:'+str(rem_build_mat)+' TOOLS :'+str(rem_tools) + '\n'
+        text +='\nResources after upgrading facility :  BRICKS:'+str(rem_build_mat)+' TOOLS :'+str(rem_tools) + '\n'
     
     return text
 

@@ -459,6 +459,9 @@ class starting_intro:
         hunger_map = pygame.image.load(os.path.join('data', 'Wfpwork.png')).convert()
         hunger_map =  pygame.transform.scale(hunger_map,threades.new_screen_size)
         threades.screen.blit(hunger_map,threades.resize_pos((0,0)))
+        if soundtrack:
+            soundtrack.play(-1)
+   
 
         color_brown = (255,214,150)
         # gui.Window custom style
@@ -756,8 +759,6 @@ def main():
     intro_thread = threading.Thread(target = load_images.load_images, args=[])
     intro_thread.start()
     # Loading and starting the sound play
-    if soundtrack:
-        soundtrack.play(-1)
     level_setting=level_change.change_level()
     pause_screen()
 

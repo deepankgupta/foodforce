@@ -195,14 +195,14 @@ class resources_panel:
         self.time_label= gui.Label(position = threades.resize_pos((300,10)), parent = threades.desktop, text = 'Time Elapsed -:   '+'Level Just Started''      ', style = self.labelstyle4)
         self.value_labels = []
         # Drawing general model.resources list
-        list_gen_res = (' Water',' Building Materials',' Tools',' Medicines',' Books')
+        list_gen_res = (' Water',' Bricks',' Tools',' Medicines',' Books')
         for i in range(5):
             label = gui.Label(position = threades.resize_pos((400,645+35*i)),size = threades.resize_pos((200,35)), parent = threades.desktop, text = list_gen_res[i], style = self.labelstyle2)
             label = gui.Label(position = threades.resize_pos((605,649+35*i)), parent = threades.desktop, text = str(int(model.resources[i].get_vquantity())), style = self.labelstyle3)
             self.value_labels.append(label)
             
         # Drawing food model.resources list
-        list_food_res = (' Rice',' Fruit & Vegatables',' Beans',' Sugar',' Salt',' Oil')
+        list_food_res = (' Rice',' Fruit & Vegetables',' Beans',' Sugar',' Salt',' Oil')
         for i in range(6):
             label = gui.Label(position = threades.resize_pos((650,645+35*i)),size = threades.resize_pos((200,35)), parent = threades.desktop, text = list_food_res[i], style = self.labelstyle2)
             label = gui.Label(position = threades.resize_pos((855,649+35*i)), parent = threades.desktop, text = str(int(model.resources[i+5].get_vquantity())), style = self.labelstyle3)

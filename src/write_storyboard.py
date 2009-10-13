@@ -60,7 +60,7 @@ def write_data():
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
     
-    chatText = ['Kamat','When you setup a hut, some amount of your resources are utilized. For each Hut that you setup, 10 units of Building Material, 8 units of Tools and 8 units of Water are used. Also, some of your manpower is employed in making the hut. Similarly, resources are used to setup each facility.',
+    chatText = ['Kamat','When you setup a hut, some amount of your resources are utilized. For each Hut that you setup, 10 units of Bricks, 8 units of Tools and 8 units of Water are used. Also, some of your manpower is employed in making the hut. Similarly, resources are used to setup each facility.',
     'Son','Okay, Father.',
     'Kamat','When you setup a Hut the Housing Indicator of the Village increases.The indicators are shown on the bottom right hand side of the screen. The indicators are a measure, which tell about the growth and prosperity of the village.',
     'Son','Okay, Father.']

@@ -81,7 +81,7 @@ a(lp3
 (lp4
 S'Kamat'
 p5
-aS'When you build a hut, some amount of your resources are utilized. For each Hut that you build, 10 units of Building Material, 8 units of Tools and 8 units of Water are used. Also, some of your manpower is employed in making the hut. Similarly, resources are used to build each facility.'
+aS'When you build a hut, some amount of your resources are utilized. For each Hut that you build, 10 units of Bricks, 8 units of Tools and 8 units of Water are used. Also, some of your manpower is employed in making the hut. Similarly, resources are used to build each facility.'
 p6
 aS'Son'
 p7
