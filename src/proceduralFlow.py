@@ -589,23 +589,7 @@ class Actions:
         game_events.EventQueue.add(event)
 
     def showInstructionMessage(self,text):
-        font_color = (255,214,150)
-        myfont = pygame.font.Font("font.ttf", threades.resize_pt(17))
-        # Custom gui.Window Style
-        win_style = gui.defaultWindowStyle.copy()
-        win_style['font'] = myfont
-        win_style['bg-color'] = (0,0,0)
-
-        # Calculating position and size of window from the size of the threades.desktop
-        position_win =threades.resize_pos((745.0,42.0))
-        size_win =threades.resize_pos((450.0,150.0))
-
-        # Creating custom label style for the text to be displayed as a threades.message
-        labelStyleCopy = gui.defaultLabelStyle.copy()
-        labelStyleCopy['wordwrap'] = True
-        labelStyleCopy['autosize'] = False
-        labelStyleCopy['font'] = myfont
-        #labelStyleCopy['font-color'] = font_color
+        thread_instruction = threading.Thread(target = gui_buttons.showMessages.addMessage, args=[text]).start()
 
     def showStoryboardWindow(self,text):
 

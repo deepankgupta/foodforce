@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 #
 #   Author : Mohit Taneja (mohitgenii@gmail.com)
-#   Date : 9/06/2008 
+#   Date : 9/06/2008
 #
 #   This program is free software; you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -41,19 +41,19 @@ class marketBarChart:
     color2 = (170,142,100)
     #color3 = (85,71,50)
     color_rect = (50,100,150)
-    
+
     def drawValueChart(self,surface,initial_value = 10,maximum_value = 100.0):
         ''' Draws a barchart on the screen
         '''
-        
+
         self.price_flag = False
         self.surf = surface
         self.bar1Val = initial_value
         self.bar1ValMax = maximum_value
         pygame.draw.rect(surface,self.color1,threades.resize_rect((440,200,200*self.bar1Val/self.bar1ValMax,30)))
-        
+
         pygame.draw.rect(surface,self.color_rect,threades.resize_rect((440,200,200,30)),2)
-        
+
     def drawPriceChart(self,surface,initial_price = 10, maximum_value = 25):
         ''' Draws a barchart on the screen
         '''
@@ -62,49 +62,49 @@ class marketBarChart:
             self.bar2Val = initial_price
             self.bar2ValMax = maximum_value
             pygame.draw.rect(surface,self.color2,threades.resize_rect((440,280,200*self.bar2Val/self.bar2ValMax,30)))
-        
+
             pygame.draw.rect(surface,self.color_rect,threades.resize_rect((440,280,200,30)),2)
-        
-      
+
+
     def updateChart(self,(x,y)):
         ''' Updates the bar chart on the basis of the mouse click
         '''
         surface = self.surf
         if (x>threades.resize_pt_x(640)) and (x<threades.resize_pt_x(840)) and (y>threades.resize_pt_y(250)) and (y<threades.resize_pt_y(280)):
             pygame.draw.rect(surface,(0,0,0),threades.resize_rect((440,200,200,50)))
-            
+
             self.bar1Val = (x-threades.resize_pt_x(640))*self.bar1ValMax/threades.resize_pt_x(200)
-            
+
             if self.bar1Val > self.bar1ValMax:
                 self.bar1Val = self.bar1ValMax
             if self.bar1Val < 0:
                 self.bar1Val = 0
-            
+
             pygame.draw.rect(surface,self.color1,threades.resize_rect((440,200,200*self.bar1Val/self.bar1ValMax,30)))
-        
+
             pygame.draw.rect(surface,self.color_rect,threades.resize_rect((440,200,200,30)),2)
             gui_obj.buysell_obj.updateMarketLabelValues()
-        
+
         if self.price_flag:
             if (x>threades.resize_pt_x(640)) and (x<threades.resize_pt_x(840)) and (y>threades.resize_pt_y(330)) and (y<threades.resize_pt_y(360)):
                 pygame.draw.rect(surface,(0,0,0),threades.resize_rect((440,280,200,30)))
-                
+
                 self.bar2Val = (x-threades.resize_pt_x(640))*self.bar2ValMax/threades.resize_pt_x(200)
-                
+
                 if self.bar2Val > self.bar2ValMax:
                     self.bar2Val = self.bar2ValMax
                 if self.bar2Val < 0:
                     self.bar2Val = 0
-                
+
                 pygame.draw.rect(surface,self.color2,threades.resize_rect((440,280,200*self.bar2Val/self.bar2ValMax,30)))
-        
+
                 pygame.draw.rect(surface,self.color_rect,threades.resize_rect((440,280,200,30)),2)
                 gui_obj.buysell_obj.updateMarketLabelValues()
-        
+
         #gui_obj.buysell_obj.drawPriceChart()
-        
+
     def deletePriceChart(self):
-        
+
         if self.price_flag:
             pygame.draw.rect(self.surf,(0,0,0),threades.resize_rect((438,278,234,34)))
             self.price_flag = False
@@ -112,36 +112,36 @@ class marketBarChart:
             gui_obj.buysell_obj.label_res_price.text = ''
             gui_obj.buysell_obj.label_price.text = ''
             self.bar2Val = 10
-                
-      
-    
+
+
+
 class barChart:
-    
+
     ''' Class which displays the bar chart and handles it
     '''
     color1 = (255,214,150)
     color2 = (170,142,100)
     color3 = (85,71,50)
     color_rect = (50,100,150)
-    
+
     def drawChart(self,surface,rice,vegetables,beans):
         ''' Draws a barchart on the screen
         '''
-        
+
         self.surf = surface
         self.bar1Val = rice
         self.bar2Val = vegetables
         self.bar3Val = beans
-        
-        
+
+
         pygame.draw.rect(surface,self.color1,threades.resize_rect((100,50.0+200*(100-self.bar1Val)/100,50,200*self.bar1Val/100.0)))
         pygame.draw.rect(surface,self.color2,threades.resize_rect((250,50.0+200*(100-self.bar2Val)/100,50,200*self.bar2Val/100.0)))
         pygame.draw.rect(surface,self.color3,threades.resize_rect((400,50.0+200*(100-self.bar3Val)/100,50,200*self.bar3Val/100.0)))
-        
+
         pygame.draw.rect(surface,self.color_rect,threades.resize_rect((100,50,50,200)),2)
         pygame.draw.rect(surface,self.color_rect,threades.resize_rect((250,50,50,200)),2)
         pygame.draw.rect(surface,self.color_rect,threades.resize_rect((400,50,50,200)),2)
-        
+
     def updateChart(self,(x,y)):
         ''' Updates the bar chart on the basis of the mouse click
         '''
@@ -154,8 +154,8 @@ class barChart:
             ratio2 = self.bar3Val/(self.bar2Val +self.bar3Val+0.0)
             self.bar2Val = self.bar2Val + ratio1*change
             self.bar3Val = self.bar3Val + ratio2*change
-            
-            
+
+
             if self.bar1Val > 100:
                 self.bar1Val = 100
             if self.bar1Val < 0:
@@ -168,7 +168,7 @@ class barChart:
                 self.bar3Val = 100
             if self.bar3Val < 0:
                 self.bar3Val = 0
-            
+
             pygame.draw.rect(surface,self.color1,threades.resize_rect((100,50.0+200*(100-self.bar1Val)/100,50,200*self.bar1Val/100.0)))
             pygame.draw.rect(surface,self.color2,threades.resize_rect((250,50.0+200*(100-self.bar2Val)/100,50,200*self.bar2Val/100.0)))
             pygame.draw.rect(surface,self.color3,threades.resize_rect((400,50.0+200*(100-self.bar3Val)/100,50,200*self.bar3Val/100.0)))
@@ -176,9 +176,9 @@ class barChart:
             pygame.draw.rect(surface,self.color_rect,threades.resize_rect((100,50,50,200)),2)
             pygame.draw.rect(surface,self.color_rect,threades.resize_rect((250,50,50,200)),2)
             pygame.draw.rect(surface,self.color_rect,threades.resize_rect((400,50,50,200)),2)
-            
-            
-            
+
+
+
         if (x>threades.resize_pt_x(550)) and (x<threades.resize_pt_x(600)) and (y>threades.resize_pt_y(200)) and (y<threades.resize_pt_y(400)):
             pygame.draw.rect(surface,(0,0,0),threades.resize_rect((100,50,350,200)))
             change = self.bar2Val - (threades.resize_pt_y(400)-y)*100/threades.resize_pt_y(200.0)
@@ -187,7 +187,7 @@ class barChart:
             ratio2 = self.bar3Val/(self.bar1Val +self.bar3Val+0.0)
             self.bar1Val = self.bar1Val + ratio1*change
             self.bar3Val = self.bar3Val + ratio2*change
-            
+
             if self.bar1Val > 100:
                 self.bar1Val = 100
             if self.bar1Val < 0:
@@ -200,7 +200,7 @@ class barChart:
                 self.bar3Val = 100
             if self.bar3Val < 0:
                 self.bar3Val = 0
-            
+
             pygame.draw.rect(surface,self.color1,threades.resize_rect((100,50.0+200*(100-self.bar1Val)/100,50,200*self.bar1Val/100.0)))
             pygame.draw.rect(surface,self.color2,threades.resize_rect((250,50.0+200*(100-self.bar2Val)/100,50,200*self.bar2Val/100.0)))
             pygame.draw.rect(surface,self.color3,threades.resize_rect((400,50.0+200*(100-self.bar3Val)/100,50,200*self.bar3Val/100.0)))
@@ -208,9 +208,9 @@ class barChart:
             pygame.draw.rect(surface,self.color_rect,threades.resize_rect((100,50,50,200)),2)
             pygame.draw.rect(surface,self.color_rect,threades.resize_rect((250,50,50,200)),2)
             pygame.draw.rect(surface,self.color_rect,threades.resize_rect((400,50,50,200)),2)
-            
-            
-            
+
+
+
         if (x>threades.resize_pt_x(700)) and (x<threades.resize_pt_x(750)) and (y>threades.resize_pt_y(200)) and (y<threades.resize_pt_y(400)):
             pygame.draw.rect(surface,(0,0,0),threades.resize_rect((100,50,350,200)))
             change = self.bar3Val - (threades.resize_pt_y(400)-y)*100/threades.resize_pt_y(200.0)
@@ -219,7 +219,7 @@ class barChart:
             ratio2 = self.bar1Val/(self.bar2Val +self.bar1Val+0.0)
             self.bar2Val = self.bar2Val + ratio1*change
             self.bar1Val = self.bar1Val + ratio2*change
-            
+
             if self.bar1Val > 100:
                 self.bar1Val = 100
             if self.bar1Val < 0:
@@ -232,18 +232,18 @@ class barChart:
                 self.bar3Val = 100
             if self.bar3Val < 0:
                 self.bar3Val = 0
-            
+
             pygame.draw.rect(surface,self.color1,threades.resize_rect((100,50.0+200*(100-self.bar1Val)/100,50,200*self.bar1Val/100.0)))
             pygame.draw.rect(surface,self.color2,threades.resize_rect((250,50.0+200*(100-self.bar2Val)/100,50,200*self.bar2Val/100.0)))
             pygame.draw.rect(surface,self.color3,threades.resize_rect((400,50.0+200*(100-self.bar3Val)/100,50,200*self.bar3Val/100.0)))
-            
+
             pygame.draw.rect(surface,self.color_rect,threades.resize_rect((100,50,50,200)),2)
             pygame.draw.rect(surface,self.color_rect,threades.resize_rect((250,50,50,200)),2)
             pygame.draw.rect(surface,self.color_rect,threades.resize_rect((400,50,50,200)),2)
-            
-            
-       
-        
+
+
+
+
 
 
 class setup_button:
@@ -252,18 +252,18 @@ class setup_button:
     '''
     rect_color = (255,214,150)
     color_grey = (160,160,160)
-    
+
     def __init__(self):
-        
+
         self.win_flag = False
         self.child_win_flag = False
-        
-    
+
+
     def setup(self,button=None):
         ''' Initiated when the button for setting up a facility is clicked
         '''
-        
-        
+
+
         gui_obj.disable_buttons()
         myfont = pygame.font.Font("font.ttf", threades.resize_pt(20))
 
@@ -273,20 +273,20 @@ class setup_button:
         win_style['font-color'] = self.rect_color
         win_style['bg-color'] = (0,0,0, 180)
 
-        # Calculating position and size of window from the size of the threades.desktop        
+        # Calculating position and size of window from the size of the threades.desktop
         position_win =threades.resize_pos((200.0,50.0))
         size_win =threades.resize_pos((800.0,600.0))
 
         # Creating window
         self.win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = "Set up a facility for your village " ,style = win_style,shadeable = False)
-        
-        self.win.surf.set_alpha(140) 
+
+        self.win.surf.set_alpha(140)
         self.win.onClose = lambda button: self.close_win_safe()
         self.win_flag = True
-        
+
         # Pausing the update thread
         #threades.pause_update_thread()
-        
+
         #  Creating Custom label style
         myfont2 = pygame.font.Font("font.ttf", threades.resize_pt(16))
         myfont3 = pygame.font.Font("font.ttf", threades.resize_pt(14))
@@ -298,7 +298,7 @@ class setup_button:
         labelStyleCopy['font-color'] = self.rect_color
         default_text = 'What would you like to set up? '
         self.message_label = gui.Label(position = threades.resize_pos((450,120),(800.0,600.0),self.win.size),size = threades.resize_pos((250,100),(800.0,600.0),self.win.size), parent = self.win, text = default_text, style = labelStyleCopy)
-        text ='Please select a Facility to see its status and Requirements' 
+        text ='Please select a Facility to see its status and Requirements'
         labelStyleCopy2 = gui.defaultLabelStyle.copy()
         labelStyleCopy2['border-width'] = 1
         labelStyleCopy2['wordwrap'] = True
@@ -312,12 +312,12 @@ class setup_button:
         buttonsurf = pygame.image.load(os.path.join('art','button.png')).convert_alpha()
         buttonsurf = pygame.transform.scale(buttonsurf, (36, threades.resize_pt_y( 40)))
         bt_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
-        
-        
-        
+
+
+
         # Creating option boxes for all the facilities
-        position_bt = threades.resize_pos((50.0,90.0),(800.0,600.0),size_win) 
-        size_bt = threades.resize_pos((320.0,200.0),(800.0,600.0),size_win) 
+        position_bt = threades.resize_pos((50.0,90.0),(800.0,600.0),size_win)
+        size_bt = threades.resize_pos((320.0,200.0),(800.0,600.0),size_win)
         self.housing_box = gui.Button(position = position_bt, size = size_bt,  parent = self.win, style = bt_style, text = 'House')
         self.housing_box.onMouseOver =  self.on_select_setup_option_box
         self.housing_box.onClick = self.setup_facility
@@ -337,7 +337,7 @@ class setup_button:
         self.fountain_box.onMouseOver = self.on_select_setup_option_box
         self.fountain_box.onClick = self.setup_facility
 
-        
+
 
     def on_select_setup_option_box(self,button):
 
@@ -418,20 +418,20 @@ class setup_button:
         win_style['font-color'] = self.rect_color
         win_style['bg-color'] = (0,0,0)
 
-        # Calculating position and size of window from the size of the threades.desktop        
+        # Calculating position and size of window from the size of the threades.desktop
         position_win =threades.resize_pos((300.0,150.0))
         size_win =threades.resize_pos((600.0,400.0))
 
         # Creating window
         self.child_win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = "Setup Farm " ,style = win_style,shadeable = False,moveable = False)
-        #self.child_win.surf.set_alpha(190) 
+        #self.child_win.surf.set_alpha(190)
         self.win.enabled = False
         self.child_win_flag = True
         self.child_win.onClose = lambda button: self.enable_parent_win()
 
         self.bardisplay = barChart()
         self.bardisplay.drawChart(self.child_win.surf,33,33,34)
-        
+
         # Creating custom label style1
         myfont2 = pygame.font.Font("font.ttf",threades.resize_pt(16))
         labelstyle1 = gui.defaultLabelStyle.copy()
@@ -453,7 +453,7 @@ class setup_button:
         labelStyleCopy2['font'] = myfont2
         labelStyleCopy2['border-color'] = self.rect_color
         labelStyleCopy2['font-color'] = self.rect_color
-        
+
         text = 'Balance the bar chart to select the percentages of different food items you want to grow in your farm'
         self.message_label2 = gui.Label(position = threades.resize_pos((20,320),(600.0,400.0),self.child_win.size),size = threades.resize_pos((470,70),(600.0,400.0),self.child_win.size), parent = self.child_win, text = text, style = labelStyleCopy2)
 
@@ -462,12 +462,12 @@ class setup_button:
         textbox_style = gui.defaultTextBoxStyle.copy()
         textbox_style['font'] = myfont2
         textbox_style['font-color'] = self.rect_color
-        self.textbox_rice = TextBox(position = threades.resize_pos((300.0, 70.0),(600.0,400.0),self.child_win.size), size = threades.resize_pos((50,20),(600.0,400.0),self.child_win.size), parent = self.child_win, style = textbox_style) 
-        self.textbox_veg = TextBox(position = threades.resize_pos((300.0, 110.0),(600.0,400.0),self.child_win.size), size = threades.resize_pos((50,20),(600.0,400.0),self.child_win.size), parent = self.child_win, style = textbox_style) 
-        self.textbox_beans = TextBox(position = threades.resize_pos((300.0, 150.0),(600.0,400.0),self.child_win.size), size = threades.resize_pos((50,20),(600.0,400.0),self.child_win.size), parent = self.child_win, style = textbox_style) 
+        self.textbox_rice = TextBox(position = threades.resize_pos((300.0, 70.0),(600.0,400.0),self.child_win.size), size = threades.resize_pos((50,20),(600.0,400.0),self.child_win.size), parent = self.child_win, style = textbox_style)
+        self.textbox_veg = TextBox(position = threades.resize_pos((300.0, 110.0),(600.0,400.0),self.child_win.size), size = threades.resize_pos((50,20),(600.0,400.0),self.child_win.size), parent = self.child_win, style = textbox_style)
+        self.textbox_beans = TextBox(position = threades.resize_pos((300.0, 150.0),(600.0,400.0),self.child_win.size), size = threades.resize_pos((50,20),(600.0,400.0),self.child_win.size), parent = self.child_win, style = textbox_style)
         '''
-        
-        # Custom button style        
+
+        # Custom button style
         button_style = gui.defaultButtonStyle.copy()
         button_style['font'] = myfont2
 
@@ -503,17 +503,17 @@ class setup_button:
     def get_child_win_flag(self):
         return self.child_win_flag
 
-        
+
 class upgrade_button:
 
     rect_color = (255,214,150)
     color_grey = (160,160,160)
-    
+
     def __init__(self):
-        
+
         self.win_flag = False
         self.child_win_flag = False
-        
+
         # Functions for upgrading a facility
     def upgrade(self,button=None):
         ''' Initiated when the button for upgrading a facility is clicked
@@ -527,19 +527,19 @@ class upgrade_button:
         win_style['font-color'] = self.rect_color
         win_style['bg-color'] = (0,0,0, 180)
 
-        # Calculating position and size of window from the size of the threades.desktop        
+        # Calculating position and size of window from the size of the threades.desktop
         position_win =threades.resize_pos((200.0,50.0))
         size_win =threades.resize_pos((800.0,600.0))
 
         # Creating window
         self.win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = "Upgrade Facility " ,style = win_style,shadeable = False)
-        self.win.surf.set_alpha(140) 
+        self.win.surf.set_alpha(140)
         self.win.onClose = lambda button: self.close_win_safe()
         self.win_flag = True
 
         # Pausing the update thread
         #threades.pause_update_thread()
-        
+
         #  Creating Custom label style
         myfont2 = pygame.font.Font("font.ttf", threades.resize_pt(16))
         labelStyleCopy = gui.defaultLabelStyle.copy()
@@ -554,16 +554,16 @@ class upgrade_button:
 
 
 
-        
+
         #Creating new button style
         buttonsurf = pygame.image.load(os.path.join('art','button.png')).convert_alpha()
         buttonsurf = pygame.transform.scale(buttonsurf, (36, threades.resize_pt_y( 40)))
         bt_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
-        
-        
+
+
         # Creating buttons for all the facilities
-        position_bt = threades.resize_pos((50.0,90.0),(800.0,600.0),size_win) 
-        size_bt = threades.resize_pos((320.0,200.0),(800.0,600.0),size_win) 
+        position_bt = threades.resize_pos((50.0,90.0),(800.0,600.0),size_win)
+        size_bt = threades.resize_pos((320.0,200.0),(800.0,600.0),size_win)
         self.housing_box = gui.Button(position = position_bt, size = size_bt,  parent = self.win, style = bt_style, text = 'House')
         self.housing_box.onMouseOver =  self.on_select_upgrade_option_box
         self.housing_box.onClick = self.upgrade_facility
@@ -583,8 +583,8 @@ class upgrade_button:
         self.fountain_box.onMouseOver = self.on_select_upgrade_option_box
         self.fountain_box.onClick = self.upgrade_facility
 
-        
-        text ='Please select a Facility to see its next upgrade' 
+
+        text ='Please select a Facility to see its next upgrade'
         labelStyleCopy2 = gui.defaultLabelStyle.copy()
         labelStyleCopy2['border-width'] = 1
         labelStyleCopy2['wordwrap'] = True
@@ -594,10 +594,10 @@ class upgrade_button:
 
         self.message_label2 = gui.Label(position = threades.resize_pos((20,450),(800.0,600.0),self.win.size),size = threades.resize_pos((570,120),(800.0,600.0),self.win.size), parent = self.win, text = text, style = labelStyleCopy2)
 
-        
+
 
     def on_select_upgrade_option_box(self,button):
-        
+
         #self.win.surf.set_alpha(255)
         #self.win.surf.blit(self.background_pic,threades.resize_pos((450,250)))
         #self.win.surf.set_alpha(140)
@@ -663,19 +663,19 @@ class upgrade_button:
     def get_win_flag(self):
         return self.win_flag
 
-   
+
 class buysell_button:
 
     rect_color = (255,214,150)
     color_grey = (160,160,160)
-    
+
     def __init__(self):
-        
+
         self.win_flag = False
         self.child_win_flag = False
-        
-   
-    
+
+
+
     # Functions for Buy/Sell operation begin here
     def buysell(self,button=None):
         ''' Initiated when the button for buy/sell operation is pressed.
@@ -694,13 +694,13 @@ class buysell_button:
         # Focus the animation window on the market
         threades.transform_obj.focus_at((3200,2600)) # Replace this with the coordinates ofthe market in the base surface
 
-        # Calculating position and size of window from the size of the threades.desktop        
+        # Calculating position and size of window from the size of the threades.desktop
         position_win =threades.resize_pos((200.0,50.0))
         size_win =threades.resize_pos((800.0,600.0))
 
         # Creating window
         self.win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = " Buy or Sell Resources " ,style = win_style,shadeable = False, moveable = False)
-        self.win.surf.set_alpha(140) 
+        self.win.surf.set_alpha(140)
         self.win.onClose = lambda button: self.close_win_safe()
         self.win_flag = True
 
@@ -732,7 +732,7 @@ class buysell_button:
         op_style['word wrap'] = False
 
         # Creating option boxes for all the resources
-        position_optionbox = threades.resize_pos((10.0,140.0),(800.0,600.0),self.win.size)        
+        position_optionbox = threades.resize_pos((10.0,140.0),(800.0,600.0),self.win.size)
         self.water_box = gui.OptionBox(position = position_optionbox, parent = self.win, style = op_style, text = 'Water')
         self.buildmat_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = 'Bricks')
         self.tools_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = 'Tools')
@@ -744,29 +744,29 @@ class buysell_button:
         self.sugar_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = 'Sugar')
         self.salt_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = 'Salt')
         self.oil_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = 'Oil')
-        
+
         #Creating CheckBox style
         ch_style = gui.defaultCheckBoxStyle.copy()
         ch_style['font'] = myfont2
         ch_style['font-color'] = self.rect_color
         ch_style['autosize'] = True
         #ch_style['word wrap'] = False
-        
+
         self.barObject = marketBarChart()
         self.barObject.drawValueChart(self.win.surf)
-        
+
         if model.FLAG_XO:
-        
+
             if game_sharing.test_connected():
-            
+
                 #Creating Checkbox for share trade with peer villages
                 self.shareCheckBox = gui.CheckBox(position = threades.resize_pos((440, 140), (800, 600), self.win.size),  parent = self.win,  style = ch_style,  text = 'Trade with Peer Villages' )
-                self.shareCheckBox.value = False        
+                self.shareCheckBox.value = False
                 self.shareCheckBox.onValueChanged = self.drawPriceChart()
-        
 
 
-        # Creating labels for village values of Resources 
+
+        # Creating labels for village values of Resources
         self.label_vwater = gui.Label(position = threades.resize_pos((190.0,140.0),(800.0,600.0),self.win.size), parent = self.win, text = str(int(model.Water.get_vquantity())), style = labelstyle1)
         self.label_vbuildmat = gui.Label(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, text = str(int(model.Buildmat.get_vquantity())), style = labelstyle1)
         self.label_vtools = gui.Label(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, text = str(int(model.Tools.get_vquantity())), style = labelstyle1)
@@ -782,17 +782,17 @@ class buysell_button:
         #Creating labels for value and price of resources
         self.label_res_price_flag = False
         self.label_res_value = gui.Label(position = threades.resize_pos((650.0,200.0),(800.0,600.0),self.win.size), parent = self.win, text = str(int(self.barObject.bar1Val)), style = labelstyle1)
-        
+
         #Creating a label for value to be printed
         self.label_quantity = gui.Label(position = threades.resize_pos((440.0,170.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Quantity ', style = labelstyle1)
-        
-        if model.FLAG_XO:            
+
+        if model.FLAG_XO:
             if game_sharing.test_connected():
                 if self.shareCheckBox.value:
                     self.label_price = gui.Label(position = threades.resize_pos((400.0,250.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Price ', style = labelstyle1)
                     self.label_res_price = gui.Label(position = threades.resize_pos((650.0,280.0),(800.0,600.0),self.win.size), parent = self.win, text = str(int(self.barObject.bar2Val)), style = labelstyle1)
-        
-        # Creating labels for prices of Resources 
+
+        # Creating labels for prices of Resources
         self.price_vwater = gui.Label(position = threades.resize_pos((370.0,140.0),(800.0,600.0),self.win.size), parent = self.win, text = str(int(model.Water.get_price())), style = labelstyle1)
         self.price_vbuildmat = gui.Label(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, text = str(int(model.Buildmat.get_price())), style = labelstyle1)
         self.price_vtools = gui.Label(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, text = str(int(model.Tools.get_price())), style = labelstyle1)
@@ -811,7 +811,7 @@ class buysell_button:
         textbox_style['font'] = myfont2
         textbox_style['font-color'] = self.rect_color
         self.label_quantity = gui.Label(position = threades.resize_pos((360.0,150.0),(800.0,600.0),self.win.size), parent = self.win, text = ' Quantity ', style = labelstyle1)
-        self.win.textbox = TextBox(position = threades.resize_pos((350.0, 200.0),(800.0,600.0),self.win.size), size = threades.resize_pos((100,20),(800.0,600.0),self.win.size), parent = self.win, style = textbox_style) 
+        self.win.textbox = TextBox(position = threades.resize_pos((350.0, 200.0),(800.0,600.0),self.win.size), size = threades.resize_pos((100,20),(800.0,600.0),self.win.size), parent = self.win, style = textbox_style)
         '''
 
         #Creating new button style
@@ -825,8 +825,8 @@ class buysell_button:
         self.button_buy.onClick = self.buy_resources
         self.button_sell.onClick = self.sell_resources
         self.button_close.onClick  = self.close_win
-        
-        # Creating labels for market values of Resources 
+
+        # Creating labels for market values of Resources
         self.label_mwater = gui.Label(position = threades.resize_pos((270.0,140.0),(800.0,600.0),self.win.size), parent = self.win, text = str(int(model.Water.get_mquantity())), style = labelstyle1)
         self.label_mbuildmat = gui.Label(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, text = str(int(model.Buildmat.get_mquantity())), style = labelstyle1)
         self.label_mtools = gui.Label(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, text = str(int(model.Tools.get_mquantity())), style = labelstyle1)
@@ -856,16 +856,16 @@ class buysell_button:
     def updateMarketLabelValues(self,button = None):
         self.label_res_value.text = str(int(self.barObject.bar1Val))
         if model.FLAG_XO:
-        
+
             if game_sharing.test_connected():
                 if self.shareCheckBox.value:
                     self.label_res_price.text = str(int(self.barObject.bar2Val))
-                
+
     def drawPriceChart(self,button = None):
-        
+
         # Creating custom label style1
         if model.FLAG_XO:
-        
+
             if game_sharing.test_connected():
                 if self.shareCheckBox.value:
                     myfont2 = pygame.font.Font("font.ttf",threades.resize_pt(16))
@@ -876,34 +876,34 @@ class buysell_button:
                     labelstyle1['font'] = myfont2
                     labelstyle1['font-color'] = self.rect_color
                     #print self.shareCheckBox.value
-    
-            
+
+
                     self.barObject.drawPriceChart(self.win.surf)
-                    if not self.label_res_price_flag:            
+                    if not self.label_res_price_flag:
                         self.label_price = gui.Label(position = threades.resize_pos((440.0,250.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Price ', style = labelstyle1)
                         self.label_res_price = gui.Label(position = threades.resize_pos((650.0,280.0),(800.0,600.0),self.win.size), parent = self.win, text = str(int(self.barObject.bar2Val)), style = labelstyle1)
                         self.label_res_price_flag = True
-            
+
                 else:
                     self.barObject.deletePriceChart()
-            
-            
+
+
     def buy_resources(self,button):
-        ''' Initiated for doing the transaction of buying the resources 
+        ''' Initiated for doing the transaction of buying the resources
         '''
         # Checking whether the user has entered the value in text box properly
-        quantity = self.barObject.bar1Val  
+        quantity = self.barObject.bar1Val
         price = 0
         if model.FLAG_XO:
             if game_sharing.test_connected() and self.shareCheckBox.value:
                 price = int(self.barObject.bar2Val)
-                
-        label_text = self.message_label.text  
+
+        label_text = self.message_label.text
         # Checking whether the user has selected the appropriate option box for the resource or not, and do the appropriate action
         if self.water_box.value:
             if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
                 initiateTrade(True,model.Water,quantity,price)
-            else:    
+            else:
                 label_text =  threades.buy_res(model.Water,quantity)
                 if label_text == 'The Village has bought the resource you demanded':
                     self.label_vwater.text = str(int(model.Water.get_vquantity()))
@@ -911,7 +911,7 @@ class buysell_button:
         elif self.buildmat_box.value:
             if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
                 initiateTrade(True,model.Buildmat,quantity,price)
-            else:    
+            else:
                 label_text =  threades.buy_res(model.Buildmat,quantity)
                 if label_text == 'The Village has bought the resource you demanded':
                     self.label_vbuildmat.text = str(int(model.Buildmat.get_vquantity()))
@@ -919,7 +919,7 @@ class buysell_button:
         elif self.tools_box.value:
             if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
                 initiateTrade(True,model.Tools,quantity,price)
-            else:    
+            else:
                 label_text =  threades.buy_res(model.Tools,quantity)
                 if label_text == 'The Village has bought the resource you demanded':
                     self.label_vtools.text = str(int(model.Tools.get_vquantity()))
@@ -927,7 +927,7 @@ class buysell_button:
         elif self.medicine_box.value:
             if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
                 initiateTrade(True,model.Medicine,quantity,price)
-            else:    
+            else:
                 label_text =  threades.buy_res(model.Medicine,quantity)
                 if label_text == 'The Village has bought the resource you demanded':
                     self.label_vmedicine.text = str(int(model.Medicine.get_vquantity()))
@@ -935,7 +935,7 @@ class buysell_button:
         elif self.books_box.value:
             if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
                 initiateTrade(True,model.Books,quantity,price)
-            else:    
+            else:
                 label_text =  threades.buy_res(model.Book,quantity)
                 if label_text == 'The Village has bought the resource you demanded':
                     self.label_vbooks.text = str(int(model.Book.get_vquantity()))
@@ -943,7 +943,7 @@ class buysell_button:
         elif self.rice_box.value:
             if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
                 initiateTrade(True,model.Rice,quantity,price)
-            else:    
+            else:
                 label_text =  threades.buy_res(model.Rice,quantity)
                 if label_text == 'The Village has bought the resource you demanded':
                     self.label_vrice.text = str(int(model.Rice.get_vquantity()))
@@ -951,7 +951,7 @@ class buysell_button:
         elif self.wheat_box.value:
             if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
                 initiateTrade(True,model.Wheat,quantity,price)
-            else:    
+            else:
                 label_text =  threades.buy_res(model.Wheat,quantity)
                 if label_text == 'The Village has bought the resource you demanded':
                     self.label_vwheat.text = str(int(model.Wheat.get_vquantity()))
@@ -959,7 +959,7 @@ class buysell_button:
         elif self.beans_box.value:
             if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
                 initiateTrade(True,model.Beans,quantity,price)
-            else:    
+            else:
                 label_text =  threades.buy_res(model.Beans,quantity)
                 if label_text == 'The Village has bought the resource you demanded':
                     self.label_vbeans.text = str(int(model.Beans.get_vquantity()))
@@ -967,7 +967,7 @@ class buysell_button:
         elif self.sugar_box.value:
             if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
                 initiateTrade(True,model.Sugar,quantity,price)
-            else:    
+            else:
                 label_text =  threades.buy_res(model.Sugar,quantity)
                 if label_text == 'The Village has bought the resource you demanded':
                     self.label_vsugar.text = str(int(model.Sugar.get_vquantity()))
@@ -975,7 +975,7 @@ class buysell_button:
         elif self.salt_box.value:
             if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
                 initiateTrade(True,model.Salt,quantity,price)
-            else:    
+            else:
                 label_text =  threades.buy_res(model.Salt,quantity)
                 if label_text == 'The Village has bought the resource you demanded':
                     self.label_vsalt.text = str(int(model.Salt.get_vquantity()))
@@ -983,7 +983,7 @@ class buysell_button:
         elif self.oil_box.value:
             if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
                 initiateTrade(True,model.Oil,quantity,price)
-            else:    
+            else:
                 label_text =  threades.buy_res(model.Oil,quantity)
                 if label_text == 'The Village has bought the resource you demanded':
                     self.label_voil.text = str(int(model.Oil.get_vquantity()))
@@ -992,12 +992,12 @@ class buysell_button:
             label_text = ' Please select a Resource for Trading'
 
         self.message_label.text = label_text
-        
+
 
 
 
     def sell_resources(self,button):
-        ''' Initiated for doing the transaction of buying the resources 
+        ''' Initiated for doing the transaction of buying the resources
         '''
         # Checking whether the user has entered the value in text box properly
         quantity = self.barObject.bar1Val
@@ -1005,13 +1005,13 @@ class buysell_button:
         if model.FLAG_XO:
             if game_sharing.test_connected() and self.shareCheckBox.value:
                 price = int(self.barObject.bar2Val)
-                
-        label_text = self.message_label.text  
+
+        label_text = self.message_label.text
         # Checking whether the user has selected the appropriate option box for the resource or not, and do the appropriate action
         if self.water_box.value:
             if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
                 initiateTrade(True,model.Water,quantity,price)
-            else:    
+            else:
                 label_text =  threades.sell_res(model.Water,quantity)
                 if label_text == 'The Village has sold the resource you demanded':
                     self.label_vwater.text = str(int(model.Water.get_vquantity()))
@@ -1019,7 +1019,7 @@ class buysell_button:
         elif self.buildmat_box.value:
             if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
                 initiateTrade(True,model.Buildmat,quantity,price)
-            else:    
+            else:
                 label_text =  threades.sell_res(model.Buildmat,quantity)
                 if label_text == 'The Village has sold the resource you demanded':
                     self.label_vbuildmat.text = str(int(model.Buildmat.get_vquantity()))
@@ -1027,7 +1027,7 @@ class buysell_button:
         elif self.tools_box.value:
             if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
                 initiateTrade(True,model.Tools,quantity,price)
-            else:    
+            else:
                 label_text =  threades.sell_res(model.Tools,quantity)
                 if label_text == 'The Village has sold the resource you demanded':
                     self.label_vtools.text = str(int(model.Tools.get_vquantity()))
@@ -1035,7 +1035,7 @@ class buysell_button:
         elif self.medicine_box.value:
             if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
                 initiateTrade(True,model.Medicine,quantity,price)
-            else:    
+            else:
                 label_text =  threades.sell_res(model.Medicine,quantity)
                 if label_text == 'The Village has sold the resource you demanded':
                     self.label_vmedicine.text = str(int(model.Medicine.get_vquantity()))
@@ -1043,7 +1043,7 @@ class buysell_button:
         elif self.books_box.value:
             if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
                 initiateTrade(True,model.Books,quantity,price)
-            else:    
+            else:
                 label_text =  threades.sell_res(model.Book,quantity)
                 if label_text == 'The Village has sold the resource you demanded':
                     self.label_vbooks.text = str(int(model.Book.get_vquantity()))
@@ -1051,7 +1051,7 @@ class buysell_button:
         elif self.rice_box.value:
             if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
                 initiateTrade(True,model.Rice,quantity,price)
-            else:    
+            else:
                 label_text =  threades.sell_res(model.Rice,quantity)
                 if label_text == 'The Village has sold the resource you demanded':
                     self.label_vrice.text = str(int(model.Rice.get_vquantity()))
@@ -1059,7 +1059,7 @@ class buysell_button:
         elif self.wheat_box.value:
             if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
                 initiateTrade(True,model.Wheat,quantity,price)
-            else:    
+            else:
                 label_text =  threades.sell_res(model.Wheat,quantity)
                 if label_text == 'The Village has sold the resource you demanded':
                     self.label_vwheat.text = str(int(model.Wheat.get_vquantity()))
@@ -1067,7 +1067,7 @@ class buysell_button:
         elif self.beans_box.value:
             if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
                 initiateTrade(True,model.Beans,quantity,price)
-            else:    
+            else:
                 label_text =  threades.sell_res(model.Beans,quantity)
                 if label_text == 'The Village has sold the resource you demanded':
                     self.label_vbeans.text = str(int(model.Beans.get_vquantity()))
@@ -1075,7 +1075,7 @@ class buysell_button:
         elif self.sugar_box.value:
             if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
                 initiateTrade(True,model.Sugar,quantity,price)
-            else:    
+            else:
                 label_text =  threades.sell_res(model.Sugar,quantity)
                 if label_text == 'The Village has sold the resource you demanded':
                     self.label_vsugar.text = str(int(model.Sugar.get_vquantity()))
@@ -1083,7 +1083,7 @@ class buysell_button:
         elif self.salt_box.value:
             if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
                 initiateTrade(True,model.Salt,quantity,price)
-            else:    
+            else:
                 label_text =  threades.sell_res(model.Salt,quantity)
                 if label_text == 'The Village has sold the resource you demanded':
                     self.label_vsalt.text = str(int(model.Salt.get_vquantity()))
@@ -1091,7 +1091,7 @@ class buysell_button:
         elif self.oil_box.value:
             if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
                 initiateTrade(True,model.Oil,quantity,price)
-            else:    
+            else:
                 label_text =  threades.sell_res(model.Oil,quantity)
                 if label_text == 'The Village has sold the resource you demanded':
                     self.label_voil.text = str(int(model.Oil.get_vquantity()))
@@ -1099,8 +1099,8 @@ class buysell_button:
         else:
             label_text = ' Please select a Resource for Trading'
         self.message_label.text = label_text
-        
-        
+
+
     def close_win(self,button=None):
         self.win.close()
         self.win_flag = False
@@ -1115,9 +1115,58 @@ class buysell_button:
     def get_win_flag(self):
         return self.win_flag
 
-        
 
+class showInstructions:
     
+    def __init__(self):
+    
+        self.text = ""
+        self.winFlag = False
+    
+    def addMessage(self,text= None):
+        
+        if text:
+            self.text = text
+         
+        if self.winFlag:
+            sleep(2)
+            self.winFlag = False
+            
+        self.showMessage()
+            
+    def showMessage(self):
+        
+        
+        self.winFlag = True
+        font_color = (27,11,239)
+        myfont = pygame.font.Font("font.ttf", threades.resize_pt(17))
+        # Custom gui.Window Style
+        win_style = gui.defaultWindowStyle.copy()
+        win_style['font'] = myfont
+        win_style['bg-color'] = (0,0,0)
+        win_style['font-color'] = font_color
+        
+        # Calculating position and size of window from the size of the threades.desktop
+        position_win =threades.resize_pos((745.0,42.0))
+        size_win =threades.resize_pos((450.0,200.0))
+    
+        # Creating custom label style for the text to be displayed as a threades.message
+        labelStyleCopy = gui.defaultLabelStyle.copy()
+        labelStyleCopy['wordwrap'] = True
+        labelStyleCopy['autosize'] = False
+        labelStyleCopy['font'] = myfont
+        labelStyleCopy['font-color'] = font_color
+    
+        # Creating window
+        self.win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = " Mission " ,style = win_style ,closeable = False ,shadeable = False,moveable = False)
+        pygame.draw.rect(self.win.surf,font_color,threades.resize_rect((3,3,444,194)),1)            
+        
+        # Creating label
+        message_label = gui.Label(position = threades.resize_pos((5,50),(450.0,200.0),self.win.size),size = threades.resize_pos((440,140),(450.0,150.0),self.win.size), parent = self.win, text = self.text, style = labelStyleCopy)
+        sleep(5)
+        self.win.close()
+        
+showMessages = showInstructions()
 
 class gui_buttons:
 
@@ -1128,26 +1177,40 @@ class gui_buttons:
         ''' Initialises the buttons for setting up facility, upgrading it and for buy/sell operations
         '''
         myfont = pygame.font.Font("font.ttf", threades.resize_pt(17))
-        
+
+        self.instruction_text = ""
         #Creating new button style
         buttonsurf = pygame.image.load(os.path.join('art','button.png')).convert_alpha()
         buttonsurf = pygame.transform.scale(buttonsurf, (36, threades.resize_pt_y( 40)))
         button_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
         button_style['font'] = myfont
-        
+
         self.setup_button = gui.Button(position = threades.resize_pos((7,859)), size = threades.resize_pos((290,25)), parent = threades.desktop, text = "Build",style = button_style)
         self.upgrade_button = gui.Button(position = threades.resize_pos((307,859)), size = threades.resize_pos((290,25)), parent = threades.desktop, text = "Upgrade",style = button_style)
         self.buysell_button = gui.Button(position = threades.resize_pos((607,859)), size = threades.resize_pos((290,25)), parent = threades.desktop, text = "Market",style = button_style)
+
+        #Creating new button style
+        buttonsurf = pygame.image.load(os.path.join('art','button.png')).convert_alpha()
+        buttonsurf = pygame.transform.scale(buttonsurf, (36, threades.resize_pt_y(30)))
+        button_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
+        button_style['font'] = myfont
+        self.instructions_button = gui.Button(position = threades.resize_pos((1000,10)), size = threades.resize_pos((190,25)), parent = threades.desktop, text = "Mission",style = button_style)
+
         self.setup_obj = setup_button()
         self.upgrade_obj = upgrade_button()
         self.buysell_obj = buysell_button()
         self.setup_button.onClick = self.setup_obj.setup
         self.upgrade_button.onClick = self.upgrade_obj.upgrade
         self.buysell_button.onClick = self.buysell_obj.buysell
+        self.instructions_button.onClick = self.showInstruction
         self.win_flag = False
         self.child_win_flag = False
-        
 
+    
+    def showInstruction(self, button = None):
+    
+        thread_instruction = threading.Thread(target = showMessages.addMessage, args=[]).start()
+        
     def get_win_flag(self):
         return (self.setup_obj.get_win_flag() or self.upgrade_obj.get_win_flag() or self.buysell_obj.get_win_flag())
 
@@ -1165,20 +1228,20 @@ class gui_buttons:
             self.upgrade_obj.close_win()
         elif self.buysell_obj.get_win_flag():
             self.buysell_obj.close_win()
-            
+
     def press_enter(self):
-        
+
         # responds to the enter keypress
         if  self.get_child_win_flag():
             self.setup_obj.setup_facility_farm()
-        
+
         elif self.setup_obj.get_win_flag():
             self.setup_obj.setup_facility()
-            
+
         elif self.upgrade_obj.get_win_flag():
             self.upgrade_obj.upgrade_facility()
-            
-        
+
+
     def disable_buttons(self):
 
         # stopping the motion of the background
@@ -1205,17 +1268,17 @@ class gui_buttons:
 
 
 
-    
-  
+
+
 gui_obj = gui_buttons()
 
 def initialize_gui():
-    
+
     ''' Function to initialize the GUI
     '''
     global gui_obj
-    gui_obj.initialize()     
-    
+    gui_obj.initialize()
+
 
 def initiateTrade(buysell,resource,quantity,price):
     ''' buysell is a flag if True : Buy , if False : Sell
@@ -1235,9 +1298,9 @@ def initiateTrade(buysell,resource,quantity,price):
             return
         game_sharing.broadcast_msg(['Trade',resource.get_name(),str(quantity),str(price),'buy'])
         game_sharing.setUnicastTradingFlag('buy')
-        
+
     if gui_obj.buysell_obj.get_win_flag():
         gui_obj.buysell_obj.close_win()
-        
-    
+
+
 
