@@ -987,7 +987,7 @@ class buysell_button:
                 label_text =  threades.buy_res(model.Oil,quantity)
                 if label_text == 'The Village has bought the resource you demanded':
                     self.label_voil.text = str(int(model.Oil.get_vquantity()))
-                    self.label_mwoil.text = str(int(model.Oil.get_mquantity()))
+                    self.label_moil.text = str(int(model.Oil.get_mquantity()))
         else:
             label_text = ' Please select a Resource for Trading'
 
@@ -1095,7 +1095,7 @@ class buysell_button:
                 label_text =  threades.sell_res(model.Oil,quantity)
                 if label_text == 'The Village has sold the resource you demanded':
                     self.label_voil.text = str(int(model.Oil.get_vquantity()))
-                    self.label_mwoil.text = str(int(model.Oil.get_mquantity()))
+                    self.label_moil.text = str(int(model.Oil.get_mquantity()))
         else:
             label_text = ' Please select a Resource for Trading'
         self.message_label.text = label_text
