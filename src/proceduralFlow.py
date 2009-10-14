@@ -333,7 +333,7 @@ class checkConditions:
         '''
 
         Flag = True
-        if threades.levelStartFacilityBuildFlag > 0:
+        if threades.levelStartFacilityBuildFlag > 0 or (not threades.levelStartUpdateFlag):
             return 0
 
         for conditions in self.conditionslist:
@@ -491,7 +491,8 @@ class Actions:
         data_file = 'data'+str(storyboard_level)+'.pkl'
         graphics_file = 'graphics_layout.pkl'
         load_level_obj.new_level_stats(data_file,graphics_file)
-
+        print "StoryBoard level : "
+        print storyboard_level
         # Seeking in the storyboard to the current level
 
         closeStoryBoardFile()

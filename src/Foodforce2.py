@@ -240,14 +240,24 @@ def get_update_region():
 
     
 
+def load_resume_game():
+    global current_level
+    actiontemp = proceduralFlow.actionTemplate()
+    actiontemp.actionType = 3
+    proceduralFlow.openStoryBoardFile()
+    action_obj = proceduralFlow.Actions(actiontemp)
+    threades.game_save_flag = False
+
+    
 class starting_intro:
     ''' Display the starting intro_text and menu
     '''
 
-    def main_menu(self,pause_flag = True):
+    def main_menu(self,pause_flag = True, game_save_flag = False):
         ''' Display the starting menu
         '''
-
+        self.init_game_save_flag = game_save_flag
+        self.game_save_flag = False
         logo = pygame.image.load(os.path.join('data', 'logo.png')).convert()
         self.ff_logo = pygame.transform.scale(logo,threades.resize_pos((1111,250)))
         threades.screen.fill((0,0,0))
@@ -264,18 +274,29 @@ class starting_intro:
         if self.pause_flag:
             self.start_button = gui.Button(position = threades.resize_pos((500,500)), size = threades.resize_pos((200,30)), parent = desktop2, text = "Start New Game",style = self.button_style)
             self.start_button.onClick = self.startup_text
+            
+            if self.init_game_save_flag == True:
+                self.resume_saved_level_button = gui.Button(position = threades.resize_pos((500,450)),size = threades.resize_pos((200,30)),parent = desktop2, text = "Resume Saved Game",style =self.button_style)
+                self.resume_saved_level_button.onClick = self.resume_saved_level
+
+            
         else:
             self.resume_button = gui.Button(position = threades.resize_pos((500,500)), size = threades.resize_pos((200,30)), parent = desktop2, text = "Resume Game",style = self.button_style)
             self.resume_button.onClick = self.resume
+            
+            #Save Game Button
+            if proceduralFlow.storyboard_level != 1:
+                self.save_button = gui.Button(position = threades.resize_pos((500,450)), size = threades.resize_pos((200,30)), parent = desktop2, text = "Save Current Level",style = self.button_style)
+                self.save_button.onClick = self.save_current_level
 
-        #self.resume_button = gui.Button(position = threades.resize_pos((500,550)), size = threades.resize_pos((200,30)), parent = threades.desktop, text = "Resume Game",style = self.button_style)
+        
         self.controls_button = gui.Button(position = threades.resize_pos((500,600)), size = threades.resize_pos((200,30)), parent = desktop2, text = "Controls",style = self.button_style)
         self.exit_button = gui.Button(position = threades.resize_pos((500,650)), size = threades.resize_pos((200,30)), parent = desktop2, text = "Exit",style = self.button_style)
         self.instructions_button = gui.Button(position = threades.resize_pos((500,550)), size = threades.resize_pos((200,30)), parent = desktop2, text = "Guide",style = self.button_style)
         self.about_us_button = gui.Button(position = threades.resize_pos((1000,20)), size = threades.resize_pos((150,30)), parent = desktop2, text = "About Us",style = self.button_style)
         
                                       
-        #self.resume_button.onClick = self.resume
+
         self.controls_button.onClick = self.controls
         self.exit_button.onClick = safe_exit
         
@@ -552,6 +573,20 @@ class starting_intro:
     def turnoff_startup_run(self,button = None):
         
         self.startup_text_run = False
+    
+    def resume_saved_level(self,button = None):
+        '''Resumes saved level'''
+        threades.resume_game()
+        self.remove_buttons()
+        self.run = False
+        
+    def save_current_level(self,button = None):
+        '''Saves the current level'''
+        threades.current_level = proceduralFlow.storyboard_level
+        threades.save_game()
+        self.remove_buttons()
+        self.run = False
+        
         
     def resume(self,button = None):
         ''' Resumes Game
@@ -667,9 +702,15 @@ class starting_intro:
         win = gui.Window(position = (0,0), size = (100,100), parent = desktop2)
         if self.pause_flag:
             self.start_button._set_parent(win)
+            if self.init_game_save_flag:
+                self.resume_saved_level_button._set_parent(win)
+                self.init_game_save_flag = False    
         else:
             self.resume_button._set_parent(win)
-
+            if proceduralFlow.storyboard_level !=1:
+                self.save_button._set_parent(win)
+            
+        
         self.controls_button._set_parent(win)
         self.exit_button._set_parent(win)
         self.about_us_button._set_parent(win)
@@ -684,7 +725,7 @@ def pause_screen(pause_flag = True):
 
     start = starting_intro()
 
-    start.main_menu(pause_flag)
+    start.main_menu(pause_flag,threades.game_save_flag)
     logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
     ff_logo = pygame.transform.scale(logo,threades.resize_pos((1111,250)))
     while start.run:
@@ -759,19 +800,26 @@ def main():
     intro_thread = threading.Thread(target = load_images.load_images, args=[])
     intro_thread.start()
     # Loading and starting the sound play
-    level_setting=level_change.change_level()
-    pause_screen()
+    #level_setting=level_change.change_level()
+    
 
     intro_thread.join()
-    threades.initialize_facilities(True)
+    threades.current_level = threades.check_saved_game_level()
+        
+    pause_screen()
+    proceduralFlow.storyboard_level = threades.current_level
+    if threades.current_level != 1:
+        load_resume_game()
+    else:
+        threades.initialize_facilities(True)
+        proceduralFlow.openStoryBoardFile()
 
     #surface_middle = pygame.transform.scale(surface3,threades.resize_pos((1200,560)))
     
     # Processing regarding the storyboard
-    proceduralFlow.openStoryBoardFile()
+    
     storyboardObj = proceduralFlow.storyboardFlow()
-    proceduralFlow.openStoryBoardFile()
-
+    
     gui_buttons.initialize_gui()
 
     threades.screen.fill((0,0,0))

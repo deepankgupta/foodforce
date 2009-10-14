@@ -79,6 +79,7 @@ class change_level:
         self.ff_logo = 0
         threades.initialize_facilities(True)
         threades.facility_placement_data_obj.clear_placement_data()
+        #threades.current_level = threades.current_level + 1
                 
         threades.total_update_flag = True
         threades.resume_update_thread()

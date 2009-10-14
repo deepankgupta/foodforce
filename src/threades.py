@@ -36,6 +36,7 @@ pygame.init()
 import game_events
 import load_images
 import pickle
+#import proceduralFlow
 
 
 original_screen_size = [1200.0,900.0]
@@ -77,6 +78,7 @@ buildFacilityPlacementFlag = ""
 
 # Level start Facility build flag 
 levelStartFacilityBuildFlag = 0
+levelStartUpdateFlag = True
 
 #Screen Initialization Flags
 total_update_flag = True
@@ -84,17 +86,29 @@ panel_update_flag = True
 map_update_flag = True
 top_update_flag = True
 facilities_update_flag = True   
+game_save_flag = False
 
 PLACING_LIST_TEMP = []
+current_level = 0
     
 
 def initialize_facilities(autobuild_flag = True):
     
     model.ppl.change_total_population(1000)
-    global levelStartFacilityBuildFlag 
+    global levelStartFacilityBuildFlag
+    global levelStartUpdateFlag
+    levelStartUpdateFlag = False
+    global PLACING_LIST_TEMP
+
     
-    PLACING_DATA_LIST = facility_placement_data_obj.read_placement_data()
     
+    
+    #if level_flag == -1:
+        #PLACING_DATA_LIST = facility_placement_data_obj.read_placement_data()
+    #else:
+    PLACING_DATA_LIST = PLACING_LIST_TEMP
+    new_list = []
+    #PLACING_DATA_LIST = facility_placement_data_obj.read_placement_data()
 
     HOUSE_NO = model.INIT_HOUSE
     HOSP_NO = model.INIT_HOSPITAL
@@ -110,32 +124,38 @@ def initialize_facilities(autobuild_flag = True):
     for i in range(len(PLACING_DATA_LIST)):
         if PLACING_DATA_LIST[i][0] == 'HOUSE' and HOUSE_NO>0:
             build_facility(model.House,PLACING_DATA_LIST = PLACING_DATA_LIST[i], autobuild_flag = autobuild_flag)
-            HOUSE_NO = HOUSE_NO -1 
+            HOUSE_NO = HOUSE_NO -1
+            new_list.append(PLACING_DATA_LIST[i])
             
         if PLACING_DATA_LIST[i][0] == 'HOSPITAL' and HOSP_NO>0:
             build_facility(model.Hospital,PLACING_DATA_LIST[i], autobuild_flag = autobuild_flag)
             HOSP_NO = HOSP_NO -1
+            new_list.append(PLACING_DATA_LIST[i])
             
         if PLACING_DATA_LIST[i][0] == 'SCHOOL' and SCHOOL_NO>0:
             build_facility(model.School,PLACING_DATA_LIST[i], autobuild_flag = autobuild_flag)
             SCHOOL_NO = SCHOOL_NO -1
+            new_list.append(PLACING_DATA_LIST[i])
             
         if PLACING_DATA_LIST[i][0] == 'FARM' and FARM_NO>0:
             build_facility(model.Farm,PLACING_DATA_LIST[i], autobuild_flag = autobuild_flag)
             FARM_NO = FARM_NO -1
+            new_list.append(PLACING_DATA_LIST[i])
             
         if PLACING_DATA_LIST[i][0] == 'FOUNTAIN' and FOUNTAIN_NO>0:
             build_facility(model.Fountain,PLACING_DATA_LIST[i], autobuild_flag = autobuild_flag)
             FOUNTAIN_NO = FOUNTAIN_NO -1
+            new_list.append(PLACING_DATA_LIST[i])
             
         if PLACING_DATA_LIST[i][0] == 'WORKSHOP' and WORKS_NO>0:
             build_facility(model.Workshop,PLACING_DATA_LIST[i], autobuild_flag = autobuild_flag)
             WORKS_NO = WORKS_NO -1
+            new_list.append(PLACING_DATA_LIST[i])
   
-  
+    #reload_placing_data_list()
     model.ppl.change_total_population(-1000)
     
-    
+    PLACING_LIST_TEMP = new_list
     transform_obj.focus_at((1000,2000))
     transform_obj.set_ratio(0.5)
     calculate_indicators_starting()
@@ -150,6 +170,11 @@ update_thread_pause = True
 
 
 ''' Utility Functions '''
+
+#def reload_placing_data_list():
+    #placing_list = []
+    #placing_list = PLACING_LIST_TEMP
+    #placing_list 
 
 def stop_facility(facility_obj):
     ''' Thread to stop a facility it resumes the facility when the village
@@ -600,6 +625,9 @@ def update_turn(delay = 15):
         if update_thread_pause == True:
 
             # updation of all facilities
+            global levelStartUpdateFlag
+            levelStartUpdateFlag = True
+    
             for i in range(len(model.facilities_list)):
                 try:
                     model.resources = model.facilities_list[i].turn(model.resources)
@@ -913,7 +941,53 @@ def famine():
     
 
 
+def save_game(data_file = 'save_game.pkl'):
+    '''Used to save current level'''
+    global PLACING_LIST_TEMP
+    global current_level
+    global game_save_flag
+    game_save_flag = True
+    output = open(data_file,'wb')
+    pickle.dump(current_level,output)
+    pickle.dump(PLACING_LIST_TEMP,output)
+    output.close()
+    
+    
 
+def resume_game(data_file = 'save_game.pkl'):
+    '''Used to resume a saved game'''
+    global PLACING_LIST_TEMP
+    ##global level
+    global game_save_flag
+    output = open(data_file,'rb')
+    level = pickle.load(output)
+    while True:
+        try:
+            PLACING_LIST_TEMP = pickle.load(output)
+            ##PLACING_LIST_TEMP.append(_PLACING_LIST_TEMP)
+            #print PLACING_LIST_TEMP
+        except EOFError:
+            break
+    output.close()
+    output = open(data_file,'wb')
+    output.close()
+    game_save_flag = False
+    
+def check_saved_game_level(data_file = 'save_game.pkl'):
+    '''Used to check the status of game, saved or unsaved'''
+    output = open(data_file,'rb')
+    global game_save_flag
+    try:
+        current_level = pickle.load(output)
+        game_save_flag = True       
+        return current_level
+    
+    except EOFError:
+        return 1
+    output.close()
+
+
+    
 # The messages Classes    
 class Messages:
     ''' Class which handles the messaging system
