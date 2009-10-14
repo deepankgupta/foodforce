@@ -480,8 +480,8 @@ class starting_intro:
         hunger_map = pygame.image.load(os.path.join('data', 'Wfpwork.png')).convert()
         hunger_map =  pygame.transform.scale(hunger_map,threades.new_screen_size)
         threades.screen.blit(hunger_map,threades.resize_pos((0,0)))
-        #if soundtrack:
-            #soundtrack.play(-1)
+        if soundtrack:
+            soundtrack.play(-1)
    
 
         color_brown = (255,214,150)
