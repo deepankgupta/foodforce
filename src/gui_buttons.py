@@ -730,21 +730,34 @@ class buysell_button:
         op_style['font-color'] = self.rect_color
         op_style['autosize'] = True
         op_style['word wrap'] = False
+        op_style['normal'] = True
+        self.op_style = op_style
 
         # Creating option boxes for all the resources
         position_optionbox = threades.resize_pos((10.0,140.0),(800.0,600.0),self.win.size)
         self.water_box = gui.OptionBox(position = position_optionbox, parent = self.win, style = op_style, text = 'Water')
+        self.water_box.onValueChanged = self.onOptionSelect
         self.buildmat_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = 'Bricks')
+        self.buildmat_box.onValueChanged = self.onOptionSelect
         self.tools_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = 'Tools')
+        self.tools_box.onValueChanged = self.onOptionSelect
         self.books_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = 'Books')
+        self.books_box.onValueChanged = self.onOptionSelect
         self.medicine_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = 'Medicines')
+        self.medicine_box.onValueChanged = self.onOptionSelect
         self.rice_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = 'Rice')
+        self.rice_box.onValueChanged = self.onOptionSelect
         self.wheat_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = 'Fruit & Vegetables')
+        self.wheat_box.onValueChanged = self.onOptionSelect
         self.beans_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = 'Beans')
+        self.beans_box.onValueChanged = self.onOptionSelect
         self.sugar_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = 'Sugar')
+        self.sugar_box.onValueChanged = self.onOptionSelect
         self.salt_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = 'Salt')
+        self.salt_box.onValueChanged = self.onOptionSelect
         self.oil_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = 'Oil')
-
+        self.oil_box.onValueChanged = self.onOptionSelect
+        
         #Creating CheckBox style
         ch_style = gui.defaultCheckBoxStyle.copy()
         ch_style['font'] = myfont2
@@ -861,6 +874,43 @@ class buysell_button:
                 if self.shareCheckBox.value:
                     self.label_res_price.text = str(int(self.barObject.bar2Val))
 
+    def onOptionSelect(self,button= None):
+        
+        font_color = (27,11,239)
+        myfont2 = pygame.font.Font("font.ttf",threades.resize_pt(16))
+        # creating custom style for option box
+        op_style = gui.defaultOptionBoxStyle.copy()
+        op_style['font'] = myfont2
+        op_style['font-color'] = font_color
+        op_style['autosize'] = True
+        op_style['word wrap'] = False
+        op_style['normal'] = False
+        
+        if not self.water_box.style['normal']:
+            self.water_box.style = self.op_style
+        if not self.buildmat_box.style['normal']:
+            self.buildmat_box.style = self.op_style
+        if not self.tools_box.style['normal']:
+            self.tools_box.style = self.op_style
+        if not self.books_box.style['normal']:
+            self.books_box.style = self.op_style
+        if not self.medicine_box.style['normal']:
+            self.medicine_box.style = self.op_style
+        if not self.rice_box.style['normal']:
+            self.rice_box.style = self.op_style
+        if not self.wheat_box.style['normal']:
+            self.wheat_box.style = self.op_style
+        if not self.beans_box.style['normal']:
+            self.beans_box.style = self.op_style
+        if not self.sugar_box.style['normal']:
+            self.sugar_box.style = self.op_style
+        if not self.salt_box.style['normal']:
+            self.salt_box.style = self.op_style
+        if not self.oil_box.style['normal']:
+            self.oil_box.style = self.op_style
+        
+        button.style = op_style
+            
     def drawPriceChart(self,button = None):
 
         # Creating custom label style1
