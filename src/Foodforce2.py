@@ -268,32 +268,34 @@ class starting_intro:
 
         # Creating new button style
         buttonsurf = pygame.image.load(os.path.join('art','button_green.png')).convert_alpha()
+        buttonsurf = pygame.transform.scale(buttonsurf, (36, threades.resize_pt_y(40)))
         self.button_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
+        
 
         self.pause_flag = pause_flag
         if self.pause_flag:
-            self.start_button = gui.Button(position = threades.resize_pos((500,500)), size = threades.resize_pos((200,30)), parent = desktop2, text = "Start New Game",style = self.button_style)
+            self.start_button = gui.Button(position = threades.resize_pos((475,500)), size = threades.resize_pos((250,50)), parent = desktop2, text = "Start New Game",style = self.button_style)
             self.start_button.onClick = self.startup_text
             
             if self.init_game_save_flag == True:
-                self.resume_saved_level_button = gui.Button(position = threades.resize_pos((500,450)),size = threades.resize_pos((200,30)),parent = desktop2, text = "Resume Saved Game",style =self.button_style)
+                self.resume_saved_level_button = gui.Button(position = threades.resize_pos((475,430)),size = threades.resize_pos((250,50)), parent = desktop2, text = "Resume Saved Game",style =self.button_style)
                 self.resume_saved_level_button.onClick = self.resume_saved_level
 
             
         else:
-            self.resume_button = gui.Button(position = threades.resize_pos((500,500)), size = threades.resize_pos((200,30)), parent = desktop2, text = "Resume Game",style = self.button_style)
+            self.resume_button = gui.Button(position = threades.resize_pos((475,500)), size = threades.resize_pos((250,50)), parent = desktop2, text = "Resume Game",style = self.button_style)
             self.resume_button.onClick = self.resume
             
             #Save Game Button
             if proceduralFlow.storyboard_level != 1:
-                self.save_button = gui.Button(position = threades.resize_pos((500,450)), size = threades.resize_pos((200,30)), parent = desktop2, text = "Save Current Level",style = self.button_style)
+                self.save_button = gui.Button(position = threades.resize_pos((475,430)), size = threades.resize_pos((250,50)), parent = desktop2, text = "Save Current Level",style = self.button_style)
                 self.save_button.onClick = self.save_current_level
 
         
-        self.controls_button = gui.Button(position = threades.resize_pos((500,600)), size = threades.resize_pos((200,30)), parent = desktop2, text = "Controls",style = self.button_style)
-        self.exit_button = gui.Button(position = threades.resize_pos((500,650)), size = threades.resize_pos((200,30)), parent = desktop2, text = "Exit",style = self.button_style)
-        self.instructions_button = gui.Button(position = threades.resize_pos((500,550)), size = threades.resize_pos((200,30)), parent = desktop2, text = "Guide",style = self.button_style)
-        self.about_us_button = gui.Button(position = threades.resize_pos((1000,20)), size = threades.resize_pos((150,30)), parent = desktop2, text = "About Us",style = self.button_style)
+        self.controls_button = gui.Button(position = threades.resize_pos((475,640)), size = threades.resize_pos((250,50)), parent = desktop2, text = "Controls",style = self.button_style)
+        self.exit_button = gui.Button(position = threades.resize_pos((475,710)), size = threades.resize_pos((250,50)), parent = desktop2, text = "Exit",style = self.button_style)
+        self.instructions_button = gui.Button(position = threades.resize_pos((475,570)), size = threades.resize_pos((250,50)), parent = desktop2, text = "Guide",style = self.button_style)
+        self.about_us_button = gui.Button(position = threades.resize_pos((1000,20)), size = threades.resize_pos((150,40)), parent = desktop2, text = "About Us",style = self.button_style)
         
                                       
 
