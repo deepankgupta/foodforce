@@ -3,7 +3,7 @@ S'action'
 p1
 a(lp2
 I7
-aS'Long ago in the massive lands of India, there used to be a village called Gokul. The village of Gokul had a wise and an honest man, Kamat, as its Sarpanch. After many years of service, Kamat realized that he had grown old. It was the time to retire and pass on his responsibilities to someone, who had the potential, mind and passion to manage the village. He and his close committee of advisers searched and searched for the ideal caretaker. Sometimes, when you keep on looking for the solution everywhere, you forget to look around your immediate environment. The person was right in Kamats house, his Son.'
+aS'In this beautiful country called India, there is a Gokul village. The village of gokul is governed by Kamat who is the Sarpanch(head) of the village. But Kamat is growing old and needs a successor. Can you, his younger son, take on the responsibilities of the village and make the village prosper.'
 p3
 aa.(lp0
 S'action'
@@ -14,100 +14,32 @@ a(lp3
 (lp4
 S'Kamat'
 p5
-aS'Hello Son. I hope your studies are going well in school. The studies done in the school give you a theoretical aspect of doing things; you need to learn about how to apply these learning in real life.'
-p6
-ag5
-aS'You need to know how to develop your village, as you might well become the Sarpanch after me. I will assist you in developing your skills...'
-p7
-ag5
-aS'Let us go to the village of AbuJamara.'
-p8
-aaS'Wfpwork.png'
-p9
-aaa.(lp0
-S'action'
-p1
-a(lp2
-I1
-a(lp3
-(lp4
-S'Son'
-p5
-aS'Father, this is no village, where are the villagers? A village without people is like lake without water.'
-p6
-aS'Kamat'
-p7
-aS'Yes, this is the place where the Abujamara people will move. The Abujmara village was situated on the banks of river Ganga. Mother Ganga cursed the people of Abujamara by changing its course of flow and flooding the Abujamara village.'
-p8
-ag7
-aS'The people of Abujamara are homeless right now. They came to our village seeking help and the Panchayat decided to clear this forest and provide the land to the poor people. It is our job to help them establish a village on this land.'
-p9
-ag7
-aS'If you had been at my place, how would you bring life back to this village?'
-p10
-ag5
-aS'Father, I feel that the first requirement of the people of the village is shelter.'
-p11
-ag7
-aS'Very rightly said son. Every person needs a house to live in. Shelter is among one of the most basic necessities of a person. Build 3 huts to shelter the people of Abujamara. You can setup a hut by clicking on Build -> house.'
-p12
-aaS'Barren-Land.png'
-p13
-aaa.(lp0
-S'condition'
-p1
-a(lp2
-S'AND'
-p3
-aI-1
-a(lp4
-(lp5
-I00
-aI1
-aS'HOUSE'
-p6
-aS''
-p7
-aS'=='
-p8
-ag7
-aI3
-aaaa.(lp0
-S'action'
-p1
-a(lp2
-I1
-a(lp3
-(lp4
-S'Kamat'
-p5
-aS'When you setup a hut, some amount of your resources are utilized. For each Hut that you setup, 10 units of Bricks, 8 units of Tools and 8 units of Water are used. Also, some of your manpower is employed in making the hut. Similarly, resources are used to setup each facility.'
+aS'Son, I will teach you about the various aspects towards running a village today. Are you ready to learn? Let us go to the village of Abujamara.  '
 p6
 aS'Son'
 p7
-aS'Okay, Father.'
+aS'Father, this is no village, it is just empty land.... '
 p8
 ag5
-aS'When you setup a Hut the Housing Indicator of the Village increases.The indicators are shown on the bottom right hand side of the screen. The indicators are a measure, which tell about the growth and prosperity of the village.'
+aS'Yes, this is the place where once stood the village of Abujamara. The village became a barren land when Ganga cursed the people of Abujamara by changing its course and flooding the Abujamara village. The people are homeless are we will help rebuild their village.'
 p9
-ag7
-ag8
-aaS'thatched-huts.png'
+aaS'Wfpwork.png'
 p10
 aaa.(lp0
 S'action'
 p1
 a(lp2
-I1
-a(lp3
-(lp4
-S'Kamat'
-p5
-aS'Son, the next basic necessity of a village is Food. The people need food and water to survive. A well will draw water from the ground and provide fresh clean water to everybody. To setup a well click on Build -> Well. Build a well now.'
-p6
-aaS'thatched-huts.png'
-p7
-aaa.(lp0
+I9
+aS'Build a hut to shelter the people of Abujamara. You can build a hut by clicking on Build->Hut.'
+p3
+aa.(lp0
+S'action'
+p1
+a(lp2
+I9
+aS'When you build a hut, some amount of your resources are utilized. For each Hut that you build, 10 units of bricks, 8 units of Tools and 8 units of Water are used. Also, people are required to build a hut. Similarly, anything you build will require materials such as bricks and labour.'
+p3
+aa.(lp0
 S'condition'
 p1
 a(lp2
@@ -118,7 +50,7 @@ a(lp4
 (lp5
 I01
 aI1
-aS'FOUNTAIN'
+aS'HOUSE'
 p6
 aS''
 p7
@@ -130,19 +62,17 @@ aaaa.(lp0
 S'action'
 p1
 a(lp2
-I1
-a(lp3
-(lp4
-S'Kamat'
-p5
-aS'Well done son, You are going good.'
-p6
-ag5
-aS'To grow food, you will need to setup farms. Since the soil is fertile, we can grow any crop here. It is best to provide a healthy mix of Rice, Beans and Vegetables and Fruits. This will ensure healthy variety and nutrition. Build a farm now.'
-p7
-aaS'farm2.png'
-p8
-aaa.(lp0
+I9
+aS'When you build a Hut the Housing bar on the lower right corner of your screen increases. The more this bar is filled the more number of people have houses available for them. High progress bars indicate a happy and prosperous village.'
+p3
+aa.(lp0
+S'action'
+p1
+a(lp2
+I9
+aS'The next basic necessity of a village is Food. To grow food, you will need to build farms. Since the soil is fertile, we can grow any crop here. It is best to provide a healthy mix of Rice, Beans and Vegetables and Fruits. This will ensure healthy variety and nutrition. Build a farm now.'
+p3
+aa.(lp0
 S'condition'
 p1
 a(lp2
@@ -165,43 +95,10 @@ aaaa.(lp0
 S'action'
 p1
 a(lp2
-I1
-a(lp3
-(lp4
-S'Kamat'
-p5
-aS'Well done son. Let us go back and let the new village prosper.'
-p6
-aaS'Happy.png'
-p7
-aaa.(lp0
-S'action'
-p1
-a(lp2
-I6
-aS' Great Work!! \n\nLooking at the condition of the village and the rapid progress work done by you for the village. World Food Program has agreed to help the people for Abujamara by providing Food reserves to the village.'
+I9
+aS'The children have no place to study. Build a school for them. '
 p3
 aa.(lp0
-S'action'
-p1
-a(lp2
-I2
-aS''
-p3
-aa.(lp0
-S'action'
-p1
-a(lp2
-I1
-a(lp3
-(lp4
-S'Kamat'
-p5
-aS'The children of Abujamara have no place to study. Some of them are walking 10 miles and more to come to study at your school. Build a school for them.'
-p6
-aaS'withbooks.png'
-p7
-aaa.(lp0
 S'condition'
 p1
 a(lp2
@@ -220,221 +117,14 @@ aS'=='
 p8
 ag7
 aI0
-aa(lp9
-I01
-aI3
-ag6
-ag7
-ag8
-ag7
-aI0
 aaaa.(lp0
 S'action'
 p1
 a(lp2
-I1
-a(lp3
-(lp4
-S'Kamat'
-p5
-aS'Son, the Schools require books to function properly. If there would be no books, the teachers would not be able to impart education to the children. Buy the books for the school from the market.'
-p6
-aS'Son'
-p7
-aS'Okay, Father.'
-p8
-aaS'withbooks.png'
-p9
-aaa.(lp0
-S'condition'
-p1
-a(lp2
-S'AND'
-p3
-aI-1
-a(lp4
-(lp5
-I01
-aI4
-aS'SCHOOL'
-p6
-aS''
-p7
-aS'=='
-p8
-ag7
-aI0
-aaaa.(lp0
-S'action'
-p1
-a(lp2
-I1
-a(lp3
-(lp4
-S'Kamat'
-p5
-aS'Son, as the schools are functional now. You can see that the number of people educated in the Manpower Distribution table has increased. Also the education indicator in the Indicator table has increased.'
-p6
-aS'Son'
-p7
-aS'Definitely father, it has. Now, I am able to realize the potential of education.'
-p8
-ag5
-aS'Good work son.'
-p9
-aaS'withbooks.png'
-p10
-aaa.(lp0
-S'action'
-p1
-a(lp2
-I1
-a(lp3
-(lp4
-S'Kamat'
-p5
-aS'Son all the facilities require water to function properly, you must setup a well for this purpose.'
-p6
-aS'Son'
-p7
-aS'Okay, Father'
-p8
-aaS'withbooks.png'
-p9
-aaa.(lp0
-S'condition'
-p1
-a(lp2
-S'AND'
-p3
-aI-1
-a(lp4
-(lp5
-I01
-aI1
-aS'FOUNTAIN'
-p6
-aS''
-p7
-aS'=='
-p8
-ag7
-aI0
-aaaa.(lp0
-S'action'
-p1
-a(lp2
-I1
-a(lp3
-(lp4
-S'Kamat'
-p5
-aS'Son, as you can see a lot of people in the village are sitting idle. That is like a waste of their time and energy. You should setup workshops for the people who are not involved in agriculture. The workshop would provide craftsmen, potters and metal workers a place to work. Build a workshop for them to work.'
-p6
-aS'Son'
-p7
-aS'Definitely father.'
-p8
-aaS'cover09.png'
-p9
-aaa.(lp0
-S'condition'
-p1
-a(lp2
-S'AND'
-p3
-aI-1
-a(lp4
-(lp5
-I01
-aI1
-aS'WORKSHOP'
-p6
-aS''
-p7
-aS'=='
-p8
-ag7
-aI0
-aaaa.(lp0
-S'action'
-p1
-a(lp2
-I1
-a(lp3
-(lp4
-S'Kamat'
-p5
-aS'Excellent, with the young learning and the grown-ups working, the village is on the path to prosperity. But can you spot something missing in this scheme. Yes, you are right. They do not have a hospital to care for the sick. Build a hospital now.'
-p6
-aaS'hospital.png'
-p7
-aaa.(lp0
-S'condition'
-p1
-a(lp2
-S'AND'
-p3
-aI-1
-a(lp4
-(lp5
-I01
-aI1
-aS'HOSPITAL'
-p6
-aS''
-p7
-aS'=='
-p8
-ag7
-aI0
-aaaa.(lp0
-S'action'
-p1
-a(lp2
-I1
-a(lp3
-(lp4
-S'Kamat'
-p5
-aS'We have done all we can. You are learning fast, someday you will take my place.'
-p6
-aaS'sharpergirl.png'
-p7
-aaa.(lp0
-S'action'
-p1
-a(lp2
-I6
-aS' Great Work!! \n\nLooking at the Rapid progress of the village. WFP has planned to start Food for Work program in Abujamara village.\n\nIn Food for Work program WFP involves People of the village in Development Work. \n\nWorkers are paid not with money but with food rations to \nbuild vital new infrastructure that will increase the food \nsecurity of households or communities.'
+I9
+aS'Well done. But there are no books in this school. Buy the books for the school from the market. The Market Window can be opened by clicking on the market button in the bottom. Once you open the market window, you can click on the thing you need to buy and sell. Then select the quantity in which it needs to be bought or sold. Then click on buy/sell.'
 p3
 aa.(lp0
-S'action'
-p1
-a(lp2
-I2
-aS''
-p3
-aa.(lp0
-S'action'
-p1
-a(lp2
-I1
-a(lp3
-(lp4
-S'Kamat'
-p5
-aS'How are your studies going? I see, you do not seem to have enough books at school. It is all caused when trading is neglected. Let us analyze the village stocks and I will help you learn the basics of trading.'
-p6
-ag5
-aS'You can see the buy/sell button in the highlighted portion in the lower panel of the screen. This provides information on the number of every resource present in the village. When you find yourself running low on a certain resource, you should go to the market to buy more of it.'
-p7
-ag5
-aS'Let us buy more books. Click on the Buy/Sell button, select books and enter the quantity in the box. Finally click the BUY button to buy the books.'
-p8
-aaS'trading.png'
-p9
-aaa.(lp0
 S'condition'
 p1
 a(lp2
@@ -457,109 +147,24 @@ aaaa.(lp0
 S'action'
 p1
 a(lp2
-I1
-a(lp3
-(lp4
-S'Kamat'
-p5
-aS'Excellent Work , Son.'
-p6
-ag5
-aS'Son you would have noticed that the money present with the village, shown in the right hand top corner, decreases when you buy any resources from the market. You must maintain a good amount of money in the village account.'
-p7
-ag5
-aS'To increase money in the village account you can sell resources to the market.'
-p8
-ag5
-aS'Like, we have an excess of Tools and since we are not doing any new construction these days, we can safely sell it in the market. Sell some Tools.'
-p9
-aaS'trading.png'
-p10
-aaa.(lp0
-S'condition'
-p1
-a(lp2
-S'AND'
-p3
-aI-1
-a(lp4
-(lp5
-I01
-aI7
-aS''
-p6
-aS'TOOLS'
-p7
-aS'=='
-p8
-ag6
-aI0
-aaaa.(lp0
-S'action'
-p1
-a(lp2
-I1
-a(lp3
-(lp4
-S'Kamat'
-p5
-aS'Good work son. This is all you need to know about trading. You need to buy the resources when you are falling short of them and sell them when there is an excess of a resource in your village. The prices are governed by the amount of supply in the market.'
-p6
-ag5
-aS'Let us head back to a nice dinner at home.'
-p7
-aaS'trading.png'
-p8
-aaa.(lp0
-S'action'
-p1
-a(lp2
-I2
-aS''
+I9
+aS'Good. Whenever you are running low on a certain item, you should buy it from the market. Buying anything requires money and you can see the amount of money available to you in the top right corner of the screen. '
 p3
 aa.(lp0
 S'action'
 p1
 a(lp2
-I1
-a(lp3
-(lp4
-S'Kamat'
-p5
-aS'Meet Sukhdev, sarpanch of Abujamara. He has come to thank us for all we did for the village.'
-p6
-aS'Sukhdev'
-p7
-aS'Yes, after you and your sons initial start, our village has prospered. How can I ever thank you for the wonderful work you did for my people.'
-p8
-ag5
-aS'It was our pleasure, Sukhdev. If men wont help fellow men in need, then who will.'
-p9
-ag7
-aS'This is your modesty, Kamat. I am really impressed with your village, your village has better building and efficient workers.'
-p10
-ag5
-aS'This is because we have kept up with the technology Sukhdev. My son and me will accompany you to your village to help install better technology in buildings.'
-p11
-ag7
-aS'Thanks a lot, Kamat. We will hold a grand feast on your coming there.'
-p12
-aaS'tech.png'
-p13
-aaa.(lp0
+I9
+aS'To increase money in the village account you can sell resources to the market. Like, we have an excess of Building Material and since we are not doing any new construction these days, we can safely sell it in the market. Sell 500 units of Building Material now.'
+p3
+aa.(lp0
 S'action'
 p1
 a(lp2
-I1
-a(lp3
-(lp4
-S'Kamat'
-p5
-aS'You must know son, technology upgrades provide better buildings with capacity to house more workers and produce more resources. Thus, they are usually helpful in increasing the prosperity of the village. Do an upgrade of the workshop to level 1. Click on the Upgrade Button and then select Workshop and click upgrade.'
-p6
-aaS'tech.png'
-p7
-aaa.(lp0
+I9
+aS'There is one last thing left before you can govern your own village. The upgrade button provides technological upgrades. Technology upgrades provide better buildings with capacity to house more workers and produce more resources. Thus, they are usually helpful in increasing the prosperity of the village. Do an upgrade of the school to level 1. Click on the Upgrade and then select School.'
+p3
+aa.(lp0
 S'condition'
 p1
 a(lp2
@@ -569,129 +174,21 @@ aI-1
 a(lp4
 (lp5
 I01
-aI2
-aS'WORKSHOP'
-p6
-aS''
-p7
-aS'=='
-p8
-ag7
-aI0
-aaaa.(lp0
-S'action'
-p1
-a(lp2
-I1
-a(lp3
-(lp4
-S'Kamat'
-p5
-aS'Good work Son. You should notice that upgrading a facility increases its productivity. The amount of resources produced by the Workshop have been increased considerable, also the people working in workshop would get better working conditions.'
-p6
-aS'Son'
-p7
-aS'Yes father, I can notice the changes. The progress level has also increased.'
-p8
-ag5
-aS'Yes Son, upgrading a facility affects the overall prosperity of the village.'
-p9
-aaS'tech.png'
-p10
-aaa.(lp0
-S'action'
-p1
-a(lp2
-I1
-a(lp3
-(lp4
-S'Kamat'
-p5
-aS'Son, now upgrade every facility type to level 1. You can also notice that information related to the upgrade is given in the upgrade window whenever you select any facility.'
-p6
-ag5
-aS'When you will upgrade all the facilities, you will notice a considerable change in the indicators of the village.'
-p7
-aS'Son'
-p8
-aS'Okay, father.'
-p9
-aaS'tech.png'
-p10
-aaa.(lp0
-S'condition'
-p1
-a(lp2
-S'AND'
-p3
-aI-1
-a(lp4
-(lp5
-I00
-aI2
-aS'HOSPITAL'
-p6
-aS''
-p7
-aS'>='
-p8
-ag7
-aI1
-aa(lp9
-I00
-aI2
-aS'HOUSE'
-p10
-ag7
-ag8
-ag7
-aI1
-aa(lp11
-I00
 aI2
 aS'SCHOOL'
-p12
+p6
+aS''
+p7
+aS'=='
+p8
 ag7
-ag8
-ag7
-aI1
-aa(lp13
-I00
-aI2
-aS'FARM'
-p14
-ag7
-ag8
-ag7
-aI1
-aa(lp15
-I00
-aI2
-aS'FOUNTAIN'
-p16
-ag7
-ag8
-ag7
-aI1
+aI0
 aaaa.(lp0
 S'action'
 p1
 a(lp2
-I1
-a(lp3
-(lp4
-S'Kamat'
-p5
-aS'Excellent work. Let us join Sukhdev for the feast.'
-p6
-aaS'tech.png'
-p7
-aaa.(lp0
-S'action'
-p1
-a(lp2
-I6
-aS'The people of Abujamara are very much pleased with all the work you have done for the prosperity of the village.\n\n They have sent you the first harvest from their Farms, as\na symbol of Honor to you. You must accept it.'
+I9
+aS'You should notice that upgrading a facility increases its productivity. The number of children taught in the School have been increased considerable, also the quality of education is now better. The progress bars have also filled up more.'
 p3
 aa.(lp0
 S'action'
@@ -709,39 +206,28 @@ a(lp3
 (lp4
 S'Kamat'
 p5
-aS'I am really impressed with your work.'
+aS'Nice work with the setting up of the new village. I am really impressed.'
 p6
 aS'Son'
 p7
-aS'Thank you, father.'
+aS'Thanks'
 p8
 ag5
 aS'But I wonder, if you are capable enough to work without my guidance now that you have learnt the basics of building a village.'
 p9
-ag7
-aS'I think I will be father.'
+ag5
+aS'I will leave you the responsibility of the village for the next 3 months while I go out for your cousin sister wedding.'
 p10
-ag5
-aS'I will be leaving the village for the next 3 months to go to your Cousins wedding.'
+aaS'Wfpwork.png'
 p11
-ag7
-aS'Will I not be accompanying you?'
-p12
-ag5
-aS'No son, I need someone to take care of the village.'
-p13
-ag5
-aS'Here is your mission: Take good care of our village for the next 3 months.'
-p14
-ag5
-aS'Do not let the progress levels fall below 20% for the next three months.'
-p15
-ag7
-aS'Ok Father. I will not disappoint you.'
-p16
-aaS'prosper.png'
-p17
 aaa.(lp0
+S'action'
+p1
+a(lp2
+I9
+aS'Do not let any of the progress bars drop below 25... or else Kamat will not be very pleased. Good Luck!'
+p3
+aa.(lp0
 S'condition'
 p1
 a(lp2
@@ -759,7 +245,7 @@ aS'>='
 p7
 aS'HOUSING'
 p8
-aI20
+aI25
 aa(lp9
 I00
 aI3
@@ -768,7 +254,7 @@ ag6
 ag7
 aS'HEALTH'
 p10
-aI20
+aI25
 aa(lp11
 I00
 aI3
@@ -777,7 +263,7 @@ ag6
 ag7
 aS'EDUCATION'
 p12
-aI20
+aI25
 aa(lp13
 I00
 aI3
@@ -786,7 +272,7 @@ ag6
 ag7
 aS'NUTRITION'
 p14
-aI20
+aI25
 aa(lp15
 I00
 aI3
@@ -795,7 +281,7 @@ ag6
 ag7
 aS'TRAINING'
 p16
-aI20
+aI25
 aaaa.(lp0
 S'actionTrue'
 p1
@@ -821,7 +307,7 @@ S'actionFalse'
 p1
 a(lp2
 I8
-aS'You were not able to maintain the village properly. Your progress fell below 20%.\n\n You must retry this level to reach the next level.'
+aS'You were not able to maintain the village properly. You were not able to complete the task given to you. You must retry this level to reach the next level.'
 p3
 aa.(lp0
 S'actionFalse'
@@ -839,98 +325,24 @@ a(lp3
 (lp4
 S'Kamat'
 p5
-aS'Welcome Ajmal, welcome. How did you find time to visit this small village again.'
+aS'Well done son, you have certainly not disappointed me. But our village is now running low on money.'
 p6
-aS'Son'
+ag5
+aS'I will give you four months to bring more cash into the village. A cash reserve always comes in handy in times of calamities.'
 p7
-aS'Welcome home bhaiyya.'
+ag5
+aS'Also, more cash reserves will enable us to setup more buildings and buy materials and food to improve the condition of our people.'
 p8
-aS'Ajmal'
+aaS'Wfpwork.png'
 p9
-aS'It is so good to see you again Father, brother. All the comforts in the city are nowhere near the comfort of the home! I am so happy to be back again.'
-p10
-ag5
-aS'I am glad to hear this. So finally, you are going to stay for long.'
-p11
-ag9
-aS'No father, I am afraid not. I am leaving tomorrow but I bring terrible news from the city.'
-p12
-ag5
-aS'So soon... but what news troubles you Ajmal?'
-p13
-ag9
-aS'The economy is in recession. Big companies have become bankrupt; traders are losing all their money, prices of the basic commodities falling...'
-p14
-ag5
-aS'Ajmal, as a part of the government, it is your job to improve the economy.'
-p15
-ag9
-aS'We are trying hard father, but the recession is here for some time. And you should prepare...'
-p16
-ag5
-aS'Prepare for what?'
-p17
-ag9
-aS'The prices will fall and trade will decrease in a few days.'
-p18
-ag5
-aS'Our treasury is already low due to bad trade these days, I did not know, it was due to the mistakes of the city people.'
-p19
-ag7
-aS'I will handle it father. I will sail us through these bad times.'
-p20
-ag5
-aS'I have full faith in your capabilities son. I will leave the management of the village resources to you.'
-p21
-ag9
-aS'I did not know, that you have stepped into our fathers shoes so soon.'
-p22
-ag7
-aS'I have bhaiyya, and I will do well.'
-p23
-ag9
-aS'Father, come with me to the city once. You will be able to appreciate the crisis better. Moreover, your grandchildren are eager to meet you.'
-p24
-ag5
-aS'Thats a good idea, it has been years since I saw them.'
-p25
-ag9
-aS'Thank you father.'
-p26
-ag7
-aS'Bhaiyya, what do you reckon will happen in the coming days.'
-p27
-ag9
-aS'Prices of the commodities will fall, do not try to setup new things during this period and focus on trading well.'
-p28
-ag9
-aS'Smart trading will ensure that you do not lose the money in your treasury. According to my calculations, things will improve in the next year.'
-p29
-ag9
-aS'So at the end of 4 months, do not allow the progress values to below 20%. Also, maintain atleast Rs. 5,000 In the treasury at all times.'
-p30
-ag9
-aS'Farewell brother, hope you will do well.'
-p31
-aaS'rec2.png'
-p32
 aaa.(lp0
 S'action'
 p1
 a(lp2
-I1
-a(lp3
-(lp4
-S'Son'
-p5
-aS'The prices of all the commodities have dropped. The resources required for proper functioning of the facilities are drying up .'
-p6
-ag5
-aS'It is indeed a tough time for the village. I wish father had been here to accompany me.'
-p7
-aaS'rec2.png'
-p8
-aaa.(lp0
+I9
+aS'Earn Rs. 5000 more in the next 4 months. But remember, this should not come at the cost of village condition. Do not let the progress bars fall below 20. Good Luck!'
+p3
+aa.(lp0
 S'condition'
 p1
 a(lp2
@@ -985,39 +397,39 @@ ag7
 aS'TRAINING'
 p16
 aI20
-aa(lp17
-I00
-aI5
-ag6
-ag6
-ag7
-ag6
-aI5000
 aaaa.(lp0
-S'actionTrue'
+S'actionFalse'
 p1
 a(lp2
-I1
-a(lp3
-(lp4
-S'Kamat'
-p5
-aS'Well done Son. You have proved your capabilities once again.'
-p6
-aS'Son'
-p7
-aS'Thank you, father.'
-p8
-aaS'happy2.png'
-p9
-aaa.(lp0
-S'actionTrue'
-p1
-a(lp2
-I6
-aS'Looking at the present economical conditions, the government has planned to give bailout to the companies affected by recession.\n\n The prices of crops will rise again, and the farmers will be able to get the right value for their hardwork.\n\n Good Work!!'
+I8
+aS'You were not able to maintain the village properly. You were not able to complete the task given to you. You must retry this level to reach the next level.'
 p3
 aa.(lp0
+S'actionFalse'
+p1
+a(lp2
+I3
+aS''
+p3
+aa.(lp0
+S'condition'
+p1
+a(lp2
+S'NOR'
+p3
+aI1
+a(lp4
+(lp5
+I00
+aI5
+aS''
+p6
+ag6
+aS'>='
+p7
+ag6
+aI6000
+aaaa.(lp0
 S'actionTrue'
 p1
 a(lp2
@@ -1029,7 +441,7 @@ S'actionFalse'
 p1
 a(lp2
 I8
-aS'You were not able to maintain the village properly. Your progress fell below 20% or the money in your bank is less than Rs. 5000.\n\nYou must retry this level to reach the next level.'
+aS'You were not able to maintain the village properly. You were not able to complete the task given to you. You must retry this level to reach the next level.'
 p3
 aa.(lp0
 S'actionFalse'
@@ -1045,28 +457,386 @@ a(lp2
 I1
 a(lp3
 (lp4
+S'Kamat'
+p5
+aS'Respected members of Panchayat, my son has brought Rs 5000 more into the village funds. Now, it is for us to decide what needs to be done with it.'
+p6
+aaS'Wfpwork.png'
+p7
+aaa.(lp0
+S'action'
+p1
+a(lp2
+I7
+aS'Panchayat discusses the matter in the village assembly....'
+p3
+aa.(lp0
+S'action'
+p1
+a(lp2
+I1
+a(lp3
+(lp4
+S'Panch'
+p5
+aS'The Panchayat has reached a decision. We will invest the money in building more schools.'
+p6
+aS'Kamat'
+p7
+aS'Yes, children are the future of our village. We want to teach them so that they are able to stand on their feet and bring wealth and prosperity to the village later on.'
+p8
+ag5
+aS'Yes, and since your son has proved himself adept in adminstering. We want him to take charge of the money earnt and use it to for educating the children of our village.'
+p9
+aS'Son'
+p10
+aS'It will be my pleasure.'
+p11
+aaS'Wfpwork.png'
+p12
+aaa.(lp0
+S'action'
+p1
+a(lp2
+I9
+aS'Your mission is simple. Increase the progress bar of Education to 50 while not letting any of the other progress bars to fall below 2 within months.'
+p3
+aa.(lp0
+S'condition'
+p1
+a(lp2
+S'NOR'
+p3
+aI120
+a(lp4
+(lp5
+I00
+aI3
+aS''
+p6
+ag6
+aS'>='
+p7
+aS'HOUSING'
+p8
+aI20
+aa(lp9
+I00
+aI3
+ag6
+ag6
+ag7
+aS'HEALTH'
+p10
+aI20
+aa(lp11
+I00
+aI3
+ag6
+ag6
+ag7
+aS'NUTRITION'
+p12
+aI20
+aa(lp13
+I00
+aI3
+ag6
+ag6
+ag7
+aS'TRAINING'
+p14
+aI20
+aaaa.(lp0
+S'actionFalse'
+p1
+a(lp2
+I8
+aS'You were not able to maintain the village properly. You were not able to complete the task given to you. You must retry this level to reach the next level.'
+p3
+aa.(lp0
+S'actionFalse'
+p1
+a(lp2
+I3
+aS''
+p3
+aa.(lp0
+S'condition'
+p1
+a(lp2
+S'NOR'
+p3
+aI1
+a(lp4
+(lp5
+I00
+aI3
+aS''
+p6
+ag6
+aS'>='
+p7
+aS'HOUSING'
+p8
+aI20
+aaaa.(lp0
+S'actionTrue'
+p1
+a(lp2
+I2
+aS''
+p3
+aa.(lp0
+S'actionFalse'
+p1
+a(lp2
+I8
+aS'You were not able to maintain the village properly. You were not able to complete the task given to you. You must retry this level to reach the next level.'
+p3
+aa.(lp0
+S'actionFalse'
+p1
+a(lp2
+I3
+aS''
+p3
+aa.(lp0
+S'action'
+p1
+a(lp2
+I1
+a(lp3
+(lp4
+S'Kamat'
+p5
+aS'Welcome Ajmal, my son. How have your studies been going on.'
+p6
+aS'Ajmal'
+p7
+aS'Thanks father. I am a registered physician now... but what is this. The village hygiene is so poor. This village is a breeding ground for all the diseases.'
+p8
+ag7
+aS'With stagnant water and unhygenic market, diseases are bound to follow. All these diseases will soon take a form of an epidemic if nothing is done for this now.'
+p9
+ag5
+aS'Can you work with your younger brother to help avert this situation.'
+p10
+ag7
+aS'Sure father.'
+p11
+ag7
+aS'For providing good health, we need to provide good nutritious food to the villagers. A nutritious diet consists of all the components such as Wheat, Fruits, vegetables and beans.'
+p12
+ag7
+aS'Also we need to setup hospitals and educate people about good practices and simple measures to avoid diseases. Schools setup by you are already doing a good job of it. We just need to bring some good doctors here'
+p13
+ag7
+aS'Can you do all this to avoid an epidemic'
+p14
+aaS'Wfpwork.png'
+p15
+aaa.(lp0
+S'action'
+p1
+a(lp2
+I9
+aS'Yes, this mission is harder. Take the progress bars for health to 60 and nutrition above 50 and you will be termed as pass.'
+p3
+aa.(lp0
+S'condition'
+p1
+a(lp2
+S'AND'
+p3
+aI-1
+a(lp4
+(lp5
+I00
+aI3
+aS''
+p6
+ag6
+aS'>='
+p7
+aS'HEALTH'
+p8
+aI60
+aa(lp9
+I00
+aI3
+ag6
+ag6
+ag7
+aS'NUTRITION'
+p10
+aI50
+aaaa.(lp0
+S'actionTrue'
+p1
+a(lp2
+I2
+aS''
+p3
+aa.(lp0
+S'action'
+p1
+a(lp2
+I1
+a(lp3
+(lp4
+S'Farmer'
+p5
+aS'Save us save us ....'
+p6
+aS'Kamat'
+p7
+aS'What happened. Where are you running from? Where are your cattle and belongings.'
+p8
+ag5
+aS'I have none sir.. I have ran away from my home with my kids and wife since there is a war going on.'
+p9
+ag5
+aS'There will be more like me coming. I will work hard, but please give me a place to live peacefully.'
+p10
+aaS'Wfpwork.png'
+p11
+aaa.(lp0
+S'action'
+p1
+a(lp2
+I7
+aS'Kamat and the Panchayat discusses...'
+p3
+aa.(lp0
+S'action'
+p1
+a(lp2
+I1
+a(lp3
+(lp4
+S'Panch'
+p5
+aS'Panchayat has decided that we will let the incoming immigrants into our village and will treat them as our guests. Athiti Devo Bhav.'
+p6
+aaS'Wfpwork.png'
+p7
+aaa.(lp0
+S'action'
+p1
+a(lp2
+I9
+aS'It seems as if there are not enough huts for all the incoming immigrants. Build more huts and increase the progress bar for housing till 80. Also increase the progress for Nutrition upto 60.'
+p3
+aa.(lp0
+S'condition'
+p1
+a(lp2
+S'AND'
+p3
+aI-1
+a(lp4
+(lp5
+I00
+aI3
+aS''
+p6
+ag6
+aS'>='
+p7
+aS'HOUSING'
+p8
+aI80
+aa(lp9
+I00
+aI3
+ag6
+ag6
+ag7
+aS'NUTRITION'
+p10
+aI60
+aaaa.(lp0
+S'actionTrue'
+p1
+a(lp2
+I2
+aS''
+p3
+aa.(lp0
+S'action'
+p1
+a(lp2
+I1
+a(lp3
+(lp4
+S'Panch'
+p5
+aS'Good day, members of the Panchayat. It has nearly been 4 months since the first immigrants came to our village.'
+p6
+ag5
+aS'But most of them are sitting idle, since they were originally farmers and have no farms now.'
+p7
+aS'Kamat'
+p8
+aS'So, what. We will train them in our workshops to produce bricks for our village. Also, we can train them as labourers and they will become a part and parcel of the village.'
+p9
+aaS'Wfpwork.png'
+p10
+aaa.(lp0
+S'action'
+p1
+a(lp2
+I9
+aS'Good job recovering from the calamity. Train your people so that they turn into useful resources. Increase the training progress bar to 70 to pass this mission.'
+p3
+aa.(lp0
+S'condition'
+p1
+a(lp2
+S'AND'
+p3
+aI-1
+a(lp4
+(lp5
+I00
+aI3
+aS''
+p6
+ag6
+aS'>='
+p7
+aS'TRAINING'
+p8
+aI70
+aaaa.(lp0
+S'actionTrue'
+p1
+a(lp2
+I2
+aS''
+p3
+aa.(lp0
+S'action'
+p1
+a(lp2
+I1
+a(lp3
+(lp4
 S'Farmer'
 p5
 aS'Sarpanch ji, there is no water. The crops are dying. Help us'
 p6
-ag5
-aS'Help us Sarpanch ji, otherwise whole village will die due to hunger.'
+aS'Priest'
 p7
-ag5
-aS' Is it the rain god: Indra who is displeased with us.'
+aS'How can Sarpanch ji help. It is the rain god: Indra who is displeased with us. Let us hold a pooja to please Indra.'
 p8
 aS'Kamat'
 p9
-aS'No it is not the gods, but the failing monsoon.'
+aS'I will do what I can.'
 p10
-ag9
-aS'Due to recent ecological disturbances, monsoon has not come this year. But dont worry I will handle it.'
-p11
-ag5
-aS'Thank you sarpanch ji. We are also holding a pooja[prayers] for Indra.'
-p12
 aaS'drought.png'
-p13
+p11
 aaa.(lp0
 S'action'
 p1
@@ -1085,29 +855,14 @@ p8
 ag5
 aS'Yes son, the monsoon has deserted us. The crops are dying. Farmers believe it is the Indra god who is displeased, but you know better.'
 p9
-ag7
-aS'Yes father.'
-p10
 ag5
 aS'They will be holding a pooja soon. But we need to do more than that.'
-p11
+p10
 ag7
 aS'Yes Father.'
-p12
-ag5
-aS'Due to lack of water, the productivity of farms have decreased. People are dying of hunger.'
-p13
-ag5
-aS'Hospitals and Workshops are also not able to work properly due to shortage of water.'
-p14
-ag5
-aS'Build up some wells and take good care of crops. Do not let the nutrition progress drop below 20% and also donot let the water level fall below 100.'
-p15
-ag5
-aS'Good luck son.'
-p16
+p11
 aaS'drought.png'
-p17
+p12
 aaa.(lp0
 S'condition'
 p1
@@ -1126,7 +881,7 @@ aS'>='
 p7
 aS'NUTRITION'
 p8
-aI20
+aI50
 aa(lp9
 I00
 aI4
@@ -1135,7 +890,7 @@ aS'WATER'
 p10
 ag7
 ag6
-aI100
+aI500
 aaaa.(lp0
 S'actionTrue'
 p1
@@ -1249,8 +1004,8 @@ aaa.(lp0
 S'action'
 p1
 a(lp2
-I7
-aS'Mission Objective: \n\nRebuild the village and bring the progress levels to 40% within\nnext 2 years.'
+I9
+aS'Mission Objective: Rebuild the village and bring the progress levels to 40%'
 p3
 aa.(lp0
 S'condition'
@@ -1312,6 +1067,6 @@ S'actionTrue'
 p1
 a(lp2
 I6
-aS'The village Panchayat has decided to select you as the next Sarpanch of the village.\n\nAlso, they have decided to make a new school in remembrance of the best Sarpanch this village had in years, your father, Kamat.'
+aS'The village Panchayat has decided to select you as the next Sarpanch of the village.Also, they have decided to make a new school in remembrance of the best Sarpanch this village had in years, your father, Kamat.'
 p3
 aa.

@@ -30,6 +30,7 @@ import gui
 import pygame
 import load_images
 #from model import *
+import game_events
 import model
 if model.FLAG_XO:
     import game_sharing
@@ -1173,7 +1174,7 @@ class showInstructions:
         self.text = ""
         self.winFlag = False
     
-    def addMessage(self,text= None):
+    def addMessage(self,text= None, flag = False):
         
         if text:
             self.text = text
@@ -1182,9 +1183,9 @@ class showInstructions:
             sleep(2)
             self.winFlag = False
             
-        self.showMessage()
+        self.showMessage(flag)
             
-    def showMessage(self):
+    def showMessage(self,flag):
         
         
         self.winFlag = True
@@ -1208,13 +1209,16 @@ class showInstructions:
         labelStyleCopy['font-color'] = font_color
     
         # Creating window
-        self.win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = " Mission " ,style = win_style ,closeable = False ,shadeable = False,moveable = False)
-        pygame.draw.rect(self.win.surf,font_color,threades.resize_rect((3,3,444,194)),1)            
+        win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = " Mission " ,style = win_style ,closeable = False ,shadeable = False,moveable = False)
+        pygame.draw.rect(win.surf,font_color,threades.resize_rect((3,3,444,194)),1)            
         
         # Creating label
-        message_label = gui.Label(position = threades.resize_pos((5,50),(450.0,200.0),self.win.size),size = threades.resize_pos((440,140),(450.0,150.0),self.win.size), parent = self.win, text = self.text, style = labelStyleCopy)
+        message_label = gui.Label(position = threades.resize_pos((5,50),(450.0,200.0),win.size),size = threades.resize_pos((440,140),(450.0,150.0),win.size), parent = win, text = self.text, style = labelStyleCopy)
         sleep(5)
-        self.win.close()
+        win.close()
+        if flag:
+            event = game_events.Event(type = game_events.ACTIONCOMPLETEEVENT, facility_name = '', res_name = '' , res_quantity = 0)
+            game_events.EventQueue.add(event)
         
 showMessages = showInstructions()
 

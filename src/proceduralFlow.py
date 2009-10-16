@@ -379,7 +379,8 @@ EARTHQUAKEACTION = 4
 DELAYACTION = 5
 WFPWINDOWACTION = 6
 STORYBOARDWINDOWACTION = 7
-SBINSTRUCTIONMESSAGE = 8
+FAILUREWINDOWACTION = 8
+SBINSTRUCTIONMESSAGE = 9
 
 # Global variable for storyboard level
 storyboard_level = 1
@@ -425,6 +426,8 @@ class Actions:
             self.showStoryboardWindow(action.data)
         if action.actionType == 8:
             self.showFailureWindow(action.data)
+        if action.actionType == 9:
+            self.showInstructionMessage(action.data)
 
 
 
@@ -590,8 +593,10 @@ class Actions:
         game_events.EventQueue.add(event)
 
     def showInstructionMessage(self,text):
-        thread_instruction = threading.Thread(target = gui_buttons.showMessages.addMessage, args=[text]).start()
-
+        
+        thread_instruction = threading.Thread(target = gui_buttons.showMessages.addMessage, args=[text,True]).start()
+        
+        
     def showStoryboardWindow(self,text):
 
         self.brown_color = (255,214,150)

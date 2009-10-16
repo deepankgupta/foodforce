@@ -19,334 +19,152 @@
 
 import pickle
 
-# TODO Need to put delay actions at all the places
-
         
 
 def write_data():
 
     output = open('storyboard.pkl','wb')
     
-    # MISSION 1 
+    # Tutorial Mission
     
-    text = 'Long ago in the massive lands of India, there used to be a village called Gokul. The village of Gokul had a wise and an honest man, Kamat, as its Sarpanch. After many years of service, Kamat realized that he had grown old. It was the time to retire and pass on his responsibilities to someone, who had the potential, mind and passion to manage the village. He and his close committee of advisers searched and searched for the ideal caretaker. Sometimes, when you keep on looking for the solution everywhere, you forget to look around your immediate environment. The person was right in Kamats house, his Son.'
+    text = 'In this beautiful country called India, there is a Gokul village. The village of gokul is governed by Kamat who is the Sarpanch(head) of the village. But Kamat is growing old and needs a successor. Can you, his younger son, take on the responsibilities of the village and make the village prosper.'
     
     action = [7,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    chatText = ['Kamat','Hello Son. I hope your studies are going well in school. The studies done in the school give you a theoretical aspect of doing things; you need to learn about how to apply these learning in real life.',
-                'Kamat','You need to know how to develop your village, as you might well become the Sarpanch after me. I will assist you in developing your skills...',
-                'Kamat','Let us go to the village of AbuJamara.']
+    chatText = ['Kamat','Son, I will teach you about the various aspects towards running a village today. Are you ready to learn? Let us go to the village of Abujamara.  ',
+                'Son','Father, this is no village, it is just empty land.... ',
+                'Kamat','Yes, this is the place where once stood the village of Abujamara. The village became a barren land when Ganga cursed the people of Abujamara by changing its course and flooding the Abujamara village. The people are homeless are we will help rebuild their village.']
     
     action = [1,[chatText,'Wfpwork.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    chatText = ['Son','Father, this is no village, where are the villagers? A village without people is like lake without water.''',
-    'Kamat','Yes, this is the place where the Abujamara people will move. The Abujmara village was situated on the banks of river Ganga. Mother Ganga cursed the people of Abujamara by changing its course of flow and flooding the Abujamara village.',
-    'Kamat','The people of Abujamara are homeless right now. They came to our village seeking help and the Panchayat decided to clear this forest and provide the land to the poor people. It is our job to help them establish a village on this land.',
-    'Kamat','If you had been at my place, how would you bring life back to this village?',
-    'Son','Father, I feel that the first requirement of the people of the village is shelter.',
-    'Kamat','Very rightly said son. Every person needs a house to live in. Shelter is among one of the most basic necessities of a person. Build 3 huts to shelter the people of Abujamara. You can setup a hut by clicking on Build -> house.']
     
-    action = [1,[chatText,'Barren-Land.png']]
+    text = 'Build a hut to shelter the people of Abujamara. You can build a hut by clicking on Build->Hut.'
+    
+    action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    condn1 = [False,1,'HOUSE','','==','',3]
+    text = 'When you build a hut, some amount of your resources are utilized. For each Hut that you build, 10 units of bricks, 8 units of Tools and 8 units of Water are used. Also, people are required to build a hut. Similarly, anything you build will require materials such as bricks and labour.'
+    
+    action = [9,text]
+    actionData = ['action',action]
+    pickle.dump(actionData,output)
+    
+    condn1 = [True,1,'HOUSE','','==','',0]
     condnlist = [condn1]
     condnGlobal = ['AND',-1,condnlist]
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
     
-    chatText = ['Kamat','When you setup a hut, some amount of your resources are utilized. For each Hut that you setup, 10 units of Bricks, 8 units of Tools and 8 units of Water are used. Also, some of your manpower is employed in making the hut. Similarly, resources are used to setup each facility.',
-    'Son','Okay, Father.',
-    'Kamat','When you setup a Hut the Housing Indicator of the Village increases.The indicators are shown on the bottom right hand side of the screen. The indicators are a measure, which tell about the growth and prosperity of the village.',
-    'Son','Okay, Father.']
+    text = 'When you build a Hut the Housing bar on the lower right corner of your screen increases. The more this bar is filled the more number of people have houses available for them. High progress bars indicate a happy and prosperous village.'
     
-    action = [1,[chatText,'thatched-huts.png']]
+    action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    chatText = ['Kamat','Son, the next basic necessity of a village is Food. The people need food and water to survive. A well will draw water from the ground and provide fresh clean water to everybody. To setup a well click on Build -> Well. Build a well now.']
-
-    action = [1,[chatText,'thatched-huts.png']]
+    text = 'The next basic necessity of a village is Food. To grow food, you will need to build farms. Since the soil is fertile, we can grow any crop here. It is best to provide a healthy mix of Rice, Beans and Vegetables and Fruits. This will ensure healthy variety and nutrition. Build a farm now.'
+    
+    action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    
-    condn1 = [True,1,'FOUNTAIN','','==','',0]
-    condnlist = [condn1]
-    condnGlobal = ['AND',-1,condnlist]
-    condnData = ['condition',condnGlobal]
-    pickle.dump(condnData,output)
-    
-    chatText = ['Kamat','Well done son, You are going good.',
-    'Kamat','To grow food, you will need to setup farms. Since the soil is fertile, we can grow any crop here. It is best to provide a healthy mix of Rice, Beans and Vegetables and Fruits. This will ensure healthy variety and nutrition. Build a farm now.']
-    
-    action = [1,[chatText,'farm2.png']]
-    actionData = ['action',action]
-    pickle.dump(actionData,output)
-
     condn1 = [True,1,'FARM','','==','',0]
     condnlist = [condn1]
     condnGlobal = ['AND',-1,condnlist]
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
-
-    chatText = ['Kamat','Well done son. Let us go back and let the new village prosper.']
     
-    action = [1,[chatText,'Happy.png']]
-    actionData = ['action',action]
-    pickle.dump(actionData,output)
-
-    text = " Great Work!! \n\nLooking at the condition of the village and the rapid progress work done by you for the village. World Food Program has agreed to help the people for Abujamara by providing Food reserves to the village."
+    text = 'The children have no place to study. Build a school for them. '
     
-    action = [6,text]
-    actionData = ['action',action]
-    pickle.dump(actionData,output)
-
-    action = [2,'']
-    actionData = ['action',action]
-    pickle.dump(actionData,output)
-    
-    # MISSION 2
-
-    chatText = ['Kamat','The children of Abujamara have no place to study. Some of them are walking 10 miles and more to come to study at your school. Build a school for them.']
-    
-    action = [1,[chatText,'withbooks.png']]
+    action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
     condn1 = [True,1,'SCHOOL','','==','',0]
-    condn2 = [True,3,'SCHOOL','','==','',0]
-    condnlist = [condn1,condn2]
-    condnGlobal = ['AND',-1,condnlist]
-    condnData = ['condition',condnGlobal]
-    pickle.dump(condnData,output)
-    
-    chatText = ['Kamat','Son, the Schools require books to function properly. If there would be no books, the teachers would not be able to impart education to the children. Buy the books for the school from the market.',
-    'Son','Okay, Father.']
-    
-    action = [1,[chatText,'withbooks.png']]
-    actionData = ['action',action]
-    pickle.dump(actionData,output)
-    
-    condn1 = [True,4,'SCHOOL','','==','',0]
     condnlist = [condn1]
     condnGlobal = ['AND',-1,condnlist]
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
     
-    chatText = ['Kamat','Son, as the schools are functional now. You can see that the number of people educated in the Manpower Distribution table has increased. Also the education indicator in the Indicator table has increased.',
-    'Son','Definitely father, it has. Now, I am able to realize the potential of education.',
-    'Kamat','Good work son.']
     
-    action = [1,[chatText,'withbooks.png']]
+    text = 'Well done. But there are no books in this school. Buy the books for the school from the market. The Market Window can be opened by clicking on the market button in the bottom. Once you open the market window, you can click on the thing you need to buy and sell. Then select the quantity in which it needs to be bought or sold. Then click on buy/sell.'
+    
+    action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    chatText = ['Kamat','Son all the facilities require water to function properly, you must setup a well for this purpose.',
-                'Son','Okay, Father']
-    
-    action = [1,[chatText,'withbooks.png']]
-    actionData = ['action',action]
-    pickle.dump(actionData,output)
-    
-    condn1 = [True,1,'FOUNTAIN','','==','',0]
-    condnlist = [condn1]
-    condnGlobal = ['AND',-1,condnlist]
-    condnData = ['condition',condnGlobal]
-    pickle.dump(condnData,output)
-
-    chatText = ['Kamat','Son, as you can see a lot of people in the village are sitting idle. That is like a waste of their time and energy. You should setup workshops for the people who are not involved in agriculture. The workshop would provide craftsmen, potters and metal workers a place to work. Build a workshop for them to work.',
-    'Son','Definitely father.']
-
-    action = [1,[chatText,'cover09.png']]
-    actionData = ['action',action]
-    pickle.dump(actionData,output)
-    
-
-    condn1 = [True,1,'WORKSHOP','','==','',0]
-    condnlist = [condn1]
-    condnGlobal = ['AND',-1,condnlist]
-    condnData = ['condition',condnGlobal]
-    pickle.dump(condnData,output)
-    
-    chatText = ['Kamat','Excellent, with the young learning and the grown-ups working, the village is on the path to prosperity. But can you spot something missing in this scheme. Yes, you are right. They do not have a hospital to care for the sick. Build a hospital now.']
-    
-    action = [1,[chatText,'hospital.png']]
-    actionData = ['action',action]
-    pickle.dump(actionData,output)
-    
-    condn1 = [True,1,'HOSPITAL','','==','',0]
-    condnlist = [condn1]
-    condnGlobal = ['AND',-1,condnlist]
-    condnData = ['condition',condnGlobal]
-    pickle.dump(condnData,output)
-
-    chatText = ['Kamat','We have done all we can. You are learning fast, someday you will take my place.']
-
-    action = [1,[chatText,'sharpergirl.png']]
-    actionData = ['action',action]
-    pickle.dump(actionData,output)
-
-
-    text = " Great Work!! \n\nLooking at the Rapid progress of the village. WFP has planned to start Food for Work program in Abujamara village.\n\nIn Food for Work program WFP involves People of the village in Development Work. \n\nWorkers are paid not with money but with food rations to \nbuild vital new infrastructure that will increase the food \nsecurity of households or communities."
-
-    action = [6,text]
-    actionData = ['action',action]
-    pickle.dump(actionData,output)
-
-    action = [2,'']
-    actionData = ['action',action]
-    pickle.dump(actionData,output)
-    
-    # MISSION 3
-    
-    chatText = ['Kamat','How are your studies going? I see, you do not seem to have enough books at school. It is all caused when trading is neglected. Let us analyze the village stocks and I will help you learn the basics of trading.',
-    'Kamat','You can see the buy/sell button in the highlighted portion in the lower panel of the screen. This provides information on the number of every resource present in the village. When you find yourself running low on a certain resource, you should go to the market to buy more of it.',
-    'Kamat','Let us buy more books. Click on the Buy/Sell button, select books and enter the quantity in the box. Finally click the BUY button to buy the books.']
-
-    action = [1,[chatText,'trading.png']]
-    actionData = ['action',action]
-    pickle.dump(actionData,output)
-
-
     condn1 = [True,6,'','BOOKS','==','',0]
     condnlist = [condn1]
     condnGlobal = ['AND',-1,condnlist]
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
-
-
-    chatText = ['Kamat','Excellent Work , Son.',
-    'Kamat','Son you would have noticed that the money present with the village, shown in the right hand top corner, decreases when you buy any resources from the market. You must maintain a good amount of money in the village account.',
-    'Kamat','To increase money in the village account you can sell resources to the market.',
-    'Kamat','Like, we have an excess of Tools and since we are not doing any new construction these days, we can safely sell it in the market. Sell some Tools.']
     
-    action = [1,[chatText,'trading.png']]
-    actionData = ['action',action]
-    pickle.dump(actionData,output)
-
-
-
-    condn1 = [True,7,'','TOOLS','==','',0]
-    condnlist = [condn1]
-    condnGlobal = ['AND',-1,condnlist]
-    condnData = ['condition',condnGlobal]
-    pickle.dump(condnData,output)
-
-    chatText = ['Kamat','Good work son. This is all you need to know about trading. You need to buy the resources when you are falling short of them and sell them when there is an excess of a resource in your village. The prices are governed by the amount of supply in the market.', 
-    'Kamat','Let us head back to a nice dinner at home.']
+    text = 'Good. Whenever you are running low on a certain item, you should buy it from the market. Buying anything requires money and you can see the amount of money available to you in the top right corner of the screen. '
     
-
-    action = [1,[chatText,'trading.png']]
-    actionData = ['action',action]
-    pickle.dump(actionData,output)
-
-
-    action = [2,'']
+    action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    # MISSION 4
+    text = 'To increase money in the village account you can sell resources to the market. Like, we have an excess of Building Material and since we are not doing any new construction these days, we can safely sell it in the market. Sell 500 units of Building Material now.'
     
-    chatText = ['Kamat','Meet Sukhdev, sarpanch of Abujamara. He has come to thank us for all we did for the village.',
-    'Sukhdev','Yes, after you and your sons initial start, our village has prospered. How can I ever thank you for the wonderful work you did for my people.',
-    'Kamat','It was our pleasure, Sukhdev. If men wont help fellow men in need, then who will.',
-    'Sukhdev','This is your modesty, Kamat. I am really impressed with your village, your village has better building and efficient workers.',
-    'Kamat','This is because we have kept up with the technology Sukhdev. My son and me will accompany you to your village to help install better technology in buildings.',
-    'Sukhdev','Thanks a lot, Kamat. We will hold a grand feast on your coming there.']
-    
-    action = [1,[chatText,'tech.png']]
-    actionData = ['action',action]
-    pickle.dump(actionData,output)
-
-    chatText = ['Kamat','You must know son, technology upgrades provide better buildings with capacity to house more workers and produce more resources. Thus, they are usually helpful in increasing the prosperity of the village. Do an upgrade of the workshop to level 1. Click on the Upgrade Button and then select Workshop and click upgrade.']
-
-    action = [1,[chatText,'tech.png']]
+    action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    condn1 = [True,2,'WORKSHOP','','==','',0]
+    text = 'There is one last thing left before you can govern your own village. The upgrade button provides technological upgrades. Technology upgrades provide better buildings with capacity to house more workers and produce more resources. Thus, they are usually helpful in increasing the prosperity of the village. Do an upgrade of the school to level 1. Click on the Upgrade and then select School.'
+    
+    action = [9,text]
+    actionData = ['action',action]
+    pickle.dump(actionData,output)
+    
+    condn1 = [True,2,'SCHOOL','','==','',0]
     condnlist = [condn1]
     condnGlobal = ['AND',-1,condnlist]
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
     
-    chatText = ['Kamat','Good work Son. You should notice that upgrading a facility increases its productivity. The amount of resources produced by the Workshop have been increased considerable, also the people working in workshop would get better working conditions.',
-    'Son','Yes father, I can notice the changes. The progress level has also increased.',
-    'Kamat','Yes Son, upgrading a facility affects the overall prosperity of the village.']
+    text = 'You should notice that upgrading a facility increases its productivity. The number of children taught in the School have been increased considerable, also the quality of education is now better. The progress bars have also filled up more.'
     
-    action = [1,[chatText,'tech.png']]
-    actionData = ['action',action]
-    pickle.dump(actionData,output)
-
-    chatText = ['Kamat','Son, now upgrade every facility type to level 1. You can also notice that information related to the upgrade is given in the upgrade window whenever you select any facility.',
-    'Kamat','When you will upgrade all the facilities, you will notice a considerable change in the indicators of the village.',
-    'Son','Okay, father.']
-    
-    action = [1,[chatText,'tech.png']]
-    actionData = ['action',action]
-    pickle.dump(actionData,output)
-
-    condn1 = [False,2,'HOSPITAL','','>=','',1]
-    condn2 = [False,2,'HOUSE','','>=','',1]
-    condn3 = [False,2,'SCHOOL','','>=','',1]
-    condn4 = [False,2,'FARM','','>=','',1]
-    condn5 = [False,2,'FOUNTAIN','','>=','',1]
-    condnlist = [condn1,condn2,condn3,condn4,condn5]
-    condnGlobal = ['AND',-1,condnlist]
-    condnData = ['condition',condnGlobal]
-    pickle.dump(condnData,output)
-    
-    chatText = ['Kamat','Excellent work. Let us join Sukhdev for the feast.']
-    
-    action = [1,[chatText,'tech.png']]
+    action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    text = "The people of Abujamara are very much pleased with all the work you have done for the prosperity of the village.\n\n They have sent you the first harvest from their Farms, as\na symbol of Honor to you. You must accept it."
-    
-    action = [6,text]
-    actionData = ['action',action]
-    pickle.dump(actionData,output)
-
     action = [2,'']
     actionData = ['action',action]
     pickle.dump(actionData,output)
- 
-
     
-    # MISSION 5
     
-    chatText = ['Kamat','I am really impressed with your work.',
-    'Son','Thank you, father.',
-    'Kamat','But I wonder, if you are capable enough to work without my guidance now that you have learnt the basics of building a village.',
-    'Son','I think I will be father.',
-    'Kamat','I will be leaving the village for the next 3 months to go to your Cousins wedding.',
-    'Son','Will I not be accompanying you?',
-    'Kamat','No son, I need someone to take care of the village.',
-    'Kamat','Here is your mission: Take good care of our village for the next 3 months.',
-    'Kamat','Do not let the progress levels fall below 20% for the next three months.',
-    'Son','Ok Father. I will not disappoint you.']
-
+    # Mission1
     
-    action = [1,[chatText,'prosper.png']]
+    chatText = ['Kamat','Nice work with the setting up of the new village. I am really impressed.',
+                'Son','Thanks',
+                'Kamat','But I wonder, if you are capable enough to work without my guidance now that you have learnt the basics of building a village.',
+                'Kamat','I will leave you the responsibility of the village for the next 3 months while I go out for your cousin sister wedding.']
+    
+    action = [1,[chatText,'Wfpwork.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    condn1 = [False,3,'','','>=','HOUSING',20]
-    condn2 = [False,3,'','','>=','HEALTH',20]
-    condn3 = [False,3,'','','>=','EDUCATION',20]
-    condn4 = [False,3,'','','>=','NUTRITION',20]
-    condn5 = [False,3,'','','>=','TRAINING',20]
+    text = 'Do not let any of the progress bars drop below 25... or else Kamat will not be very pleased. Good Luck!'
+    
+    action = [9,text]
+    actionData = ['action',action]
+    pickle.dump(actionData,output)
+    
+    condn1 = [False,3,'','','>=','HOUSING',25]
+    condn2 = [False,3,'','','>=','HEALTH',25]
+    condn3 = [False,3,'','','>=','EDUCATION',25]
+    condn4 = [False,3,'','','>=','NUTRITION',25]
+    condn5 = [False,3,'','','>=','TRAINING',25]
     condnlist = [condn1,condn2,condn3,condn4,condn5]
     condnGlobal = ['NOR',90,condnlist]
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
+    
     
     chatText = ['Kamat','Well done Son. It seems that you are capable of handling the village after me.']
     
@@ -358,8 +176,8 @@ def write_data():
     actionData = ['actionTrue',action]
     pickle.dump(actionData,output)
  
-    text = "You were not able to maintain the village properly. Your progress fell below 20%.\n\n You must retry this level to reach the next level."
-    
+    text = "You were not able to maintain the village properly. You were not able to complete the task given to you. You must retry this level to reach the next level."
+
     action = [8,text]
     actionData = ['actionFalse',action]
     pickle.dump(actionData,output)
@@ -367,78 +185,36 @@ def write_data():
     action = [3,'']
     actionData = ['actionFalse',action]
     pickle.dump(actionData,output)
- 
-
-    # MISSION 6
     
-    chatText = ['Kamat','Welcome Ajmal, welcome. How did you find time to visit this small village again.',
-    'Son','Welcome home bhaiyya.',
-    'Ajmal','It is so good to see you again Father, brother. All the comforts in the city are nowhere near the comfort of the home! I am so happy to be back again.',
-    'Kamat','I am glad to hear this. So finally, you are going to stay for long.',
-    'Ajmal','No father, I am afraid not. I am leaving tomorrow but I bring terrible news from the city.',
-    'Kamat','So soon... but what news troubles you Ajmal?',
-    'Ajmal','The economy is in recession. Big companies have become bankrupt; traders are losing all their money, prices of the basic commodities falling...',
-    'Kamat','Ajmal, as a part of the government, it is your job to improve the economy.',
-    'Ajmal','We are trying hard father, but the recession is here for some time. And you should prepare...',
-    'Kamat','Prepare for what?',
-    'Ajmal','The prices will fall and trade will decrease in a few days.',
-    'Kamat','Our treasury is already low due to bad trade these days, I did not know, it was due to the mistakes of the city people.',
-    'Son','I will handle it father. I will sail us through these bad times.',
-    'Kamat','I have full faith in your capabilities son. I will leave the management of the village resources to you.',
-    'Ajmal','I did not know, that you have stepped into our fathers shoes so soon.',
-    'Son','I have bhaiyya, and I will do well.',
-    'Ajmal','Father, come with me to the city once. You will be able to appreciate the crisis better. Moreover, your grandchildren are eager to meet you.',
-    'Kamat','Thats a good idea, it has been years since I saw them.',
-    'Ajmal','Thank you father.',
-    'Son','Bhaiyya, what do you reckon will happen in the coming days.',
-    'Ajmal','Prices of the commodities will fall, do not try to setup new things during this period and focus on trading well.',
-    'Ajmal','Smart trading will ensure that you do not lose the money in your treasury. According to my calculations, things will improve in the next year.',
-    'Ajmal','So at the end of 4 months, do not allow the progress values to below 20%. Also, maintain atleast Rs. 5,000 In the treasury at all times.',
-    'Ajmal','Farewell brother, hope you will do well.']
     
-    action = [1,[chatText,'rec2.png']]
+    # Mission 2
+    
+    chatText = ['Kamat','Well done son, you have certainly not disappointed me. But our village is now running low on money.',
+                'Kamat','I will give you four months to bring more cash into the village. A cash reserve always comes in handy in times of calamities.',
+                'Kamat','Also, more cash reserves will enable us to setup more buildings and buy materials and food to improve the condition of our people.']
+    
+    action = [1,[chatText,'Wfpwork.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
-
-    chatText = ['Son','The prices of all the commodities have dropped. The resources required for proper functioning of the facilities are drying up .',
-    'Son','It is indeed a tough time for the village. I wish father had been here to accompany me.']
-
-    action = [1,[chatText,'rec2.png']]
+    
+    text = 'Earn Rs. 5000 more in the next 4 months. But remember, this should not come at the cost of village condition. Do not let the progress bars fall below 20. Good Luck!'
+    
+    action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
-
+    
     condn1 = [False,3,'','','>=','HOUSING',20]
     condn2 = [False,3,'','','>=','HEALTH',20]
     condn3 = [False,3,'','','>=','EDUCATION',20]
     condn4 = [False,3,'','','>=','NUTRITION',20]
     condn5 = [False,3,'','','>=','TRAINING',20]
-    condn6 = [False,5,'','','>=','',5000]
-    condnlist = [condn1,condn2,condn3,condn4,condn5,condn6]
+    condnlist = [condn1,condn2,condn3,condn4,condn5]
     condnGlobal = ['NOR',120,condnlist]
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
-
-    chatText = ['Kamat','Well done Son. You have proved your capabilities once again.',
-    'Son','Thank you, father.']
-
-    action = [1,[chatText,'happy2.png']]
-    actionData = ['actionTrue',action]
-    pickle.dump(actionData,output)
-
-    text = "Looking at the present economical conditions, the government has planned to give bailout to the companies affected by recession.\n\n The prices of crops will rise again, and the farmers will be able to get the right value for their hardwork.\n\n Good Work!!"
     
-    action = [6,text]
-    actionData = ['actionTrue',action]
-    pickle.dump(actionData,output)
+    text = "You were not able to maintain the village properly. You were not able to complete the task given to you. You must retry this level to reach the next level."
 
-    action = [2,'']
-    actionData = ['actionTrue',action]
-    pickle.dump(actionData,output)
- 
-
-    text = "You were not able to maintain the village properly. Your progress fell below 20% or the money in your bank is less than Rs. 5000.\n\nYou must retry this level to reach the next level."
-    
-    
     action = [8,text]
     actionData = ['actionFalse',action]
     pickle.dump(actionData,output)
@@ -446,15 +222,206 @@ def write_data():
     action = [3,'']
     actionData = ['actionFalse',action]
     pickle.dump(actionData,output)
+    
+    condn1 = [False,5,'','','>=','',6000]
+    
+    condnlist = [condn1]
+    condnGlobal = ['NOR',1,condnlist]
+    condnData = ['condition',condnGlobal]
+    pickle.dump(condnData,output)
+    
+    action = [2,'']
+    actionData = ['actionTrue',action]
+    pickle.dump(actionData,output)
+ 
+    text = "You were not able to maintain the village properly. You were not able to complete the task given to you. You must retry this level to reach the next level."
 
-    # MISSION 7
+    action = [8,text]
+    actionData = ['actionFalse',action]
+    pickle.dump(actionData,output)
+
+    action = [3,'']
+    actionData = ['actionFalse',action]
+    pickle.dump(actionData,output)
+    
+    # Mission 3
+    
+    chatText = ['Kamat','Respected members of Panchayat, my son has brought Rs 5000 more into the village funds. Now, it is for us to decide what needs to be done with it.']
+    
+    
+    action = [1,[chatText,'Wfpwork.png']]
+    actionData = ['action',action]
+    pickle.dump(actionData,output)
+    
+    
+    text = 'Panchayat discusses the matter in the village assembly....'
+    
+    action = [7,text]
+    actionData = ['action',action]
+    pickle.dump(actionData,output)
+
+    chatText = ['Panch','The Panchayat has reached a decision. We will invest the money in building more schools.',
+                'Kamat','Yes, children are the future of our village. We want to teach them so that they are able to stand on their feet and bring wealth and prosperity to the village later on.',
+                'Panch','Yes, and since your son has proved himself adept in adminstering. We want him to take charge of the money earnt and use it to for educating the children of our village.',
+                'Son','It will be my pleasure.']
+                
+    
+    action = [1,[chatText,'Wfpwork.png']]
+    actionData = ['action',action]
+    pickle.dump(actionData,output)
+    
+    
+    text = 'Your mission is simple. Increase the progress bar of Education to 50 while not letting any of the other progress bars to fall below 2 within months.'
+    
+    action = [9,text]
+    actionData = ['action',action]
+    pickle.dump(actionData,output)
+    
+    condn1 = [False,3,'','','>=','HOUSING',20]
+    condn2 = [False,3,'','','>=','HEALTH',20]
+    condn4 = [False,3,'','','>=','NUTRITION',20]
+    condn5 = [False,3,'','','>=','TRAINING',20]
+    condnlist = [condn1,condn2,condn4,condn5]
+    condnGlobal = ['NOR',120,condnlist]
+    condnData = ['condition',condnGlobal]
+    pickle.dump(condnData,output)
+    
+    text = "You were not able to maintain the village properly. You were not able to complete the task given to you. You must retry this level to reach the next level."
+
+    action = [8,text]
+    actionData = ['actionFalse',action]
+    pickle.dump(actionData,output)
+
+    action = [3,'']
+    actionData = ['actionFalse',action]
+    pickle.dump(actionData,output)
+    
+    condn3 = [False,3,'','','>=','EDUCATION',50]
+    
+    condnlist = [condn1]
+    condnGlobal = ['NOR',1,condnlist]
+    condnData = ['condition',condnGlobal]
+    pickle.dump(condnData,output)
+    
+    action = [2,'']
+    actionData = ['actionTrue',action]
+    pickle.dump(actionData,output)
+ 
+    text = "You were not able to maintain the village properly. You were not able to complete the task given to you. You must retry this level to reach the next level."
+
+    action = [8,text]
+    actionData = ['actionFalse',action]
+    pickle.dump(actionData,output)
+
+    action = [3,'']
+    actionData = ['actionFalse',action]
+    pickle.dump(actionData,output)
+    
+    # Mission 4
+    
+    chatText = ['Kamat','Welcome Ajmal, my son. How have your studies been going on.',
+                'Ajmal','Thanks father. I am a registered physician now... but what is this. The village hygiene is so poor. This village is a breeding ground for all the diseases.', 
+                'Ajmal','With stagnant water and unhygenic market, diseases are bound to follow. All these diseases will soon take a form of an epidemic if nothing is done for this now.', 
+                'Kamat','Can you work with your younger brother to help avert this situation.',
+                'Ajmal','Sure father.',
+                'Ajmal','For providing good health, we need to provide good nutritious food to the villagers. A nutritious diet consists of all the components such as Wheat, Fruits, vegetables and beans.',
+                'Ajmal','Also we need to setup hospitals and educate people about good practices and simple measures to avoid diseases. Schools setup by you are already doing a good job of it. We just need to bring some good doctors here',
+                'Ajmal','Can you do all this to avoid an epidemic']
+                
+    action = [1,[chatText,'Wfpwork.png']]
+    actionData = ['action',action]
+    pickle.dump(actionData,output)
+    
+    text = 'Yes, this mission is harder. Take the progress bars for health to 60 and nutrition above 50 and you will be termed as pass.'
+    
+    action = [9,text]
+    actionData = ['action',action]
+    pickle.dump(actionData,output)
+    
+    condn1 = [False,3,'','','>=','HEALTH',60]
+    condn2 = [False,3,'','','>=','NUTRITION',50]
+    condnlist = [condn1,condn2]
+    condnGlobal = ['AND',-1,condnlist]
+    condnData = ['condition',condnGlobal]
+    pickle.dump(condnData,output)
+    
+    action = [2,'']
+    actionData = ['actionTrue',action]
+    pickle.dump(actionData,output)
+    
+    # Mission 5
+    
+    chatText = ['Farmer','Save us save us ....',
+                'Kamat','What happened. Where are you running from? Where are your cattle and belongings.',
+                'Farmer','I have none sir.. I have ran away from my home with my kids and wife since there is a war going on.',
+                'Farmer','There will be more like me coming. I will work hard, but please give me a place to live peacefully.']
+                
+    action = [1,[chatText,'Wfpwork.png']]
+    actionData = ['action',action]
+    pickle.dump(actionData,output)
+    
+    text = 'Kamat and the Panchayat discusses...'
+
+    action = [7,text]
+    actionData = ['action',action]
+    pickle.dump(actionData,output)
+    
+    chatText = ['Panch','Panchayat has decided that we will let the incoming immigrants into our village and will treat them as our guests. Athiti Devo Bhav.']
+    
+    action = [1,[chatText,'Wfpwork.png']]
+    actionData = ['action',action]
+    pickle.dump(actionData,output)
+
+    text = 'It seems as if there are not enough huts for all the incoming immigrants. Build more huts and increase the progress bar for housing till 80. Also increase the progress for Nutrition upto 60.'
+    
+    action = [9,text]
+    actionData = ['action',action]
+    pickle.dump(actionData,output)
+    
+    condn1 = [False,3,'','','>=','HOUSING',80]
+    condn2 = [False,3,'','','>=','NUTRITION',60]
+    condnlist = [condn1,condn2]
+    condnGlobal = ['AND',-1,condnlist]
+    condnData = ['condition',condnGlobal]
+    pickle.dump(condnData,output)
+    
+    action = [2,'']
+    actionData = ['actionTrue',action]
+    pickle.dump(actionData,output)
+    
+    # Mission 6
+    
+    chatText = ['Panch','Good day, members of the Panchayat. It has nearly been 4 months since the first immigrants came to our village.',
+                'Panch','But most of them are sitting idle, since they were originally farmers and have no farms now.',
+                'Kamat','So, what. We will train them in our workshops to produce bricks for our village. Also, we can train them as labourers and they will become a part and parcel of the village.']
+                 
+    action = [1,[chatText,'Wfpwork.png']]
+    actionData = ['action',action]
+    pickle.dump(actionData,output)
+    
+    text = 'Good job recovering from the calamity. Train your people so that they turn into useful resources. Increase the training progress bar to 70 to pass this mission.' 
+
+    action = [9,text]
+    actionData = ['action',action]
+    pickle.dump(actionData,output)
+    
+    
+    condn1 = [False,3,'','','>=','TRAINING',70]
+    condnlist = [condn1]
+    condnGlobal = ['AND',-1,condnlist]
+    condnData = ['condition',condnGlobal]
+    pickle.dump(condnData,output)
+    
+    action = [2,'']
+    actionData = ['actionTrue',action]
+    pickle.dump(actionData,output)
+    
+    
+    # Mission 7
     
     chatText = ['Farmer','Sarpanch ji, there is no water. The crops are dying. Help us',
-    'Farmer','Help us Sarpanch ji, otherwise whole village will die due to hunger.',
-    'Farmer',' Is it the rain god: Indra who is displeased with us.',
-    'Kamat','No it is not the gods, but the failing monsoon.',
-    'Kamat','Due to recent ecological disturbances, monsoon has not come this year. But dont worry I will handle it.',
-    'Farmer','Thank you sarpanch ji. We are also holding a pooja[prayers] for Indra.']
+                'Priest','How can Sarpanch ji help. It is the rain god: Indra who is displeased with us. Let us hold a pooja to please Indra.',
+                'Kamat','I will do what I can.']
     
     action = [1,[chatText,'drought.png']]
     actionData = ['action',action]
@@ -463,21 +430,17 @@ def write_data():
     chatText = ['Kamat','Son...',
                 'Son','Yes father, is there anything I can do for you.',
                 'Kamat','Yes son, the monsoon has deserted us. The crops are dying. Farmers believe it is the Indra god who is displeased, but you know better.',
-                'Son','Yes father.',
                 'Kamat','They will be holding a pooja soon. But we need to do more than that.',
-                'Son','Yes Father.',
-                'Kamat','Due to lack of water, the productivity of farms have decreased. People are dying of hunger.',
-                'Kamat','Hospitals and Workshops are also not able to work properly due to shortage of water.',
-                'Kamat','Build up some wells and take good care of crops. Do not let the nutrition progress drop below 20% and also donot let the water level fall below 100.',
-                'Kamat','Good luck son.']
-    
+                'Son','Yes Father.']
     
     action = [1,[chatText,'drought.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
+    
+    text = 'Do not let the nutrition progress drop below 50% and also donot let the water level fall below 500.'
 
-    condn1 = [False,3,'','','>=','NUTRITION',20]
-    condn2 = [False,4,'','WATER','>=','',100]
+    condn1 = [False,3,'','','>=','NUTRITION',50]
+    condn2 = [False,4,'','WATER','>=','',500]
     condnlist = [condn1,condn2]
     condnGlobal = ['NOR',120,condnlist]
     condnData = ['condition',condnGlobal]
@@ -518,10 +481,9 @@ def write_data():
     action = [3,'']
     actionData = ['actionFalse',action]
     pickle.dump(actionData,output)
-
-
-
-    # MISSION 8
+    
+    
+    # Mission 8
     
     chatText = ['Kamat','Son, I am getting old, but I have a faint feeling that something bad is about to happen.',
                 'Son','Why do you think so, father?',
@@ -552,9 +514,9 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    text = 'Mission Objective: \n\nRebuild the village and bring the progress levels to 40% within\nnext 2 years.'
+    text = 'Mission Objective: Rebuild the village and bring the progress levels to 40%'
     
-    action = [7,text]
+    action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
@@ -571,7 +533,7 @@ def write_data():
     pickle.dump(condnData,output)
 
  
-    text = "The village Panchayat has decided to select you as the next Sarpanch of the village.\n\nAlso, they have decided to make a new school in remembrance of the best Sarpanch this village had in years, your father, Kamat."
+    text = "The village Panchayat has decided to select you as the next Sarpanch of the village.Also, they have decided to make a new school in remembrance of the best Sarpanch this village had in years, your father, Kamat."
     
     
     action = [6,text]
@@ -583,3 +545,50 @@ def write_data():
     
     
 write_data()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

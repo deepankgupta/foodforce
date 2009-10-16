@@ -61,6 +61,8 @@ class chat:
         self.characterImage['KAMAT']=pygame.image.load(os.path.join('art', 'kamat.png')).convert_alpha()
         self.characterImage['SON']=pygame.image.load(os.path.join('art', 'son.png')).convert_alpha()
         self.characterImage['AJMAL']=pygame.image.load(os.path.join('art', 'ajmal.png')).convert_alpha()
+        self.characterImage['PANCH']=pygame.image.load(os.path.join('art', 'panch.png')).convert_alpha()
+        self.characterImage['PRIEST']=pygame.image.load(os.path.join('art', 'priest.png')).convert_alpha()
         self.characterImage['SUKHDEV']=pygame.image.load(os.path.join('art', 'sukhdev.png')).convert_alpha() 
         self.characterImage['FARMER']=pygame.image.load(os.path.join('art', 'villager.png')).convert_alpha() 
         #  changes made while adding skip buttons etc
