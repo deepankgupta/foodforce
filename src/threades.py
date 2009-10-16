@@ -439,11 +439,11 @@ def build_facility(facility_obj, PLACING_DATA_LIST = [], list_food = model.DEF_F
         
     except Exceptions.Resources_Underflow_Exception:
         text = 'You dont have enough resources to build the facility,  please try later'
-        message.push_message(text,'high')
+#        message.push_message(text,'high')
         return text
     except Exceptions.Low_Manpower_Resources_Exception:
         text = 'You dont have enough manpower to build the facility, please try later'
-        message.push_message(text,'high')
+#        message.push_message(text,'high')
         return text
     except Exceptions.Maximum_Number_Reached:
         text = 'You cannot setup more buildings of this facility, try setting up some other facility'
@@ -512,11 +512,11 @@ def upgrade_facility(facility_obj):
         model.resources = facility_obj.update_level(model.resources,model.ppl)
     except Exceptions.Resources_Underflow_Exception:
         text =  "You don't have enough resources to upgrade the facility please try later"
-        message.push_message(text,'high')
+#        message.push_message(text,'high')
         return text
     except Exceptions.Maximum_Level_Reached:
         text =  'Facility has reached its maximum level you cant upgrade it now'
-        message.push_message(text,'high')
+        #message.push_message(text,'high')
         return text
     
     if facility_obj.get_name() == 'HOUSE':
