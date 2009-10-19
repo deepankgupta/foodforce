@@ -482,8 +482,8 @@ class starting_intro:
         hunger_map = pygame.image.load(os.path.join('data', 'Wfpwork.png')).convert()
         hunger_map =  pygame.transform.scale(hunger_map,threades.new_screen_size)
         threades.screen.blit(hunger_map,threades.resize_pos((0,0)))
-        #if soundtrack:
-            #soundtrack.play(-1)
+        if soundtrack:
+            soundtrack.play(-1)
    
 
         color_brown = (255,214,150)
@@ -510,7 +510,9 @@ class starting_intro:
         counter = 0
         label = gui.Label(position = threades.resize_pos((10.0,130.0),(800.0,600.0),win.size),size = threades.resize_pos((780.0,460.0),(800.0,600.0),win.size), parent = win, text = '', style = labelstyle1)
         
-        button_style = gui.defaultButtonStyle.copy()
+        buttonsurf = pygame.image.load(os.path.join('art','button.png')).convert_alpha()
+        buttonsurf = pygame.transform.scale(buttonsurf, (36, threades.resize_pt_y(40)))
+        button_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
         button_style['font'] = myfont2
 
         self.skip_button = gui.Button(position = threades.resize_pos((600,550),(800.0,600.0),win.size), size = threades.resize_pos((150,30),(800.0,600.0),win.size), parent = win, text = "  Skip  ",style = button_style)
@@ -798,6 +800,9 @@ def main():
     global chat_screen
     global level_setting
     
+    cursor = pygame.cursors.load_xbm(os.path.join('art', 'ff2_cursor.xbm'),os.path.join('art', 'ff2_cursor-mask.xbm'))
+    #print cursor
+    pygame.mouse.set_cursor(cursor[0],cursor[1],cursor[2],cursor[3])
     # Displaying the WFP logo
     intro_thread = threading.Thread(target = load_images.load_images, args=[])
     intro_thread.start()
@@ -816,8 +821,7 @@ def main():
         threades.initialize_facilities(True)
         proceduralFlow.openStoryBoardFile()
 
-    #surface_middle = pygame.transform.scale(surface3,threades.resize_pos((1200,560)))
-    
+     
     # Processing regarding the storyboard
     
     storyboardObj = proceduralFlow.storyboardFlow()
@@ -877,11 +881,7 @@ def main():
         # Calculate the values of the indicators
         threades.calculate_indicators_starting()
         
-        #For middle surface
-        #surface_middle = pygame.transform.scale(surface3,threades.resize_pos((1200,560)))
-        #threades.screen.blit(surface_middle,threades.resize_pos((0,40)))
-
-        
+               
 
         
         rects_list = get_update_region()

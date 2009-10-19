@@ -258,7 +258,8 @@ def write_data():
     
     chatText = ['Kamat','Well done son, you have certainly not disappointed me. But our village is now running low on money.',
                 'Kamat','I will give you four months to bring more cash into the village. A cash reserve always comes in handy in times of calamities.',
-                'Kamat','Also, more cash reserves will enable us to setup more buildings and buy materials and food to improve the condition of our people.']
+                'Kamat','Also, more cash reserves will enable us to setup more buildings and buy materials and food to improve the condition of our people.',
+                'Kamat','As you have already learnt that Tools made in workshops can be traded in market to earn money, you should focus on that.']
     
     action = [1,[chatText,'Wfpwork.png']]
     actionData = ['action',action]

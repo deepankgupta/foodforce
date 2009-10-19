@@ -122,8 +122,8 @@ def initialize_facilities(autobuild_flag = True):
     WORKS_NO = model.INIT_WORKSHOP
     
     levelStartFacilityBuildFlag = HOUSE_NO + HOSP_NO + SCHOOL_NO + FARM_NO + FOUNTAIN_NO + WORKS_NO
-    print "level start val = "
-    print levelStartFacilityBuildFlag
+    #print "level start val = "
+    #print levelStartFacilityBuildFlag
     
     for i in range(len(PLACING_DATA_LIST)):
         if PLACING_DATA_LIST[i][0] == 'HOUSE' and HOUSE_NO>0:
@@ -307,7 +307,7 @@ def set_build_facility_placement_flag(facility_obj = None):
         buildFacilityPlacementFlag = facility_obj.get_name()
     else :
         buildFacilityPlacementFlag = ""
-    print buildFacilityPlacementFlag
+    #print buildFacilityPlacementFlag
     
 def build_placed_facility(facility_name, autobuild_flag, PLACING_DATA_LIST):
     '''Builds the placed facility according to placed position
@@ -365,10 +365,10 @@ def build_placed_facility(facility_name, autobuild_flag, PLACING_DATA_LIST):
     for i in range(len(model.facilities_list)):
         if model.facilities_list[i].get_name() == facility_name:
             facility_obj = model.facilities_list[i]
-    for attribute in load_images.facility_villagers[facility_obj.get_name()][facility_obj.get_original_number()-1]:
+    for i in range(int(random.random()*10)):
         #print attribute
         dir = int(random.random()*4)
-        villager = Villager(attribute)
+        villager = Villager((place_pos_x-500,place_pos_y-500,place_pos_x+500,place_pos_y+500))
         villager.set_speed(speeds[dir])
         villager.add(villagers,all)
         
@@ -491,7 +491,7 @@ def build_end_facility(facility_obj):
         levelStartFacilityBuildFlag -= 1
         if levelStartFacilityBuildFlag == 0:
             model.resources = model.ppl.update_turn(model.resources,model.facilities_list)
-    print "now ",facility_obj.get_name(),levelStartFacilityBuildFlag
+    #print "now ",facility_obj.get_name(),levelStartFacilityBuildFlag
     calculate_indicators_starting()
     
 
@@ -574,15 +574,18 @@ def calculate_indicators_starting():
     for resource in model.food_resources:
         name = resource.get_name()
         if temp.has_key(name):
-            protiens += temp[name]['PROTIENS'] * resource.get_vquantity()
-            vitamins += temp[name]['VITAMINS'] * resource.get_vquantity()
-            fats += temp[name]['FATS'] * resource.get_vquantity()
+            quantity = int(resource.get_vquantity())
+            protiens += temp[name]['PROTIENS'] * quantity
+            vitamins += temp[name]['VITAMINS'] * quantity
+            fats += temp[name]['FATS'] * quantity
         
     
     food = protiens + vitamins + fats
-    protiens /= food
-    vitamins /= food
-    fats /= food
+    if food:
+    
+        protiens /= food
+        vitamins /= food
+        fats /= food
 
     model.Nutrition.turn({'PEOPLE FED' : ppl_fed_ratio , 'PROTIENS' : protiens , 'FATS' : fats , 'VITAMINS' : vitamins})
 
@@ -674,6 +677,7 @@ def update_turn(delay = 15):
     
             # nutrition
             ppl_fed_ratio = model.ppl.get_no_of_ppl_fed()/model.ppl.get_total_population()
+            #print "ppl_fed_ratio",ppl_fed_ratio
             temp = model.FOOD_DIST_DICT_INIT
             protiens = 0.0
             vitamins = 0.0
@@ -681,23 +685,30 @@ def update_turn(delay = 15):
             for resource in model.food_resources:
                 name = resource.get_name()
                 if temp.has_key(name):
-                    protiens += temp[name]['PROTIENS'] * resource.get_vquantity()
-                    vitamins += temp[name]['VITAMINS'] * resource.get_vquantity()
-                    fats += temp[name]['FATS'] * resource.get_vquantity()
+                    quantity = int(resource.get_vquantity())
+                    #print "name, quantity of food resource",name,quantity
+                    protiens += temp[name]['PROTIENS'] * quantity
+                    vitamins += temp[name]['VITAMINS'] * quantity
+                    fats += temp[name]['FATS'] * quantity
                 
-            
+            #print "value of protiens,vitamins,fats",protiens,vitamins,fats
             food = protiens + vitamins + fats
-            protiens /= food
-            vitamins /= food
-            fats /= food
+            if food:
+                protiens /= food
+                vitamins /= food
+                fats /= food
+            #print "protiens,vitamins,fats",protiens,vitamins,fats
     
             model.Nutrition.turn({'PEOPLE FED' : ppl_fed_ratio , 'PROTIENS' : protiens , 'FATS' : fats , 'VITAMINS' : vitamins})
     
             # health
             healthy_ppl_ratio = model.ppl.get_no_of_ppl_healthy()/model.ppl.get_total_population()
+            #print "healthy_ppl_ratio",healthy_ppl_ratio
             nutrition = model.Nutrition.get_value()
             nutrition /= model.MAX_INDICATOR
+            #print "nutrition",nutrition
             water = model.Water.get_vquantity()/model.MAX_RES_VAL_VILLAGE
+            #print "water",water
     
             model.Health.turn({'HEALTHY PEOPLE' : healthy_ppl_ratio , 'NUTRITION' : nutrition , 'WATER' : water})
     
@@ -1590,8 +1601,10 @@ class screen_sprite(pygame.sprite.Sprite):
 # The villager class
 class Villager(pygame.sprite.Sprite):
     
-    def __init__(self,(name,range_rect)):
+    def __init__(self,range_rect):
         pygame.sprite.Sprite.__init__(self)
+        names = ['Man','Woman','Boy','Girl']
+        name = names[int(random.random()*4)]
         self.dx = 2
         self.dy = 2
         self.update_flag = True
@@ -1735,7 +1748,7 @@ class Villager(pygame.sprite.Sprite):
         self.image = self.dtiles_final[self.frame]
         
     def get_attributes(self):
-        return (self.name,self.range)
+        return self.range
     def get_name(self):
         return self.name
     

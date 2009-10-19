@@ -836,6 +836,7 @@ class Indicator:
         @returntype integer
         """            
                                                               # ASSUMPTION
+        
         self._value = 0
         for key in parameter_values.keys():
 

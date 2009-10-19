@@ -1185,7 +1185,7 @@ class showInstructions:
             
         self.showMessage(flag)
             
-    def showMessage(self,flag):
+    def showMessage(self,flag = False):
         
         
         self.winFlag = True
@@ -1263,7 +1263,7 @@ class gui_buttons:
     
     def showInstruction(self, button = None):
     
-        thread_instruction = threading.Thread(target = showMessages.addMessage, args=[]).start()
+        showMessages.showMessage()
         
     def get_win_flag(self):
         return (self.setup_obj.get_win_flag() or self.upgrade_obj.get_win_flag() or self.buysell_obj.get_win_flag())

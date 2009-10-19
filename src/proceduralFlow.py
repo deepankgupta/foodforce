@@ -361,9 +361,12 @@ class checkConditions:
         '''Returns True if time got over else returns False
         '''
 
+        if self.init_days > model.game_controller.get_total_days():
+            self.init_days = model.game_controller.get_total_days()
+        
         self.currentdays = model.game_controller.get_total_days()
-        #print "current days = "
-        #print self.currentdays
+        #print "days = "
+        #print self.currentdays -self.init_days
         if self.currentdays >= self.timer + self.init_days:
             return True
         else:
