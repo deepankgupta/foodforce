@@ -443,15 +443,15 @@ def build_facility(facility_obj, PLACING_DATA_LIST = [], list_food = model.DEF_F
         
     except Exceptions.Resources_Underflow_Exception:
         text = 'You dont have enough resources to build the facility,  please try later'
-        #message.push_message(text,'high')
+        message.push_message(text,'high')
         return text
     except Exceptions.Low_Manpower_Resources_Exception:
         text = 'You dont have enough manpower to build the facility, please try later'
-        #message.push_message(text,'high')
+        message.push_message(text,'high')
         return text
     except Exceptions.Maximum_Number_Reached:
         text = 'You cannot setup more buildings of this facility, try setting up some other facility'
-        #message.push_message(text,'high')
+        message.push_message(text,'high')
         return text
     if autobuild_flag == False:
         set_build_facility_placement_flag(facility_obj)

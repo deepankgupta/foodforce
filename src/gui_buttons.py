@@ -319,7 +319,7 @@ class setup_button:
         # Creating option boxes for all the facilities
         position_bt = threades.resize_pos((50.0,90.0),(800.0,600.0),size_win)
         size_bt = threades.resize_pos((320.0,200.0),(800.0,600.0),size_win)
-        self.housing_box = gui.Button(position = position_bt, size = size_bt,  parent = self.win, style = bt_style, text = 'House')
+        self.housing_box = gui.Button(position = position_bt, size = size_bt,  parent = self.win, style = bt_style, text = 'Hut')
         self.housing_box.onMouseOver =  self.on_select_setup_option_box
         self.housing_box.onClick = self.setup_facility
         self.hospital_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'Hospital')
@@ -346,7 +346,7 @@ class setup_button:
         #self.win.surf.blit(self.background_pic,threades.resize_pos((450,250)))
         #self.win.surf.set_alpha(140)
 
-        if button.text == 'House':
+        if button.text == 'Hut':
             text = 'House: '
             #image = load_images. House_tiles_list[2][2]
             text += threades.get_setup_text(model.House)
@@ -391,7 +391,7 @@ class setup_button:
         '''
 
 
-        if button.text == 'House':
+        if button.text == 'Hut':
             label_text =  threades.build_facility(model.House)
         elif button.text == 'Hospital':
             label_text =  threades.build_facility(model.Hospital)
@@ -565,7 +565,7 @@ class upgrade_button:
         # Creating buttons for all the facilities
         position_bt = threades.resize_pos((50.0,90.0),(800.0,600.0),size_win)
         size_bt = threades.resize_pos((320.0,200.0),(800.0,600.0),size_win)
-        self.housing_box = gui.Button(position = position_bt, size = size_bt,  parent = self.win, style = bt_style, text = 'House')
+        self.housing_box = gui.Button(position = position_bt, size = size_bt,  parent = self.win, style = bt_style, text = 'Hut')
         self.housing_box.onMouseOver =  self.on_select_upgrade_option_box
         self.housing_box.onClick = self.upgrade_facility
         self.hospital_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'Hospital')
@@ -604,7 +604,7 @@ class upgrade_button:
         #self.win.surf.set_alpha(140)
 
         text = ''
-        if button.text == 'House':
+        if button.text == 'Hut':
             #image = load_images. House_tiles_list[2][2]
             text += threades.get_upgrade_text(model.House)
         if button.text == 'Hospital':
@@ -632,7 +632,7 @@ class upgrade_button:
         '''
 
 
-        if button.text == 'House':
+        if button.text == 'Hut':
             label_text =  threades.upgrade_facility(model.House)
         elif button.text == 'Hospital':
             label_text =  threades.upgrade_facility(model.Hospital)
@@ -1189,7 +1189,7 @@ class showInstructions:
         
         
         self.winFlag = True
-        font_color = (27,11,239)
+        font_color = (100,200,200)
         myfont = pygame.font.Font("font.ttf", threades.resize_pt(17))
         # Custom gui.Window Style
         win_style = gui.defaultWindowStyle.copy()
@@ -1198,8 +1198,8 @@ class showInstructions:
         win_style['font-color'] = font_color
         
         # Calculating position and size of window from the size of the threades.desktop
-        position_win =threades.resize_pos((745.0,42.0))
-        size_win =threades.resize_pos((450.0,200.0))
+        position_win =threades.resize_pos((70.0,42.0))
+        size_win =threades.resize_pos((800.0,150.0))
     
         # Creating custom label style for the text to be displayed as a threades.message
         labelStyleCopy = gui.defaultLabelStyle.copy()
@@ -1210,10 +1210,10 @@ class showInstructions:
     
         # Creating window
         win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = " Mission " ,style = win_style ,closeable = False ,shadeable = False,moveable = False)
-        pygame.draw.rect(win.surf,font_color,threades.resize_rect((3,3,444,194)),1)            
+        pygame.draw.rect(win.surf,font_color,threades.resize_rect((3,3,795,144)),1)            
         
         # Creating label
-        message_label = gui.Label(position = threades.resize_pos((5,50),(450.0,200.0),win.size),size = threades.resize_pos((440,140),(450.0,150.0),win.size), parent = win, text = self.text, style = labelStyleCopy)
+        message_label = gui.Label(position = threades.resize_pos((5,50),(790.0,150.0),win.size),size = threades.resize_pos((500,50),(500.0,10.0),win.size), parent = win, text = self.text, style = labelStyleCopy)
         sleep(5)
         win.close()
         if flag:

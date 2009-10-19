@@ -477,6 +477,7 @@ class starting_intro:
         ''' Displays the startup text
         '''
 
+        threades.current_level = 1
         self.remove_buttons()
         threades.screen.fill((255,255,255))
         hunger_map = pygame.image.load(os.path.join('data', 'Wfpwork.png')).convert()
