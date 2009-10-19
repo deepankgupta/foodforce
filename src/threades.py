@@ -271,7 +271,7 @@ def get_upgrade_text(facility_obj):
     return text
 
 
-class facility_placement_data():
+class facility_placement_data:
         
     def __init__(self,data_file):
         self.data_file = data_file
@@ -1473,7 +1473,7 @@ if not model.FLAG_XO:
 
 
 #Class to initialise the background
-class Environment2():
+class Environment2:
     
     def __init__(self):
         self.sheet = pygame.image.load(os.path.join('data','tileset2.png')).convert()

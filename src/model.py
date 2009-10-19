@@ -2233,7 +2233,7 @@ class Money:
         if(self.money < 0):
             raise Exceptions.Money_Underflow_Exception
         
-class game_time():
+class game_time:
     def __init__(self,conversion_factor=3000):
         self.level_iteration_time=0
         self.level_global_time=0

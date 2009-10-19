@@ -438,7 +438,7 @@ class Widget(object):
     rect = property(lambda self: Rect(self.position,self.size))
     hasFocus = property(lambda self: self.desktop.focused == self)
     
-class Container():    
+class Container:    
     def __init__(self):
         self.widgets = []
         self.surf = None
@@ -795,7 +795,10 @@ class Window(Widget, Container):
             self.shadebutton.visible = False
         
         #If I don't have a surface or surface size is different from my size, i create a new one
-        temp='shaded-' if self.shaded else ''
+        if self.shaded:
+	    temp='shaded-'
+	else:
+            temp = ''
         if not self.surf or self.size != self.surf.get_size():
             del self.surf
             self.surf = pygame.Surface(self.size, pygame.SRCALPHA)
