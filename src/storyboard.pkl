@@ -33,11 +33,30 @@ I9
 aS'Build a hut to shelter the people of Abujamara. You can build a hut by clicking on Build->Hut.'
 p3
 aa.(lp0
+S'condition'
+p1
+a(lp2
+S'AND'
+p3
+aI-1
+a(lp4
+(lp5
+I01
+aI1
+aS'HOUSE'
+p6
+aS''
+p7
+aS'=='
+p8
+ag7
+aI0
+aaaa.(lp0
 S'action'
 p1
 a(lp2
 I9
-aS'When you build a hut, some amount of your resources are utilized. For each Hut that you build, 10 units of bricks, 8 units of Tools and 8 units of Water are used. Also, people are required to build a hut. Similarly, anything you build will require materials such as bricks and labour.'
+aS'When you build a hut, some amount of your resources are utilized. For each Hut that you build, 10 units of bricks, 8 units of Tools and 8 units of Water are used. Also, people are required to build a hut. Similarly, anything you build will require materials such as bricks and labour. Try building another hut.'
 p3
 aa.(lp0
 S'condition'
@@ -70,7 +89,40 @@ S'action'
 p1
 a(lp2
 I9
-aS'The next basic necessity of a village is Food. To grow food, you will need to build farms. Since the soil is fertile, we can grow any crop here. It is best to provide a healthy mix of Rice, Beans and Vegetables and Fruits. This will ensure healthy variety and nutrition. Build a farm now.'
+aS'At the lower left corner you can see the total population and total sheltered people. The total population increases with time. Building the Houses increases the sheltered population. You should always try to build enough houses to provide shelter to all the people.'
+p3
+aa.(lp0
+S'action'
+p1
+a(lp2
+I9
+aS'Water, the most basic necessity of life, must always be present to support any kind of habitation. Build a Well for people to get water from.'
+p3
+aa.(lp0
+S'condition'
+p1
+a(lp2
+S'AND'
+p3
+aI-1
+a(lp4
+(lp5
+I01
+aI1
+aS'FOUNTAIN'
+p6
+aS''
+p7
+aS'=='
+p8
+ag7
+aI0
+aaaa.(lp0
+S'action'
+p1
+a(lp2
+I9
+aS'The next basic necessity of a village is Food. To grow food, you will need to build farms. It is best to provide a healthy mix of Rice, Beans and Vegetables and Fruits. This will ensure healthy variety and nutrition.You can choose the type of production from the bar-chart for your farm. Click on Build>Farm and adjust the production'
 p3
 aa.(lp0
 S'condition'
@@ -96,7 +148,21 @@ S'action'
 p1
 a(lp2
 I9
-aS'The children have no place to study. Build a school for them. '
+aS'As you continue building you will require Tools and Bricks. If you run out of them you can buy them from the market.Buying anything requires money and you can see the amount of money available to you in the top right corner of the screen. '
+p3
+aa.(lp0
+S'action'
+p1
+a(lp2
+I9
+aS'In order to get money you can always sell the resource you have in surplus.We have a surplus of food itmes in our village right now, sell some of them to gain money.'
+p3
+aa.(lp0
+S'action'
+p1
+a(lp2
+I9
+aS'The settlement has grown, the children here need a place to study. Build a school for them. '
 p3
 aa.(lp0
 S'condition'
@@ -148,21 +214,33 @@ S'action'
 p1
 a(lp2
 I9
-aS'Good. Whenever you are running low on a certain item, you should buy it from the market. Buying anything requires money and you can see the amount of money available to you in the top right corner of the screen. '
+aS'The upgrade button provides technological upgrades.Try upgrading the huts to brick Houses.Click on the Upgrade and then select House'
 p3
 aa.(lp0
+S'condition'
+p1
+a(lp2
+S'AND'
+p3
+aI-1
+a(lp4
+(lp5
+I01
+aI2
+aS'HOUSE'
+p6
+aS''
+p7
+aS'=='
+p8
+ag7
+aI0
+aaaa.(lp0
 S'action'
 p1
 a(lp2
 I9
-aS'To increase money in the village account you can sell resources to the market. Like, we have an excess of Building Material and since we are not doing any new construction these days, we can safely sell it in the market. Sell 500 units of Building Material now.'
-p3
-aa.(lp0
-S'action'
-p1
-a(lp2
-I9
-aS'There is one last thing left before you can govern your own village. The upgrade button provides technological upgrades. Technology upgrades provide better buildings with capacity to house more workers and produce more resources. Thus, they are usually helpful in increasing the prosperity of the village. Do an upgrade of the school to level 1. Click on the Upgrade and then select School.'
+aS'Technology upgrades provide better buildings with capacity to house more workers and produce more resources. Thus, they are usually helpful in increasing the prosperity of the village. Upgrade your school'
 p3
 aa.(lp0
 S'condition'
@@ -189,6 +267,65 @@ p1
 a(lp2
 I9
 aS'You should notice that upgrading a facility increases its productivity. The number of children taught in the School have been increased considerable, also the quality of education is now better. The progress bars have also filled up more.'
+p3
+aa.(lp0
+S'action'
+p1
+a(lp2
+I9
+aS'You village has grown considerably now, hygiene and healthcare are the two the most important aspect of a healthy living. You must build a hosptial now for people to get good treatment and medicine.'
+p3
+aa.(lp0
+S'condition'
+p1
+a(lp2
+S'AND'
+p3
+aI-1
+a(lp4
+(lp5
+I01
+aI1
+aS'HOSPITAL'
+p6
+aS''
+p7
+aS'=='
+p8
+ag7
+aI0
+aaaa.(lp0
+S'action'
+p1
+a(lp2
+I9
+aS'You will have to buy medicine from the market for hospital to run!'
+p3
+aa.(lp0
+S'condition'
+p1
+a(lp2
+S'AND'
+p3
+aI-1
+a(lp4
+(lp5
+I01
+aI6
+aS''
+p6
+aS'MEDICINE'
+p7
+aS'=='
+p8
+ag6
+aI0
+aaaa.(lp0
+S'action'
+p1
+a(lp2
+I9
+aS'Your village has now taken the first step towards prosperity. Congratulations'
 p3
 aa.(lp0
 S'action'
@@ -225,7 +362,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'Do not let any of the progress bars drop below 25... or else Kamat will not be very pleased. Good Luck!'
+aS'Do not let any of the progress bars drop below 35... or else Kamat will not be very pleased. Good Luck!'
 p3
 aa.(lp0
 S'condition'
@@ -245,7 +382,7 @@ aS'>='
 p7
 aS'HOUSING'
 p8
-aI25
+aI35
 aa(lp9
 I00
 aI3
@@ -254,7 +391,7 @@ ag6
 ag7
 aS'HEALTH'
 p10
-aI25
+aI35
 aa(lp11
 I00
 aI3
@@ -263,7 +400,7 @@ ag6
 ag7
 aS'EDUCATION'
 p12
-aI25
+aI35
 aa(lp13
 I00
 aI3
@@ -272,7 +409,7 @@ ag6
 ag7
 aS'NUTRITION'
 p14
-aI25
+aI35
 aa(lp15
 I00
 aI3
@@ -281,7 +418,7 @@ ag6
 ag7
 aS'TRAINING'
 p16
-aI25
+aI35
 aaaa.(lp0
 S'actionTrue'
 p1
@@ -360,7 +497,7 @@ aS'>='
 p7
 aS'HOUSING'
 p8
-aI20
+aI25
 aa(lp9
 I00
 aI3
@@ -369,7 +506,7 @@ ag6
 ag7
 aS'HEALTH'
 p10
-aI20
+aI25
 aa(lp11
 I00
 aI3
@@ -378,7 +515,7 @@ ag6
 ag7
 aS'EDUCATION'
 p12
-aI20
+aI25
 aa(lp13
 I00
 aI3
@@ -387,7 +524,7 @@ ag6
 ag7
 aS'NUTRITION'
 p14
-aI20
+aI25
 aa(lp15
 I00
 aI3
@@ -396,7 +533,7 @@ ag6
 ag7
 aS'TRAINING'
 p16
-aI20
+aI25
 aaaa.(lp0
 S'actionFalse'
 p1
@@ -428,7 +565,7 @@ ag6
 aS'>='
 p7
 ag6
-aI6000
+aI5000
 aaaa.(lp0
 S'actionTrue'
 p1
@@ -499,7 +636,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'Your mission is simple. Increase the progress bar of Education to 50 while not letting any of the other progress bars to fall below 2 within months.'
+aS'Your mission is simple. Increase the progress bar of Education to 70 while not letting any of the other progress bars to fall below 30 within 3 months.'
 p3
 aa.(lp0
 S'condition'
@@ -507,7 +644,7 @@ p1
 a(lp2
 S'NOR'
 p3
-aI120
+aI90
 a(lp4
 (lp5
 I00
@@ -519,7 +656,7 @@ aS'>='
 p7
 aS'HOUSING'
 p8
-aI20
+aI30
 aa(lp9
 I00
 aI3
@@ -528,7 +665,7 @@ ag6
 ag7
 aS'HEALTH'
 p10
-aI20
+aI30
 aa(lp11
 I00
 aI3
@@ -537,7 +674,7 @@ ag6
 ag7
 aS'NUTRITION'
 p12
-aI20
+aI30
 aa(lp13
 I00
 aI3
@@ -546,7 +683,7 @@ ag6
 ag7
 aS'TRAINING'
 p14
-aI20
+aI30
 aaaa.(lp0
 S'actionFalse'
 p1
@@ -579,7 +716,7 @@ aS'>='
 p7
 aS'HOUSING'
 p8
-aI20
+aI30
 aaaa.(lp0
 S'actionTrue'
 p1
@@ -641,7 +778,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'Yes, this mission is harder. Take the progress bars for health to 60 and nutrition above 50 and you will be termed as pass.'
+aS'Yes, this mission is harder. Take the progress bars for health to 65 and nutrition above 45 and you will be termed as pass.'
 p3
 aa.(lp0
 S'condition'
@@ -661,7 +798,7 @@ aS'>='
 p7
 aS'HEALTH'
 p8
-aI60
+aI65
 aa(lp9
 I00
 aI3
@@ -670,9 +807,9 @@ ag6
 ag7
 aS'NUTRITION'
 p10
-aI50
+aI45
 aaaa.(lp0
-S'actionTrue'
+S'action'
 p1
 a(lp2
 I2
@@ -726,7 +863,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'It seems as if there are not enough huts for all the incoming immigrants. Build more huts and increase the progress bar for housing till 80. Also increase the progress for Nutrition upto 60.'
+aS'It seems as if there are not enough huts for all the incoming immigrants. Build more huts and increase the progress bar for housing till 80. Also increase the progress for Nutrition upto 50.'
 p3
 aa.(lp0
 S'condition'
@@ -755,9 +892,9 @@ ag6
 ag7
 aS'NUTRITION'
 p10
-aI60
+aI50
 aaaa.(lp0
-S'actionTrue'
+S'action'
 p1
 a(lp2
 I2
@@ -810,7 +947,7 @@ aS'TRAINING'
 p8
 aI70
 aaaa.(lp0
-S'actionTrue'
+S'action'
 p1
 a(lp2
 I2
@@ -864,6 +1001,13 @@ p11
 aaS'drought.png'
 p12
 aaa.(lp0
+S'action'
+p1
+a(lp2
+I9
+aS'Do not let the nutrition progress drop below 50% and also donot let the water level fall below 500.'
+p3
+aa.(lp0
 S'condition'
 p1
 a(lp2
@@ -881,7 +1025,7 @@ aS'>='
 p7
 aS'NUTRITION'
 p8
-aI50
+aI47
 aa(lp9
 I00
 aI4

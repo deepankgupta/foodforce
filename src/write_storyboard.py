@@ -47,8 +47,14 @@ def write_data():
     action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
+
+    condn1 = [True,1,'HOUSE','','==','',0]
+    condnlist = [condn1]
+    condnGlobal = ['AND',-1,condnlist]
+    condnData = ['condition',condnGlobal]
+    pickle.dump(condnData,output)
     
-    text = 'When you build a hut, some amount of your resources are utilized. For each Hut that you build, 10 units of bricks, 8 units of Tools and 8 units of Water are used. Also, people are required to build a hut. Similarly, anything you build will require materials such as bricks and labour.'
+    text = 'When you build a hut, some amount of your resources are utilized. For each Hut that you build, 10 units of bricks, 8 units of Tools and 8 units of Water are used. Also, people are required to build a hut. Similarly, anything you build will require materials such as bricks and labour. Try building another hut.'
     
     action = [9,text]
     actionData = ['action',action]
@@ -65,8 +71,26 @@ def write_data():
     action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
+
+    text = 'At the lower left corner you can see the total population and total sheltered people. The total population increases with time. Building the Houses increases the sheltered population. You should always try to build enough houses to provide shelter to all the people.'
     
-    text = 'The next basic necessity of a village is Food. To grow food, you will need to build farms. Since the soil is fertile, we can grow any crop here. It is best to provide a healthy mix of Rice, Beans and Vegetables and Fruits. This will ensure healthy variety and nutrition. Build a farm now.'
+    action = [9,text]
+    actionData = ['action',action]
+    pickle.dump(actionData,output)
+    
+
+    text = 'Water, the most basic necessity of life, must always be present to support any kind of habitation. Build a Well for people to get water from.'
+    action = [9,text]
+    actionData = ['action',action]
+    pickle.dump(actionData,output)
+    
+    condn1 = [True,1,'FOUNTAIN','','==','',0]
+    condnlist = [condn1]
+    condnGlobal = ['AND',-1,condnlist]
+    condnData = ['condition',condnGlobal]
+    pickle.dump(condnData,output)
+    
+    text = 'The next basic necessity of a village is Food. To grow food, you will need to build farms. It is best to provide a healthy mix of Rice, Beans and Vegetables and Fruits. This will ensure healthy variety and nutrition.You can choose the type of production from the bar-chart for your farm. Click on Build>Farm and adjust the production'
     
     action = [9,text]
     actionData = ['action',action]
@@ -78,7 +102,20 @@ def write_data():
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
     
-    text = 'The children have no place to study. Build a school for them. '
+ 
+    text = 'As you continue building you will require Tools and Bricks. If you run out of them you can buy them from the market.Buying anything requires money and you can see the amount of money available to you in the top right corner of the screen. '
+    
+    action = [9,text]
+    actionData = ['action',action]
+    pickle.dump(actionData,output)
+    
+    text = 'In order to get money you can always sell the resource you have in surplus.We have a surplus of food itmes in our village right now, sell some of them to gain money.'
+    
+    action = [9,text]
+    actionData = ['action',action]
+    pickle.dump(actionData,output)
+    
+    text = 'The settlement has grown, the children here need a place to study. Build a school for them. '
     
     action = [9,text]
     actionData = ['action',action]
@@ -102,20 +139,21 @@ def write_data():
     condnGlobal = ['AND',-1,condnlist]
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
-    
-    text = 'Good. Whenever you are running low on a certain item, you should buy it from the market. Buying anything requires money and you can see the amount of money available to you in the top right corner of the screen. '
-    
-    action = [9,text]
-    actionData = ['action',action]
-    pickle.dump(actionData,output)
-    
-    text = 'To increase money in the village account you can sell resources to the market. Like, we have an excess of Building Material and since we are not doing any new construction these days, we can safely sell it in the market. Sell 500 units of Building Material now.'
+   
+
+    text = 'The upgrade button provides technological upgrades.Try upgrading the huts to brick Houses.Click on the Upgrade and then select House'
     
     action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    text = 'There is one last thing left before you can govern your own village. The upgrade button provides technological upgrades. Technology upgrades provide better buildings with capacity to house more workers and produce more resources. Thus, they are usually helpful in increasing the prosperity of the village. Do an upgrade of the school to level 1. Click on the Upgrade and then select School.'
+    condn1 = [True,2,'HOUSE','','==','',0]
+    condnlist = [condn1]
+    condnGlobal = ['AND',-1,condnlist]
+    condnData = ['condition',condnGlobal]
+    pickle.dump(condnData,output)
+    
+    text = 'Technology upgrades provide better buildings with capacity to house more workers and produce more resources. Thus, they are usually helpful in increasing the prosperity of the village. Upgrade your school'
     
     action = [9,text]
     actionData = ['action',action]
@@ -129,6 +167,35 @@ def write_data():
     
     text = 'You should notice that upgrading a facility increases its productivity. The number of children taught in the School have been increased considerable, also the quality of education is now better. The progress bars have also filled up more.'
     
+    action = [9,text]
+    actionData = ['action',action]
+    pickle.dump(actionData,output)
+
+    text = 'You village has grown considerably now, hygiene and healthcare are the two the most important aspect of a healthy living. You must build a hosptial now for people to get good treatment and medicine.'
+    
+    action = [9,text]
+    actionData = ['action',action]
+    pickle.dump(actionData,output)
+    
+    condn1 = [True,1,'HOSPITAL','','==','',0]
+    condnlist = [condn1]
+    condnGlobal = ['AND',-1,condnlist]
+    condnData = ['condition',condnGlobal]
+    pickle.dump(condnData,output)
+    
+    text = 'You will have to buy medicine from the market for hospital to run!'
+    
+    action = [9,text]
+    actionData = ['action',action]
+    pickle.dump(actionData,output)
+    
+    condn1 = [True,6,'','MEDICINE','==','',0]
+    condnlist = [condn1]
+    condnGlobal = ['AND',-1,condnlist]
+    condnData = ['condition',condnGlobal]
+    pickle.dump(condnData,output)
+
+    text = 'Your village has now taken the first step towards prosperity. Congratulations'
     action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
@@ -149,17 +216,17 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    text = 'Do not let any of the progress bars drop below 25... or else Kamat will not be very pleased. Good Luck!'
+    text = 'Do not let any of the progress bars drop below 35... or else Kamat will not be very pleased. Good Luck!'
     
     action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    condn1 = [False,3,'','','>=','HOUSING',25]
-    condn2 = [False,3,'','','>=','HEALTH',25]
-    condn3 = [False,3,'','','>=','EDUCATION',25]
-    condn4 = [False,3,'','','>=','NUTRITION',25]
-    condn5 = [False,3,'','','>=','TRAINING',25]
+    condn1 = [False,3,'','','>=','HOUSING',35]
+    condn2 = [False,3,'','','>=','HEALTH',35]
+    condn3 = [False,3,'','','>=','EDUCATION',35]
+    condn4 = [False,3,'','','>=','NUTRITION',35]
+    condn5 = [False,3,'','','>=','TRAINING',35]
     condnlist = [condn1,condn2,condn3,condn4,condn5]
     condnGlobal = ['NOR',90,condnlist]
     condnData = ['condition',condnGlobal]
@@ -203,11 +270,11 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    condn1 = [False,3,'','','>=','HOUSING',20]
-    condn2 = [False,3,'','','>=','HEALTH',20]
-    condn3 = [False,3,'','','>=','EDUCATION',20]
-    condn4 = [False,3,'','','>=','NUTRITION',20]
-    condn5 = [False,3,'','','>=','TRAINING',20]
+    condn1 = [False,3,'','','>=','HOUSING',25]
+    condn2 = [False,3,'','','>=','HEALTH',25]
+    condn3 = [False,3,'','','>=','EDUCATION',25]
+    condn4 = [False,3,'','','>=','NUTRITION',25]
+    condn5 = [False,3,'','','>=','TRAINING',25]
     condnlist = [condn1,condn2,condn3,condn4,condn5]
     condnGlobal = ['NOR',120,condnlist]
     condnData = ['condition',condnGlobal]
@@ -223,7 +290,7 @@ def write_data():
     actionData = ['actionFalse',action]
     pickle.dump(actionData,output)
     
-    condn1 = [False,5,'','','>=','',6000]
+    condn1 = [False,5,'','','>=','',5000]
     
     condnlist = [condn1]
     condnGlobal = ['NOR',1,condnlist]
@@ -271,18 +338,18 @@ def write_data():
     pickle.dump(actionData,output)
     
     
-    text = 'Your mission is simple. Increase the progress bar of Education to 50 while not letting any of the other progress bars to fall below 2 within months.'
+    text = 'Your mission is simple. Increase the progress bar of Education to 70 while not letting any of the other progress bars to fall below 30 within 3 months.'
     
     action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    condn1 = [False,3,'','','>=','HOUSING',20]
-    condn2 = [False,3,'','','>=','HEALTH',20]
-    condn4 = [False,3,'','','>=','NUTRITION',20]
-    condn5 = [False,3,'','','>=','TRAINING',20]
+    condn1 = [False,3,'','','>=','HOUSING',30]
+    condn2 = [False,3,'','','>=','HEALTH',30]
+    condn4 = [False,3,'','','>=','NUTRITION',30]
+    condn5 = [False,3,'','','>=','TRAINING',30]
     condnlist = [condn1,condn2,condn4,condn5]
-    condnGlobal = ['NOR',120,condnlist]
+    condnGlobal = ['NOR',90,condnlist]
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
     
@@ -296,7 +363,7 @@ def write_data():
     actionData = ['actionFalse',action]
     pickle.dump(actionData,output)
     
-    condn3 = [False,3,'','','>=','EDUCATION',50]
+    condn3 = [False,3,'','','>=','EDUCATION',70]
     
     condnlist = [condn1]
     condnGlobal = ['NOR',1,condnlist]
@@ -332,23 +399,24 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    text = 'Yes, this mission is harder. Take the progress bars for health to 60 and nutrition above 50 and you will be termed as pass.'
+    text = 'Yes, this mission is harder. Take the progress bars for health to 65 and nutrition above 45 and you will be termed as pass.'
     
     action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    condn1 = [False,3,'','','>=','HEALTH',60]
-    condn2 = [False,3,'','','>=','NUTRITION',50]
+    condn1 = [False,3,'','','>=','HEALTH',65]
+    condn2 = [False,3,'','','>=','NUTRITION',45]
     condnlist = [condn1,condn2]
     condnGlobal = ['AND',-1,condnlist]
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
     
     action = [2,'']
-    actionData = ['actionTrue',action]
+    actionData = ['action',action]
     pickle.dump(actionData,output)
-    
+
+        
     # Mission 5
     
     chatText = ['Farmer','Save us save us ....',
@@ -372,21 +440,21 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
-    text = 'It seems as if there are not enough huts for all the incoming immigrants. Build more huts and increase the progress bar for housing till 80. Also increase the progress for Nutrition upto 60.'
+    text = 'It seems as if there are not enough huts for all the incoming immigrants. Build more huts and increase the progress bar for housing till 80. Also increase the progress for Nutrition upto 50.'
     
     action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
     condn1 = [False,3,'','','>=','HOUSING',80]
-    condn2 = [False,3,'','','>=','NUTRITION',60]
+    condn2 = [False,3,'','','>=','NUTRITION',50]
     condnlist = [condn1,condn2]
     condnGlobal = ['AND',-1,condnlist]
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
     
     action = [2,'']
-    actionData = ['actionTrue',action]
+    actionData = ['action',action]
     pickle.dump(actionData,output)
     
     # Mission 6
@@ -413,7 +481,7 @@ def write_data():
     pickle.dump(condnData,output)
     
     action = [2,'']
-    actionData = ['actionTrue',action]
+    actionData = ['action',action]
     pickle.dump(actionData,output)
     
     
@@ -438,8 +506,11 @@ def write_data():
     pickle.dump(actionData,output)
     
     text = 'Do not let the nutrition progress drop below 50% and also donot let the water level fall below 500.'
+    action = [9,text]
+    actionData = ['action',action]
+    pickle.dump(actionData,output)
 
-    condn1 = [False,3,'','','>=','NUTRITION',50]
+    condn1 = [False,3,'','','>=','NUTRITION',47]
     condn2 = [False,4,'','WATER','>=','',500]
     condnlist = [condn1,condn2]
     condnGlobal = ['NOR',120,condnlist]

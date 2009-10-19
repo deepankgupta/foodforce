@@ -337,7 +337,7 @@ class checkConditions:
             return 0
 
         for conditions in self.conditionslist:
-
+            #print 'Flag:',Flag
             Flag = conditions.checkCondition(events) and Flag
 
         if self.closure == 'AND':
