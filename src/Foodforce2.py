@@ -21,6 +21,7 @@
 import pygame
 from pygame.locals import *
 from pygame.display import *
+from pygame.mouse import *
 from sys import exit
 import os
 from time import *
@@ -50,11 +51,11 @@ if model.FLAG_XO:
     import olpcgames.mesh as mesh
 
 
-    
-
 
 desktop2 = gui.Desktop()
 set_icon(pygame.image.load(os.path.join('data', 'WFPLOGO.png')).convert_alpha())
+#a,b,c,d = pygame.cursors.load_xbm(os.path.join('art', 'ff2_cur.xbm'), os.path.join('art', 'ff2_cur_mask.xbm'))
+#set_cursor(a,b,c,d)
 
 def message_window():
     ''' Thread to display the messages'''

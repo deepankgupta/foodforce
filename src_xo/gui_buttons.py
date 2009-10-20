@@ -1141,9 +1141,9 @@ class gui_buttons:
         myfont = pygame.font.Font("font.ttf", threades.resize_pt(17))
         button_style = gui.defaultButtonStyle.copy()
         button_style['font'] = myfont
-        self.setup_button = gui.Button(position = threades.resize_pos((50,865)), size = threades.resize_pos((200,25)), parent = threades.desktop, text = "Setup Facility",style = button_style)
-        self.upgrade_button = gui.Button(position = threades.resize_pos((350,865)), size = threades.resize_pos((200,25)), parent = threades.desktop, text = "Upgrade Facility",style = button_style)
-        self.buysell_button = gui.Button(position = threades.resize_pos((650,865)), size = threades.resize_pos((200,25)), parent = threades.desktop, text = "Buy/Sell Resources",style = button_style)
+        self.setup_button = gui.Button(position = threades.resize_pos((50,865)), size = threades.resize_pos((200,25)), parent = threades.desktop, text = "Build",style = button_style)
+        self.upgrade_button = gui.Button(position = threades.resize_pos((350,865)), size = threades.resize_pos((200,25)), parent = threades.desktop, text = "Upgrade",style = button_style)
+        self.buysell_button = gui.Button(position = threades.resize_pos((650,865)), size = threades.resize_pos((200,25)), parent = threades.desktop, text = "Market",style = button_style)
         self.setup_obj = setup_button()
         self.upgrade_obj = upgrade_button()
         self.buysell_obj = buysell_button()

@@ -128,7 +128,7 @@ def write_data():
     pickle.dump(condnData,output)
     
     
-    text = 'Well done. But there are no books in this school. Buy the books for the school from the market. The Market Window can be opened by clicking on the market button in the bottom. Once you open the market window, you can click on the thing you need to buy and sell. Then select the quantity in which it needs to be bought or sold. Then click on buy/sell.'
+    text = 'Well done. But there are no books in this school. Buy the books for the school from the market. The Market Window can be opened by clicking on the market button in the bottom. Once you open the market window, you can click on the thing you need to buy and sell. Then select the quantity in which it needs to be bought or sold. Then click on market.'
     
     action = [9,text]
     actionData = ['action',action]

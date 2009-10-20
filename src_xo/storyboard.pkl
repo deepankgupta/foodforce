@@ -427,10 +427,10 @@ p5
 aS'How are your studies going? I see, you do not seem to have enough books at school. It is all caused when trading is neglected. Let us analyze the village stocks and I will help you learn the basics of trading.'
 p6
 ag5
-aS'You can see the buy/sell button in the highlighted portion in the lower panel of the screen. This provides information on the number of every resource present in the village. When you find yourself running low on a certain resource, you should go to the market to buy more of it.'
+aS'You can see the market button in the highlighted portion in the lower panel of the screen. This provides information on the number of every resource present in the village. When you find yourself running low on a certain resource, you should go to the market to buy more of it.'
 p7
 ag5
-aS'Let us buy more books. Click on the Buy/Sell button, select books and enter the quantity in the box. Finally click the BUY button to buy the books.'
+aS'Let us buy more books. Click on the Market button, select books and enter the quantity in the box. Finally click the BUY button to buy the books.'
 p8
 aaS'trading.png'
 p9
