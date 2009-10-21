@@ -382,8 +382,6 @@ class starting_intro:
         self.win.onClose = lambda button: self.main_menu(self.pause_flag)
         #self.win.surf.set_alpha(140) This seems to be redundant as translucency doesnt seems to work properly
 
-        self.next_button = gui.Button(position = threades.resize_pos((500,650)), size = threades.resize_pos((200,30)), parent = self.win, text = "Next ",style = self.button_style)
-        
         myfont2 = pygame.font.Font("font.ttf", threades.resize_pt(20))
         labelStyleCopy = gui.defaultLabelStyle.copy()
         labelStyleCopy['border-width'] = 1
@@ -393,7 +391,7 @@ class starting_intro:
         labelStyleCopy['font-color'] = (0,200,0)
         labelStyleCopy['border-color'] = self.black_color
         
-        self.close_button = gui.Button(position = threades.resize_pos((500,550),(900.0,600.0),self.win.size), size = threades.resize_pos((80,30),(900.0,600.0),self.win.size), parent = self.win, text = "  Close  ",style = self.button_style)
+        self.close_button = gui.Button(position = threades.resize_pos((400,550),(900.0,600.0),self.win.size), size = threades.resize_pos((80,30),(900.0,600.0),self.win.size), parent = self.win, text = "  Close  ",style = self.button_style)
         
         self.close_button.onClick = self.close_win
         self.about_us_run = True

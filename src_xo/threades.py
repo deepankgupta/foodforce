@@ -224,7 +224,7 @@ def build_facility(facility_obj, list_food = model.DEF_FARM_PROD):
         return text
     except Exceptions.Maximum_Number_Reached:
         text = 'You cannot setup more buildings of this facility, try setting up some other facility'
-        message.push_message(text,'high')
+#        message.push_message(text,'high')
         return text
     
     
@@ -328,7 +328,7 @@ def upgrade_facility(facility_obj):
             message.push_message(text,'high')
             return text
         text = 'You need to setup a facility first to upgrade it'
-        message.push_message(text,'high')
+#        message.push_message(text,'high')
         return text
         
     #global model.resources
@@ -641,6 +641,11 @@ def sell_res(res,res_quantity):
         #print "The initial value of model.resources with the village is" , model.resources[i].get_vquantity()
         #print "The initial value of model.resources with the market is" , model.resources[i].get_mquantity()
         quantity=res_quantity
+        
+        if quantity == 0:
+            exit
+        
+        
         model.money = res.sell(quantity , model.money)       
         #print 'final model.money is'
         #print model.money.get_money()
@@ -648,7 +653,7 @@ def sell_res(res,res_quantity):
         #print "The final value of model.resources with the village is" , model.resources[i].get_vquantity()
         #print "The final value of model.resources with the market is" , model.resources[i].get_mquantity()
     except Exceptions.Resources_Underflow_Exception:
-        text = 'The village doesnot have enough quantity to sell this resource to market'
+        text = 'The village does not have enough quantity to sell this resource to market'
         return text
     except Exceptions.Resources_Overflow_Exception:
         text = 'The Village has sold the resource you demanded'

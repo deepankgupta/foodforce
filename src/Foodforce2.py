@@ -54,8 +54,6 @@ if model.FLAG_XO:
 
 desktop2 = gui.Desktop()
 set_icon(pygame.image.load(os.path.join('data', 'WFPLOGO.png')).convert_alpha())
-#a,b,c,d = pygame.cursors.load_xbm(os.path.join('art', 'ff2_cur.xbm'), os.path.join('art', 'ff2_cur_mask.xbm'))
-#set_cursor(a,b,c,d)
 
 def message_window():
     ''' Thread to display the messages'''
@@ -330,7 +328,7 @@ class starting_intro:
         size_win =threades.resize_pos((900.0,600.0))
 
         # Creating window
-        self.win = gui.Window(position = position_win, size = size_win, parent = desktop2, text = "     -Guide-" , style = win_style, shadeable = False, closeable = False,moveable = False)
+        self.win = gui.Window(position = position_win, size = size_win, parent = desktop2, text = "    Guide" , style = win_style, shadeable = False, closeable = False,moveable = False)
         self.win.onClose = lambda button: self.main_menu(self.pause_flag)
         #self.win.surf.set_alpha(140) This seems to be redundant as translucency doesnt seems to work properly
 
@@ -343,9 +341,9 @@ class starting_intro:
         labelStyleCopy['font-color'] = (0,200,0)
         labelStyleCopy['border-color'] = self.black_color
         
-        self.skip_button = gui.Button(position = threades.resize_pos((500,550),(900.0,600.0),self.win.size), size = threades.resize_pos((110,30),(900.0,600.0),self.win.size), parent = self.win, text = "  Skip  ",style = self.button_style)
-        self.next_button = gui.Button(position = threades.resize_pos((380,550),(900.0,600.0),self.win.size), size = threades.resize_pos((110,30),(900.0,600.0),self.win.size), parent = self.win, text = "  Next > ",style = self.button_style)
-        self.prev_button = gui.Button(position = threades.resize_pos((260,550),(900.0,600.0),self.win.size), size = threades.resize_pos((110,30),(900.0,600.0),self.win.size), parent = self.win, text = "  < Prev  ",style = self.button_style)
+        self.skip_button = gui.Button(position = threades.resize_pos((500,490),(900.0,600.0),self.win.size), size = threades.resize_pos((110,30),(900.0,600.0),self.win.size), parent = self.win, text = "  Skip  ",style = self.button_style)
+        self.next_button = gui.Button(position = threades.resize_pos((380,490),(900.0,600.0),self.win.size), size = threades.resize_pos((110,30),(900.0,600.0),self.win.size), parent = self.win, text = "  Next > ",style = self.button_style)
+        self.prev_button = gui.Button(position = threades.resize_pos((260,490),(900.0,600.0),self.win.size), size = threades.resize_pos((110,30),(900.0,600.0),self.win.size), parent = self.win, text = "  < Prev  ",style = self.button_style)
 
         self.next_button.onClick = self.increaseInstructionsCounter
         self.prev_button.onClick = self.decreaseInstructionsCounter
@@ -426,8 +424,6 @@ class starting_intro:
         self.win.onClose = lambda button: self.main_menu(self.pause_flag)
         #self.win.surf.set_alpha(140) This seems to be redundant as translucency doesnt seems to work properly
 
-        self.next_button = gui.Button(position = threades.resize_pos((500,650)), size = threades.resize_pos((200,30)), parent = self.win, text = "Next ",style = self.button_style)
-        
         myfont2 = pygame.font.Font("font.ttf", threades.resize_pt(20))
         labelStyleCopy = gui.defaultLabelStyle.copy()
         labelStyleCopy['border-width'] = 1
@@ -437,7 +433,7 @@ class starting_intro:
         labelStyleCopy['font-color'] = (0,200,0)
         labelStyleCopy['border-color'] = self.black_color
         
-        self.close_button = gui.Button(position = threades.resize_pos((500,550),(900.0,600.0),self.win.size), size = threades.resize_pos((80,30),(900.0,600.0),self.win.size), parent = self.win, text = "  Close  ",style = self.button_style)
+        self.close_button = gui.Button(position = threades.resize_pos((400,550),(900.0,600.0),self.win.size), size = threades.resize_pos((80,30),(900.0,600.0),self.win.size), parent = self.win, text = "  Close  ",style = self.button_style)
         
         self.close_button.onClick = self.close_win
         self.about_us_run = True

@@ -1014,6 +1014,7 @@ class buysell_button:
                 if label_text == 'The Village has sold the resource you demanded':
                     self.label_vwater.text = str(int(model.Water.get_vquantity()))
                     self.label_mwater.text = str(int(model.Water.get_mquantity()))
+                
             else:
                 if self.shareCheckBox.value:
                     initiateTrade(False,model.Water,quantity,price)
