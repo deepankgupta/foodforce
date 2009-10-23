@@ -21,19 +21,28 @@
 import Exceptions
 import pickle
 import pygame
+import os
 #import gui_buttons
 
 #Flag to check the operating system
 FLAG_XO = False
 
+
 try:
-   import olpcgames, olpcgames.util
-   if not olpcgames.ACTIVITY: raise RuntimeError
-   FLAG_XO = True
-except (RuntimeError,ImportError):
+   
+    if os.path.exists('/sys/power/olpc-pm'):
+       
+        FLAG_XO = True
+    else:
     FLAG_XO = False
 
-#FLAG_XO = True
+FLAG_SOAS = False
+
+try:
+    import olpcgames.util
+    FLAG_SOAS = True
+except:
+    FLAG_SOAS = False
 
 #facility size values
 Facility_Size = [['HOUSE',360,300],['HOSPITAL',370,300],['FARM',516,500],['FOUNTAIN',197,192],['SCHOOL',420,450],['WORKSHOP',760,520]]

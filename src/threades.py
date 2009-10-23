@@ -298,7 +298,13 @@ class facility_placement_data:
             output = open(self.data_file,'wb')
             output.close()
 
-facility_placement_data_obj = facility_placement_data('facplace.pkl')
+    
+if model.FLAG_XO or model.FLAG_SOAS:
+    import olpcgames.util
+    facplace_file = os.path.join(olpcgames.util.get_root_user(),'facplace.pkl')
+else:
+    facplace_file = 'facplace.pkl'
+facility_placement_data_obj = facility_placement_data(facplace_file)
 facility_placement_data_obj.clear_placement_data()
 
 def set_build_facility_placement_flag(facility_obj = None):
@@ -955,9 +961,13 @@ def famine():
     sleep(90)
     model.Farm.resume_facility()
     
+if model.FLAG_XO or model.FLAG_SOAS:
+    import olpcgames.util
+    save_game_file = os.path.join(olpcgames.util.get_root_user(),'save_game.pkl')
+else:
+    save_game_file = 'save_game.pkl'
 
-
-def save_game(data_file = 'save_game.pkl'):
+def save_game(data_file = save_game_file):
     '''Used to save current level'''
     global PLACING_LIST_TEMP
     global current_level
@@ -970,7 +980,7 @@ def save_game(data_file = 'save_game.pkl'):
     
     
 
-def resume_game(data_file = 'save_game.pkl'):
+def resume_game(data_file = save_game_file):
     '''Used to resume a saved game'''
     global PLACING_LIST_TEMP
     ##global level
@@ -989,7 +999,7 @@ def resume_game(data_file = 'save_game.pkl'):
     output.close()
     game_save_flag = False
     
-def check_saved_game_level(data_file = 'save_game.pkl'):
+def check_saved_game_level(data_file = save_game_file):
     '''Used to check the status of game, saved or unsaved'''
     output = open(data_file,'rb')
     global game_save_flag

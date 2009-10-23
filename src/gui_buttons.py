@@ -72,7 +72,7 @@ class marketBarChart:
         '''
         surface = self.surf
         if (x>threades.resize_pt_x(640)) and (x<threades.resize_pt_x(840)) and (y>threades.resize_pt_y(250)) and (y<threades.resize_pt_y(280)):
-            pygame.draw.rect(surface,(0,0,0),threades.resize_rect((440,200,200,50)))
+            pygame.draw.rect(surface,(0,0,0,180),threades.resize_rect((440,200,200,50)))
 
             self.bar1Val = (x-threades.resize_pt_x(640))*self.bar1ValMax/threades.resize_pt_x(200)
 
@@ -88,7 +88,7 @@ class marketBarChart:
 
         if self.price_flag:
             if (x>threades.resize_pt_x(640)) and (x<threades.resize_pt_x(840)) and (y>threades.resize_pt_y(330)) and (y<threades.resize_pt_y(360)):
-                pygame.draw.rect(surface,(0,0,0),threades.resize_rect((440,280,200,30)))
+                pygame.draw.rect(surface,(0,0,0,180),threades.resize_rect((440,280,200,30)))
 
                 self.bar2Val = (x-threades.resize_pt_x(640))*self.bar2ValMax/threades.resize_pt_x(200)
 
@@ -107,7 +107,7 @@ class marketBarChart:
     def deletePriceChart(self):
 
         if self.price_flag:
-            pygame.draw.rect(self.surf,(0,0,0),threades.resize_rect((438,278,234,34)))
+            pygame.draw.rect(self.surf,(0,0,0,180),threades.resize_rect((438,278,234,34)))
             self.price_flag = False
             #gui_obj.buysell_obj.label_res_price_flag = False
             gui_obj.buysell_obj.label_res_price.text = ''
