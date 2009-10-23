@@ -33,7 +33,7 @@ try:
 except (RuntimeError,ImportError):
     FLAG_XO = False
 
-
+#FLAG_XO = True
 
 #facility size values
 Facility_Size = [['HOUSE',360,300],['HOSPITAL',370,300],['FARM',516,500],['FOUNTAIN',197,192],['SCHOOL',420,450],['WORKSHOP',760,520]]

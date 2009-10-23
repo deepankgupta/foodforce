@@ -1187,6 +1187,7 @@ class showInstructions:
             
     def showMessage(self,flag = False):
         
+        #print "flag is ",flag," text is ",self.text
         
         self.winFlag = True
         font_color = (100,200,200)
@@ -1263,7 +1264,7 @@ class gui_buttons:
     
     def showInstruction(self, button = None):
     
-        showMessages.showMessage()
+        thread_instruction = threading.Thread(target = showMessages.addMessage, args=[]).start()
         
     def get_win_flag(self):
         return (self.setup_obj.get_win_flag() or self.upgrade_obj.get_win_flag() or self.buysell_obj.get_win_flag())

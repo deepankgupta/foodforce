@@ -656,6 +656,10 @@ class Actions:
             pygame.display.set_caption('FoodForce2')
 
             for e in gui.setEvents(pygame.event.get()):
+                if e.type == MOUSEBUTTONDOWN:
+                    if e.button == 1:
+                        self.storyboardwin_run = False
+                    
                 if e.type == KEYDOWN:
                     if e.key == 27:  # For escape key
                         self.storyboardwin_run = False
