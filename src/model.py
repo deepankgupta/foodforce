@@ -28,12 +28,11 @@ import os
 FLAG_XO = False
 
 
-try:
-   
-    if os.path.exists('/sys/power/olpc-pm'):
+
+if os.path.exists('/sys/power/olpc-pm'):
        
-        FLAG_XO = True
-    else:
+    FLAG_XO = True
+else:
     FLAG_XO = False
 
 FLAG_SOAS = False
