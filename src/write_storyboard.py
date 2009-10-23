@@ -205,7 +205,7 @@ def write_data():
     pickle.dump(actionData,output)
     
     
-    # Mission1
+    # Mission 1
     
     chatText = ['Kamat','Nice work with the setting up of the new village. I am really impressed.',
                 'Son','Thanks',
@@ -265,7 +265,7 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    text = 'Earn Rs. 5000 more in the next 4 months. But remember, this should not come at the cost of village condition. Do not let the progress bars fall below 20. Good Luck!'
+    text = 'Earn Rs. 5000 more in the next 4 months. But remember, this should not come at the cost of village condition. Do not let the progress bars fall below 25. Good Luck!'
     
     action = [9,text]
     actionData = ['action',action]

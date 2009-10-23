@@ -480,7 +480,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'Earn Rs. 5000 more in the next 4 months. But remember, this should not come at the cost of village condition. Do not let the progress bars fall below 20. Good Luck!'
+aS'Earn Rs. 5000 more in the next 4 months. But remember, this should not come at the cost of village condition. Do not let the progress bars fall below 25. Good Luck!'
 p3
 aa.(lp0
 S'condition'
@@ -557,7 +557,7 @@ p1
 a(lp2
 S'NOR'
 p3
-aI5
+aI1
 a(lp4
 (lp5
 I00
