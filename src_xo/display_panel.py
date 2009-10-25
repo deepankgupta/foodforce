@@ -353,7 +353,7 @@ class facilities_panel:
         self.labelstyle1['font-color'] = self.font_color
         #self.labelstyle1['bg-color'] = self.font_bg_color
         
-        self.list_titles = ('Houses ','Schools ','Hospitals ','Workshops ','Farms ','Wells ')
+        self.list_titles = ('Huts ','Schools ','Hospitals ','Workshops ','Farms ','Wells ')
         self.list_names = ('Number: ','Number: ','Number: ','Number: ','Number: ','Number: ')
         self.list_values1 = (model.House.get_number(),model.School.get_number(),model.Hospital.get_number(),model.Workshop.get_number(),model.Farm.get_number(),model.Fountain.get_number())
         self.list_values2 = (model.House.get_level(),model.School.get_level(),model.Hospital.get_level(),model.Workshop.get_level(),model.Farm.get_level(),model.Fountain.get_level())

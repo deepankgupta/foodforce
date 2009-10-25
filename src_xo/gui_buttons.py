@@ -309,7 +309,7 @@ class setup_button:
         op_style['word wrap'] = False
         # Creating option boxes for all the facilities
         position_optionbox = threades.resize_pos((200.0,150.0),(800.0,600.0),size_win)        
-        self.housing_box = gui.OptionBox(position = position_optionbox, parent = self.win, style = op_style, text = 'House')
+        self.housing_box = gui.OptionBox(position = position_optionbox, parent = self.win, style = op_style, text = 'Hut')
         self.housing_box.onClick =  self.on_select_setup_option_box
         self.hospital_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(10)), parent = self.win, style = op_style, text = 'Hospital')
         self.hospital_box.onClick = self.on_select_setup_option_box
@@ -342,8 +342,8 @@ class setup_button:
         #self.win.surf.blit(self.background_pic,threades.resize_pos((450,250)))
         #self.win.surf.set_alpha(140)
 
-        if button.text == 'House':
-            text = 'House: '
+        if button.text == 'Hut':
+            text = 'Hut: '
             #image = load_images. House_tiles_list[2][2]
             text += threades.get_setup_text(model.House)
         if button.text == 'Hospital':
@@ -558,7 +558,7 @@ class upgrade_button:
         op_style['word wrap'] = False
         # Creating option boxes for all the facilities
         position_optionbox = threades.resize_pos((200.0,150.0),(800.0,600.0),size_win)        
-        self.housing_box = gui.OptionBox(position = position_optionbox, parent = self.win, style = op_style, text = 'House')
+        self.housing_box = gui.OptionBox(position = position_optionbox, parent = self.win, style = op_style, text = 'Hut')
         self.housing_box.onClick =  self.on_select_upgrade_option_box
         self.hospital_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(10)), parent = self.win, style = op_style, text = 'Hospital')
         self.hospital_box.onClick = self.on_select_upgrade_option_box
@@ -603,7 +603,7 @@ class upgrade_button:
         #self.win.surf.set_alpha(140)
 
         text = ''
-        if button.text == 'House':
+        if button.text == 'Hut':
             #image = load_images. House_tiles_list[2][2]
             text += threades.get_upgrade_text(model.House)
         if button.text == 'Hospital':

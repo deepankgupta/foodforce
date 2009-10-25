@@ -347,7 +347,7 @@ class setup_button:
         #self.win.surf.set_alpha(140)
 
         if button.text == 'Hut':
-            text = 'House: '
+            text = 'Hut: '
             #image = load_images. House_tiles_list[2][2]
             text += threades.get_setup_text(model.House)
         if button.text == 'Hospital':
@@ -877,7 +877,7 @@ class buysell_button:
 
     def onOptionSelect(self,button= None):
         
-        font_color = (27,11,239)
+        font_color = (50,200,23)
         myfont2 = pygame.font.Font("font.ttf",threades.resize_pt(16))
         # creating custom style for option box
         op_style = gui.defaultOptionBoxStyle.copy()

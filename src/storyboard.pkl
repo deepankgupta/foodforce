@@ -82,14 +82,14 @@ S'action'
 p1
 a(lp2
 I9
-aS'When you build a Hut the Housing bar on the lower right corner of your screen increases. The more this bar is filled the more number of people have houses available for them. High progress bars indicate a happy and prosperous village.'
+aS'When you build a Hut the Housing bar on the lower right corner of your screen increases. The more this bar is filled the more number of people have huts available for them. High progress bars indicate a happy and prosperous village.'
 p3
 aa.(lp0
 S'action'
 p1
 a(lp2
 I9
-aS'At the lower left corner you can see the total population and total sheltered people. The total population increases with time. Building the Houses increases the sheltered population. You should always try to build enough houses to provide shelter to all the people.'
+aS'At the lower left corner you can see the total population and total sheltered people. The total population increases with time. Building the Huts increases the sheltered population. You should always try to build enough huts to provide shelter to all the people.'
 p3
 aa.(lp0
 S'action'
@@ -214,7 +214,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'The upgrade button provides technological upgrades.Try upgrading the huts to brick Houses.Click on the Upgrade and then select House'
+aS'The upgrade button provides technological upgrades. Try upgrading the huts with bricks. Click on the Upgrade and then select Hut'
 p3
 aa.(lp0
 S'condition'
