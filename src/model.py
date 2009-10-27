@@ -37,11 +37,11 @@ else:
 
 FLAG_SOAS = False
 
-try:
-    import olpcgames.util
+if os.path.exists('/home/olpc/Activities') and (FLAG_XO == False):
+       
     FLAG_SOAS = True
-except:
-    FLAG_SOAS = False
+else:
+    FLAG_XO = False
 
 #facility size values
 Facility_Size = [['HOUSE',360,300],['HOSPITAL',370,300],['FARM',516,500],['FOUNTAIN',197,192],['SCHOOL',420,450],['WORKSHOP',760,520]]

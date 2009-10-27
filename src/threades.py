@@ -301,7 +301,7 @@ class facility_placement_data:
     
 if model.FLAG_XO or model.FLAG_SOAS:
     import olpcgames.util
-    facplace_file = os.path.join(olpcgames.util.get_root_user(),'facplace.pkl')
+    facplace_file = os.path.join(olpcgames.util.get_root_user(),'data','facplace.pkl')
 else:
     facplace_file = 'facplace.pkl'
 facility_placement_data_obj = facility_placement_data(facplace_file)
@@ -963,7 +963,7 @@ def famine():
     
 if model.FLAG_XO or model.FLAG_SOAS:
     import olpcgames.util
-    save_game_file = os.path.join(olpcgames.util.get_root_user(),'save_game.pkl')
+    save_game_file = os.path.join(olpcgames.util.get_root_user(),'data','save_game.pkl')
 else:
     save_game_file = 'save_game.pkl'
 
