@@ -135,7 +135,7 @@ def write_data():
     pickle.dump(condnData,output)
    
 
-    text = 'The upgrade button provides technological upgrades.Try upgrading the huts to brick Houses.Click on the Upgrade and then select House'
+    text = 'The upgrade button provides technological upgrades.Try upgrading the huts with bricks.Click on the Upgrade and then select Hut'
     
     action = [9,text]
     actionData = ['action',action]

@@ -207,7 +207,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'The upgrade button provides technological upgrades.Try upgrading the huts to brick Houses.Click on the Upgrade and then select House'
+aS'The upgrade button provides technological upgrades.Try upgrading the huts with bricks.Click on the Upgrade and then select Hut'
 p3
 aa.(lp0
 S'condition'
