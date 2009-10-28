@@ -624,7 +624,7 @@ class Actions:
         size_win =threades.resize_pos((900.0,500.0))
 
         # Creating window
-        self.win = gui.Window(position = position_win, size = size_win, parent = st_desktop, text = " FoodForce2" , style = win_style, shadeable = False, closeable = False,moveable = False)
+        self.win = gui.Window(position = position_win, size = size_win, parent = st_desktop, text = "                               FoodForce2" , style = win_style, shadeable = False, closeable = False,moveable = False)
         #self.win.onClose = lambda button: self.main_menu(self.pause_flag)
         #self.win.surf.set_alpha(140) This seems to be redundant as translucency doesnt seems to work properly
 

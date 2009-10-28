@@ -487,9 +487,15 @@ class setup_button:
         quantity3 = self.bardisplay.bar3Val
         list_food = [quantity1,quantity2,quantity3]
         label_text = threades.build_facility(model.Farm,list_food)
-        self.child_win.close()
-        self.enable_parent_win()
-        self.close_win()
+        if label_text == 'Facility has been build':
+            self.child_win.close()
+            self.enable_parent_win()
+            self.close_win()
+        else:
+            self.child_win.close()
+            self.enable_parent_win()
+            self.message_label.text = label_text
+            #threades.message.push_message(label_text,'high')
         return
 
     def enable_parent_win(self):
@@ -1199,8 +1205,8 @@ class showInstructions:
         win_style['font-color'] = font_color
         
         # Calculating position and size of window from the size of the threades.desktop
-        position_win =threades.resize_pos((70.0,42.0))
-        size_win =threades.resize_pos((800.0,150.0))
+        position_win =threades.resize_pos((20.0,42.0))
+        size_win =threades.resize_pos((700.0,200.0))
     
         # Creating custom label style for the text to be displayed as a threades.message
         labelStyleCopy = gui.defaultLabelStyle.copy()
@@ -1210,12 +1216,14 @@ class showInstructions:
         labelStyleCopy['font-color'] = font_color
     
         # Creating window
-        win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = " Mission " ,style = win_style ,closeable = False ,shadeable = False,moveable = False)
-        pygame.draw.rect(win.surf,font_color,threades.resize_rect((3,3,795,144)),1)            
+        win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = "Current Objective" ,style = win_style ,closeable = False ,shadeable = False,moveable = False)
+        pygame.draw.rect(win.surf,font_color,threades.resize_rect((3,3,695,195)),1)            
         
         # Creating label
-        message_label = gui.Label(position = threades.resize_pos((5,50),(790.0,150.0),win.size),size = threades.resize_pos((500,50),(500.0,10.0),win.size), parent = win, text = self.text, style = labelStyleCopy)
-        sleep(5)
+        message_label = gui.Label(position = threades.resize_pos((5,50),(690.0,190.0),win.size),size = threades.resize_pos((500,50),(500.0,10.0),win.size), parent = win, text = self.text, style = labelStyleCopy)
+        length = len(self.text)
+        length = length/50 + 4
+        sleep(length)
         win.close()
         if flag:
             event = game_events.Event(type = game_events.ACTIONCOMPLETEEVENT, facility_name = '', res_name = '' , res_quantity = 0)
@@ -1249,7 +1257,7 @@ class gui_buttons:
         buttonsurf = pygame.transform.scale(buttonsurf, (36, threades.resize_pt_y(30)))
         button_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
         button_style['font'] = myfont
-        self.instructions_button = gui.Button(position = threades.resize_pos((1000,10)), size = threades.resize_pos((190,25)), parent = threades.desktop, text = "Mission",style = button_style)
+        self.instructions_button = gui.Button(position = threades.resize_pos((1000,10)), size = threades.resize_pos((190,25)), parent = threades.desktop, text = "Current Objective",style = button_style)
 
         self.setup_obj = setup_button()
         self.upgrade_obj = upgrade_button()

@@ -185,22 +185,22 @@ s.(dp0
 .(dp0
 S'MEDICINE'
 p1
-F2.0
+F1.0
 sS'WATER'
 p2
-F5.0
+F2.0
 s.(dp0
 S'WATER'
 p1
-F2.0
+F1.0
 sS'BOOKS'
 p2
-F2.0
+F1.0
 s.(dp0
 .(dp0
 S'WATER'
 p1
-F10.0
+F5.0
 s.(dp0
 .(dp0
 .(dp0
@@ -247,7 +247,7 @@ F10.0
 s.(dp0
 S'EMPLOYED PEOPLE IN SCHOOL'
 p1
-F6.0
+F8.0
 s.(dp0
 S'EMPLOYED PEOPLE IN WORKSHOP'
 p1
@@ -306,7 +306,7 @@ p1
 (dp2
 S'EMPLOYED PEOPLE IN SCHOOL'
 p3
-F6.0
+F8.0
 ssS'FARM'
 p4
 (dp5
@@ -337,15 +337,15 @@ p1
 (dp2
 S'WATER'
 p3
-F2.0
+F1.0
 sS'BOOKS'
 p4
-F2.0
+F1.0
 ssS'FARM'
 p5
 (dp6
 g3
-F10.0
+F5.0
 ssS'HOUSE'
 p7
 (dp8
@@ -354,9 +354,9 @@ p9
 (dp10
 S'MEDICINE'
 p11
-F2.0
+F1.0
 sg3
-F5.0
+F2.0
 ssS'WORKSHOP'
 p12
 (dp13
@@ -426,12 +426,12 @@ s.F0.40000000000000002
 .I0
 .I0
 .I0
-.I300
+.I5000
 .L9999999999L
 .I0
-.I40
-.I60
-.I60
+.I200
+.I500
+.I500
 .I0
 .I0
 .I40
@@ -472,7 +472,7 @@ p2
 I4
 sS'HOUSE'
 p3
-I21
+I10
 sS'HOSPITAL'
 p4
 I3
@@ -652,7 +652,7 @@ sg4
 F0.40000000000000002
 sg5
 F0.5
-ss.F15.0
+ss.F10.0
 .I1
 .I30
 .F0.050000000000000003

@@ -27,7 +27,7 @@ def write_data():
     
     # Tutorial Mission
     
-    text = 'In this beautiful country called India, there is a Gokul village. The village of gokul is governed by Kamat who is the Sarpanch(head) of the village. But Kamat is growing old and needs a successor. Can you, his younger son, take on the responsibilities of the village and make the village prosper.'
+    text = '\n \n \n \nIn this beautiful country called India, there is a Gokul village. The village of gokul is governed by Kamat who is the Sarpanch(head) of the village. But Kamat is growing old and needs a successor. Can you, his younger son, take on the responsibilities of the village and make the village prosper.'
     
     action = [7,text]
     actionData = ['action',action]
@@ -108,13 +108,7 @@ def write_data():
     action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
-    
-    text = 'In order to get money you can always sell the resource you have in surplus.We have a surplus of food itmes in our village right now, sell some of them to gain money.'
-    
-    action = [9,text]
-    actionData = ['action',action]
-    pickle.dump(actionData,output)
-    
+      
     text = 'The settlement has grown, the children here need a place to study. Build a school for them. '
     
     action = [9,text]

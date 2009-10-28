@@ -482,7 +482,7 @@ class starting_intro:
         threades.screen.blit(hunger_map,threades.resize_pos((0,0)))
         if soundtrack:
             soundtrack.play(-1)
-   
+               
 
         color_brown = (255,214,150)
         # gui.Window custom style
@@ -506,7 +506,7 @@ class starting_intro:
         labelstyle1['font-color'] = color_brown
 
         counter = 0
-        label = gui.Label(position = threades.resize_pos((10.0,130.0),(800.0,600.0),win.size),size = threades.resize_pos((780.0,460.0),(800.0,600.0),win.size), parent = win, text = '', style = labelstyle1)
+        label = gui.Label(position = threades.resize_pos((10.0,130.0),(800.0,600.0),win.size),size = threades.resize_pos((780.0,460.0),(800.0,600.0),win.size), parent = win, text = 's', style = labelstyle1)
         
         buttonsurf = pygame.image.load(os.path.join('art','button.png')).convert_alpha()
         buttonsurf = pygame.transform.scale(buttonsurf, (36, threades.resize_pt_y(40)))

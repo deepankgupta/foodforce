@@ -258,6 +258,14 @@ def chat_event_handle(e):
             else:
                 
                 move_to_next_chatwin_flag=True
+    if e.type == MOUSEBUTTONDOWN:            
+        if e.button == 1:
+            if show_whole_chat_flag==False:
+                show_whole_chat_flag=True
+                chatObject.label.text='     ENTER : To move to next set of chats              ESC : To skip chat           '
+            else:
+                
+                move_to_next_chatwin_flag=True
 
 
 surf_bckgnd = None
