@@ -81,13 +81,13 @@ pickle.dump(COST_LEVEL_FOUNTAIN, output)
 
 CONS_HOUSE = { }                                                                                 # Remember that resources are being                                                                                                                     # consumed by manpower also so we need to                                                                                                                       # make that thing too... a TODO for 
 pickle.dump(CONS_HOUSE, output)                                                                                                          # controller
-CONS_HOSPITAL = { 'MEDICINE' : 2.0 , 'WATER' : 5.0 }
+CONS_HOSPITAL = { 'MEDICINE' : 1.0 , 'WATER' : 2.0 }
 pickle.dump(CONS_HOSPITAL, output)
-CONS_SCHOOL = { 'BOOKS' : 2.0 , 'WATER' : 2.0 }
+CONS_SCHOOL = { 'BOOKS' : 1.0 , 'WATER' : 1.0 }
 pickle.dump(CONS_SCHOOL, output)
 CONS_WORKSHOP = { }
 pickle.dump(CONS_WORKSHOP, output)
-CONS_FARM = { 'WATER' : 10.0 }
+CONS_FARM = { 'WATER' : 5.0 }
 pickle.dump(CONS_FARM, output)
 CONS_FOUNTAIN = { }
 pickle.dump(CONS_FOUNTAIN, output)
@@ -202,7 +202,7 @@ pickle.dump(INIT_FOUNTAIN, output)
 
 
 # MONEY
-INIT_MONEY = 100 #10000
+INIT_MONEY = 5000 #10000
 pickle.dump(INIT_MONEY, output)
 MAX_MONEY=9999999999L
 pickle.dump(MAX_MONEY, output)
@@ -213,11 +213,11 @@ pickle.dump(INIT_LEVEL, output)
 
 ## VILLAGE QUANTITY
 # RESOURCES
-INIT_WATER = 25 #1000
+INIT_WATER = 200 #1000
 pickle.dump(INIT_WATER, output)
-INIT_BUILDMAT = 30 #1000
+INIT_BUILDMAT = 500 #1000
 pickle.dump(INIT_BUILDMAT, output)
-INIT_TOOLS = 45 #1000
+INIT_TOOLS = 500 #1000
 pickle.dump(INIT_TOOLS, output)
 INIT_MEDICINE = 0 #100
 pickle.dump(INIT_MEDICINE, output)
@@ -306,7 +306,7 @@ pickle.dump(COST_OILS, output)
 
 MAX_INDICATOR = 100
 pickle.dump(MAX_INDICATOR, output)
-MAX_NO_INS_FACILITY = {'HOUSE':21 , 'HOSPITAL':3 , 'WORKSHOP':4, 'SCHOOL':3, 'FOUNTAIN':7, 'FARM':4} # MAXIMUM NO. OF INSTALLATIONS OF A FACILITY
+MAX_NO_INS_FACILITY = {'HOUSE':10 , 'HOSPITAL':3 , 'WORKSHOP':4, 'SCHOOL':3, 'FOUNTAIN':7, 'FARM':4} # MAXIMUM NO. OF INSTALLATIONS OF A FACILITY
 pickle.dump(MAX_NO_INS_FACILITY, output)
 MAX_LEVELS_FACILITY = 3  # MAXIMUM NO OF LEVELS OF A FACILITY
 pickle.dump(MAX_LEVELS_FACILITY, output)
