@@ -37,11 +37,11 @@ else:
 
 FLAG_SOAS = False
 
-if os.path.exists('/home/olpc/Activities') and (FLAG_XO == False):
+if os.path.exists('/home/liveuser/Activities') and (FLAG_XO == False):
        
     FLAG_SOAS = True
 else:
-    FLAG_XO = False
+    FLAG_SOAS = False
 
 #facility size values
 Facility_Size = [['HOUSE',360,300],['HOSPITAL',370,300],['FARM',516,500],['FOUNTAIN',197,192],['SCHOOL',420,450],['WORKSHOP',760,520]]
@@ -1148,7 +1148,7 @@ class Facility:
             name = resources[i].get_name()
             if self.cost_inc_level.has_key(name):
                 if resources[i].get_vquantity() < self.cost_inc_level[name]:
-                    raise Exceptions.Resources_Underflow_Exception
+                    raise Exceptions.Resources_Underflow_Exception,name
         
     def update_level(self, resources,people_obj):
         """ Updates the level of facility installed, all the buildings of a facility installed
@@ -1174,7 +1174,7 @@ class Facility:
             name = resources[i].get_name()
             if self.cost_inc_level.has_key(name):
                 if resources[i].get_vquantity() < self.cost_inc_level[name]:
-                    raise Exceptions.Resources_Underflow_Exception
+                    raise Exceptions.Resources_Underflow_Exception,args
                 else:
                     resources[i].change_vquantity(-self.cost_inc_level[name])
         if self._level == MAX_LEVELS_FACILITY:
@@ -1198,7 +1198,7 @@ class Facility:
             name = resources[i].get_name()
             if self.cost_build.has_key(name):
                 if resources[i].get_vquantity() < self.cost_build[name]:
-                    raise Exceptions.Resources_Underflow_Exception
+                    raise Exceptions.Resources_Underflow_Exception,name
         
         
     def build_start(self, resources , people_obj):
@@ -1221,7 +1221,7 @@ class Facility:
             name = resources[i].get_name()
             if self.cost_build.has_key(name):
                 if resources[i].get_vquantity() < self.cost_build[name]:
-                    raise Exceptions.Resources_Underflow_Exception
+                    raise Exceptions.Resources_Underflow_Exception,name
                 else:
                     resources[i].change_vquantity(-self.cost_build[name])
         if self.check_manp_res(people_obj) < 0:
@@ -1320,7 +1320,7 @@ class Facility:
                 if resources[i].get_vquantity() >= consumption[name]:
                     resources[i].change_vquantity(-consumption[name])
                 else:
-                    raise Exceptions.Resources_Underflow_Exception
+                    raise Exceptions.Resources_Underflow_Exception,name
 
         return resources
 
@@ -1469,7 +1469,7 @@ class Resource:
             self.vquantity = self.max_res_value_village
             raise Exceptions.Resources_Overflow_Exception
         if quantity < 0:
-            raise Exceptions.Resources_Underflow_Exception
+            raise Exceptions.Resources_Underflow_Exception,self._name
         
         self.vquantity = quantity
 
@@ -1493,7 +1493,7 @@ class Resource:
             self.mquantity = self.max_res_value_market
             raise Exceptions.Resources_Overflow_Exception
         if quantity < 0:
-            raise Exceptions.Resources_Underflow_Exception
+            raise Exceptions.Resources_Underflow_Exception,self._name
         
         self.mquantity = quantity
 
@@ -1516,7 +1516,7 @@ class Resource:
             self.vquantity = self.max_res_value_village
             raise Exceptions.Resources_Overflow_Exception
         if (self.vquantity + change) < 0:
-            raise Exceptions.Resources_Underflow_Exception
+            raise Exceptions.Resources_Underflow_Exception,self._name
         
         self.vquantity = self.vquantity + change
 
@@ -1532,7 +1532,7 @@ class Resource:
             self.mquantity = self.max_res_value_market
             raise Exceptions.Resources_Overflow_Exception
         if (self.mquantity + change) < 0:
-            raise Exceptions.Resources_Underflow_Exception
+            raise Exceptions.Resources_Underflow_Exception,self._name
         
         self.mquantity = self.mquantity + change
 

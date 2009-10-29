@@ -57,7 +57,7 @@ except:
     
     new_screen_size = [800,600]
     
-#new_screen_size = [800,600]
+new_screen_size = [800,600]
 
 global screen   
 if model.FLAG_XO:
@@ -66,7 +66,7 @@ if model.FLAG_XO:
     screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
 else:
     
-    screen = pygame.display.set_mode(new_screen_size,FULLSCREEN|SRCALPHA,32)
+    screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
     #screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
 
 
@@ -180,12 +180,14 @@ update_thread_pause = True
     #placing_list = PLACING_LIST_TEMP
     #placing_list 
 
-def stop_facility(facility_obj):
+def stop_facility(facility_obj,name_res = ''):
     ''' Thread to stop a facility it resumes the facility when the village
     has enough model.resources to run the facility
     '''
+    #print name_res
     #global model.resources
-    message.push_message('Facility '+model.FACILITY_NAMES[facility_obj.get_name()]+' has been temporarily stopped due to insufficient resources to run the facility','high')
+    
+    message.push_message('Facility '+model.FACILITY_NAMES[facility_obj.get_name()]+' has been temporarily stopped due to insufficient '+str.lower(name_res)+' to run the facility','high')
     event = game_events.Event(type = game_events.STOPFACILITYEVENT, facility_name = facility_obj.get_name())
     game_events.EventQueue.add(event)
     res_cost = facility_obj.get_consumption()
@@ -295,13 +297,16 @@ class facility_placement_data:
         return self.PLACING_LIST
     
     def clear_placement_data(self):
-            output = open(self.data_file,'wb')
-            output.close()
+            try:
+                output = open(self.data_file,'wb')
+                output.close()
+            except:
+                return
 
     
 if model.FLAG_XO or model.FLAG_SOAS:
     import olpcgames.util
-    facplace_file = os.path.join(olpcgames.util.get_root_user(),'data','facplace.pkl')
+    facplace_file = os.path.join(olpcgames.util.get_activity_root(),'data','facplace.pkl')
 else:
     facplace_file = 'facplace.pkl'
 facility_placement_data_obj = facility_placement_data(facplace_file)
@@ -447,8 +452,9 @@ def build_facility(facility_obj, PLACING_DATA_LIST = [], list_food = model.DEF_F
         model.ppl = facility_obj.update_manp_res(model.ppl)
         
         
-    except Exceptions.Resources_Underflow_Exception:
-        text = 'You dont have enough resources to build the facility,  please try later'
+    except Exceptions.Resources_Underflow_Exception,args:
+        #print str(args)
+        text = 'You dont have enough '+str.lower(str(args))+' to build the facility,  please try later'
 #        message.push_message(text,'high')
         return text
     except Exceptions.Low_Manpower_Resources_Exception:
@@ -520,8 +526,9 @@ def upgrade_facility(facility_obj):
     #global model.resources
     try:
         model.resources = facility_obj.update_level(model.resources,model.ppl)
-    except Exceptions.Resources_Underflow_Exception:
-        text =  "You don't have enough resources to upgrade the facility please try later"
+    except Exceptions.Resources_Underflow_Exception,args:
+        #print str(args)
+        text =  "You don't have enough "+str.lower(str(args))+" to upgrade the facility please try later"
 #        message.push_message(text,'high')
         return text
     except Exceptions.Maximum_Level_Reached:
@@ -645,9 +652,9 @@ def update_turn(delay = 15):
             for i in range(len(model.facilities_list)):
                 try:
                     model.resources = model.facilities_list[i].turn(model.resources)
-                except Exceptions.Resources_Underflow_Exception:
+                except Exceptions.Resources_Underflow_Exception,args:
                     
-                    t = threading.Thread(target = stop_facility , args = [model.facilities_list[i]])
+                    t = threading.Thread(target = stop_facility , args = [model.facilities_list[i],str(args)])
                     t.start()
                 except Exceptions.Resources_Overflow_Exception:
                     pass 
@@ -808,7 +815,7 @@ def buy_res(res,res_quantity):
     except Exceptions.Money_Underflow_Exception:
         text ='You dont have enough money to buy this resource. Please change the quantity or try later'
         return text
-    except Exceptions.Resources_Underflow_Exception:
+    except Exceptions.Resources_Underflow_Exception,args:
         text ='The market does not have enough quantity to sell this resource to village'
         return text
     except Exceptions.Resources_Overflow_Exception:
@@ -849,7 +856,7 @@ def sell_res(res,res_quantity):
          
         #print "The final value of model.resources with the village is" , res.get_vquantity()
         #print "The final value of model.resources with the market is" , res.get_mquantity()
-    except Exceptions.Resources_Underflow_Exception:
+    except Exceptions.Resources_Underflow_Exception,args:
         text = 'The village does not have enough quantity to sell this resource to market'
         return text
     except Exceptions.Resources_Overflow_Exception:
@@ -963,7 +970,7 @@ def famine():
     
 if model.FLAG_XO or model.FLAG_SOAS:
     import olpcgames.util
-    save_game_file = os.path.join(olpcgames.util.get_root_user(),'data','save_game.pkl')
+    save_game_file = os.path.join(olpcgames.util.get_activity_root(),'data','save_game.pkl')
 else:
     save_game_file = 'save_game.pkl'
 
@@ -1001,7 +1008,10 @@ def resume_game(data_file = save_game_file):
     
 def check_saved_game_level(data_file = save_game_file):
     '''Used to check the status of game, saved or unsaved'''
-    output = open(data_file,'rb')
+    try:
+        output = open(data_file,'rb')
+    except:
+        return 1
     global game_save_flag
     try:
         current_level = pickle.load(output)
