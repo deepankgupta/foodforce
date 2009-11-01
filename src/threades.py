@@ -1012,10 +1012,10 @@ def resume_game(data_file = save_game_file):
             ##PLACING_LIST_TEMP.append(_PLACING_LIST_TEMP)
             #print PLACING_LIST_TEMP
         except EOFError:
-            break
+            break 
     output.close()
-    output = open(data_file,'wb')
-    output.close()
+    #output = open(data_file,'wb')
+    #output.close()
     game_save_flag = False
     
 def check_saved_game_level(data_file = save_game_file):
@@ -1099,8 +1099,8 @@ class Workshop_sprite(pygame.sprite.Sprite):
         else:
             self.tile_time = 0
             
-            if (self.frame >= 3 and self.level ==0) :
-                if (self.frame == 3 and self.built_flag == 0) :
+            if (self.frame >= 2 and self.level ==0) :
+                if (self.frame == 2 and self.built_flag == 0) :
                     build_end_facility(model.Workshop)
                     self.built_flag = 1
             elif (self.frame >= 2 and self.level ==1) :
