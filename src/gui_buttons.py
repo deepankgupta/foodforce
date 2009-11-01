@@ -950,6 +950,9 @@ class buysell_button:
         '''
         # Checking whether the user has entered the value in text box properly
         quantity = self.barObject.bar1Val
+        if int(quantity) == 0:
+            self.message_label.text = "The quantity needs to be more than zero."
+            return
         price = 0
         if model.FLAG_XO:
             if game_sharing.test_connected() and self.shareCheckBox.value:
@@ -1058,6 +1061,9 @@ class buysell_button:
         '''
         # Checking whether the user has entered the value in text box properly
         quantity = self.barObject.bar1Val
+        if int(quantity) == 0:
+            self.message_label.text = "The quantity needs to be more than zero."
+            return
         price = 0
         if model.FLAG_XO:
             if game_sharing.test_connected() and self.shareCheckBox.value:
