@@ -1241,7 +1241,7 @@ class Facility:
         self.dict_res_build = FACILITY_MANP_DICT_BUILD[self._name]
         change = -self.dict_res_build['EMPLOYED PEOPLE IN CONSTRUCTION']
         people_obj.change_no_of_ppl_emp_in_cons(change)
-        self.change_number(1)
+        self._number +=1
         
         return people_obj
 

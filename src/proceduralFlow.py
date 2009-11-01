@@ -334,10 +334,12 @@ class checkConditions:
 
         Flag = True
         if threades.levelStartFacilityBuildFlag > 0 or (not threades.levelStartUpdateFlag):
+            #print "levelstartfacilitybuildflage = ",threades.levelStartFacilityBuildFlag,"levelstartupdateflag",threades.levelStartUpdateFlag
             return 0
 
         for conditions in self.conditionslist:
             #print 'Flag:',Flag
+            #print conditions.checkCondition(events)
             Flag = conditions.checkCondition(events) and Flag
 
         if self.closure == 'AND':

@@ -115,13 +115,19 @@ def initialize_facilities(autobuild_flag = True):
     #PLACING_DATA_LIST = facility_placement_data_obj.read_placement_data()
 
     HOUSE_NO = model.INIT_HOUSE
+    #print HOUSE_NO
     HOSP_NO = model.INIT_HOSPITAL
+    #print HOSP_NO
     SCHOOL_NO = model.INIT_SCHOOL
+    #print SCHOOL_NO
     FARM_NO = model.INIT_FARM
+    #print FARM_NO
     FOUNTAIN_NO = model.INIT_FOUNTAIN
+    #print FOUNTAIN_NO
     WORKS_NO = model.INIT_WORKSHOP
+    #print WORKS_NO
     
-    levelStartFacilityBuildFlag = HOUSE_NO + HOSP_NO + SCHOOL_NO + FARM_NO + FOUNTAIN_NO + WORKS_NO
+    #levelStartFacilityBuildFlag = HOUSE_NO + HOSP_NO + SCHOOL_NO + FARM_NO + FOUNTAIN_NO + WORKS_NO
     #print "level start val = "
     #print levelStartFacilityBuildFlag
     
@@ -129,31 +135,37 @@ def initialize_facilities(autobuild_flag = True):
         if PLACING_DATA_LIST[i][0] == 'HOUSE' and HOUSE_NO>0:
             build_facility(model.House,PLACING_DATA_LIST = PLACING_DATA_LIST[i], autobuild_flag = autobuild_flag)
             HOUSE_NO = HOUSE_NO -1
+            levelStartFacilityBuildFlag +=1
             new_list.append(PLACING_DATA_LIST[i])
             
         if PLACING_DATA_LIST[i][0] == 'HOSPITAL' and HOSP_NO>0:
             build_facility(model.Hospital,PLACING_DATA_LIST[i], autobuild_flag = autobuild_flag)
             HOSP_NO = HOSP_NO -1
+            levelStartFacilityBuildFlag +=1
             new_list.append(PLACING_DATA_LIST[i])
             
         if PLACING_DATA_LIST[i][0] == 'SCHOOL' and SCHOOL_NO>0:
             build_facility(model.School,PLACING_DATA_LIST[i], autobuild_flag = autobuild_flag)
             SCHOOL_NO = SCHOOL_NO -1
+            levelStartFacilityBuildFlag +=1
             new_list.append(PLACING_DATA_LIST[i])
             
         if PLACING_DATA_LIST[i][0] == 'FARM' and FARM_NO>0:
             build_facility(model.Farm,PLACING_DATA_LIST[i], autobuild_flag = autobuild_flag)
             FARM_NO = FARM_NO -1
+            levelStartFacilityBuildFlag +=1
             new_list.append(PLACING_DATA_LIST[i])
             
         if PLACING_DATA_LIST[i][0] == 'FOUNTAIN' and FOUNTAIN_NO>0:
             build_facility(model.Fountain,PLACING_DATA_LIST[i], autobuild_flag = autobuild_flag)
             FOUNTAIN_NO = FOUNTAIN_NO -1
+            levelStartFacilityBuildFlag +=1
             new_list.append(PLACING_DATA_LIST[i])
             
         if PLACING_DATA_LIST[i][0] == 'WORKSHOP' and WORKS_NO>0:
             build_facility(model.Workshop,PLACING_DATA_LIST[i], autobuild_flag = autobuild_flag)
             WORKS_NO = WORKS_NO -1
+            levelStartFacilityBuildFlag +=1
             new_list.append(PLACING_DATA_LIST[i])
   
     #reload_placing_data_list()
@@ -1087,8 +1099,8 @@ class Workshop_sprite(pygame.sprite.Sprite):
         else:
             self.tile_time = 0
             
-            if (self.frame >= 2 and self.level ==0) :
-                if (self.frame == 2 and self.built_flag == 0) :
+            if (self.frame >= 3 and self.level ==0) :
+                if (self.frame == 3 and self.built_flag == 0) :
                     build_end_facility(model.Workshop)
                     self.built_flag = 1
             elif (self.frame >= 2 and self.level ==1) :
