@@ -603,7 +603,7 @@ def write_data():
     
     
     action = [6,text]
-    actionData = ['actionTrue',action]
+    actionData = ['action',action]
     pickle.dump(actionData,output)
 
 
