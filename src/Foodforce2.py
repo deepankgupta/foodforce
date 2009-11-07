@@ -245,7 +245,8 @@ def load_resume_game():
     actiontemp.actionType = 3
     proceduralFlow.openStoryBoardFile()
     action_obj = proceduralFlow.Actions(actiontemp)
-    threades.game_save_flag = False
+    
+    #threades.game_save_flag = False
 
     
 class starting_intro:
@@ -809,6 +810,7 @@ def main():
     
 
     intro_thread.join()
+    model.game_controller.reset_time()
     threades.current_level = threades.check_saved_game_level()
         
     pause_screen()
@@ -837,7 +839,6 @@ def main():
     chat_screen=chat.chat()
         
     
-    model.game_controller.reset_time()
     # The main infinite loop
     while True:
         #clock.tick()

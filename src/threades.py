@@ -994,18 +994,24 @@ def save_game(data_file = save_game_file):
     game_save_flag = True
     output = open(data_file,'wb')
     pickle.dump(current_level,output)
+    #print model.get_global_time
+    pickle.dump(model.game_controller.get_global_time(),output)
     pickle.dump(PLACING_LIST_TEMP,output)
     output.close()
+    #print "game_saved"
     
     
 
 def resume_game(data_file = save_game_file):
     '''Used to resume a saved game'''
     global PLACING_LIST_TEMP
-    ##global level
+    global level_save_time
     global game_save_flag
     output = open(data_file,'rb')
     level = pickle.load(output)
+    level_save_time = pickle.load(output)
+    model.game_controller.resume_game_time_update(level_save_time)
+    print model.global_time
     while True:
         try:
             PLACING_LIST_TEMP = pickle.load(output)

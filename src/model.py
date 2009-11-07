@@ -2256,6 +2256,10 @@ class game_time:
         
     def update_level_time(self,check_flag=True):
         if check_flag==True:
+            #print self.level_global_time
+            #print global_time
+            #print "help ",self.time_help
+            #print "inter",self.level_iteration_time
             if True:
                 self.level_iteration_time=self.clock.tick()
                 if self.level_iteration_time<1000:
@@ -2302,6 +2306,10 @@ class game_time:
         if self.months>12:
             self.years=int(self.years+(self.months/12))
             self.months=int(self.months%12)
+            
+    def resume_game_time_update(self,new_global_time):
+        self.level_global_time = new_global_time
+        
             
     def get_days(self):
         return self.days
