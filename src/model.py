@@ -44,7 +44,7 @@ else:
     FLAG_SOAS = False
 
 #facility size values
-Facility_Size = [['HOUSE',360,300],['HOSPITAL',370,300],['FARM',516,500],['FOUNTAIN',197,192],['SCHOOL',420,450],['WORKSHOP',760,520]]
+Facility_Size = [['HOUSE',360,300],['HOSPITAL',370,300],['FARM',516,500],['FOUNTAIN',197,192],['SCHOOL',420,450],['WORKSHOP',600,580]]
 
 
 def init_cons(file_name):
