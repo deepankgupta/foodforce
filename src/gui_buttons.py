@@ -486,7 +486,8 @@ class setup_button:
         quantity2 = self.bardisplay.bar2Val
         quantity3 = self.bardisplay.bar3Val
         list_food = [quantity1,quantity2,quantity3]
-        label_text = threades.build_facility(model.Farm,list_food)
+        #print list_food
+        label_text = threades.build_facility(model.Farm,[],list_food)
         if label_text == 'Facility has been build':
             self.child_win.close()
             self.enable_parent_win()

@@ -805,6 +805,13 @@ aS'NUTRITION'
 p10
 aI45
 aaaa.(lp0
+S'actionFalse'
+p1
+a(lp2
+I8
+aS'You were able to complete the task assigned to you. \nGood Going!!'
+p3
+aa.(lp0
 S'action'
 p1
 a(lp2
@@ -890,6 +897,13 @@ aS'NUTRITION'
 p10
 aI50
 aaaa.(lp0
+S'actionFalse'
+p1
+a(lp2
+I8
+aS'You were able to complete the task assigned to you. \nGood Going!!'
+p3
+aa.(lp0
 S'action'
 p1
 a(lp2
@@ -943,6 +957,13 @@ aS'TRAINING'
 p8
 aI70
 aaaa.(lp0
+S'actionFalse'
+p1
+a(lp2
+I8
+aS'You were able to complete the task assigned to you. \nGood Going!!'
+p3
+aa.(lp0
 S'action'
 p1
 a(lp2
@@ -1001,7 +1022,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'Do not let the nutrition progress drop below 50% and also donot let the water level fall below 500.'
+aS'Do not let the nutrition progress drop below 50% and also donot let the water level fall below 500 for the next 4 months.'
 p3
 aa.(lp0
 S'condition'
@@ -1021,7 +1042,7 @@ aS'>='
 p7
 aS'NUTRITION'
 p8
-aI47
+aI48
 aa(lp9
 I00
 aI4

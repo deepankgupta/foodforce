@@ -406,6 +406,17 @@ def write_data():
     condnGlobal = ['AND',-1,condnlist]
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
+
+
+    
+    text = "You were able to complete the task assigned to you. \nGood Going!!"
+
+    action = [8,text]
+    actionData = ['actionFalse',action]
+    pickle.dump(actionData,output)
+    
+    
+    
     
     action = [2,'']
     actionData = ['action',action]
@@ -448,6 +459,16 @@ def write_data():
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
     
+
+    
+    text = "You were able to complete the task assigned to you. \nGood Going!!"
+
+    action = [8,text]
+    actionData = ['actionFalse',action]
+    pickle.dump(actionData,output)
+    
+    
+    
     action = [2,'']
     actionData = ['action',action]
     pickle.dump(actionData,output)
@@ -474,6 +495,16 @@ def write_data():
     condnGlobal = ['AND',-1,condnlist]
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
+
+    
+    text = "You were able to complete the task assigned to you. \nGood Going!!"
+
+    action = [8,text]
+    actionData = ['actionFalse',action]
+    pickle.dump(actionData,output)
+    
+    
+    
     
     action = [2,'']
     actionData = ['action',action]
@@ -500,12 +531,12 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    text = 'Do not let the nutrition progress drop below 50% and also donot let the water level fall below 500.'
+    text = 'Do not let the nutrition progress drop below 50% and also donot let the water level fall below 500 for the next 4 months.'
     action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
-    condn1 = [False,3,'','','>=','NUTRITION',47]
+    condn1 = [False,3,'','','>=','NUTRITION',48]
     condn2 = [False,4,'','WATER','>=','',500]
     condnlist = [condn1,condn2]
     condnGlobal = ['NOR',120,condnlist]
