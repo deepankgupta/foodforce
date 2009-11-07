@@ -122,7 +122,7 @@ def write_data():
     pickle.dump(condnData,output)
     
     
-    text = 'Well done. But there are no books in this school. Buy the books for the school from the market. The Market Window can be opened by clicking on the market button in the bottom. Once you open the market window, you can click on the thing you need to buy and sell. Then select the quantity in which it needs to be bought or sold. Then click on market.'
+    text = 'Well done. But there are no books in this school. Buy the books for the school from the market. The Market Window can be opened by clicking on the market button in the bottom. Once you open the market window, you can click on the thing you need to buy and sell. Then select the quantity in which it needs to be bought or sold'
     
     action = [9,text]
     actionData = ['action',action]
@@ -188,8 +188,22 @@ def write_data():
     condnGlobal = ['AND',-1,condnlist]
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
+	
+    text = 'People areound are idyling in the village, you should build a workshop to create more work for them. Building a workshop also adds Bricks to your village stockpile'
 
-    text = 'Your village has now taken the first step towards prosperity. Congratulations'
+    action = [9,text]
+    actionData = ['action',action]
+    pickle.dump(actionData,output)
+    
+    condn1 = [False,1,'WORKSHOP','','==','',1]
+    condnlist = [condn1]
+    condnGlobal = ['AND',-1,condnlist]
+    condnData = ['condition',condnGlobal]
+    pickle.dump(condnData,output)
+
+
+    text = 'Your village has now taken the first step towards prosperity. Congratulations!'
+    
     action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)

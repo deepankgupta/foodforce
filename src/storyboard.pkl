@@ -181,7 +181,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'Well done. But there are no books in this school. Buy the books for the school from the market. The Market Window can be opened by clicking on the market button in the bottom. Once you open the market window, you can click on the thing you need to buy and sell. Then select the quantity in which it needs to be bought or sold. Then click on market.'
+aS'Well done. But there are no books in this school. Buy the books for the school from the market. The Market Window can be opened by clicking on the market button in the bottom. Once you open the market window, you can click on the thing you need to buy and sell. Then select the quantity in which it needs to be bought or sold'
 p3
 aa.(lp0
 S'condition'
@@ -318,7 +318,33 @@ S'action'
 p1
 a(lp2
 I9
-aS'Your village has now taken the first step towards prosperity. Congratulations'
+aS'People areound are idyling in the village, you should build a workshop to create more work for them. Building a workshop also adds Bricks to your village stockpile'
+p3
+aa.(lp0
+S'condition'
+p1
+a(lp2
+S'AND'
+p3
+aI-1
+a(lp4
+(lp5
+I00
+aI1
+aS'WORKSHOP'
+p6
+aS''
+p7
+aS'=='
+p8
+ag7
+aI1
+aaaa.(lp0
+S'action'
+p1
+a(lp2
+I9
+aS'Your village has now taken the first step towards prosperity. Congratulations!'
 p3
 aa.(lp0
 S'action'
