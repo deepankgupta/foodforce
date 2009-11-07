@@ -113,7 +113,7 @@ aS'FOUNTAIN'
 p6
 aS''
 p7
-aS'=='
+aS'>='
 p8
 ag7
 aI1
@@ -139,7 +139,7 @@ aS'FARM'
 p6
 aS''
 p7
-aS'=='
+aS'>='
 p8
 ag7
 aI1
@@ -172,7 +172,7 @@ aS'SCHOOL'
 p6
 aS''
 p7
-aS'=='
+aS'>='
 p8
 ag7
 aI1
@@ -224,7 +224,7 @@ aS'HOUSE'
 p6
 aS''
 p7
-aS'=='
+aS'>='
 p8
 ag7
 aI1
@@ -250,7 +250,7 @@ aS'SCHOOL'
 p6
 aS''
 p7
-aS'=='
+aS'>='
 p8
 ag7
 aI1
@@ -283,7 +283,7 @@ aS'HOSPITAL'
 p6
 aS''
 p7
-aS'=='
+aS'>='
 p8
 ag7
 aI1
