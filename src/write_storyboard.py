@@ -84,7 +84,7 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    condn1 = [False,1,'FOUNTAIN','','==','',1]
+    condn1 = [False,1,'FOUNTAIN','','>=','',1]
     condnlist = [condn1]
     condnGlobal = ['AND',-1,condnlist]
     condnData = ['condition',condnGlobal]
@@ -96,7 +96,7 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    condn1 = [False,1,'FARM','','==','',1]
+    condn1 = [False,1,'FARM','','>=','',1]
     condnlist = [condn1]
     condnGlobal = ['AND',-1,condnlist]
     condnData = ['condition',condnGlobal]
@@ -115,7 +115,7 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    condn1 = [False,1,'SCHOOL','','==','',1]
+    condn1 = [False,1,'SCHOOL','','>=','',1]
     condnlist = [condn1]
     condnGlobal = ['AND',-1,condnlist]
     condnData = ['condition',condnGlobal]
@@ -141,7 +141,7 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    condn1 = [False,2,'HOUSE','','==','',1]
+    condn1 = [False,2,'HOUSE','','>=','',1]
     condnlist = [condn1]
     condnGlobal = ['AND',-1,condnlist]
     condnData = ['condition',condnGlobal]
@@ -153,7 +153,7 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    condn1 = [False,2,'SCHOOL','','==','',1]
+    condn1 = [False,2,'SCHOOL','','>=','',1]
     condnlist = [condn1]
     condnGlobal = ['AND',-1,condnlist]
     condnData = ['condition',condnGlobal]
@@ -171,7 +171,7 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    condn1 = [False,1,'HOSPITAL','','==','',1]
+    condn1 = [False,1,'HOSPITAL','','>=','',1]
     condnlist = [condn1]
     condnGlobal = ['AND',-1,condnlist]
     condnData = ['condition',condnGlobal]
