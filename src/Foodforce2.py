@@ -167,7 +167,10 @@ def event_handling(e):
             if e.key == K_b and gui_buttons.gui_obj.buysell_button.enabled:
                 gui_buttons.gui_obj.buysell_obj.buysell()
             
-            
+    if proceduralFlow.GAME_END_FLAG:
+        proceduralFlow.GAME_END_FLAG = True
+        pause_screen()
+        
     if e.type == KEYUP:
         if e.key == K_UP:
             threades.transform_obj.stop_move('up')

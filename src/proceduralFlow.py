@@ -42,6 +42,7 @@ import defaultStyle
 load_level_obj = level_change.change_level()
 
 storyboardfile = None
+GAME_END_FLAG = False
 
 # Event Types in case of non-event based conditions
 
@@ -386,7 +387,7 @@ WFPWINDOWACTION = 6
 STORYBOARDWINDOWACTION = 7
 FAILUREWINDOWACTION = 8
 SBINSTRUCTIONMESSAGE = 9
-
+GAMEENDACTION = 10
 # Global variable for storyboard level
 storyboard_level = 1
 
@@ -433,7 +434,9 @@ class Actions:
             self.showFailureWindow(action.data)
         if action.actionType == 9:
             self.showInstructionMessage(action.data)
-
+        if action.actionType == 10:
+            self.showCredits()
+            
 
 
 
@@ -600,6 +603,8 @@ class Actions:
     def showInstructionMessage(self,text):
         
         thread_instruction = threading.Thread(target = gui_buttons.showMessages.addMessage, args=[text,True]).start()
+        event = game_events.Event(type = game_events.ACTIONCOMPLETEEVENT, facility_name = '', res_name = '' , res_quantity = 0)
+        game_events.EventQueue.add(event)
         
         
     def showStoryboardWindow(self,text):
@@ -747,9 +752,80 @@ class Actions:
         game_events.EventQueue.add(event)
 
 
-    def showCredentials(self):
-        pass
+    def showCredits(self):
+    
+        global GAME_END_FLAG
+        self.brown_color = (255,214,150)
+        self.green_color = (0,250,0)
+        self.black_color = (0,0,0)
+        myfont1 = pygame.font.Font("font.ttf", threades.resize_pt(40))
 
+        # Custom gui.Window Style
+        win_style = gui.defaultWindowStyle.copy()
+        win_style['font'] = myfont1
+        win_style['font-color'] = self.brown_color
+        win_style['bg-color'] = (0,0,0)
+        win_style['border-color'] = self.brown_color
+        win_style['border-width'] = 2
+
+        st_desktop = gui.Desktop()
+        clock = pygame.time.Clock()
+        clock.tick()
+
+        # Calculating position and size of window from the size of the threades.desktop
+        position_win =threades.resize_pos((150.0,100.0))
+        size_win =threades.resize_pos((900.0,500.0))
+
+        # Creating window
+        self.win = gui.Window(position = position_win, size = size_win, parent = st_desktop, text = "                               Credits" , style = win_style, shadeable = False, closeable = False,moveable = False)
+        #self.win.onClose = lambda button: self.main_menu(self.pause_flag)
+        #self.win.surf.set_alpha(140) This seems to be redundant as translucency doesnt seems to work properly
+
+        myfont2 = pygame.font.Font("font.ttf", threades.resize_pt(20))
+        labelStyleCopy = gui.defaultLabelStyle.copy()
+        labelStyleCopy['border-width'] = 0
+        labelStyleCopy['wordwrap'] = True
+        labelStyleCopy['autosize'] = False
+        labelStyleCopy['font'] = myfont2
+        labelStyleCopy['font-color'] = self.brown_color
+        labelStyleCopy['border-color'] = self.black_color
+
+        update_rect = pygame.Rect(threades.resize_rect((150,100,900,500)))
+
+        self.storyboardwin_run = True
+        #logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
+        #ff_logo = pygame.transform.scale(logo,threades.resize_pos((1111,250)))
+        text = " Developers : \n\n Mohit Taneja\n Grivan Thapar\n Rupinder Singh\n\n Manager: \n\n Deepank Gupta"
+        #self.instructions_counter = 0
+        label = gui.Label(position = threades.resize_pos((100.0,100.0),(900.0,500.0),self.win.size),size = threades.resize_pos((700.0,340.0),(900.0,500.0),self.win.size), parent = self.win, text = text, style = labelStyleCopy)
+
+        gl_time = 0
+
+        st_desktop.update()
+        st_desktop.draw()
+        pygame.display.update([update_rect])
+
+        while self.storyboardwin_run:
+            pygame.display.set_caption('FoodForce2')
+
+            for e in gui.setEvents(pygame.event.get()):
+                if e.type == MOUSEBUTTONDOWN:
+                    if e.button == 1:
+                        self.storyboardwin_run = False
+                    
+                if e.type == KEYDOWN:
+                    if e.key == 27:  # For escape key
+                        self.storyboardwin_run = False
+
+            gl_time += clock.tick()
+            if gl_time >= 17000:
+                self.storyboardwin_run = False
+
+
+
+        self.win.close()
+
+        GAME_END_FLAG = True
 
 
 # Storyboard Related Functions

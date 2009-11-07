@@ -62,7 +62,7 @@ except:
 global screen   
 if model.FLAG_XO:
     global screen
-    new_screen_size[1] -= 70.0/900.0*new_screen_size[1]
+    new_screen_size[1] -= 90.0/900.0*new_screen_size[1]
     screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
 else:
     
@@ -388,7 +388,7 @@ def build_placed_facility(facility_name, autobuild_flag, PLACING_DATA_LIST):
     for i in range(len(model.facilities_list)):
         if model.facilities_list[i].get_name() == facility_name:
             facility_obj = model.facilities_list[i]
-    for i in range(int(random.random()*10)):
+    for i in range(int(random.random()*5)):
         #print attribute
         dir = int(random.random()*4)
         villager = Villager((place_pos_x-500,place_pos_y-500,place_pos_x+500,place_pos_y+500))

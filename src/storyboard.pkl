@@ -107,7 +107,7 @@ p3
 aI-1
 a(lp4
 (lp5
-I01
+I00
 aI1
 aS'FOUNTAIN'
 p6
@@ -116,7 +116,7 @@ p7
 aS'=='
 p8
 ag7
-aI0
+aI1
 aaaa.(lp0
 S'action'
 p1
@@ -133,7 +133,7 @@ p3
 aI-1
 a(lp4
 (lp5
-I01
+I00
 aI1
 aS'FARM'
 p6
@@ -142,7 +142,7 @@ p7
 aS'=='
 p8
 ag7
-aI0
+aI1
 aaaa.(lp0
 S'action'
 p1
@@ -166,7 +166,7 @@ p3
 aI-1
 a(lp4
 (lp5
-I01
+I00
 aI1
 aS'SCHOOL'
 p6
@@ -175,7 +175,7 @@ p7
 aS'=='
 p8
 ag7
-aI0
+aI1
 aaaa.(lp0
 S'action'
 p1
@@ -218,7 +218,7 @@ p3
 aI-1
 a(lp4
 (lp5
-I01
+I00
 aI2
 aS'HOUSE'
 p6
@@ -227,7 +227,7 @@ p7
 aS'=='
 p8
 ag7
-aI0
+aI1
 aaaa.(lp0
 S'action'
 p1
@@ -244,7 +244,7 @@ p3
 aI-1
 a(lp4
 (lp5
-I01
+I00
 aI2
 aS'SCHOOL'
 p6
@@ -253,7 +253,7 @@ p7
 aS'=='
 p8
 ag7
-aI0
+aI1
 aaaa.(lp0
 S'action'
 p1
@@ -277,7 +277,7 @@ p3
 aI-1
 a(lp4
 (lp5
-I01
+I00
 aI1
 aS'HOSPITAL'
 p6
@@ -286,7 +286,7 @@ p7
 aS'=='
 p8
 ag7
-aI0
+aI1
 aaaa.(lp0
 S'action'
 p1
@@ -1208,5 +1208,12 @@ p1
 a(lp2
 I6
 aS'The village Panchayat has decided to select you as the next Sarpanch of the village.Also, they have decided to make a new school in remembrance of the best Sarpanch this village had in years, your father, Kamat.'
+p3
+aa.(lp0
+S'action'
+p1
+a(lp2
+I10
+aS''
 p3
 aa.

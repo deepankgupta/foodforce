@@ -1231,9 +1231,7 @@ class showInstructions:
         length = length/50 + 4
         sleep(length)
         win.close()
-        if flag:
-            event = game_events.Event(type = game_events.ACTIONCOMPLETEEVENT, facility_name = '', res_name = '' , res_quantity = 0)
-            game_events.EventQueue.add(event)
+        
         
 showMessages = showInstructions()
 
