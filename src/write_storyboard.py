@@ -171,7 +171,7 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    condn1 = [False,1,'WORKSHOP','','==','',1]
+    condn1 = [False,1,'WORKSHOP','','>=','',1]
     condnlist = [condn1]
     condnGlobal = ['AND',-1,condnlist]
     condnData = ['condition',condnGlobal]
