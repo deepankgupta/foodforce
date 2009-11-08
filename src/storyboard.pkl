@@ -1097,7 +1097,7 @@ aS'Son'
 p9
 aS'Thanks, father. But it was all due to your guidance and support only that I am able to serve for the prosperity of the village.'
 p10
-aaS'happy.png'
+aaS'Happy.png'
 p11
 aaa.(lp0
 S'actionTrue'
