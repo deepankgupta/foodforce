@@ -565,7 +565,7 @@ def write_data():
                 'Son','Thanks, father. But it was all due to your guidance and support only that I am able to serve for the prosperity of the village.']
 
 
-    action = [1,[chatText,'happy.png']]
+    action = [1,[chatText,'Happy.png']]
     actionData = ['actionTrue',action]
     pickle.dump(actionData,output)
 

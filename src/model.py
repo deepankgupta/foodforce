@@ -1591,7 +1591,7 @@ class Resource:
         
         if quantity > self.mquantity:
             raise Exceptions.Resources_Underflow_Exception
-        buy_price = self.price
+        buy_price = int(self.price)
         cost = quantity * buy_price
         if cost < money.get_money():
             self.change_vquantity(quantity)
@@ -1616,7 +1616,7 @@ class Resource:
         """
         if quantity > self.vquantity:
             raise Exceptions.Resources_Underflow_Exception
-        sell_price = self.price
+        sell_price = int(self.price)
         cost = quantity * sell_price
         self.change_vquantity(-quantity)
         self.change_mquantity(quantity)

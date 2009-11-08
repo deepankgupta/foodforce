@@ -822,6 +822,7 @@ def buy_res(res,res_quantity):
         #print "The initial value of model.resources with the village is" , res.get_vquantity()
         #print "The initial value of model.resources with the market is" , res.get_mquantity()
         quantity=int(res_quantity)
+        #print "quantity is",quantity,"price reqd is",res.get_price()
         #print 'initial model.money is'
         #print model.money.get_money()
         model.money = res.buy(quantity , model.money)
