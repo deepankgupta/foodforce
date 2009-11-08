@@ -1,7 +1,0 @@
-[Activity]
-name = FoodForce2 
-activity_version = 1
-host_version = 1
-service_name = org.laptop.community.FoodForce2
-icon = activity-foodforce2
-exec = sugar-activity activity.Activity
