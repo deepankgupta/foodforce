@@ -283,7 +283,7 @@ aS'WORKSHOP'
 p6
 aS''
 p7
-aS'=='
+aS'>='
 p8
 ag7
 aI1
