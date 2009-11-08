@@ -466,7 +466,10 @@ def build_facility(facility_obj, PLACING_DATA_LIST = [], list_food = model.DEF_F
         
     except Exceptions.Resources_Underflow_Exception,args:
         #print str(args)
-        text = 'You dont have enough '+str.lower(str(args))+' to build the facility,  please try later'
+        if str(args) == 'BUILDING MATERIAL':
+            text = 'You dont have enough '+'Bricks'+' to build the facility,  please try later'
+        else:
+            text = 'You dont have enough '+str.lower(str(args))+' to build the facility,  please try later'
 #        message.push_message(text,'high')
         return text
     except Exceptions.Low_Manpower_Resources_Exception:
@@ -539,10 +542,12 @@ def upgrade_facility(facility_obj):
     try:
         model.resources = facility_obj.update_level(model.resources,model.ppl)
     except Exceptions.Resources_Underflow_Exception,args:
-        #print str(args)
-        text =  "You don't have enough "+str.lower(str(args))+" to upgrade the facility please try later"
-#        message.push_message(text,'high')
+        if str(args) == 'BUILDING MATERIAL':
+            text = 'You dont have enough '+'Bricks'+' to build the facility,  please try later'
+        else:
+            text = 'You dont have enough '+str.lower(str(args))+' to build the facility,  please try later'
         return text
+#        message.push_message(text,'high')
     except Exceptions.Maximum_Level_Reached:
         text =  'Facility has reached its maximum level you cant upgrade it now'
 #        message.push_message(text,'high')

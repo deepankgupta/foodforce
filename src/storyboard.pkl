@@ -343,7 +343,7 @@ aaaa.(lp0
 S'action'
 p1
 a(lp2
-I9
+I7
 aS'Your village has now taken the first step towards prosperity. Congratulations!'
 p3
 aa.(lp0

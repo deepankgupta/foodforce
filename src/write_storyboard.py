@@ -203,7 +203,7 @@ def write_data():
 	
     text = 'Your village has now taken the first step towards prosperity. Congratulations!'
     
-    action = [9,text]
+    action = [7,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
