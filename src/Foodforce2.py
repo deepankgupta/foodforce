@@ -168,7 +168,7 @@ def event_handling(e):
                 gui_buttons.gui_obj.buysell_obj.buysell()
             
     if proceduralFlow.GAME_END_FLAG:
-        
+        threades.PLACING_LIST_TEMP = []
         proceduralFlow.GAME_END_FLAG = True
         proceduralFlow.closeStoryBoardFile()
         proceduralFlow.openStoryBoardFile()
