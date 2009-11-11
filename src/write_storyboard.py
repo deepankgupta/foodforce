@@ -624,7 +624,7 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    text = 'Mission Objective: Rebuild the village and bring the progress levels to 40%'
+    text = 'Mission Objective: Rebuild the village and bring the progress levels to 60%'
     
     action = [9,text]
     actionData = ['action',action]
@@ -632,11 +632,11 @@ def write_data():
     
 
 
-    condn1 = [False,3,'','','>=','HOUSING',40]
-    condn2 = [False,3,'','','>=','HEALTH',40]
-    condn3 = [False,3,'','','>=','EDUCATION',40]
-    condn4 = [False,3,'','','>=','NUTRITION',40]
-    condn5 = [False,3,'','','>=','TRAINING',40]
+    condn1 = [False,3,'','','>=','HOUSING',60]
+    condn2 = [False,3,'','','>=','HEALTH',60]
+    condn3 = [False,3,'','','>=','EDUCATION',60]
+    condn4 = [False,3,'','','>=','NUTRITION',60]
+    condn5 = [False,3,'','','>=','TRAINING',60]
     condnlist = [condn1,condn2,condn3,condn4,condn5]
     condnGlobal = ['AND',-1,condnlist]
     condnData = ['condition',condnGlobal]

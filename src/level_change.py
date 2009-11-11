@@ -80,7 +80,7 @@ class change_level:
         threades.initialize_facilities(True)
         threades.set_build_facility_placement_flag()
         threades.facility_placement_data_obj.clear_placement_data()
-        #threades.current_level = threades.current_level + 1
+        #threades.current_level = proceduralFlow.storyboard_level
                 
         threades.total_update_flag = True
         threades.resume_update_thread()

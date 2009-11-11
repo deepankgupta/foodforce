@@ -1006,7 +1006,14 @@ def save_game(data_file = save_game_file):
     output.close()
     #print "game_saved"
     
+def delete_saved_game(data_file = save_game_file):
+    '''Used to delete saved game data'''
+    global game_saved_flag
+    game_save_flag = False
+    output = open(data_file,'wb')
+    output.close()
     
+
 
 def resume_game(data_file = save_game_file):
     '''Used to resume a saved game'''

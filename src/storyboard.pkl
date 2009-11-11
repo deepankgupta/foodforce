@@ -1192,7 +1192,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'Mission Objective: Rebuild the village and bring the progress levels to 40%'
+aS'Mission Objective: Rebuild the village and bring the progress levels to 60%'
 p3
 aa.(lp0
 S'condition'
@@ -1212,7 +1212,7 @@ aS'>='
 p7
 aS'HOUSING'
 p8
-aI40
+aI60
 aa(lp9
 I00
 aI3
@@ -1221,7 +1221,7 @@ ag6
 ag7
 aS'HEALTH'
 p10
-aI40
+aI60
 aa(lp11
 I00
 aI3
@@ -1230,7 +1230,7 @@ ag6
 ag7
 aS'EDUCATION'
 p12
-aI40
+aI60
 aa(lp13
 I00
 aI3
@@ -1239,7 +1239,7 @@ ag6
 ag7
 aS'NUTRITION'
 p14
-aI40
+aI60
 aa(lp15
 I00
 aI3
@@ -1248,7 +1248,7 @@ ag6
 ag7
 aS'TRAINING'
 p16
-aI40
+aI60
 aaaa.(lp0
 S'action'
 p1

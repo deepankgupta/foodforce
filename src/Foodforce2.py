@@ -169,11 +169,12 @@ def event_handling(e):
             
     if proceduralFlow.GAME_END_FLAG:
         threades.PLACING_LIST_TEMP = []
-        proceduralFlow.GAME_END_FLAG = True
+        proceduralFlow.GAME_END_FLAG = False
         proceduralFlow.closeStoryBoardFile()
         proceduralFlow.openStoryBoardFile()
-        proceduralFlow.storyboard_level =1
-        proceduralFlow.load_level_object.new_level_stats('data.pkl','graphics_layout.pkl')
+        threades.delete_saved_game()
+        proceduralFlow.storyboard_level = 1
+        proceduralFlow.load_level_obj.new_level_stats('data.pkl','graphics_layout.pkl')
         pause_screen()
         
     if e.type == KEYUP:
