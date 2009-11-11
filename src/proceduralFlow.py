@@ -490,7 +490,7 @@ class Actions:
         global storyboard_level
 
         data_file = 'data'+str(storyboard_level+1)+'.pkl'
-        print data_file
+        #print data_file
         graphics_file = 'graphics_layout.pkl'
         storyboard_level += 1
         load_level_obj.new_level_stats(data_file,graphics_file)
@@ -502,8 +502,8 @@ class Actions:
         data_file = 'data'+str(storyboard_level)+'.pkl'
         graphics_file = 'graphics_layout.pkl'
         load_level_obj.new_level_stats(data_file,graphics_file)
-        print "StoryBoard level : "
-        print storyboard_level
+        #print "StoryBoard level : "
+        #print storyboard_level
         # Seeking in the storyboard to the current level
 
         closeStoryBoardFile()

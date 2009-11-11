@@ -469,6 +469,7 @@ class setup_button:
         '''
 
         # Custom button style
+        
         button_style = gui.defaultButtonStyle.copy()
         button_style['font'] = myfont2
 

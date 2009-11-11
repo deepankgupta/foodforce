@@ -425,7 +425,7 @@ def write_data():
     text = "You were able to complete the task assigned to you. \nGood Going!!"
 
     action = [8,text]
-    actionData = ['actionFalse',action]
+    actionData = ['action',action]
     pickle.dump(actionData,output)
     
     
@@ -477,7 +477,7 @@ def write_data():
     text = "You were able to complete the task assigned to you. \nGood Going!!"
 
     action = [8,text]
-    actionData = ['actionFalse',action]
+    actionData = ['action',action]
     pickle.dump(actionData,output)
     
     
@@ -513,7 +513,7 @@ def write_data():
     text = "You were able to complete the task assigned to you. \nGood Going!!"
 
     action = [8,text]
-    actionData = ['actionFalse',action]
+    actionData = ['action',action]
     pickle.dump(actionData,output)
     
     

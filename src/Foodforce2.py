@@ -168,7 +168,12 @@ def event_handling(e):
                 gui_buttons.gui_obj.buysell_obj.buysell()
             
     if proceduralFlow.GAME_END_FLAG:
+        
         proceduralFlow.GAME_END_FLAG = True
+        proceduralFlow.closeStoryBoardFile()
+        proceduralFlow.openStoryBoardFile()
+        proceduralFlow.storyboard_level =1
+        proceduralFlow.load_level_object.new_level_stats('data.pkl','graphics_layout.pkl')
         pause_screen()
         
     if e.type == KEYUP:
