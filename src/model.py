@@ -24,6 +24,10 @@ import pygame
 import os
 #import gui_buttons
 
+#Update thread flag
+update_thread_pause = True
+
+
 #Flag to check the operating system
 FLAG_XO = False
 
@@ -2260,16 +2264,12 @@ class game_time:
             #print global_time
             #print "help ",self.time_help
             #print "inter",self.level_iteration_time
-            if True:
-                self.level_iteration_time=self.clock.tick()
-                if self.level_iteration_time<1000:
-                    #print 'global time updated'
-                    self.level_global_time+=self.level_iteration_time
-        else :
+            
             self.level_iteration_time=self.clock.tick()
             if self.level_iteration_time<1000:
-                self.level_global_time+=self.level_iteration_time
                 #print 'global time updated'
+                self.level_global_time+=self.level_iteration_time
+    
                 
         self.update_converted_global_time()
                 

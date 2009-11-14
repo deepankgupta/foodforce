@@ -62,7 +62,7 @@ except:
 global screen   
 if model.FLAG_XO:
     global screen
-    new_screen_size[1] -= 90.0/900.0*new_screen_size[1]
+    new_screen_size[1] -= 80.0/900.0*new_screen_size[1]
     screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
 else:
     
@@ -181,7 +181,7 @@ def initialize_facilities(autobuild_flag = True):
 
 
 # A Switch for pausing the update thread
-update_thread_pause = True
+model.update_thread_pause = True
 
 
 
@@ -578,13 +578,13 @@ def upgrade_facility(facility_obj):
 
 
 def pause_update_thread():
-    global update_thread_pause
-    update_thread_pause = False
+    #global model.update_thread_pause
+    model.update_thread_pause = False
 
 
 def resume_update_thread():
-    global update_thread_pause
-    update_thread_pause = True
+    #global update_thread_pause
+    model.update_thread_pause = True
 
 
 def calculate_indicators_starting():
@@ -660,7 +660,7 @@ def update_turn(delay = 15):
     
     while True:
         
-        if update_thread_pause == True:
+        if model.update_thread_pause == True:
 
             # updation of all facilities
             global levelStartUpdateFlag
