@@ -499,7 +499,7 @@ class starting_intro:
         '''
 
         threades.current_level = 1
-        #self.remove_buttons()
+        self.remove_buttons()
         if soundtrack:
             soundtrack.play(-1)
         '''
