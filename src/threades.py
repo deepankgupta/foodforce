@@ -215,13 +215,13 @@ def stop_facility(facility_obj,name_res = ''):
                     a=1
         if a==0:
             break
-        if GAME_END_FLAG:
+        if GAME_EXIT_FLAG:
             return
         sleep(1)
-        if GAME_END_FLAG:
+        if GAME_EXIT_FLAG:
             return
         sleep(1)
-        if GAME_END_FLAG:
+        if GAME_EXIT_FLAG:
             return
         
 
