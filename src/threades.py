@@ -181,7 +181,7 @@ def initialize_facilities(autobuild_flag = True):
 
 
 # A Switch for pausing the update thread
-model.update_thread_pause = True
+update_thread_pause = True
 
 
 
@@ -578,13 +578,13 @@ def upgrade_facility(facility_obj):
 
 
 def pause_update_thread():
-    #global model.update_thread_pause
-    model.update_thread_pause = False
+    global update_thread_pause
+    update_thread_pause = False
 
 
 def resume_update_thread():
-    #global update_thread_pause
-    model.update_thread_pause = True
+    global update_thread_pause
+    update_thread_pause = True
 
 
 def calculate_indicators_starting():
@@ -660,7 +660,7 @@ def update_turn(delay = 15):
     
     while True:
         
-        if model.update_thread_pause == True:
+        if update_thread_pause == True:
 
             # updation of all facilities
             global levelStartUpdateFlag
