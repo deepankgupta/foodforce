@@ -76,7 +76,7 @@ desktop = gui.Desktop()
 
 ###### FLAGS ####
 
-
+GAME_EXIT_FLAG = False
 # Facility placement flag
 buildFacilityPlacementFlag = ""
 
@@ -756,8 +756,54 @@ def update_turn(delay = 15):
             ppl_emp = model.ppl.get_total_no_of_ppl_emp()/model.ppl.get_total_population()
             model.Training.turn({ 'LEVEL OF WORKSHOPS' : level , 'EMPLOYED PEOPLE IN WORKSHOP' : ppl_emp , 'EMPLOYED PEOPLE IN FARM' : ppl_emp , 'EMPLOYED PEOPLE IN HOSPITAL' : ppl_emp , 'EMPLOYED PEOPLE IN CONSTRUCTION' : ppl_emp })
 
-        sleep(delay)
-            
+            if GAME_EXIT_FLAG:
+                return
+                
+        sleep(1)
+        if GAME_EXIT_FLAG:
+            return
+        sleep(1)
+        if GAME_EXIT_FLAG:
+            return
+        sleep(1)
+        if GAME_EXIT_FLAG:
+            return
+        sleep(1)
+        if GAME_EXIT_FLAG:
+            return
+        sleep(1)
+        if GAME_EXIT_FLAG:
+            return
+        sleep(1)
+        if GAME_EXIT_FLAG:
+            return
+        sleep(1)
+        if GAME_EXIT_FLAG:
+            return
+        sleep(1)
+        if GAME_EXIT_FLAG:
+            return
+        sleep(1)
+        if GAME_EXIT_FLAG:
+            return
+        sleep(1)
+        if GAME_EXIT_FLAG:
+            return
+        sleep(1)
+        if GAME_EXIT_FLAG:
+            return
+        sleep(1)
+        if GAME_EXIT_FLAG:
+            return
+        sleep(1)
+        if GAME_EXIT_FLAG:
+            return
+        sleep(1)
+        if GAME_EXIT_FLAG:
+            return
+        sleep(1)
+        if GAME_EXIT_FLAG:
+            return
 
 
 

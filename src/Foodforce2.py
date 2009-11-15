@@ -91,7 +91,16 @@ def message_window():
             message_label = gui.Label(position = threades.resize_pos((5,50),(450.0,150.0),win.size),size = threades.resize_pos((440,140),(450.0,150.0),win.size), parent = win, text = text, style = labelStyleCopy)
             sleep(6)
             win.close()
-        sleep(2)
+
+        if threades.GAME_EXIT_FLAG:
+            return
+        sleep(1)
+        if threades.GAME_EXIT_FLAG:
+            return
+        sleep(1)
+        if threades.GAME_EXIT_FLAG:
+            return
+        
 
 
 def load_sound(name):
@@ -120,7 +129,11 @@ def escape():
 def safe_exit(button = None):
     #print 'in safe_exit'
     #print 'in safe_exit'
-    
+    threades.GAME_EXIT_FLAG = True
+    if update_thread:
+        update_thread.join()
+    if message_thread:
+        message_thread.join()
     proceduralFlow.openStoryBoardFile()
     proceduralFlow.closeStoryBoardFile()
     if soundtrack:
@@ -801,12 +814,15 @@ def facility_placement():
         threades.set_build_facility_placement_flag()
         gui_buttons.gui_obj.setup_button.enabled = True
             
-                
+update_thread = None
+message_thread = None
 def main():
 
     global panel
     global chat_screen
     global level_setting
+    global update_thread
+    global message_thread
     
     cursor = pygame.cursors.load_xbm(os.path.join('art', 'ff2_cursor.xbm'),os.path.join('art', 'ff2_cursor-mask.xbm'))
     #print cursor
@@ -842,8 +858,11 @@ def main():
     animation_obj = threades.Animation()
     animation_obj.update()
     # Starting of the threads
-    update_thread = threading.Thread(target = threades.update_turn, args=[]).start()
-    message_thread = threading.Thread(target = message_window, args=[]).start()
+    update_thread = threading.Thread(target = threades.update_turn, args=[])
+    update_thread.start()
+    #print update_thread
+    message_thread = threading.Thread(target = message_window, args=[])
+    message_thread.start()
     mouse_flag = False
     chat_screen=chat.chat()
         
