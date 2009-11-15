@@ -1,5 +1,5 @@
 *********************************************************************************
-FoodForce2 Installation Instructions
+FoodForce2 Installation Instructions From Source Code
 *********************************************************************************
 
 Once you have downloaded the source and unzipped it, you need the following to run the game
