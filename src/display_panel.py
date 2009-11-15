@@ -428,14 +428,14 @@ class mini_map:
     
         if self.update_flag or threades.map_update_flag or threades.total_update_flag:
             threades.screen.blit(self.map,threades.resize_pos((930,390)))
-            posn = threades.resize_pos((930+int(3200/22.22),390+int(2600/23.80)))
+            posn = threades.resize_pos((930+int(3200/23.22),390+int(2600/24.80)))
             threades.screen.blit(load_images.Map_images[6],posn)
             for i in range(len(model.facilities_list)):
                 for j in range(model.facilities_list[i].get_original_number()):
-                    posn = threades.resize_pos((930+int(model.facilities_list_sprites[model.facilities_list[i].get_name()][j].position[0]/22.22),390+int(model.facilities_list_sprites[model.facilities_list[i].get_name()][j].position[1]/23.80)))
+                    posn = threades.resize_pos((930+int(model.facilities_list_sprites[model.facilities_list[i].get_name()][j].position[0]/23.22),390+int(model.facilities_list_sprites[model.facilities_list[i].get_name()][j].position[1]/24.80)))
                     threades.screen.blit(load_images.Map_images[i],posn)
         rect_draw = threades.transform_obj.village_boundary_covered()
-        rect_final = threades.resize_rect((930+rect_draw[0]/22.22, 390 + rect_draw[1]/23.80, (rect_draw[2]-rect_draw[0])/22.22, (rect_draw[3]-rect_draw[1])/23.80))
+        rect_final = threades.resize_rect((930+rect_draw[0]/23.22, 390 + rect_draw[1]/24.80, (rect_draw[2]-rect_draw[0])/23.22, (rect_draw[3]-rect_draw[1])/24.80))
         pygame.draw.rect(threades.screen, (47, 47, 255, 180), rect_final, 2)
         self.update_flag = False
     
