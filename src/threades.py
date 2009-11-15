@@ -215,7 +215,15 @@ def stop_facility(facility_obj,name_res = ''):
                     a=1
         if a==0:
             break
-        sleep(2)
+        if GAME_END_FLAG:
+            return
+        sleep(1)
+        if GAME_END_FLAG:
+            return
+        sleep(1)
+        if GAME_END_FLAG:
+            return
+        
 
     facility_obj.resume_facility()
     message.push_message('Facility '+model.FACILITY_NAMES[facility_obj.get_name()]+' has been resumed','low')

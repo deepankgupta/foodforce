@@ -134,6 +134,7 @@ def safe_exit(button = None):
         update_thread.join()
     if message_thread:
         message_thread.join()
+    sleep(1)
     proceduralFlow.openStoryBoardFile()
     proceduralFlow.closeStoryBoardFile()
     if soundtrack:
@@ -498,13 +499,14 @@ class starting_intro:
         '''
 
         threades.current_level = 1
-        self.remove_buttons()
+        #self.remove_buttons()
+        if soundtrack:
+            soundtrack.play(-1)
+        '''
         threades.screen.fill((255,255,255))
         hunger_map = pygame.image.load(os.path.join('data', 'Wfpwork.png')).convert()
         hunger_map =  pygame.transform.scale(hunger_map,threades.new_screen_size)
         threades.screen.blit(hunger_map,threades.resize_pos((0,0)))
-        if soundtrack:
-            soundtrack.play(-1)
                
 
         color_brown = (255,214,150)
@@ -592,6 +594,7 @@ class starting_intro:
             model.global_time += model.iteration_time
         win.close()
 
+        '''
         
         self.run = False
 

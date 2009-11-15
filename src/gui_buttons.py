@@ -1196,7 +1196,8 @@ class showInstructions:
         if self.winFlag:
             sleep(2)
             self.winFlag = False
-            
+        if threades.GAME_EXIT_FLAG:
+            return
         self.showMessage(flag)
             
     def showMessage(self,flag = False):
@@ -1231,7 +1232,60 @@ class showInstructions:
         message_label = gui.Label(position = threades.resize_pos((5,50),(690.0,190.0),win.size),size = threades.resize_pos((500,50),(500.0,10.0),win.size), parent = win, text = self.text, style = labelStyleCopy)
         length = len(self.text)
         length = length/50 + 4
-        sleep(length)
+        if threades.GAME_EXIT_FLAG:
+            win.close()
+            return
+        
+        sleep(length/10.0)
+        if threades.GAME_EXIT_FLAG:
+            win.close()
+            return
+        
+        sleep(length/10.0)
+        if threades.GAME_EXIT_FLAG:
+            win.close()
+            return
+        
+        sleep(length/10.0)
+        if threades.GAME_EXIT_FLAG:
+            win.close()
+            return
+        
+        sleep(length/10.0)
+        if threades.GAME_EXIT_FLAG:
+            win.close()
+            return
+        
+        sleep(length/10.0)
+        if threades.GAME_EXIT_FLAG:
+            win.close()
+            return
+        
+        sleep(length/10.0)
+        if threades.GAME_EXIT_FLAG:
+            win.close()
+            return
+        
+        sleep(length/10.0)
+        if threades.GAME_EXIT_FLAG:
+            win.close()
+            return
+        
+        sleep(length/10.0)
+        if threades.GAME_EXIT_FLAG:
+            win.close()
+            return
+        
+        sleep(length/10.0)
+        if threades.GAME_EXIT_FLAG:
+            win.close()
+            return
+        
+        sleep(length/10.0)
+        if threades.GAME_EXIT_FLAG:
+            win.close()
+            return
+               
         win.close()
         
         
