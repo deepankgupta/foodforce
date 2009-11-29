@@ -189,7 +189,11 @@ def event_handling(e):
         threades.delete_saved_game()
         proceduralFlow.storyboard_level = 1
         proceduralFlow.load_level_obj.new_level_stats('data.pkl','graphics_layout.pkl')
+        event = game_events.Event(type = game_events.ACTIONCOMPLETEEVENT, facility_name = '', res_name = '' , res_quantity = 0)
+        game_events.EventQueue.add(event)
+        model.game_controller.reset_time()
         pause_screen()
+        #print proceduralFlow.storyboard_level
         
     if e.type == KEYUP:
         if e.key == K_UP:
@@ -263,7 +267,7 @@ def get_update_region():
     
 
 def load_resume_game():
-    global current_level
+   
     actiontemp = proceduralFlow.actionTemplate()
     actiontemp.actionType = 3
     proceduralFlow.openStoryBoardFile()
@@ -502,100 +506,7 @@ class starting_intro:
         self.remove_buttons()
         if soundtrack:
             soundtrack.play(-1)
-        '''
-        threades.screen.fill((255,255,255))
-        hunger_map = pygame.image.load(os.path.join('data', 'Wfpwork.png')).convert()
-        hunger_map =  pygame.transform.scale(hunger_map,threades.new_screen_size)
-        threades.screen.blit(hunger_map,threades.resize_pos((0,0)))
                
-
-        color_brown = (255,214,150)
-        # gui.Window custom style
-        myfont = pygame.font.Font("font.ttf", threades.resize_pt(28))
-        win_style = gui.defaultWindowStyle.copy()
-        win_style['font'] = myfont
-        win_style['font-color'] = color_brown
-        win_style['bg-color'] = (0,0,0, 180)
-        win_style['border-color'] = color_brown
-        position_win =threades.resize_pos((200.0,50.0))
-        size_win =threades.resize_pos((800.0,600.0))
-        win = gui.Window(position = position_win, size = size_win, parent = desktop2, text = " FOODFORCE II : ESCAPING POVERTY  " ,style = win_style,shadeable = False, closeable = False,moveable = False)
-        self.startup_text_run = True
-        win.surf.set_alpha(100)
-        myfont2 = pygame.font.Font("font.ttf",threades.resize_pt(19))
-        labelstyle1 = gui.defaultLabelStyle.copy()
-        labelstyle1['border-width'] = 0
-        labelstyle1['wordwrap'] = True
-        labelstyle1['autosize'] = False
-        labelstyle1['font'] = myfont2
-        labelstyle1['font-color'] = color_brown
-
-        counter = 0
-        label = gui.Label(position = threades.resize_pos((10.0,130.0),(800.0,600.0),win.size),size = threades.resize_pos((780.0,460.0),(800.0,600.0),win.size), parent = win, text = 's', style = labelstyle1)
-        
-        buttonsurf = pygame.image.load(os.path.join('art','button.png')).convert_alpha()
-        buttonsurf = pygame.transform.scale(buttonsurf, (36, threades.resize_pt_y(40)))
-        button_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
-        button_style['font'] = myfont2
-
-        self.skip_button = gui.Button(position = threades.resize_pos((600,550),(800.0,600.0),win.size), size = threades.resize_pos((150,30),(800.0,600.0),win.size), parent = win, text = "  Skip  ",style = button_style)
-        self.skip_button.onClick = self.turnoff_startup_run
-        model.global_time = 0
-        
-        #One time show of the background image
-        threades.screen.fill((255,255,255))
-        threades.screen.blit(hunger_map,threades.resize_pos((0,0)))
-        pygame.display.flip()
-        #sleep(5)
-        first_display = True
-        model.global_time = 0
-        while self.startup_text_run:
-
-            label.text =  texts.trailer_text[counter]
-            for e in gui.setEvents(pygame.event.get()):
-                if e.type == pygame.QUIT:
-                    safe_exit()
-                if e.type == KEYDOWN:
-                    if e.key == 27:  # For escape key
-                        self.startup_text_run = False
-                    if e.key == K_RETURN:
-                        counter += 1
-                if model.FLAG_XO:
-                    if e.type==mesh.CONNECT :
-                        game_sharing.sharing_handler(e.type,None,'')
-                    #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,None,'']).start()
-                    elif e.type==mesh.PARTICIPANT_ADD or e.type==mesh.PARTICIPANT_REMOVE :
-                        game_sharing.sharing_handler(e.type,e.handle,'')
-                    #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,'']).start()
-                    elif e.type==mesh.MESSAGE_MULTI or e.type==mesh.MESSAGE_UNI :
-                        game_sharing.sharing_handler(e.type,e.handle,e.content)
-                    #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,e.content]).start()
-
-            
-            if model.global_time >= 5000:
-                first_display = False                
-                model.global_time = 0
-                counter += 1
-            if not first_display:
-                
-                threades.screen.fill((255,255,255))
-                threades.screen.blit(hunger_map,threades.resize_pos((0,0)))
-                desktop2.update()
-                desktop2.draw()
-                pygame.display.flip()
-                
-            if counter == len(texts.trailer_text):
-                self.startup_text_run = False
-            
-            
-            
-        
-            model.iteration_time = clock.tick()
-            model.global_time += model.iteration_time
-        win.close()
-
-        '''
-        
         self.run = False
 
     def turnoff_startup_run(self,button = None):
@@ -805,7 +716,7 @@ def facility_placement():
         color = (205,0,0)
     else:
         color = (205,200,100)
-    place_rect=pygame.draw.rect(threades.screen,color,rect_obj_temp,5)
+    pygame.draw.rect(threades.screen,color,rect_obj_temp,5)
     
     l,m,r = pygame.mouse.get_pressed()
     if l == 1 and collide_check == False:

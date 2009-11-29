@@ -44,7 +44,9 @@ else:
     FLAG_SOAS = False
 
 #facility size values
-Facility_Size = [['HOUSE',360,300],['HOSPITAL',370,300],['FARM',516,500],['FOUNTAIN',197,192],['SCHOOL',420,450],['WORKSHOP',600,750]]
+Facility_Size = [['HOUSE',360,360],['HOSPITAL',370,300],['FARM',516,500],['FOUNTAIN',197,192],['SCHOOL',420,450],['WORKSHOP',600,750]]
+
+#Facility_Size = [['HOUSE',360],['HOSPITAL',370],['FARM',516],['FOUNTAIN',197],['SCHOOL',420],['WORKSHOP',600]]
 
 
 def init_cons(file_name):
@@ -2303,7 +2305,7 @@ class game_time:
             self.years=int(self.years+(self.months/12))
             self.months=int(self.months%12)
             
-    def resume_game_time_update(self,new_global_time):
+    def forced_game_time_update(self,new_global_time):
         self.level_global_time = new_global_time
         
             

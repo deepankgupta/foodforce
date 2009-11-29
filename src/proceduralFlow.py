@@ -825,9 +825,8 @@ class Actions:
 
 
         self.win.close()
-
+        
         GAME_END_FLAG = True
-
 
 # Storyboard Related Functions
 

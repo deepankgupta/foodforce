@@ -55,7 +55,7 @@ def write_data():
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
     
-    text = 'When you build a hut, some amount of your resources are utilized. For each Hut that you build, 10 units of bricks, 8 units of Tools and 8 units of Water are used. Also, people are required to build a hut. Similarly, anything you build will require materials such as bricks and labour. Try building another hut.'
+    text = 'When you build a hut, some amount of your resources are utilized. For each Hut that you build, 10 units of bricks, 10 units of Tools and 3 units of Water are used. Also, people are required to build a hut. Similarly, anything you build will require materials such as bricks and labour. Try building another hut.'
     
     action = [9,text]
     actionData = ['action',action]

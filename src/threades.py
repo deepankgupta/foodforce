@@ -551,9 +551,9 @@ def upgrade_facility(facility_obj):
         model.resources = facility_obj.update_level(model.resources,model.ppl)
     except Exceptions.Resources_Underflow_Exception,args:
         if str(args) == 'BUILDING MATERIAL':
-            text = 'You dont have enough '+'Bricks'+' to build the facility,  please try later'
+            text = 'You dont have enough '+'Bricks'+' to upgrade the facility,  please try later'
         else:
-            text = 'You dont have enough '+str.lower(str(args))+' to build the facility,  please try later'
+            text = 'You dont have enough '+str.lower(str(args))+' to upgrade the facility,  please try later'
         return text
 #        message.push_message(text,'high')
     except Exceptions.Maximum_Level_Reached:
@@ -1077,7 +1077,7 @@ def resume_game(data_file = save_game_file):
     output = open(data_file,'rb')
     level = pickle.load(output)
     level_save_time = pickle.load(output)
-    model.game_controller.resume_game_time_update(level_save_time)
+    model.game_controller.forced_game_time_update(level_save_time)
     print model.global_time
     while True:
         try:
