@@ -747,12 +747,12 @@ def main():
     # Loading and starting the sound play
     #level_setting=level_change.change_level()
     
-
+    pause_screen()
     intro_thread.join()
     model.game_controller.reset_time()
     threades.current_level = threades.check_saved_game_level()
         
-    pause_screen()
+    
     proceduralFlow.storyboard_level = threades.current_level
     if threades.current_level != 1:
         load_resume_game()

@@ -166,7 +166,7 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
-    text = 'People areound are idyling in the village, you should build a workshop to create more work for them. Building a workshop also adds Bricks to your village stockpile'
+    text = 'People around are idyling in the village, you should build a workshop to create more work for them. Building a workshop also adds Tools to your village stockpile'
 
     action = [9,text]
     actionData = ['action',action]
@@ -178,7 +178,7 @@ def write_data():
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
 
-    text = 'You village has grown considerably now, hygiene and healthcare are the two the most important aspect of a healthy living. You must build a hosptial now for people to get good treatment and medicine.'
+    text = 'Your village has grown considerably now, hygiene and healthcare are the two the most important aspect of a healthy living. You must build a hosptial now for people to get good treatment and medicine.'
     
     action = [9,text]
     actionData = ['action',action]

@@ -620,10 +620,15 @@ def calculate_indicators_starting():
     
     food = protiens + vitamins + fats
     if food:
-    
-        protiens /= food
-        vitamins /= food
-        fats /= food
+            protiens /= food*0.6
+            if protiens>1:
+                protiens = 1
+            vitamins /= food*0.4
+            if vitamins>1:
+                vitamins = 1
+            fats /= food*0.6
+            if fats>1:
+                fats = 1
 
     model.Nutrition.turn({'PEOPLE FED' : ppl_fed_ratio , 'PROTIENS' : protiens , 'FATS' : fats , 'VITAMINS' : vitamins})
 
@@ -631,7 +636,9 @@ def calculate_indicators_starting():
     healthy_ppl_ratio = model.ppl.get_no_of_ppl_healthy()/model.ppl.get_total_population()
     nutrition = model.Nutrition.get_value()
     nutrition /= model.MAX_INDICATOR
-    water = model.Water.get_vquantity()/model.MAX_RES_VAL_VILLAGE
+    water = model.Water.get_vquantity()/1000.0
+    if water>1:
+        water =1
 
     model.Health.turn({'HEALTHY PEOPLE' : healthy_ppl_ratio , 'NUTRITION' : nutrition , 'WATER' : water})
 
@@ -732,9 +739,15 @@ def update_turn(delay = 15):
             #print "value of protiens,vitamins,fats",protiens,vitamins,fats
             food = protiens + vitamins + fats
             if food:
-                protiens /= food
-                vitamins /= food
-                fats /= food
+                protiens /= food*0.6
+                if protiens>1:
+                    protiens = 1
+                vitamins /= food*0.4
+                if vitamins>1:
+                    vitamins = 1
+                fats /= food*0.6
+                if fats>1:
+                    fats = 1
             #print "protiens,vitamins,fats",protiens,vitamins,fats
     
             model.Nutrition.turn({'PEOPLE FED' : ppl_fed_ratio , 'PROTIENS' : protiens , 'FATS' : fats , 'VITAMINS' : vitamins})
@@ -745,7 +758,9 @@ def update_turn(delay = 15):
             nutrition = model.Nutrition.get_value()
             nutrition /= model.MAX_INDICATOR
             #print "nutrition",nutrition
-            water = model.Water.get_vquantity()/model.MAX_RES_VAL_VILLAGE
+            water = model.Water.get_vquantity()/1000.0
+            if water>1:
+                water =1
             #print "water",water
     
             model.Health.turn({'HEALTHY PEOPLE' : healthy_ppl_ratio , 'NUTRITION' : nutrition , 'WATER' : water})

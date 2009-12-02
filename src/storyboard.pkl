@@ -266,7 +266,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'People areound are idyling in the village, you should build a workshop to create more work for them. Building a workshop also adds Bricks to your village stockpile'
+aS'People around are idyling in the village, you should build a workshop to create more work for them. Building a workshop also adds Tools to your village stockpile'
 p3
 aa.(lp0
 S'condition'
@@ -292,7 +292,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'You village has grown considerably now, hygiene and healthcare are the two the most important aspect of a healthy living. You must build a hosptial now for people to get good treatment and medicine.'
+aS'Your village has grown considerably now, hygiene and healthcare are the two the most important aspect of a healthy living. You must build a hosptial now for people to get good treatment and medicine.'
 p3
 aa.(lp0
 S'condition'

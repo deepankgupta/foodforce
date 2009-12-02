@@ -16,7 +16,7 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program; if not, write to the Free Software
 #   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-#
+#Mohit
 
 import pickle
 import pygame
@@ -35,6 +35,7 @@ import game_events
 #from chat import *
 import model
 import chat
+import texts
 #from Foodforce2 import Earthquake
 import natural_calamities
 import level_change
@@ -796,7 +797,7 @@ class Actions:
         self.storyboardwin_run = True
         #logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
         #ff_logo = pygame.transform.scale(logo,threades.resize_pos((1111,250)))
-        text = " Developers : \n\n Mohit Taneja\n Grivan Thapar\n Rupinder Singh\n\n Manager: \n\n Deepank Gupta"
+        text = texts.credits_text
         #self.instructions_counter = 0
         label = gui.Label(position = threades.resize_pos((100.0,100.0),(900.0,500.0),self.win.size),size = threades.resize_pos((700.0,340.0),(900.0,500.0),self.win.size), parent = self.win, text = text, style = labelStyleCopy)
 
