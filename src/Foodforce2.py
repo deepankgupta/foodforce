@@ -721,7 +721,9 @@ def facility_placement():
     
     l,m,r = pygame.mouse.get_pressed()
     if l == 1 and collide_check == False:
-        PLACING_DATA_LIST = [threades.buildFacilityPlacementFlag,rect_obj] 
+        (a,b) = threades.transform_obj.inverse_trans_cordinate((x,y))
+        rect_obj_send = pygame.Rect((a,b,width_temp,height_temp))
+        PLACING_DATA_LIST = [threades.buildFacilityPlacementFlag,rect_obj_send] 
         threades.build_placed_facility(threades.buildFacilityPlacementFlag,False,PLACING_DATA_LIST)
         threades.set_build_facility_placement_flag()
         gui_buttons.gui_obj.setup_button.enabled = True

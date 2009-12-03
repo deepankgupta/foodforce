@@ -57,7 +57,7 @@ except:
     
     new_screen_size = [800,600]
     
-#new_screen_size = [800,600]
+#new_screen_size = [1200,900]
 
 global screen   
 if model.FLAG_XO:
@@ -66,8 +66,8 @@ if model.FLAG_XO:
     screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
 else:
     
-    screen = pygame.display.set_mode(new_screen_size,FULLSCREEN|SRCALPHA,32)
-    #screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
+    #screen = pygame.display.set_mode(new_screen_size,FULLSCREEN|SRCALPHA,32)
+    screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
 
 
 defaultStyle.init(gui)
@@ -420,8 +420,11 @@ def place_facility_collide_check(rect_obj):
     
     market_rect = pygame.Rect(2850,2600,516,600)  
     
-    for i in range(len(PLACING_LIST_TEMP)):
-        FACILITY_RECT_LIST.append(PLACING_LIST_TEMP[i][1])
+    for key in model.facilities_list_sprites.values():
+        for i in range(len(key)):
+            print transform_obj.inverse_transform_rect(key[i].rect)
+            FACILITY_RECT_LIST.append(transform_obj.inverse_transform_rect(key[i].rect))
+            
     result = rect_obj.collidelist(FACILITY_RECT_LIST)
     if rect_obj.colliderect(market_rect):
         result = 1
@@ -2043,9 +2046,42 @@ class Transform:
          newx:int:new x cordinate
          newy:int:new y cordinate
         '''
-        newx = (x + self.pos_x)/self.ratio
-        newy = (y + self.pos_y - resize_pt_y(40))/self.ratio
+        newx = ((x + self.pos_x)/self.ratio)*(1200.0/new_screen_size[0])
+        newy = ((y + self.pos_y - 40)/self.ratio)*(900.0/new_screen_size[1])
         return(int(newx),int(newy))
+    
+    
+    def inverse_trans_cordinate(self,(x,y)):
+        ''' Transform the Screen Cordinates to Village Cordinates
+        
+        Args:
+         x:int:x cordinate
+         y:int:y cordinate
+        Return:
+         newx:int:new x cordinate
+         newy:int:new y cordinate
+        '''
+        newx = ((x + self.pos_x)/self.ratio)
+        newy = ((y + self.pos_y - resize_pt_y(40))/self.ratio)
+        return(int(newx),int(newy))
+    
+    def inverse_transform_rect(self,(x,y,w,z)):
+        ''' Transform the Screen Cordinates to Village Cordinates
+        
+        Args:
+         x:int:x cordinate
+         y:int:y cordinate
+        Return:
+         newx:int:new x cordinate
+         newy:int:new y cordinate
+        '''
+        newx = ((x + self.pos_x)/self.ratio)*(1200.0/new_screen_size[0])
+        newy = ((y + self.pos_y - 40)/self.ratio)*(900.0/new_screen_size[1])
+        neww = (w/self.ratio)*(1200.0/new_screen_size[0])
+        newz = (z/self.ratio)*(900.0/new_screen_size[1])
+        return(int(newx),int(newy),int(neww),int(newz))
+
+    
     def set_ratio(self,ratio):
         self.ratio = ratio
   
