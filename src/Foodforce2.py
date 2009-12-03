@@ -501,7 +501,7 @@ class starting_intro:
     def startup_text(self,button = None):
         ''' Displays the startup text
         '''
-
+        
         threades.current_level = 1
         self.remove_buttons()
         if soundtrack:
@@ -515,6 +515,7 @@ class starting_intro:
     
     def resume_saved_level(self,button = None):
         '''Resumes saved level'''
+        
         threades.resume_game()
         self.remove_buttons()
         self.run = False
@@ -746,11 +747,16 @@ def main():
     intro_thread.start()
     # Loading and starting the sound play
     #level_setting=level_change.change_level()
+    threades.current_level = threades.check_saved_game_level()
+    
+    
+    
+    
     
     pause_screen()
     intro_thread.join()
     model.game_controller.reset_time()
-    threades.current_level = threades.check_saved_game_level()
+    
         
     
     proceduralFlow.storyboard_level = threades.current_level
