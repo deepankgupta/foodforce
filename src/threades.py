@@ -57,7 +57,7 @@ except:
     
     new_screen_size = [800,600]
     
-#new_screen_size = [1200,900]
+#new_screen_size = [800,600]
 
 global screen   
 if model.FLAG_XO:
@@ -418,7 +418,7 @@ def place_facility_collide_check(rect_obj):
     #rect_obj_temp[2] = rect_obj_temp[2] + 0
     #rect_obj_temp[3] = rect_obj_temp[3] + 0
     
-    market_rect = pygame.Rect(2500,2800,516,600)  
+    market_rect = pygame.Rect(int(2800*(1200.0/new_screen_size[0])),int(2500*(900.0/new_screen_size[1])),int(516*(1200.0/new_screen_size[0])),int(600*(900.0/new_screen_size[1])))  
     
     for key in model.facilities_list_sprites.values():
         for i in range(len(key)):
