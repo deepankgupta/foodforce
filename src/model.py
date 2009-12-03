@@ -2305,7 +2305,7 @@ class game_time:
             self.years=int(self.years+(self.months/12))
             self.months=int(self.months%12)
             
-    def forced_game_time_update(self,new_global_time):
+    def resume_game_time_update(self,new_global_time):
         self.level_global_time = new_global_time
         
             

@@ -753,12 +753,12 @@ def main():
     
     
     
-    
-    
-    pause_screen()
-    intro_thread.join()
     model.game_controller.reset_time()
     
+    
+    intro_thread.join()
+    
+    pause_screen()
         
     
     proceduralFlow.storyboard_level = threades.current_level

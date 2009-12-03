@@ -418,11 +418,11 @@ def place_facility_collide_check(rect_obj):
     #rect_obj_temp[2] = rect_obj_temp[2] + 0
     #rect_obj_temp[3] = rect_obj_temp[3] + 0
     
-    market_rect = pygame.Rect(2850,2600,516,600)  
+    market_rect = pygame.Rect(2500,2800,516,600)  
     
     for key in model.facilities_list_sprites.values():
         for i in range(len(key)):
-            print transform_obj.inverse_transform_rect(key[i].rect)
+            #print transform_obj.inverse_transform_rect(key[i].rect)
             FACILITY_RECT_LIST.append(transform_obj.inverse_transform_rect(key[i].rect))
             
     result = rect_obj.collidelist(FACILITY_RECT_LIST)
@@ -1095,8 +1095,8 @@ def resume_game(data_file = save_game_file):
     output = open(data_file,'rb')
     level = pickle.load(output)
     level_save_time = pickle.load(output)
-    model.game_controller.forced_game_time_update(level_save_time)
-    print model.global_time
+    model.game_controller.resume_game_time_update(level_save_time)
+    #print model.global_time
     while True:
         try:
             PLACING_LIST_TEMP = pickle.load(output)
