@@ -506,6 +506,7 @@ class starting_intro:
         self.remove_buttons()
         if soundtrack:
             soundtrack.play(-1)
+            
                
         self.run = False
 
@@ -755,10 +756,10 @@ def main():
     
     model.game_controller.reset_time()
     
-    
+    pause_screen()
     intro_thread.join()
     
-    pause_screen()
+    
         
     
     proceduralFlow.storyboard_level = threades.current_level

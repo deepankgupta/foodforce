@@ -799,7 +799,7 @@ class Actions:
         #ff_logo = pygame.transform.scale(logo,threades.resize_pos((1111,250)))
         text = texts.credits_text
         #self.instructions_counter = 0
-        label = gui.Label(position = threades.resize_pos((100.0,100.0),(900.0,500.0),self.win.size),size = threades.resize_pos((700.0,340.0),(900.0,500.0),self.win.size), parent = self.win, text = text, style = labelStyleCopy)
+        label = gui.Label(position = threades.resize_pos((100.0,100.0),(900.0,500.0),self.win.size),size = threades.resize_pos((700.0,380.0),(900.0,500.0),self.win.size), parent = self.win, text = text, style = labelStyleCopy)
 
         gl_time = 0
 
