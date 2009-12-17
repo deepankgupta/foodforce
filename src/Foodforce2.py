@@ -130,8 +130,7 @@ def safe_exit(button = None):
     #print 'in safe_exit'
     #print 'in safe_exit'
     threades.GAME_EXIT_FLAG = True
-    if update_thread:
-        update_thread.join()
+    
     if message_thread:
         message_thread.join()
     sleep(1)
@@ -375,6 +374,7 @@ class starting_intro:
 
         self.next_button.onClick = self.increaseInstructionsCounter
         self.prev_button.onClick = self.decreaseInstructionsCounter
+        self.prev_button.enabled = False
         self.skip_button.onClick = self.close_win
         self.instructions_run = True
         logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
@@ -417,12 +417,18 @@ class starting_intro:
             pygame.display.update()
             
     def increaseInstructionsCounter(self,button = None):
+        self.prev_button.enabled = True
         if self.instructions_counter < len(texts.instruction_text)-1:
             self.instructions_counter +=1
+        if self.instructions_counter == len(texts.instruction_text)-1:
+            self.next_button.enabled = False
     
     def decreaseInstructionsCounter(self,button = None):
+        self.next_button.enabled = True
         if self.instructions_counter > 0 :
             self.instructions_counter -=1
+        if self.instructions_counter == 0:
+            self.prev_button.enabled = False
         
 
             
@@ -566,7 +572,7 @@ class starting_intro:
         labelStyleCopy['wordwrap'] = True
         labelStyleCopy['autosize'] = False
         labelStyleCopy['font'] = myfont2
-        labelStyleCopy['font-color'] = self.lightgreen_color
+        labelStyleCopy['font-color'] = self.green_color
         labelStyleCopy['border-color'] = self.black_color
         self.message_label = gui.Label(position = threades.resize_pos((80,80),(600.0,600.0),self.win.size),size = threades.resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "Build ", style = labelStyleCopy)
         self.message_label = gui.Label(position = threades.resize_pos((80,130),(600.0,600.0),self.win.size),size = threades.resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "Upgrade ", style = labelStyleCopy)
@@ -708,6 +714,8 @@ def facility_placement():
     if y > threades.resize_pt_y(600):
         pygame.mouse.set_pos(x,threades.resize_pt_y(600))
     
+    x -= width_temp/2
+    y -= height_temp/2
     rect = (x,y,width,height)
     rect_temp = (x,y,width_temp,height_temp)
     rect_obj = pygame.Rect(rect)
@@ -732,14 +740,12 @@ def facility_placement():
         threades.set_build_facility_placement_flag()
         gui_buttons.gui_obj.setup_button.enabled = True
             
-update_thread = None
 message_thread = None
 def main():
 
     global panel
     global chat_screen
     global level_setting
-    global update_thread
     global message_thread
     
     cursor = pygame.cursors.load_xbm(os.path.join('art', 'ff2_cursor.xbm'),os.path.join('art', 'ff2_cursor-mask.xbm'))
@@ -781,20 +787,18 @@ def main():
     animation_obj = threades.Animation()
     animation_obj.update()
     # Starting of the threads
-    update_thread = threading.Thread(target = threades.update_turn, args=[])
-    update_thread.start()
     #print update_thread
     message_thread = threading.Thread(target = message_window, args=[])
     message_thread.start()
     mouse_flag = False
     chat_screen=chat.chat()
         
-    
+    clock = pygame.time.Clock()
     # The main infinite loop
     while True:
-        #clock.tick()
+        time_passed = clock.tick(3)
         model.game_controller.update_level_time(threades.update_thread_pause)
-        
+        threades.update_turn(time_passed)
         animation_obj.update()
 
 
@@ -803,23 +807,24 @@ def main():
         (x,y) = (0,0)
         x,y = pygame.mouse.get_pos()
         
-        if len(threades.buildFacilityPlacementFlag):
-            facility_placement()               
-        if (x > (threades.resize_pt_x(890)) and x < threades.resize_pt_x(930)):
-            threades.transform_obj.move_free((-10,0))
-            
-        if x < threades.resize_pt_x(60) :
-            threades.transform_obj.move_free((10,0))
-            
-        if  y > threades.resize_pt_y(560) and y< threades.resize_pt_y(600):
-            threades.transform_obj.move_free((0,-10))
-            
-        if y < threades.resize_pt_y(60):
-            threades.transform_obj.move_free((0,10))
-            
-        if (x > threades.resize_pt_x(0)) and (x < threades.resize_pt_x(600)) and (y > threades.resize_pt_y(845)) and (y < threades.resize_pt_y(900)):
-            mouse_flag = True
-            
+        if not gui_buttons.gui_obj.get_win_flag():
+            if len(threades.buildFacilityPlacementFlag):
+                facility_placement()               
+            if (x > (threades.resize_pt_x(890)) and x < threades.resize_pt_x(930)) and y< threades.resize_pt_y(600):
+                threades.transform_obj.move_free((-10,0))
+                
+            if x < threades.resize_pt_x(60) and y< threades.resize_pt_y(600):
+                threades.transform_obj.move_free((10,0))
+                
+            if  y > threades.resize_pt_y(560) and y< threades.resize_pt_y(600) and x < threades.resize_pt_x(930):
+                threades.transform_obj.move_free((0,-10))
+                
+            if y < threades.resize_pt_y(60) and x < threades.resize_pt_x(930) and x < threades.resize_pt_x(930):
+                threades.transform_obj.move_free((0,10))
+                
+            if (x > threades.resize_pt_x(0)) and (x < threades.resize_pt_x(600)) and (y > threades.resize_pt_y(845)) and (y < threades.resize_pt_y(900)):
+                mouse_flag = True
+                
         pygame.display.set_caption('FoodForce2')
 
         for e in gui.setEvents(pygame.event.get()):

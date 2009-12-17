@@ -367,18 +367,19 @@ class Widget(object):
             if not pygame.mouse.b1:
                 if self == topmost and not self.mouseover:
                     self._getMouseOver()
+		    
                 elif self != topmost and self.mouseover:
                     self._loseMouseOver()
-            
+		    
             #Checks if mouse is over and button is pressed   
             if self.mouseover and mouse.b1 and not self.mousedown:
-                #Sets the button is pressed
+		#Sets the button is pressed
                 self.mousedown = True
                 
                 #Calls on mouse down event if present
                 if self.onMouseDown:
                     self.onMouseDown(self)
-                
+		    
                 #Refreshes if he wants
                 if self.REFRESH_ON_MOUSE_DOWN:
                     self.needsRefresh = True
@@ -392,7 +393,7 @@ class Widget(object):
                     self.mouseclick = True
                     
                     if self.onClick:
-                        self.onClick(self)
+			self.onClick(self)
                 
                 if self.REFRESH_ON_MOUSE_CLICK:
                     self.needsRefresh = True

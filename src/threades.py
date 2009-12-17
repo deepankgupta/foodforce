@@ -57,7 +57,7 @@ except:
     
     new_screen_size = [800,600]
     
-#new_screen_size = [800,600]
+#new_screen_size = [1200,900]
 
 global screen   
 if model.FLAG_XO:
@@ -659,8 +659,8 @@ def calculate_indicators_starting():
     ppl_emp = model.ppl.get_total_no_of_ppl_emp()/model.ppl.get_total_population()
     model.Training.turn({ 'LEVEL OF WORKSHOPS' : level , 'EMPLOYED PEOPLE IN WORKSHOP' : ppl_emp , 'EMPLOYED PEOPLE IN FARM' : ppl_emp , 'EMPLOYED PEOPLE IN HOSPITAL' : ppl_emp , 'EMPLOYED PEOPLE IN CONSTRUCTION' : ppl_emp })
 
-            
-def update_turn(delay = 15):
+update_turn_time = 0         
+def update_turn(delay = 0):
     ''' Updates the model.resources, facilities, manpower model.resources and indicators
     at each turn
     '''
@@ -673,10 +673,11 @@ def update_turn(delay = 15):
     global Health
     global Water
     global School
+    global update_turn_time
 
-
+    update_turn_time += delay
     
-    while True:
+    if update_turn_time>15000:
         
         if update_thread_pause == True:
 
@@ -782,54 +783,7 @@ def update_turn(delay = 15):
             ppl_emp = model.ppl.get_total_no_of_ppl_emp()/model.ppl.get_total_population()
             model.Training.turn({ 'LEVEL OF WORKSHOPS' : level , 'EMPLOYED PEOPLE IN WORKSHOP' : ppl_emp , 'EMPLOYED PEOPLE IN FARM' : ppl_emp , 'EMPLOYED PEOPLE IN HOSPITAL' : ppl_emp , 'EMPLOYED PEOPLE IN CONSTRUCTION' : ppl_emp })
 
-            if GAME_EXIT_FLAG:
-                return
-                
-        sleep(1)
-        if GAME_EXIT_FLAG:
-            return
-        sleep(1)
-        if GAME_EXIT_FLAG:
-            return
-        sleep(1)
-        if GAME_EXIT_FLAG:
-            return
-        sleep(1)
-        if GAME_EXIT_FLAG:
-            return
-        sleep(1)
-        if GAME_EXIT_FLAG:
-            return
-        sleep(1)
-        if GAME_EXIT_FLAG:
-            return
-        sleep(1)
-        if GAME_EXIT_FLAG:
-            return
-        sleep(1)
-        if GAME_EXIT_FLAG:
-            return
-        sleep(1)
-        if GAME_EXIT_FLAG:
-            return
-        sleep(1)
-        if GAME_EXIT_FLAG:
-            return
-        sleep(1)
-        if GAME_EXIT_FLAG:
-            return
-        sleep(1)
-        if GAME_EXIT_FLAG:
-            return
-        sleep(1)
-        if GAME_EXIT_FLAG:
-            return
-        sleep(1)
-        if GAME_EXIT_FLAG:
-            return
-        sleep(1)
-        if GAME_EXIT_FLAG:
-            return
+            update_turn_time =0
 
 
 
