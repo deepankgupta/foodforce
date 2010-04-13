@@ -674,10 +674,11 @@ def update_turn(delay = 0):
     global Water
     global School
     global update_turn_time
-
-    update_turn_time += delay
     
-    if update_turn_time>15000:
+    update_turn_time += delay
+    print "Delay :" + str(delay)
+    print "turn time :" + str(update_turn_time)
+    if update_turn_time>10000:
         
         if update_thread_pause == True:
 

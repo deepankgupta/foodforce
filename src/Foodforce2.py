@@ -848,7 +848,7 @@ def main():
         
         pygame.display.update(rects_list)
 
-        model.iteration_time = clock.tick()
+        model.iteration_time = time_passed
         model.global_time += model.iteration_time
         storyboardObj.flow()
 
