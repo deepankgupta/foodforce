@@ -796,7 +796,7 @@ def main():
     clock = pygame.time.Clock()
     # The main infinite loop
     while True:
-        time_passed = clock.tick(3)
+        time_passed = clock.tick()
         model.game_controller.update_level_time(threades.update_thread_pause)
         threades.update_turn(time_passed)
         animation_obj.update()
