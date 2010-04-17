@@ -57,7 +57,7 @@ except:
     
     new_screen_size = [800,600]
     
-#new_screen_size = [1200,900]
+#new_screen_size = [800,600]
 
 global screen   
 if model.FLAG_XO:
@@ -676,8 +676,8 @@ def update_turn(delay = 0):
     global update_turn_time
     
     update_turn_time += delay
-    print "Delay :" + str(delay)
-    print "turn time :" + str(update_turn_time)
+    #print "Delay :" + str(delay)
+    #print "turn time :" + str(update_turn_time)
     if update_turn_time>10000:
         
         if update_thread_pause == True:

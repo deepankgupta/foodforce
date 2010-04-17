@@ -44,6 +44,7 @@ import defaultStyle
 load_level_obj = level_change.change_level()
 
 storyboardfile = None
+storyboard_file = ''
 GAME_END_FLAG = False
 
 # Event Types in case of non-event based conditions
@@ -490,9 +491,12 @@ class Actions:
     def loadNextLevel(self):
 
         global storyboard_level
-
-        data_file = 'data'+str(storyboard_level+1)+'.pkl'
+        for item in os.listdir(os.path.join("storyboards")):
+            if model.storyboard_file == str(item)+'/storyboard.pkl':            
+                data_file = 'storyboards/'+str(item)+'/data/data'+str(storyboard_level+1)+'.pkl'
+                break
         #print data_file
+        model.game_controller.reset_time()
         graphics_file = 'graphics_layout.pkl'
         storyboard_level += 1
         load_level_obj.new_level_stats(data_file,graphics_file)
@@ -501,13 +505,16 @@ class Actions:
 
 
     def loadLevelAgain(self):
-        data_file = 'data'+str(storyboard_level)+'.pkl'
+        for item in os.listdir(os.path.join("storyboards")):
+            if model.storyboard_file == str(item)+'/storyboard.pkl':
+                data_file = 'storyboards/'+str(item)+'/data/data'+str(storyboard_level)+'.pkl'
+                break
         graphics_file = 'graphics_layout.pkl'
         load_level_obj.new_level_stats(data_file,graphics_file)
         #print "StoryBoard level : "
         #print storyboard_level
         # Seeking in the storyboard to the current level
-
+        model.game_controller.reset_time()
         closeStoryBoardFile()
         openStoryBoardFile()
         lev = 1
@@ -831,10 +838,11 @@ class Actions:
 
 # Storyboard Related Functions
 
-def openStoryBoardFile(file = 'storyboard.pkl'):
+def openStoryBoardFile():
 
     global storyboardfile
-    storyboardfile = open('storyboard.pkl','rb')
+    global storyboard_file_name
+    storyboardfile = open('storyboards/'+model.storyboard_file,'rb')
 
 def closeStoryBoardFile():
     storyboardfile.close()
@@ -857,6 +865,7 @@ class storyboardFlow:
         events_list = game_events.EventQueue.get_events()
 
         if self.actionRunningFlag:
+            
             if not self.action.timer == 0:
                 self.action.checkDelay()
             for event in events_list:
@@ -864,7 +873,6 @@ class storyboardFlow:
                     self.actionRunningFlag = False
 
         elif self.conditionTestingFlag:
-
             if self.checkConditionsObj.checkConditions(events_list) == 1:
                 self.prevConditionResult = 1
                 self.conditionTestingFlag = False
@@ -873,7 +881,7 @@ class storyboardFlow:
                 self.conditionTestingFlag = False
 
         else:
-
+            
             try:
                 variable = pickle.load(storyboardfile)
                 if variable[0] == 'action':

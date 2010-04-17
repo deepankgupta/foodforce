@@ -55,16 +55,26 @@ class chat:
         self.initial_position = threades.resize_pos((15,10))
         self.final_position = threades.resize_pos((15,750))
         self.update_win_pos=pygame.Rect(threades.resize_pos((150.0,50.0)),threades.resize_pos((900,800)))
-        self.imageBox = pygame.image.load(os.path.join('art', 'imageBox.png')).convert_alpha()
-        self.chatBox = pygame.image.load(os.path.join('art', 'chatBox.png')).convert_alpha()
+        self.imageBox = pygame.image.load(os.path.join('storyboards','storyboard1','images','chat images', 'imageBox.png')).convert_alpha()
+        self.chatBox = pygame.image.load(os.path.join('storyboards','storyboard1','images','chat images', 'chatBox.png')).convert_alpha()
+        
+        #list for storing the images loaded in the chatbox
         self.characterImage={}
-        self.characterImage['KAMAT']=pygame.image.load(os.path.join('art', 'kamat.png')).convert_alpha()
-        self.characterImage['SON']=pygame.image.load(os.path.join('art', 'son.png')).convert_alpha()
-        self.characterImage['AJMAL']=pygame.image.load(os.path.join('art', 'ajmal.png')).convert_alpha()
-        self.characterImage['PANCH']=pygame.image.load(os.path.join('art', 'panch.png')).convert_alpha()
-        self.characterImage['PRIEST']=pygame.image.load(os.path.join('art', 'priest.png')).convert_alpha()
-        self.characterImage['SUKHDEV']=pygame.image.load(os.path.join('art', 'sukhdev.png')).convert_alpha() 
-        self.characterImage['FARMER']=pygame.image.load(os.path.join('art', 'villager.png')).convert_alpha() 
+        if model.storyboard_file == 'storyboard1/storyboard.pkl':
+            self.characterImage['KAMAT']=pygame.image.load(os.path.join('storyboards','storyboard1','images','character images', 'kamat.png')).convert_alpha()
+            self.characterImage['SON']=pygame.image.load(os.path.join('storyboards','storyboard1','images','character images', 'son.png')).convert_alpha()          
+            self.characterImage['AJMAL']=pygame.image.load(os.path.join('storyboards','storyboard1','images','character images', 'ajmal.png')).convert_alpha()
+            self.characterImage['PANCH']=pygame.image.load(os.path.join('storyboards','storyboard1','images','character images', 'panch.png')).convert_alpha()
+            self.characterImage['PRIEST']=pygame.image.load(os.path.join('storyboards','storyboard1','images','character images', 'priest.png')).convert_alpha()
+            self.characterImage['SUKHDEV']=pygame.image.load(os.path.join('storyboards','storyboard1','images','character images', 'sukhdev.png')).convert_alpha() 
+            self.characterImage['FARMER']=pygame.image.load(os.path.join('storyboards','storyboard1','images','character images', 'villager.png')).convert_alpha() 
+        else:
+            self.characterImage['TONY PERALTA']=pygame.image.load(os.path.join('storyboards','storyboard2','images','character images', 'tony.png')).convert_alpha()
+            self.characterImage['STEVENSON GORBACHEV']=pygame.image.load(os.path.join('storyboards','storyboard2','images','character images', 'stevenson.png')).convert_alpha()          
+            self.characterImage['GILBERT FERNANDEZ']=pygame.image.load(os.path.join('storyboards','storyboard2','images','character images', 'gilbert.png')).convert_alpha()
+            self.characterImage['JOHN TREMBLAY']=pygame.image.load(os.path.join('storyboards','storyboard2','images','character images', 'john.png')).convert_alpha()
+            self.characterImage['RAGNAR STEFANSSON']=pygame.image.load(os.path.join('storyboards','storyboard2','images','character images', 'ragnar.png')).convert_alpha()
+           
         #  changes made while adding skip buttons etc
         self.size_win =threades.resize_pos((900.0,800.0))
         self.myfont = pygame.font.Font("font.ttf", threades.resize_pt(16))
@@ -78,6 +88,7 @@ class chat:
         #self.label_textsurface=gui.renderText(self.label_text,myfont,True,textColor,(700,20),False,True)
         #self.label_tempSurface = pygame.transform.scale(self.chatBox,(800,30))
         
+        #creating a label for the chat window
         self.label_text='     ENTER : To show whole chat              ESC : To skip chat           '
         self.myfont2 = pygame.font.Font("font.ttf", threades.resize_pt(20))
         self.labelStyleCopy = gui.defaultLabelStyle.copy()
@@ -126,7 +137,7 @@ class chat:
         #self.button_skip.onMouseOver=self.closeChatWindow  
         #print self.button_skip.enabled
         
-        #creating label
+        #creating label for writing the text
         self.label = gui.Label(position = threades.resize_pos((100.0,760.0),(900.0,800.0),self.chatWin.size),size = threades.resize_pos((700.0,30.0),(900.0,800.0),self.chatWin.size), parent = self.chatWin, text = self.label_text, style = self.labelStyleCopy)
         
         
@@ -138,9 +149,13 @@ class chat:
         
         gui_buttons.gui_obj.enable_buttons()
         #print 'before size is ',self.chatWin.size,'\n'
+        
+        #Closing the chat window
         self.chatWin.close()
         #print self.chatWin.size
         self.chatWinFlag=False
+        
+        #Resuming the updation thread
         threades.resume_update_thread()
         
         
@@ -160,22 +175,36 @@ class chat:
         global run
         self.myfont = pygame.font.Font("font.ttf",20)
         textColor = (0,0,0)
+        
+        #textsurface-the surface on which the text appears
         textSurface = gui.renderText(message,self.myfont,True,textColor,(635,500),False,True)    #here 500(y-coordinate) doesn't make any difference , not used in gui.renderText
+        
         #my_rect=pygame.Rect((0,0,500,500))
         #textSurface=render_textrect(message,self.myfont, my_rect, textColor, None, justification=0)
         tempsize = textSurface.get_size()
+        
+        
         #print tempsize[0],tempsize[1]
+       
+        #tempsize2 - Variable that holds the dimensions of the textsurface that would be required to show the chat text
         tempsize2=tempsize[1]+50
+        
+        #Checks that the size of the text is greater than the size of the textbox or not
+        #it adjusts the size of the surface created according to the text length
         if tempsize2>120:
             tempSurface = pygame.transform.scale(self.chatBox,(720,tempsize[1]+50))
         else:
             tempSurface = pygame.transform.scale(self.chatBox,(720,120))
+            
         #print 'color key is ',tempSurface.get_colorkey()
         tempSurface.blit(textSurface,(50,25))
         tempsize2=tempSurface.get_size()
         #print (tempSurface.get_size())[0],(tempSurface.get_size())[1]
         
-        dim_y = 0
+        
+        dim_y = 0                                                ##height of the chatbox
+        
+        #It adjusts the size of the chat box accroding to the text length 
         if tempsize2[1]>120 :
             dim_y = tempsize2[1]
         else:
@@ -195,6 +224,8 @@ class chat:
         #print 'self.position is',self.position[1]
         #print 'dim_y is',dim_y
         #print 'final position is',self.final_position[1]
+        
+        #Checks if the next chat needs to be blitted to next window or not
         if (self.position[1]+ dim_y) > self.final_position[1]:
             #self.chatWin.size = threades.resize_pos((900,20))
 
@@ -246,11 +277,14 @@ def chat_event_handle(e):
         pygame.mixer.quit()
         pygame.quit()
         exit()
+        
+         #the case if user hits ESC
     if e.type==KEYDOWN:
         if e.key==27:
             
             run=False
             
+            #the case if user hits ENTER
         if e.key==K_RETURN:
             if show_whole_chat_flag==False:
                 show_whole_chat_flag=True
@@ -285,7 +319,7 @@ def showChat(chatText,back_image=None):
     background_image= back_image
 
     if back_image:
-        surf_bckgnd = pygame.image.load(os.path.join('data',back_image)).convert()
+        surf_bckgnd = pygame.image.load(os.path.join('storyboards',back_image)).convert()
         surf_bckgnd = pygame.transform.scale(surf_bckgnd,threades.resize_pos((1200,900)))
          
     chatObject = chat()

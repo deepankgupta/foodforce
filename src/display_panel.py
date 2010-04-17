@@ -257,7 +257,7 @@ class resources_panel:
             #self.time_label.text=''
             #NOTE: Here, I am not adding as if years is not 0 , then only it will be blitted becoz if do like that the things will keep on changing, not a nice view
             self.time_label.text='Time Elapsed -:   '+'Years: '+str(model.game_controller.get_years())+'  Months: '+str(model.game_controller.get_months()) +'  Days: '+str(model.game_controller.get_days()) 
-            self.time_flag=False
+            self.time_flag=True
             
         #to update the money flag
         

@@ -55,6 +55,10 @@ if model.FLAG_XO:
 desktop2 = gui.Desktop()
 set_icon(pygame.image.load(os.path.join('data', 'WFPLOGO.png')).convert_alpha())
 
+update_thread = None
+message_thread = None
+level_obj = level_change.change_level()
+storyboardObj = proceduralFlow.storyboardFlow()
 def message_window():
     ''' Thread to display the messages'''
 
@@ -127,6 +131,9 @@ def escape():
         pause_screen(False)
 
 def safe_exit(button = None):
+    """
+        Maintains safe exit from the game
+    """
     #print 'in safe_exit'
     #print 'in safe_exit'
     threades.GAME_EXIT_FLAG = True
@@ -148,11 +155,17 @@ clock = pygame.time.Clock()
 
 
 def event_handling(e):
+    """
+       Handles all the event of the game and takes corresponding action
+    """
     
+    #For the safe exit of the game
     if e.type == pygame.QUIT:
         safe_exit()
     if e.type == QUIT:
         safe_exit()
+        
+         #Updates the region
     if e.type == KEYDOWN:
         if e.key == 27:  # For escape key
             escape()
@@ -171,6 +184,7 @@ def event_handling(e):
         if e.key == K_RETURN:
             gui_buttons.gui_obj.press_enter()
         
+            #Tackles the cases of setting up a facility,upgrading a facility,buying and selling of resources
         win_flag = gui_buttons.gui_obj.get_win_flag()
         if not win_flag:
             if e.key == K_s and gui_buttons.gui_obj.setup_button.enabled:
@@ -180,6 +194,7 @@ def event_handling(e):
             if e.key == K_b and gui_buttons.gui_obj.buysell_button.enabled:
                 gui_buttons.gui_obj.buysell_obj.buysell()
             
+                #Resetting the game
     if proceduralFlow.GAME_END_FLAG:
         threades.PLACING_LIST_TEMP = []
         proceduralFlow.GAME_END_FLAG = False
@@ -300,17 +315,21 @@ class starting_intro:
 
         self.pause_flag = pause_flag
         if self.pause_flag:
-            self.start_button = gui.Button(position = threades.resize_pos((475,500)), size = threades.resize_pos((250,50)), parent = desktop2, text = "Start New Game",style = self.button_style)
-            self.start_button.onClick = self.startup_text
+            self.start_button = gui.Button(position = threades.resize_pos((475,500)), size = threades.resize_pos((250,50)), parent = desktop2, text = "Start New Game",style = self.button_style) 
+            self.start_button.onClick = self.storyboardWindow
             
+            #Resume saved level button if a game is saved
             if self.init_game_save_flag == True:
                 self.resume_saved_level_button = gui.Button(position = threades.resize_pos((475,430)),size = threades.resize_pos((250,50)), parent = desktop2, text = "Resume Saved Game",style =self.button_style)
                 self.resume_saved_level_button.onClick = self.resume_saved_level
 
             
         else:
-            self.resume_button = gui.Button(position = threades.resize_pos((475,500)), size = threades.resize_pos((250,50)), parent = desktop2, text = "Resume Game",style = self.button_style)
+            self.resume_button = gui.Button(position = threades.resize_pos((475,430)), size = threades.resize_pos((250,50)), parent = desktop2, text = "Resume Game",style = self.button_style)
             self.resume_button.onClick = self.resume
+            
+            self.start_game_again_button = gui.Button(position = threades.resize_pos((475,500)), size = threades.resize_pos((250,50)), parent = desktop2, text = "Start Game Again",style = self.button_style) 
+            self.start_game_again_button.onClick = self.start_game_again
             
             #Save Game Button
             if proceduralFlow.storyboard_level != 1:
@@ -332,6 +351,138 @@ class starting_intro:
         self.about_us_button.onClick = self.aboutUsWindow
 
         self.run = True
+     
+    def start_game_again(self,button=None):
+        
+
+        
+        #stopping the soundtrack
+        if soundtrack:
+            soundtrack.stop()
+            
+        #reinitialising the flags    
+        storyboardObj.conditionTestingFlag = False
+        storyboardObj.runFlag = True
+        storyboardObj.actionRunningFlag = False
+        storyboardObj.prevConditionResult = -1
+        storyboardObj.norConditionFlag = False
+
+        
+    
+        #closing the storyboard
+        proceduralFlow.closeStoryBoardFile()
+        
+        #selecting the storyboard
+        self.storyboardWindow()
+        
+        #opening the storyboard again
+        proceduralFlow.openStoryBoardFile()
+        
+        #erasing the facilities and deciding the data file
+        for item in os.listdir(os.path.join("storyboards")):            
+            if model.storyboard_file == str(item)+'/storyboard.pkl':    
+                data_file = 'storyboards/'+str(item)+'/data/data1.pkl'
+        
+            
+            
+        graphics_file = 'graphics_layout.pkl'
+        level_obj.new_level_stats(data_file,graphics_file) 
+         
+        
+        model.game_controller.reset_time() 
+        
+        gui_buttons.instruction_off_flag = True
+        #print gui_buttons.instruction_off_flag
+        
+            
+    def storyboardWindow(self,button=None):
+        self.remove_buttons()
+        self.lightgreen_color = (0,100,0)
+        self.green_color = (0,150,0)
+        self.black_color = (0,0,0)
+        myfont1 = pygame.font.Font('font.ttf',threades.resize_pt(50))
+        
+        win_style = gui.defaultWindowStyle.copy()
+        win_style['font'] = myfont1
+        win_style['font-color'] = self.lightgreen_color
+        win_style['bg-color'] = self.black_color
+        win_style['border-color'] =self.black_color
+        
+        position_win = threades.resize_pos((150.0,270.0))
+        size_win = threades.resize_pos((900.0,650.0))
+        
+        myfont2 = pygame.font.Font('font.ttf',threades.resize_pt(20))
+        labelstylecopy = gui.defaultLabelStyle.copy()
+        labelstylecopy['font'] = myfont2
+        labelstylecopy['font-color'] = self.lightgreen_color
+        labelstylecopy['border-width'] = 1
+        labelstylecopy['border-color'] = (0,0,0)
+        labelstylecopy['autosize']=True
+        labelstylecopy['wordwrap']=False
+        
+        
+        op_style = gui.defaultOptionBoxStyle
+        op_style['font'] = myfont2
+        op_style['font-color'] = self.lightgreen_color
+        op_style['normal'] = True
+        op_style['autosize'] = True
+        op_style['word wrap'] = False
+        self.op_style = op_style
+        
+        
+        
+        
+        self.win = gui.Window(position = position_win,size = size_win,parent = desktop2,style = win_style,text = "    Choose Storyboard", closeable = False,shadeable = False,moveable = False )
+        self.win.onClose = self.main_menu(self.pause_flag)
+        
+        vertical_dist = 200.0     #for the position of optionboxes
+        for item in os.listdir(os.path.join("storyboards")):
+            self.item = gui.OptionBox(position = threades.resize_pos((150.0,vertical_dist),(900.0,600.0),self.win.size),parent = self.win,style = op_style,text = str(item))
+            self.item.onValueChanged = self.select_storyboard
+            vertical_dist = vertical_dist + 40
+        
+        self.skip_button = gui.Button(position = threades.resize_pos((100,490),(900.0,600.0),self.win.size), size = threades.resize_pos((110,30),(900.0,600.0),self.win.size), parent = self.win, text = "  Skip  ",style = self.button_style)
+        self.skip_button.onClick = self.close_win
+        self.play_button = gui.Button(position = threades.resize_pos((500,490),(900.0,600.0),self.win.size), size = threades.resize_pos((110,30),(900.0,600.0),self.win.size), parent = self.win, text = "  Play  ",style = self.button_style)
+        self.play_button.onClick = self.startup_text
+        
+        
+        logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
+        ff_logo = pygame.transform.scale(logo,threades.resize_pos((1111,250)))
+        self.storyboard_menu_run = True
+        while self.storyboard_menu_run:
+            pygame.display.set_caption('FoodForce2')
+            threades.screen.fill((0,0,0))
+            threades.screen.blit(ff_logo,threades.resize_pos((40,50)))
+            for e in gui.setEvents(pygame.event.get()):
+                if e.type == KEYDOWN:
+                    if e.key == 27:  # For escape key
+                        self.storyboard_menu_run = False
+                        self.win.close()
+                    
+                if model.FLAG_XO:
+                    if e.type==mesh.CONNECT :
+                        game_sharing.sharing_handler(e.type,None,'')
+                    #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,None,'']).start()
+                    elif e.type==mesh.PARTICIPANT_ADD or e.type==mesh.PARTICIPANT_REMOVE :
+                        game_sharing.sharing_handler(e.type,e.handle,'')
+                    #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,'']).start()
+                    elif e.type==mesh.MESSAGE_MULTI or e.type==mesh.MESSAGE_UNI :
+                        game_sharing.sharing_handler(e.type,e.handle,e.content)
+                    #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,e.content]).start()
+
+
+            desktop2.update()
+            desktop2.draw()
+            pygame.display.update()
+            
+            
+    def select_storyboard(self,button = None):
+        for item in os.listdir(os.path.join("storyboards")):
+            if button.text == str(item):
+                model.storyboard_file = str(item)+'/storyboard.pkl'
+                break
+        
 
     def instructionsWindow(self,button = None):
         ''' Opens a window for Instructions
@@ -382,7 +533,8 @@ class starting_intro:
         
         self.instructions_counter = 0
         label = gui.Label(position = threades.resize_pos((10.0,100.0),(900.0,600.0),self.win.size),size = threades.resize_pos((880.0,440.0),(900.0,600.0),self.win.size), parent = self.win, text = '', style = labelStyleCopy)
-
+        
+        #The loop which pauses the game
         while self.instructions_run:
             pygame.display.set_caption('FoodForce2')
             threades.screen.fill((0,0,0))
@@ -513,9 +665,12 @@ class starting_intro:
         if soundtrack:
             soundtrack.play(-1)
             
-               
+        self.storyboard_menu_run = False       
         self.run = False
-
+        self.win.close()
+    
+        
+        
     def turnoff_startup_run(self,button = None):
         
         self.startup_text_run = False
@@ -574,6 +729,8 @@ class starting_intro:
         labelStyleCopy['font'] = myfont2
         labelStyleCopy['font-color'] = self.green_color
         labelStyleCopy['border-color'] = self.black_color
+        
+        #Creating labels for text to be written
         self.message_label = gui.Label(position = threades.resize_pos((80,80),(600.0,600.0),self.win.size),size = threades.resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "Build ", style = labelStyleCopy)
         self.message_label = gui.Label(position = threades.resize_pos((80,130),(600.0,600.0),self.win.size),size = threades.resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "Upgrade ", style = labelStyleCopy)
         self.message_label = gui.Label(position = threades.resize_pos((80,180),(600.0,600.0),self.win.size),size = threades.resize_pos((240,70),(600.0,600.0),self.win.size), parent = self.win, text = "Market ", style = labelStyleCopy)
@@ -609,6 +766,8 @@ class starting_intro:
         self.controls_run = True
         logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
         ff_logo = pygame.transform.scale(logo,threades.resize_pos((1111,250)))
+        
+      #The loop which pauses the game unless an action is taken by the user 
         while self.controls_run:
             pygame.display.set_caption('FoodForce2')
             threades.screen.fill((0,0,0))
@@ -641,6 +800,7 @@ class starting_intro:
         self.controls_run = False
         self.instructions_run = False
         self.about_us_run = False
+        self.storyboard_menu_run = False
 
     def remove_buttons(self):
         ''' Removes the buttons from the gui.Desktop
@@ -653,6 +813,7 @@ class starting_intro:
                 self.resume_saved_level_button._set_parent(win)
                 self.init_game_save_flag = False    
         else:
+            self.start_game_again_button._set_parent(win)
             self.resume_button._set_parent(win)
             if proceduralFlow.storyboard_level !=1:
                 self.save_button._set_parent(win)
@@ -776,10 +937,15 @@ def main():
         proceduralFlow.openStoryBoardFile()
 
      
-    # Processing regarding the storyboard
-    
-    storyboardObj = proceduralFlow.storyboardFlow()
-    
+    # loading the correct data file
+    for item in os.listdir(os.path.join("storyboards")):
+        if model.storyboard_file == str(item)+'/storyboard.pkl':            
+            data_file = 'storyboards/'+str(item)+'/data/data1.pkl'
+            break
+        
+    model.init_cons(data_file)
+    model.init_obj()
+
     gui_buttons.initialize_gui()
 
     threades.screen.fill((0,0,0))
@@ -851,8 +1017,7 @@ def main():
         model.iteration_time = time_passed
         model.global_time += model.iteration_time
         storyboardObj.flow()
-
-        
+        gui_buttons.instruction_off_flag = False
 
 if __name__ == '__main__':
     main()

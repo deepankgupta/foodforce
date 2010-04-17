@@ -47,6 +47,7 @@ else:
 Facility_Size = [['HOUSE',360,360],['HOSPITAL',370,300],['FARM',516,500],['FOUNTAIN',197,192],['SCHOOL',420,450],['WORKSHOP',600,750]]
 
 #Facility_Size = [['HOUSE',360],['HOSPITAL',370],['FARM',516],['FOUNTAIN',197],['SCHOOL',420],['WORKSHOP',600]]
+storyboard_file = ''
 
 
 def init_cons(file_name):
@@ -263,7 +264,10 @@ def init_cons(file_name):
     PDICT_EDUCATION = pickle.load(data_file)
     PDICT_TRAINING = pickle.load(data_file)
     
-init_cons('data.pkl')
+
+
+init_cons('storyboards/storyboard1/data/data1.pkl')
+        
 def save_cons():
     ''' Used to save constants
     '''
@@ -2244,7 +2248,7 @@ class Money:
             raise Exceptions.Money_Underflow_Exception
         
 class game_time:
-    def __init__(self,conversion_factor=3000):
+    def __init__(self,conversion_factor=10000):  
         self.level_iteration_time=0
         self.level_global_time=0
         self.clock = pygame.time.Clock()
@@ -2253,7 +2257,7 @@ class game_time:
         self.total_days = 0
         self.days=0
         self.time_help=0                                 #this is not of any use right now, I have put it for future use, so no need to worry now
-        self.conversion_factor= conversion_factor       #this variable allows you to decide how many seconds(in milli) should be counted as a day      
+        self.conversion_factor = conversion_factor         
         self.help_update_value=0                    #it is used while updating the value of days etc
         
     def update_level_time(self,check_flag=True):

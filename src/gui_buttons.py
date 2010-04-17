@@ -33,7 +33,8 @@ import load_images
 import game_events
 import model
 if model.FLAG_XO:
-    import game_sharing
+    import game_sharing    
+instruction_off_flag = False
 
 class marketBarChart:
     '''Class which displays the bar chart in the market window
@@ -147,6 +148,7 @@ class barChart:
         ''' Updates the bar chart on the basis of the mouse click
         '''
         surface = self.surf
+        #if the point is in the first bar
         if (x>threades.resize_pt_x(400)) and (x<threades.resize_pt_x(450)) and (y>threades.resize_pt_y(200)) and (y<threades.resize_pt_y(400)):
             pygame.draw.rect(surface,(0,0,0),threades.resize_rect((100,50,350,200)))
             change = self.bar1Val - (threades.resize_pt_y(400)-y)*100/threades.resize_pt_y(200.0)
@@ -179,7 +181,7 @@ class barChart:
             pygame.draw.rect(surface,self.color_rect,threades.resize_rect((400,50,50,200)),2)
 
 
-
+           #if the point is in the second bar
         if (x>threades.resize_pt_x(550)) and (x<threades.resize_pt_x(600)) and (y>threades.resize_pt_y(200)) and (y<threades.resize_pt_y(400)):
             pygame.draw.rect(surface,(0,0,0),threades.resize_rect((100,50,350,200)))
             change = self.bar2Val - (threades.resize_pt_y(400)-y)*100/threades.resize_pt_y(200.0)
@@ -211,7 +213,7 @@ class barChart:
             pygame.draw.rect(surface,self.color_rect,threades.resize_rect((400,50,50,200)),2)
 
 
-
+            #if the point is in the third bar
         if (x>threades.resize_pt_x(700)) and (x<threades.resize_pt_x(750)) and (y>threades.resize_pt_y(200)) and (y<threades.resize_pt_y(400)):
             pygame.draw.rect(surface,(0,0,0),threades.resize_rect((100,50,350,200)))
             change = self.bar3Val - (threades.resize_pt_y(400)-y)*100/threades.resize_pt_y(200.0)
@@ -1232,57 +1234,58 @@ class showInstructions:
         message_label = gui.Label(position = threades.resize_pos((5,50),(690.0,190.0),win.size),size = threades.resize_pos((500,50),(500.0,10.0),win.size), parent = win, text = self.text, style = labelStyleCopy)
         length = len(self.text)
         length = length/50 + 4
-        if threades.GAME_EXIT_FLAG:
+        print instruction_off_flag
+        if threades.GAME_EXIT_FLAG or instruction_off_flag:
+            win.close()
+            return
+    
+        sleep(length/10.0)          #####changed 10.0 to 2.5 the time increases by four times
+        if threades.GAME_EXIT_FLAG or instruction_off_flag:
             win.close()
             return
         
-        sleep(length/10.0)
-        if threades.GAME_EXIT_FLAG:
+        sleep(length/10.0)           
+        if threades.GAME_EXIT_FLAG or instruction_off_flag:
             win.close()
             return
         
-        sleep(length/10.0)
-        if threades.GAME_EXIT_FLAG:
+        sleep(length/10.0)          
+        if threades.GAME_EXIT_FLAG or instruction_off_flag:
             win.close()
             return
         
-        sleep(length/10.0)
-        if threades.GAME_EXIT_FLAG:
+        sleep(length/10.0)          
+        if threades.GAME_EXIT_FLAG or instruction_off_flag:
             win.close()
             return
         
-        sleep(length/10.0)
-        if threades.GAME_EXIT_FLAG:
+        sleep(length/10.0)           
+        if threades.GAME_EXIT_FLAG or instruction_off_flag:
             win.close()
             return
         
-        sleep(length/10.0)
-        if threades.GAME_EXIT_FLAG:
+        sleep(length/10.0)           
+        if threades.GAME_EXIT_FLAG or instruction_off_flag:
             win.close()
             return
         
-        sleep(length/10.0)
-        if threades.GAME_EXIT_FLAG:
+        sleep(length/10.0)                   
+        if threades.GAME_EXIT_FLAG or instruction_off_flag:
             win.close()
             return
         
-        sleep(length/10.0)
-        if threades.GAME_EXIT_FLAG:
+        sleep(length/10.0)         
+        if threades.GAME_EXIT_FLAG or instruction_off_flag:
             win.close()
             return
         
-        sleep(length/10.0)
-        if threades.GAME_EXIT_FLAG:
+        sleep(length/10.0)         
+        if threades.GAME_EXIT_FLAG or instruction_off_flag:
             win.close()
             return
-        
-        sleep(length/10.0)
-        if threades.GAME_EXIT_FLAG:
-            win.close()
-            return
-        
-        sleep(length/10.0)
-        if threades.GAME_EXIT_FLAG:
+
+        sleep(length/10.0)          
+        if threades.GAME_EXIT_FLAG or instruction_off_flag:
             win.close()
             return
                
