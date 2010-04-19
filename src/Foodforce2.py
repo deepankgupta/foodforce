@@ -17,7 +17,7 @@
 #   along with this program; if not, write to the Free Software
 #   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #
-
+import pickle
 import pygame
 from pygame.locals import *
 from pygame.display import *
@@ -54,7 +54,7 @@ if model.FLAG_XO:
 
 desktop2 = gui.Desktop()
 set_icon(pygame.image.load(os.path.join('data', 'WFPLOGO.png')).convert_alpha())
-
+flag  = 1
 update_thread = None
 message_thread = None
 level_obj = level_change.change_level()
@@ -286,7 +286,7 @@ def load_resume_game():
     actiontemp.actionType = 3
     proceduralFlow.openStoryBoardFile()
     action_obj = proceduralFlow.Actions(actiontemp)
-    
+    #soundtrack = load_sound(os.path.join('data', 'soundtrack.ogg'))
     #threades.game_save_flag = False
 
     
@@ -316,12 +316,12 @@ class starting_intro:
         self.pause_flag = pause_flag
         if self.pause_flag:
             self.start_button = gui.Button(position = threades.resize_pos((475,500)), size = threades.resize_pos((250,50)), parent = desktop2, text = "Start New Game",style = self.button_style) 
-            self.start_button.onClick = self.storyboardWindow
+            self.start_button.onClick = self.select_save_or_new_game
             
             #Resume saved level button if a game is saved
-            if self.init_game_save_flag == True:
+            if threades.game_save_flag == True:
                 self.resume_saved_level_button = gui.Button(position = threades.resize_pos((475,430)),size = threades.resize_pos((250,50)), parent = desktop2, text = "Resume Saved Game",style =self.button_style)
-                self.resume_saved_level_button.onClick = self.resume_saved_level
+                self.resume_saved_level_button.onClick = self.select_save_or_new_game
 
             
         else:
@@ -333,8 +333,11 @@ class starting_intro:
             
             #Save Game Button
             if proceduralFlow.storyboard_level != 1:
-                self.save_button = gui.Button(position = threades.resize_pos((475,430)), size = threades.resize_pos((250,50)), parent = desktop2, text = "Save Current Level",style = self.button_style)
+                self.save_button = gui.Button(position = threades.resize_pos((475,360)), size = threades.resize_pos((250,50)), parent = desktop2, text = "Save Current Level",style = self.button_style)
                 self.save_button.onClick = self.save_current_level
+            
+
+
 
         
         self.controls_button = gui.Button(position = threades.resize_pos((475,640)), size = threades.resize_pos((250,50)), parent = desktop2, text = "Controls",style = self.button_style)
@@ -354,7 +357,6 @@ class starting_intro:
      
     def start_game_again(self,button=None):
         
-
         
         #stopping the soundtrack
         if soundtrack:
@@ -379,11 +381,8 @@ class starting_intro:
         proceduralFlow.openStoryBoardFile()
         
         #erasing the facilities and deciding the data file
-        for item in os.listdir(os.path.join("storyboards")):            
-            if model.storyboard_file == str(item)+'/storyboard.pkl':    
-                data_file = 'storyboards/'+str(item)+'/data/data1.pkl'
-        
-            
+ 
+        data_file = 'storyboards/'+str(model.storyboard_file)+'/data/data1.pkl'
             
         graphics_file = 'graphics_layout.pkl'
         level_obj.new_level_stats(data_file,graphics_file) 
@@ -394,8 +393,16 @@ class starting_intro:
         gui_buttons.instruction_off_flag = True
         #print gui_buttons.instruction_off_flag
         
-            
-    def storyboardWindow(self,button=None):
+    def select_save_or_new_game(self,button=None):
+        global flag
+        if button.text == "Start New Game":
+            flag = False
+        else:
+            flag = True
+        self.storyboardWindow()
+        
+    def storyboardWindow(self):
+        global flag
         self.remove_buttons()
         self.lightgreen_color = (0,100,0)
         self.green_color = (0,150,0)
@@ -431,26 +438,38 @@ class starting_intro:
         
         
         
-        
+        print threades.game_save_flag
         self.win = gui.Window(position = position_win,size = size_win,parent = desktop2,style = win_style,text = "    Choose Storyboard", closeable = False,shadeable = False,moveable = False )
         self.win.onClose = self.main_menu(self.pause_flag)
         
         vertical_dist = 200.0     #for the position of optionboxes
-        for item in os.listdir(os.path.join("storyboards")):
-            self.item = gui.OptionBox(position = threades.resize_pos((150.0,vertical_dist),(900.0,600.0),self.win.size),parent = self.win,style = op_style,text = str(item))
-            self.item.onValueChanged = self.select_storyboard
-            vertical_dist = vertical_dist + 40
+        
+        list_file = open('storyboard_list.pkl')
+        for i in range(pickle.load(list_file)):
+            item = pickle.load(list_file)
+            if flag == False:
+                self.item = gui.OptionBox(position = threades.resize_pos((150.0,vertical_dist),(900.0,600.0),self.win.size),parent = self.win,style = op_style,text = str(item))
+                self.item.onValueChanged = self.select_storyboard
+                vertical_dist = vertical_dist + 40
+            else:
+                if os.path.exists('storyboards/'+str(item)+'/save_game.pkl'):
+                    self.item = gui.OptionBox(position = threades.resize_pos((150.0,vertical_dist),(900.0,600.0),self.win.size),parent = self.win,style = op_style,text = str(item))
+                    self.item.onValueChanged = self.select_storyboard
+                    vertical_dist = vertical_dist + 40
         
         self.skip_button = gui.Button(position = threades.resize_pos((100,490),(900.0,600.0),self.win.size), size = threades.resize_pos((110,30),(900.0,600.0),self.win.size), parent = self.win, text = "  Skip  ",style = self.button_style)
         self.skip_button.onClick = self.close_win
         self.play_button = gui.Button(position = threades.resize_pos((500,490),(900.0,600.0),self.win.size), size = threades.resize_pos((110,30),(900.0,600.0),self.win.size), parent = self.win, text = "  Play  ",style = self.button_style)
-        self.play_button.onClick = self.startup_text
-        
+        if flag == False:
+            self.play_button.onClick = self.startup_text
+        else:
+            self.play_button.onClick = self.resume_saved_level
         
         logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
         ff_logo = pygame.transform.scale(logo,threades.resize_pos((1111,250)))
         self.storyboard_menu_run = True
         while self.storyboard_menu_run:
+            print threades. game_save_flag
             pygame.display.set_caption('FoodForce2')
             threades.screen.fill((0,0,0))
             threades.screen.blit(ff_logo,threades.resize_pos((40,50)))
@@ -478,10 +497,7 @@ class starting_intro:
             
             
     def select_storyboard(self,button = None):
-        for item in os.listdir(os.path.join("storyboards")):
-            if button.text == str(item):
-                model.storyboard_file = str(item)+'/storyboard.pkl'
-                break
+        model.storyboard_file = button.text
         
 
     def instructionsWindow(self,button = None):
@@ -681,6 +697,9 @@ class starting_intro:
         threades.resume_game()
         self.remove_buttons()
         self.run = False
+        self.storyboard_menu_run = False
+        self.win.close()
+
         
     def save_current_level(self,button = None):
         '''Saves the current level'''
@@ -809,9 +828,9 @@ class starting_intro:
         win = gui.Window(position = (0,0), size = (100,100), parent = desktop2)
         if self.pause_flag:
             self.start_button._set_parent(win)
-            if self.init_game_save_flag:
+            if threades.game_save_flag:
                 self.resume_saved_level_button._set_parent(win)
-                self.init_game_save_flag = False    
+                #self.init_game_save_flag = False    
         else:
             self.start_game_again_button._set_parent(win)
             self.resume_button._set_parent(win)
@@ -837,6 +856,7 @@ def pause_screen(pause_flag = True):
     logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
     ff_logo = pygame.transform.scale(logo,threades.resize_pos((1111,250)))
     while start.run:
+        print '1'
         pygame.display.set_caption('FoodForce2')
         threades.screen.fill((0,0,0))
         threades.screen.blit(ff_logo,threades.resize_pos((40,50)))
@@ -917,7 +937,7 @@ def main():
     intro_thread.start()
     # Loading and starting the sound play
     #level_setting=level_change.change_level()
-    threades.current_level = threades.check_saved_game_level()
+    threades.check_saved_game_level()
     
     
     
@@ -938,13 +958,10 @@ def main():
 
      
     # loading the correct data file
-    for item in os.listdir(os.path.join("storyboards")):
-        if model.storyboard_file == str(item)+'/storyboard.pkl':            
-            data_file = 'storyboards/'+str(item)+'/data/data1.pkl'
-            break
-        
-    model.init_cons(data_file)
-    model.init_obj()
+    if threades.current_level == 1:       
+        data_file = 'storyboards/'+str(model.storyboard_file)+'/data/data1.pkl'
+        model.init_cons(data_file)
+        model.init_obj()
 
     gui_buttons.initialize_gui()
 

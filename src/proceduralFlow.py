@@ -491,10 +491,9 @@ class Actions:
     def loadNextLevel(self):
 
         global storyboard_level
-        for item in os.listdir(os.path.join("storyboards")):
-            if model.storyboard_file == str(item)+'/storyboard.pkl':            
-                data_file = 'storyboards/'+str(item)+'/data/data'+str(storyboard_level+1)+'.pkl'
-                break
+           
+        data_file = 'storyboards/'+str(model.storyboard_file)+'/data/data'+str(storyboard_level+1)+'.pkl'
+               
         #print data_file
         model.game_controller.reset_time()
         graphics_file = 'graphics_layout.pkl'
@@ -505,10 +504,9 @@ class Actions:
 
 
     def loadLevelAgain(self):
-        for item in os.listdir(os.path.join("storyboards")):
-            if model.storyboard_file == str(item)+'/storyboard.pkl':
-                data_file = 'storyboards/'+str(item)+'/data/data'+str(storyboard_level)+'.pkl'
-                break
+ 
+        data_file = 'storyboards/'+str(model.storyboard_file)+'/data/data'+str(storyboard_level)+'.pkl'
+                
         graphics_file = 'graphics_layout.pkl'
         load_level_obj.new_level_stats(data_file,graphics_file)
         #print "StoryBoard level : "
@@ -842,7 +840,7 @@ def openStoryBoardFile():
 
     global storyboardfile
     global storyboard_file_name
-    storyboardfile = open('storyboards/'+model.storyboard_file,'rb')
+    storyboardfile = open('storyboards/'+model.storyboard_file+'/storyboard.pkl','rb')
 
 def closeStoryBoardFile():
     storyboardfile.close()

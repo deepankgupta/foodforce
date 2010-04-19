@@ -1015,16 +1015,19 @@ def famine():
     
 if model.FLAG_XO or model.FLAG_SOAS:
     import olpcgames.util
-    save_game_file = os.path.join(olpcgames.util.get_activity_root(),'data','save_game.pkl')
+    save_game_file = os.path.join(olpcgames.util.get_activity_root(),'storyboards/'+str(model.storyboard_file),'save_game.pkl')
 else:
-    save_game_file = 'save_game.pkl'
+    save_game_file = 'storyboards/'+str(model.storyboard_file)+'save_game.pkl'
 
-def save_game(data_file = save_game_file):
+def save_game():
     '''Used to save current level'''
     global PLACING_LIST_TEMP
     global current_level
     global game_save_flag
+    global storyboard_file
     game_save_flag = True
+    
+    data_file = 'storyboards/'+str(model.storyboard_file)+'/save_game.pkl'
     output = open(data_file,'wb')
     pickle.dump(current_level,output)
     #print model.get_global_time
@@ -1042,13 +1045,17 @@ def delete_saved_game(data_file = save_game_file):
     
 
 
-def resume_game(data_file = save_game_file):
+def resume_game():
     '''Used to resume a saved game'''
     global PLACING_LIST_TEMP
     global level_save_time
     global game_save_flag
+    global current_level
+    
+    data_file = 'storyboards/'+str(model.storyboard_file)+'/save_game.pkl'
     output = open(data_file,'rb')
     level = pickle.load(output)
+    current_level = level
     level_save_time = pickle.load(output)
     model.game_controller.resume_game_time_update(level_save_time)
     #print model.global_time
@@ -1064,21 +1071,19 @@ def resume_game(data_file = save_game_file):
     #output.close()
     game_save_flag = False
     
-def check_saved_game_level(data_file = save_game_file):
+def check_saved_game_level():
     '''Used to check the status of game, saved or unsaved'''
-    try:
-        output = open(data_file,'rb')
-    except:
-        return 1
+ 
     global game_save_flag
-    try:
-        current_level = pickle.load(output)
-        game_save_flag = True       
-        return current_level
+    list_file = open('storyboard_list.pkl')
     
-    except EOFError:
-        return 1
-    output.close()
+    for i in range(pickle.load(list_file)):
+        item = pickle.load(list_file)
+        if os.path.exists('storyboards/'+str(item)+'/save_game.pkl'):
+            game_save_flag = True       
+            break
+    
+
 
 
     
