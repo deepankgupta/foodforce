@@ -427,8 +427,9 @@ class starting_intro:
         labelstylecopy['autosize']=True
         labelstylecopy['wordwrap']=False
         
-        
-        op_style = gui.defaultOptionBoxStyle
+        op_image = pygame.image.load(os.path.join("art","optionbox_green.png")).convert_alpha()
+        op_style = gui.createOptionBoxStyle(gui.defaultFont, op_image, 12, (255,255,255),(100,100,100), autosize = True)
+       
         op_style['font'] = myfont2
         op_style['font-color'] = self.lightgreen_color
         op_style['normal'] = True
@@ -438,7 +439,6 @@ class starting_intro:
         
         
         
-        print threades.game_save_flag
         self.win = gui.Window(position = position_win,size = size_win,parent = desktop2,style = win_style,text = "    Choose Storyboard", closeable = False,shadeable = False,moveable = False )
         self.win.onClose = self.main_menu(self.pause_flag)
         
@@ -469,7 +469,6 @@ class starting_intro:
         ff_logo = pygame.transform.scale(logo,threades.resize_pos((1111,250)))
         self.storyboard_menu_run = True
         while self.storyboard_menu_run:
-            print threades. game_save_flag
             pygame.display.set_caption('FoodForce2')
             threades.screen.fill((0,0,0))
             threades.screen.blit(ff_logo,threades.resize_pos((40,50)))
@@ -678,8 +677,6 @@ class starting_intro:
         
         threades.current_level = 1
         self.remove_buttons()
-        if soundtrack:
-            soundtrack.play(-1)
             
         self.storyboard_menu_run = False       
         self.run = False
@@ -856,7 +853,6 @@ def pause_screen(pause_flag = True):
     logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
     ff_logo = pygame.transform.scale(logo,threades.resize_pos((1111,250)))
     while start.run:
-        print '1'
         pygame.display.set_caption('FoodForce2')
         threades.screen.fill((0,0,0))
         threades.screen.blit(ff_logo,threades.resize_pos((40,50)))
@@ -943,6 +939,9 @@ def main():
     
     model.game_controller.reset_time()
     
+    if soundtrack:
+        soundtrack.play(-1)
+        
     pause_screen()
     intro_thread.join()
     

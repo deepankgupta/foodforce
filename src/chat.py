@@ -28,6 +28,7 @@ import gui_buttons
 import gui
 import pygame
 import model
+import pickle
 from pygame.locals import *
 
 
@@ -55,25 +56,28 @@ class chat:
         self.initial_position = threades.resize_pos((15,10))
         self.final_position = threades.resize_pos((15,750))
         self.update_win_pos=pygame.Rect(threades.resize_pos((150.0,50.0)),threades.resize_pos((900,800)))
-        self.imageBox = pygame.image.load(os.path.join('storyboards','storyboard1','images','chat images', 'imageBox.png')).convert_alpha()
-        self.chatBox = pygame.image.load(os.path.join('storyboards','storyboard1','images','chat images', 'chatBox.png')).convert_alpha()
+        self.imageBox = pygame.image.load(os.path.join('art', 'imageBox.png')).convert_alpha()
+        self.chatBox = pygame.image.load(os.path.join('art', 'chatBox.png')).convert_alpha()
         
         #list for storing the images loaded in the chatbox
+        list_file = open('storyboard_list.pkl')
+        pickle.load(list_file)
+        name = pickle.load(list_file)
         self.characterImage={}
-        if model.storyboard_file == 'storyboard1':
-            self.characterImage['KAMAT']=pygame.image.load(os.path.join('storyboards','storyboard1','images','character images', 'kamat.png')).convert_alpha()
-            self.characterImage['SON']=pygame.image.load(os.path.join('storyboards','storyboard1','images','character images', 'son.png')).convert_alpha()          
-            self.characterImage['AJMAL']=pygame.image.load(os.path.join('storyboards','storyboard1','images','character images', 'ajmal.png')).convert_alpha()
-            self.characterImage['PANCH']=pygame.image.load(os.path.join('storyboards','storyboard1','images','character images', 'panch.png')).convert_alpha()
-            self.characterImage['PRIEST']=pygame.image.load(os.path.join('storyboards','storyboard1','images','character images', 'priest.png')).convert_alpha()
-            self.characterImage['SUKHDEV']=pygame.image.load(os.path.join('storyboards','storyboard1','images','character images', 'sukhdev.png')).convert_alpha() 
-            self.characterImage['FARMER']=pygame.image.load(os.path.join('storyboards','storyboard1','images','character images', 'villager.png')).convert_alpha() 
+        if model.storyboard_file == name:
+            self.characterImage['KAMAT']=pygame.image.load(os.path.join('storyboards',model.storyboard_file,'images','character images', 'kamat.png')).convert_alpha()
+            self.characterImage['SON']=pygame.image.load(os.path.join('storyboards',model.storyboard_file,'images','character images', 'son.png')).convert_alpha()          
+            self.characterImage['AJMAL']=pygame.image.load(os.path.join('storyboards',model.storyboard_file,'images','character images', 'ajmal.png')).convert_alpha()
+            self.characterImage['PANCH']=pygame.image.load(os.path.join('storyboards',model.storyboard_file,'images','character images', 'panch.png')).convert_alpha()
+            self.characterImage['PRIEST']=pygame.image.load(os.path.join('storyboards',model.storyboard_file,'images','character images', 'priest.png')).convert_alpha()
+            self.characterImage['SUKHDEV']=pygame.image.load(os.path.join('storyboards',model.storyboard_file,'images','character images', 'sukhdev.png')).convert_alpha() 
+            self.characterImage['FARMER']=pygame.image.load(os.path.join('storyboards',model.storyboard_file,'images','character images', 'villager.png')).convert_alpha() 
         else:
-            self.characterImage['TONY PERALTA']=pygame.image.load(os.path.join('storyboards','storyboard2','images','character images', 'tony.png')).convert_alpha()
-            self.characterImage['STEVENSON GORBACHEV']=pygame.image.load(os.path.join('storyboards','storyboard2','images','character images', 'stevenson.png')).convert_alpha()          
-            self.characterImage['GILBERT FERNANDEZ']=pygame.image.load(os.path.join('storyboards','storyboard2','images','character images', 'gilbert.png')).convert_alpha()
-            self.characterImage['JOHN TREMBLAY']=pygame.image.load(os.path.join('storyboards','storyboard2','images','character images', 'john.png')).convert_alpha()
-            self.characterImage['RAGNAR STEFANSSON']=pygame.image.load(os.path.join('storyboards','storyboard2','images','character images', 'ragnar.png')).convert_alpha()
+            self.characterImage['TONY PERALTA']=pygame.image.load(os.path.join('storyboards',model.storyboard_file,'images','character images', 'tony.png')).convert_alpha()
+            self.characterImage['STEVENSON GORBACHEV']=pygame.image.load(os.path.join('storyboards',model.storyboard_file,'images','character images', 'stevenson.png')).convert_alpha()          
+            self.characterImage['GILBERT FERNANDEZ']=pygame.image.load(os.path.join('storyboards',model.storyboard_file,'images','character images', 'gilbert.png')).convert_alpha()
+            self.characterImage['JOHN TREMBLAY']=pygame.image.load(os.path.join('storyboards',model.storyboard_file,'images','character images', 'john.png')).convert_alpha()
+            self.characterImage['RAGNAR STEFANSSON']=pygame.image.load(os.path.join('storyboards',model.storyboard_file,'images','character images', 'ragnar.png')).convert_alpha()
            
         #  changes made while adding skip buttons etc
         self.size_win =threades.resize_pos((900.0,800.0))

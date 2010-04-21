@@ -27,7 +27,7 @@ import os
 #Flag to check the operating system
 FLAG_XO = False
 
-
+list_file = open('storyboard_list.pkl')
 
 if os.path.exists('/sys/power/olpc-pm'):
        
@@ -266,7 +266,7 @@ def init_cons(file_name):
     
 
 
-init_cons('storyboards/storyboard1/data/data1.pkl')
+init_cons('storyboards/Haiti Earthquake/data/data1.pkl')
         
 def save_cons():
     ''' Used to save constants

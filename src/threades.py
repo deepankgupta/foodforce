@@ -94,7 +94,8 @@ game_save_flag = False
 
 PLACING_LIST_TEMP = []
 current_level = 0
-    
+
+        
 
 def initialize_facilities(autobuild_flag = True):
     
@@ -1076,7 +1077,6 @@ def check_saved_game_level():
  
     global game_save_flag
     list_file = open('storyboard_list.pkl')
-    
     for i in range(pickle.load(list_file)):
         item = pickle.load(list_file)
         if os.path.exists('storyboards/'+str(item)+'/save_game.pkl'):

@@ -1,6 +1,6 @@
 I2
-.S'storyboard1'
+.S'Balanced Diet'
 p0
-.S'storyboard2'
+.S'Haiti Earthquake'
 p0
 .
