@@ -54,7 +54,7 @@ class change_level:
         
         pygame.display.set_caption('FoodForce2')
         threades.screen.fill((0,0,0))
-        threades.screen.blit(self.ff_logo,threades.resize_pos((40,50)))
+        threades.screen.blit(self.ff_logo,threades.resize_pos((40,90)))
         
         desktop_level.update()
         desktop_level.draw()
@@ -166,7 +166,7 @@ class change_level:
         
     def graphics(self):
         logo = pygame.image.load(os.path.join('data', 'logo.png')).convert()
-        self.ff_logo = pygame.transform.scale(logo,threades.resize_pos((1111,250)))
+        self.ff_logo = pygame.transform.scale(logo,threades.resize_pos((1128,171)))
         threades.screen.fill((0,0,0))
         threades.screen.blit(self.ff_logo,threades.resize_pos((40,50)))
 

@@ -300,9 +300,9 @@ class starting_intro:
         self.init_game_save_flag = game_save_flag
         self.game_save_flag = False
         logo = pygame.image.load(os.path.join('data', 'logo.png')).convert()
-        self.ff_logo = pygame.transform.scale(logo,threades.resize_pos((1111,250)))
+        self.ff_logo = pygame.transform.scale(logo,threades.resize_pos((1128,171)))
         threades.screen.fill((0,0,0))
-        threades.screen.blit(self.ff_logo,threades.resize_pos((40,50)))
+        threades.screen.blit(self.ff_logo,threades.resize_pos((40,90)))
 
         # Font type
         myfont = pygame.font.Font("font.ttf", threades.resize_pt(17))
@@ -466,12 +466,12 @@ class starting_intro:
             self.play_button.onClick = self.resume_saved_level
         
         logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
-        ff_logo = pygame.transform.scale(logo,threades.resize_pos((1111,250)))
+        ff_logo = pygame.transform.scale(logo,threades.resize_pos((1128,171)))
         self.storyboard_menu_run = True
         while self.storyboard_menu_run:
             pygame.display.set_caption('FoodForce2')
             threades.screen.fill((0,0,0))
-            threades.screen.blit(ff_logo,threades.resize_pos((40,50)))
+            threades.screen.blit(ff_logo,threades.resize_pos((40,90)))
             for e in gui.setEvents(pygame.event.get()):
                 if e.type == KEYDOWN:
                     if e.key == 27:  # For escape key
@@ -544,7 +544,7 @@ class starting_intro:
         self.skip_button.onClick = self.close_win
         self.instructions_run = True
         logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
-        ff_logo = pygame.transform.scale(logo,threades.resize_pos((1111,250)))
+        ff_logo = pygame.transform.scale(logo,threades.resize_pos((1128,171)))
         
         self.instructions_counter = 0
         label = gui.Label(position = threades.resize_pos((10.0,100.0),(900.0,600.0),self.win.size),size = threades.resize_pos((880.0,440.0),(900.0,600.0),self.win.size), parent = self.win, text = '', style = labelStyleCopy)
@@ -553,7 +553,7 @@ class starting_intro:
         while self.instructions_run:
             pygame.display.set_caption('FoodForce2')
             threades.screen.fill((0,0,0))
-            threades.screen.blit(ff_logo,threades.resize_pos((40,50)))
+            threades.screen.blit(ff_logo,threades.resize_pos((40,90)))
 
             label.text = texts.instruction_text[self.instructions_counter]
             for e in gui.setEvents(pygame.event.get()):
@@ -639,7 +639,7 @@ class starting_intro:
         self.close_button.onClick = self.close_win
         self.about_us_run = True
         logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
-        ff_logo = pygame.transform.scale(logo,threades.resize_pos((1111,250)))
+        ff_logo = pygame.transform.scale(logo,threades.resize_pos((1128,171)))
         
         #self.instructions_counter = 0
         label = gui.Label(position = threades.resize_pos((10.0,100.0),(900.0,600.0),self.win.size),size = threades.resize_pos((880.0,440.0),(900.0,600.0),self.win.size), parent = self.win, text = '', style = labelStyleCopy)
@@ -647,7 +647,7 @@ class starting_intro:
         while self.about_us_run:
             pygame.display.set_caption('FoodForce2')
             threades.screen.fill((0,0,0))
-            threades.screen.blit(ff_logo,threades.resize_pos((40,50)))
+            threades.screen.blit(ff_logo,threades.resize_pos((40,90)))
 
             label.text = texts.about_us_text
             for e in gui.setEvents(pygame.event.get()):
@@ -781,13 +781,13 @@ class starting_intro:
         self.ok_button.onClick = self.close_win
         self.controls_run = True
         logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
-        ff_logo = pygame.transform.scale(logo,threades.resize_pos((1111,250)))
+        ff_logo = pygame.transform.scale(logo,threades.resize_pos((1128,171)))
         
       #The loop which pauses the game unless an action is taken by the user 
         while self.controls_run:
             pygame.display.set_caption('FoodForce2')
             threades.screen.fill((0,0,0))
-            threades.screen.blit(ff_logo,threades.resize_pos((40,50)))
+            threades.screen.blit(ff_logo,threades.resize_pos((40,90)))
 
             for e in gui.setEvents(pygame.event.get()):
                 if e.type == KEYDOWN:
@@ -851,11 +851,11 @@ def pause_screen(pause_flag = True):
 
     start.main_menu(pause_flag,threades.game_save_flag)
     logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
-    ff_logo = pygame.transform.scale(logo,threades.resize_pos((1111,250)))
+    ff_logo = pygame.transform.scale(logo,threades.resize_pos((1128,171)))
     while start.run:
         pygame.display.set_caption('FoodForce2')
         threades.screen.fill((0,0,0))
-        threades.screen.blit(ff_logo,threades.resize_pos((40,50)))
+        threades.screen.blit(ff_logo,threades.resize_pos((40,90)))
         
         for e in gui.setEvents(pygame.event.get()):
             if e.type == pygame.QUIT:
@@ -976,11 +976,14 @@ def main():
     chat_screen=chat.chat()
         
     clock = pygame.time.Clock()
+    threades.total_update_flag = True
     # The main infinite loop
     while True:
         time_passed = clock.tick()
         model.game_controller.update_level_time(threades.update_thread_pause)
         threades.update_turn(time_passed)
+        print "time passed"
+        print time_passed
         animation_obj.update()
 
 
