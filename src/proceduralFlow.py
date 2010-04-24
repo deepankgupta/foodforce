@@ -487,6 +487,7 @@ class Actions:
 
     def callEarthquake(self):
         natural_calamities.earthquake()
+        
 
     def loadNextLevel(self):
 

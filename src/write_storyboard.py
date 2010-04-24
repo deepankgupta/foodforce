@@ -218,7 +218,7 @@ def write_data():
     chatText = ['Kamat','Nice work with the setting up of the new village. I am really impressed.',
                 'Son','Thanks',
                 'Kamat','But I wonder, if you are capable enough to work without my guidance now that you have learnt the basics of building a village.',
-                'Kamat','I will leave you the responsibility of the village for the next 3 months while I go out for your cousin sister wedding.']
+                'Kamat','I will leave you the responsibility of the village for the next 1 month while I go out for your cousin sister wedding.']
     
     action = [1,[chatText,'Balanced Diet/images/chat images/Wfpwork.png']]
     actionData = ['action',action]
@@ -236,7 +236,7 @@ def write_data():
     condn4 = [False,3,'','','>=','NUTRITION',35]
     condn5 = [False,3,'','','>=','TRAINING',35]
     condnlist = [condn1,condn2,condn3,condn4,condn5]
-    condnGlobal = ['NOR',90,condnlist]
+    condnGlobal = ['NOR',30,condnlist]
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
     
@@ -273,7 +273,7 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    text = 'Earn Rs. 5000 more in the next 4 months. But remember, this should not come at the cost of village condition. Do not let the progress bars fall below 25. Good Luck!'
+    text = 'Earn Rs. 5000 more in the next 1 month. But remember, this should not come at the cost of village condition. Do not let the progress bars fall below 25. Good Luck!'
     
     action = [9,text]
     actionData = ['action',action]
@@ -285,7 +285,7 @@ def write_data():
     condn4 = [False,3,'','','>=','NUTRITION',25]
     condn5 = [False,3,'','','>=','TRAINING',25]
     condnlist = [condn1,condn2,condn3,condn4,condn5]
-    condnGlobal = ['NOR',120,condnlist]
+    condnGlobal = ['NOR',30,condnlist]
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
     
@@ -347,7 +347,7 @@ def write_data():
     pickle.dump(actionData,output)
     
     
-    text = 'Your mission is simple. Increase the progress bar of Education to 70 while not letting any of the other progress bars to fall below 30 within 3 months.'
+    text = 'Your mission is simple. Increase the progress bar of Education to 70 while not letting any of the other progress bars to fall below 30 within 1 month.'
     
     action = [9,text]
     actionData = ['action',action]
@@ -358,7 +358,7 @@ def write_data():
     condn4 = [False,3,'','','>=','NUTRITION',30]
     condn5 = [False,3,'','','>=','TRAINING',30]
     condnlist = [condn1,condn2,condn4,condn5]
-    condnGlobal = ['NOR',90,condnlist]
+    condnGlobal = ['NOR',30,condnlist]
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
     
@@ -541,11 +541,11 @@ def write_data():
                 'Kamat','They will be holding a pooja soon. But we need to do more than that.',
                 'Son','Yes Father.']
     
-    action = [1,[chatText,'drought.png']]
+    action = [1,[chatText,'Balanced Diet/images/chat images/drought.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    text = 'Do not let the nutrition progress drop below 50% and also donot let the water level fall below 500 for the next 4 months.'
+    text = 'Do not let the nutrition progress drop below 50% and also donot let the water level fall below 500 for the next 1 month.'
     action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
@@ -553,7 +553,7 @@ def write_data():
     condn1 = [False,3,'','','>=','NUTRITION',48]
     condn2 = [False,4,'','WATER','>=','',500]
     condnlist = [condn1,condn2]
-    condnGlobal = ['NOR',120,condnlist]
+    condnGlobal = ['NOR',30,condnlist]
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
     
@@ -566,7 +566,7 @@ def write_data():
                 'Son','Thanks, father. But it was all due to your guidance and support only that I am able to serve for the prosperity of the village.']
 
 
-    action = [1,[chatText,'Happy.png']]
+    action = [1,[chatText,'Balanced Diet/images/chat images/Happy.png']]
     actionData = ['actionTrue',action]
     pickle.dump(actionData,output)
 
@@ -600,7 +600,7 @@ def write_data():
                 'Son','Why do you think so, father?',
                 'Kamat','The signs are there in the animals. Look how the cattle and the sheep are getting restless. They are the ones who know first that the Gods are angry.']
     
-    action = [1,[chatText,'earthquake_st.png']]
+    action = [1,[chatText,'Balanced Diet/images/chat images/earthquake_st.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
@@ -621,7 +621,7 @@ def write_data():
                 'Son','Dont worry brother; I will rebuild the village to its former glory.']
     
 
-    action = [1,[chatText,'earthquake_st.png']]
+    action = [1,[chatText,'Balanced Diet/images/chat images/earthquake_st.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     

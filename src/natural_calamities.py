@@ -73,7 +73,7 @@ class Earthquake(pygame.sprite.Sprite):
             self.alpha +=8
             self.image.set_alpha(self.alpha)
         if self.counter==40:
-            display_text = ' Your Village Sheylan has ben hit by an Earthquake'
+            display_text = ' Your Village has ben hit by an Earthquake'
             threades.message.push_message(display_text,'high')
         if self.counter == 80:
             display_earthquake_images()
@@ -91,26 +91,28 @@ class Earthquake(pygame.sprite.Sprite):
         if self.counter >180:
             event = game_events.Event(type = game_events.ACTIONCOMPLETEEVENT, facility_name = '', res_name = '' , res_quantity = 0)
             game_events.EventQueue.add(event)
-            threades.natural_calamities.remove(earthquake)
+            threades.natural_calamities.remove(earth_quake)
 
 def display_earthquake_images():
 
-    image1 = pygame.image.load(os.path.join('data', 'earthquake1.png')).convert()
+    image1 = pygame.image.load(os.path.join('storyboards/'+model.storyboard_file+'/images/chat images', 'earthquake1.png')).convert()
     threades.screen.blit(pygame.transform.scale(image1,threades.new_screen_size),(0,0))
     pygame.display.flip()
-    sleep(3)
+    sleep(1.5)
 
-    image2 = pygame.image.load(os.path.join('data', 'earthquake2.png')).convert()
+    image2 = pygame.image.load(os.path.join('storyboards/'+model.storyboard_file+'/images/chat images', 'earthquake2.png')).convert()
     threades.screen.blit(pygame.transform.scale(image2,threades.new_screen_size),(0,0))
     pygame.display.flip()
-    sleep(3)
-
-    image3 = pygame.image.load(os.path.join('data', 'earthquake3.png')).convert()
+    sleep(1.5)
+    
+    image3 = pygame.image.load(os.path.join('storyboards/'+model.storyboard_file+'/images/chat images', 'earthquake3.png')).convert()
     threades.screen.blit(pygame.transform.scale(image3,threades.new_screen_size),(0,0))
     pygame.display.flip()
-    sleep(3)
+    sleep(1.5)
+
     
-earthquake = None
+    
+earth_quake = None
 
 def earthquake():
     ''' This method needs to be called when there is an earthquake in the
@@ -119,5 +121,5 @@ def earthquake():
     '''
     global earthquake
 
-    earthquake  = Earthquake()
-    threades.natural_calamities.add(earthquake)
+    earth_quake  = Earthquake()
+    threades.natural_calamities.add(earth_quake)

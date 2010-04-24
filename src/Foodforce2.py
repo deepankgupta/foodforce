@@ -299,6 +299,8 @@ class starting_intro:
         '''
         self.init_game_save_flag = game_save_flag
         self.game_save_flag = False
+        if threades.game_save_flag:
+            self.init_game_save_flag = True
         logo = pygame.image.load(os.path.join('data', 'logo.png')).convert()
         self.ff_logo = pygame.transform.scale(logo,threades.resize_pos((1128,171)))
         threades.screen.fill((0,0,0))
@@ -311,15 +313,13 @@ class starting_intro:
         buttonsurf = pygame.image.load(os.path.join('art','button_green.png')).convert_alpha()
         buttonsurf = pygame.transform.scale(buttonsurf, (36, threades.resize_pt_y(40)))
         self.button_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
-        
 
         self.pause_flag = pause_flag
         if self.pause_flag:
             self.start_button = gui.Button(position = threades.resize_pos((475,500)), size = threades.resize_pos((250,50)), parent = desktop2, text = "Start New Game",style = self.button_style) 
             self.start_button.onClick = self.select_save_or_new_game
-            
             #Resume saved level button if a game is saved
-            if threades.game_save_flag == True:
+            if self.init_game_save_flag == True:
                 self.resume_saved_level_button = gui.Button(position = threades.resize_pos((475,430)),size = threades.resize_pos((250,50)), parent = desktop2, text = "Resume Saved Game",style =self.button_style)
                 self.resume_saved_level_button.onClick = self.select_save_or_new_game
 
@@ -358,9 +358,7 @@ class starting_intro:
     def start_game_again(self,button=None):
         
         
-        #stopping the soundtrack
-        if soundtrack:
-            soundtrack.stop()
+        #earthquake = natural_calamities.Earthquake()
             
         #reinitialising the flags    
         storyboardObj.conditionTestingFlag = False
@@ -404,7 +402,7 @@ class starting_intro:
     def storyboardWindow(self):
         global flag
         self.remove_buttons()
-        self.lightgreen_color = (0,100,0)
+        self.lightgreen_color = (0,80,0)
         self.green_color = (0,150,0)
         self.black_color = (0,0,0)
         myfont1 = pygame.font.Font('font.ttf',threades.resize_pt(50))
@@ -825,7 +823,7 @@ class starting_intro:
         win = gui.Window(position = (0,0), size = (100,100), parent = desktop2)
         if self.pause_flag:
             self.start_button._set_parent(win)
-            if threades.game_save_flag:
+            if self.init_game_save_flag:
                 self.resume_saved_level_button._set_parent(win)
                 #self.init_game_save_flag = False    
         else:
@@ -982,8 +980,8 @@ def main():
         time_passed = clock.tick()
         model.game_controller.update_level_time(threades.update_thread_pause)
         threades.update_turn(time_passed)
-        print "time passed"
-        print time_passed
+        #print "time passed"
+        #print time_passed
         animation_obj.update()
 
 
