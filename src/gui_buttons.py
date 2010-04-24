@@ -1234,7 +1234,7 @@ class showInstructions:
         message_label = gui.Label(position = threades.resize_pos((5,50),(690.0,190.0),win.size),size = threades.resize_pos((500,50),(500.0,10.0),win.size), parent = win, text = self.text, style = labelStyleCopy)
         length = len(self.text)
         length = length/50 + 4
-        print instruction_off_flag
+        #print instruction_off_flag
         if threades.GAME_EXIT_FLAG or instruction_off_flag:
             win.close()
             return

@@ -143,8 +143,7 @@ def safe_exit(button = None):
     sleep(1)
     proceduralFlow.openStoryBoardFile()
     proceduralFlow.closeStoryBoardFile()
-    if soundtrack:
-        soundtrack.stop()
+    threades.audio.stop_soundtrack()
     pygame.mixer.quit()
     pygame.quit()
     exit()
@@ -248,8 +247,6 @@ def event_handling(e):
 
 
 
-soundtrack = load_sound(os.path.join('data', 'soundtrack.ogg'))
-
 def get_update_region():
     # Function which returns the regions to be updated
     
@@ -286,8 +283,7 @@ def load_resume_game():
     actiontemp.actionType = 3
     proceduralFlow.openStoryBoardFile()
     action_obj = proceduralFlow.Actions(actiontemp)
-    #soundtrack = load_sound(os.path.join('data', 'soundtrack.ogg'))
-    #threades.game_save_flag = False
+
 
     
 class starting_intro:
@@ -358,7 +354,9 @@ class starting_intro:
     def start_game_again(self,button=None):
         
         
-        #earthquake = natural_calamities.Earthquake()
+        #stopping the soundtrack
+        threades.audio.stop_soundtrack()
+        threades.audio.play_soundtrack()
             
         #reinitialising the flags    
         storyboardObj.conditionTestingFlag = False
@@ -930,15 +928,13 @@ def main():
     intro_thread = threading.Thread(target = load_images.load_images, args=[])
     intro_thread.start()
     # Loading and starting the sound play
-    #level_setting=level_change.change_level()
+    threades.audio.play_soundtrack()
+    
     threades.check_saved_game_level()
     
     
     
     model.game_controller.reset_time()
-    
-    if soundtrack:
-        soundtrack.play(-1)
         
     pause_screen()
     intro_thread.join()

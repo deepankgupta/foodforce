@@ -36,6 +36,7 @@ pygame.init()
 import game_events
 import load_images
 import pickle
+import glob
 #import proceduralFlow
 
 
@@ -57,7 +58,7 @@ except:
     
     new_screen_size = [800,600]
     
-new_screen_size = [800,600]
+#new_screen_size = [800,600]
 
 global screen   
 if model.FLAG_XO:
@@ -66,8 +67,8 @@ if model.FLAG_XO:
     screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
 else:
     
-    #screen = pygame.display.set_mode(new_screen_size,FULLSCREEN|SRCALPHA,32)
-    screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
+    screen = pygame.display.set_mode(new_screen_size,FULLSCREEN|SRCALPHA,32)
+    #screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
 
 
 defaultStyle.init(gui)
@@ -94,6 +95,8 @@ game_save_flag = False
 
 PLACING_LIST_TEMP = []
 current_level = 0
+SOUND_PATH = os.path.join('sounds/')
+    
 
         
 
@@ -348,7 +351,7 @@ def build_placed_facility(facility_name, autobuild_flag, PLACING_DATA_LIST):
      place_facility_thread: Thread for placing facility
     '''
     
-    
+    audio.play_sound('build')
     facility_name = PLACING_DATA_LIST[0]
     rect_obj = PLACING_DATA_LIST[1]
     
@@ -2394,15 +2397,68 @@ class Animation:
         transform_obj.prev_ratio = transform_obj.ratio
  
 
-
-
-
+class Sounds:
+    '''Controls the sounds'''
+    def __init__(self):
+        self.SOUND_PATH = SOUND_PATH
+        self.SOUND_DIC = {}
+        self.SOUND_DIC = self.load_sound()
+        pygame.mixer.music.load(os.path.join('sounds','soundtrack.ogg'))
+    
+    def load_sound(self,sound_path = SOUND_PATH):
+        '''Gets a dictionary of sounds with just their names from SOUND_PATH and loads them into buffer'''
+        sound_list = map(lambda x:x[len(SOUND_PATH):-4],glob.glob(os.path.join(SOUND_PATH,"*.ogg"))
+                         )
+        sound_dic = {}
+        for sound_name in sound_list:
+            path = os.path.join(sound_path,sound_name+'.ogg')
+            try:
+                sound_dic[sound_name] = pygame.mixer.Sound(path)
+            except:
+                sound_dic[sound_name] = None
+                print "Error Loading Sound: " + sound_name
+        return sound_dic
+    
+    def play_sound(self,sound_name,volume = [0.5,0.5]):
+        '''Plays the requested sound effect
+        The function shuffles between the available sound effects
+        volume: [0.0 to 1.0] :volume [left, right]
+        '''
+        vol_r, vol_l = volume
+        sound_set = []
+        for key in self.SOUND_DIC:
+            if sound_name in key:
+                sound_set.append(key)
+        sound_name = sound_set[random.randrange(0,len(sound_set))]
+        sound_object = self.SOUND_DIC[sound_name]
+        
+        if sound_object:
+            channel = sound_object.play()
+            channel.set_volume(volume[0],volume[1])
+            
+    def play_soundtrack(self):
+        pygame.mixer.music.play(-1)
+        pygame.mixer.music.set_volume(0.5)
+        #pass
+            
+    def stop_soundtrack(self):
+        pygame.mixer.music.stop()
+        #pass
+            
+    def safe_exit(self):
+        pygame.mixer.stop()
+        
+    def pause_music(self):
+        pygame.mixer.pause()
+            
 natural_calamities = pygame.sprite.RenderUpdates()
 villagers = pygame.sprite.Group()
 all = pygame.sprite.RenderUpdates() 
 facilities_group = pygame.sprite.Group()
 market = pygame.sprite.Group()
+
 transform_obj = Transform()
+audio = Sounds()
 #surface3 = pygame.surface.Surface((1200,560))
 all_drawable = pygame.sprite.RenderUpdates() 
 
