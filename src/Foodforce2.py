@@ -407,7 +407,7 @@ class starting_intro:
         
         win_style = gui.defaultWindowStyle.copy()
         win_style['font'] = myfont1
-        win_style['font-color'] = self.lightgreen_color
+        win_style['font-color'] = self.green_color
         win_style['bg-color'] = self.black_color
         win_style['border-color'] =self.black_color
         
@@ -417,7 +417,7 @@ class starting_intro:
         myfont2 = pygame.font.Font('font.ttf',threades.resize_pt(20))
         labelstylecopy = gui.defaultLabelStyle.copy()
         labelstylecopy['font'] = myfont2
-        labelstylecopy['font-color'] = self.lightgreen_color
+        labelstylecopy['font-color'] = self.green_color
         labelstylecopy['border-width'] = 1
         labelstylecopy['border-color'] = (0,0,0)
         labelstylecopy['autosize']=True
@@ -427,7 +427,7 @@ class starting_intro:
         op_style = gui.createOptionBoxStyle(gui.defaultFont, op_image, 12, (255,255,255),(100,100,100), autosize = True)
        
         op_style['font'] = myfont2
-        op_style['font-color'] = self.lightgreen_color
+        op_style['font-color'] = self.green_color
         op_style['normal'] = True
         op_style['autosize'] = True
         op_style['word wrap'] = False
@@ -460,7 +460,7 @@ class starting_intro:
             self.play_button.onClick = self.startup_text
         else:
             self.play_button.onClick = self.resume_saved_level
-        
+        self.play_button.enabled = False
         logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
         ff_logo = pygame.transform.scale(logo,threades.resize_pos((1128,171)))
         self.storyboard_menu_run = True
@@ -492,6 +492,7 @@ class starting_intro:
             
             
     def select_storyboard(self,button = None):
+        self.play_button.enabled = True
         model.storyboard_file = button.text
         
 
