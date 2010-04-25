@@ -2392,8 +2392,8 @@ class Animation:
         
         
         all_drawable.draw(screen)       
-        #if natural_calamities:
-            #natural_calamities.draw(screen)
+        if natural_calamities:
+            natural_calamities.draw(screen)
         transform_obj.prev_ratio = transform_obj.ratio
  
 

@@ -38,13 +38,13 @@ class Earthquake(pygame.sprite.Sprite):
     def __init__(self):
 
         pygame.sprite.Sprite.__init__(self)
-        mask= pygame.surface.Surface((1200,560),SRCALPHA)
-        mask.fill((0,0,0))
-        mask.set_alpha(0)
+        mask= pygame.surface.Surface(threades.resize_pos((930,600)),SRCALPHA)
+        mask.fill((0,0,0,0))
+        #mask.set_alpha(0)
         self.alpha = 0
         self.image = mask
         self.rect = self.image.get_rect()
-        self.rect.move((0,0))
+        self.rect.move(threades.resize_pos((0,0)))
         self.counter = 0
         self.prev_disp = (0,0)
         self.move_dir = [(-20,-20),(-20,-10),(-20,0),(-20,10),(-20,20),(-10,-20),(-10,-20),(-10,0),(-10,10),(-10,20),(0,-20),(0,-10),(0,0),(0,10),(0,20),(10,-20),(10,-20),(10,0),(10,10),(10,20),(20,-20),(20,-10),(20,0),(20,10),(20,20)]
@@ -69,11 +69,13 @@ class Earthquake(pygame.sprite.Sprite):
             threades.transform_obj.move_free((-self.prev_disp[0],-self.prev_disp[1]))
             self.prev_disp = self.move_dir[int(random.random()*25)]
             threades.transform_obj.move_free(self.prev_disp)
-        if self.counter >20 and self.counter <50:
-            self.alpha +=8
-            self.image.set_alpha(self.alpha)
+        if self.counter >20 and self.counter <60:
+            self.alpha +=6
+            #print self.alpha
+            self.image.fill((0,0,0,int(self.alpha)))
+            #threades.screen.blit(self.image,(0,40))
         if self.counter==40:
-            display_text = ' Your Village has ben hit by an Earthquake'
+            display_text = ' Your Village has been hit by an Earthquake'
             threades.message.push_message(display_text,'high')
         if self.counter == 80:
             display_earthquake_images()
@@ -85,30 +87,32 @@ class Earthquake(pygame.sprite.Sprite):
             threades.demolish_facility('Workshop')
             model.ppl.change_total_population(-10)
         if self.counter > 81:
-            if self.alpha >2:
+            if self.alpha >=2:
                 self.alpha -=2
-            self.image.set_alpha(self.alpha)
-        if self.counter >180:
+            #print self.alpha
+            self.image.fill((0,0,0,int(self.alpha)))
+            #threades.screen.blit(self.image,(0,40))
+        if self.counter >150:
             event = game_events.Event(type = game_events.ACTIONCOMPLETEEVENT, facility_name = '', res_name = '' , res_quantity = 0)
             game_events.EventQueue.add(event)
             threades.natural_calamities.remove(earth_quake)
 
 def display_earthquake_images():
 
-    image1 = pygame.image.load(os.path.join('storyboards/'+model.storyboard_file+'/images/chat images', 'earthquake1.png')).convert()
+    image1 = pygame.image.load(os.path.join('data', 'earthquake1.png')).convert()
     threades.screen.blit(pygame.transform.scale(image1,threades.new_screen_size),(0,0))
     pygame.display.flip()
-    sleep(1.5)
+    sleep(3)
 
-    image2 = pygame.image.load(os.path.join('storyboards/'+model.storyboard_file+'/images/chat images', 'earthquake2.png')).convert()
+    image2 = pygame.image.load(os.path.join('data', 'earthquake2.png')).convert()
     threades.screen.blit(pygame.transform.scale(image2,threades.new_screen_size),(0,0))
     pygame.display.flip()
-    sleep(1.5)
+    sleep(3)
     
-    image3 = pygame.image.load(os.path.join('storyboards/'+model.storyboard_file+'/images/chat images', 'earthquake3.png')).convert()
+    image3 = pygame.image.load(os.path.join('data', 'earthquake3.png')).convert()
     threades.screen.blit(pygame.transform.scale(image3,threades.new_screen_size),(0,0))
     pygame.display.flip()
-    sleep(1.5)
+    sleep(3)
 
     
     
