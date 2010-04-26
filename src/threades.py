@@ -1019,9 +1019,14 @@ def famine():
     
 if model.FLAG_XO or model.FLAG_SOAS:
     import olpcgames.util
-    save_game_file = os.path.join(olpcgames.util.get_activity_root(),'storyboards/'+str(model.storyboard_file),'save_game.pkl')
+    import subprocess
+    list_file = open('storyboard_list.pkl')
+    for i in range(pickle.load(list_file)):
+        item = pickle.load(list_file)
+        subprocess.call(['mkdir', os.path.join(olpcgames.util.get_activity_root(),'storyboards',str(item))])
+    save_game_file = os.path.join(olpcgames.util.get_activity_root(),'storyboards',str(model.storyboard_file),'save_game.pkl')
 else:
-    save_game_file = 'storyboards/'+str(model.storyboard_file)+'save_game.pkl'
+    save_game_file = os.path.join('storyboards',str(model.storyboard_file),'save_game.pkl')
 
 def save_game():
     '''Used to save current level'''
@@ -1031,7 +1036,7 @@ def save_game():
     global storyboard_file
     game_save_flag = True
     
-    data_file = 'storyboards/'+str(model.storyboard_file)+'/save_game.pkl'
+    data_file = os.path.join('storyboards',str(model.storyboard_file),'save_game.pkl')
     output = open(data_file,'wb')
     pickle.dump(current_level,output)
     #print model.get_global_time
@@ -1056,7 +1061,7 @@ def resume_game():
     global game_save_flag
     global current_level
     
-    data_file = 'storyboards/'+str(model.storyboard_file)+'/save_game.pkl'
+    data_file = os.path.join('storyboards',str(model.storyboard_file),'save_game.pkl')
     output = open(data_file,'rb')
     level = pickle.load(output)
     current_level = level
@@ -1082,7 +1087,7 @@ def check_saved_game_level():
     list_file = open('storyboard_list.pkl')
     for i in range(pickle.load(list_file)):
         item = pickle.load(list_file)
-        if os.path.exists('storyboards/'+str(item)+'/save_game.pkl'):
+        if os.path.exists(os.path.join('storyboards',str(item),'save_game.pkl')):
             game_save_flag = True       
             break
     
