@@ -25,19 +25,14 @@ from pygame.mouse import *
 from sys import exit
 import os
 from time import *
-#from threades import *
 import threades
 import threading
 import gui
-#from gui import *
 import defaultStyle
-#from load_images import *
 import display_panel
-#from gui_buttons import *
 import gui_buttons
 import chat
 import game_events
-#from model import *
 import texts
 import load_images
 import model
@@ -50,8 +45,6 @@ if model.FLAG_XO:
     import game_sharing
     import olpcgames.mesh as mesh
 
-
-
 desktop2 = gui.Desktop()
 set_icon(pygame.image.load(os.path.join('data', 'WFPLOGO.png')).convert_alpha())
 flag  = 1
@@ -59,9 +52,8 @@ update_thread = None
 message_thread = None
 level_obj = level_change.change_level()
 storyboardObj = proceduralFlow.storyboardFlow()
-def message_window():
-    ''' Thread to display the messages'''
 
+def message_window():
     font_color = (255,214,150)
     myfont = pygame.font.Font("font.ttf", threades.resize_pt(17))
     # Custom gui.Window Style
@@ -106,19 +98,6 @@ def message_window():
             return
         
 
-
-def load_sound(name):
-
-    if not pygame.mixer:
-        return None
-    fullname = os.path.join(name)
-    try:
-        sound = pygame.mixer.Sound(fullname)
-    except pygame.error, message:
-
-        return None
-    return sound
-
 def escape():
 
     win_flag = gui_buttons.gui_obj.get_win_flag()
@@ -131,11 +110,6 @@ def escape():
         pause_screen(False)
 
 def safe_exit(button = None):
-    """
-        Maintains safe exit from the game
-    """
-    #print 'in safe_exit'
-    #print 'in safe_exit'
     threades.GAME_EXIT_FLAG = True
     
     if message_thread:
@@ -153,11 +127,7 @@ def safe_exit(button = None):
 clock = pygame.time.Clock()
 
 
-def event_handling(e):
-    """
-       Handles all the event of the game and takes corresponding action
-    """
-    
+def event_handling(e):    
     #For the safe exit of the game
     if e.type == pygame.QUIT:
         safe_exit()
@@ -206,7 +176,6 @@ def event_handling(e):
         game_events.EventQueue.add(event)
         model.game_controller.reset_time()
         pause_screen()
-        #print proceduralFlow.storyboard_level
         
     if e.type == KEYUP:
         if e.key == K_UP:
@@ -237,19 +206,12 @@ def event_handling(e):
         
         if e.type==mesh.CONNECT :
             game_sharing.sharing_handler(e.type,None,'')
-        #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,None,'']).start()
         elif e.type==mesh.PARTICIPANT_ADD or e.type==mesh.PARTICIPANT_REMOVE :
             game_sharing.sharing_handler(e.type,e.handle,'')
-        #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,'']).start()
         elif e.type==mesh.MESSAGE_MULTI or e.type==mesh.MESSAGE_UNI :
             game_sharing.sharing_handler(e.type,e.handle,e.content)
-        #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,e.content]).start()
 
-
-
-def get_update_region():
-    # Function which returns the regions to be updated
-    
+def get_update_region():    
     list_rects = []
     if threades.total_update_flag:
         threades.screen.blit(surface_top,(0,0))
@@ -287,12 +249,9 @@ def load_resume_game():
 
     
 class starting_intro:
-    ''' Display the starting intro_text and menu
-    '''
-
+    
     def main_menu(self,pause_flag = True, game_save_flag = False):
-        ''' Display the starting menu
-        '''
+        
         self.init_game_save_flag = game_save_flag
         self.game_save_flag = False
         if threades.game_save_flag:
@@ -353,10 +312,9 @@ class starting_intro:
      
     def start_game_again(self,button=None):
         
-        
         #stopping the soundtrack
         threades.audio.stop_soundtrack()
-        threades.audio.play_soundtrack()
+        threades.audio.play_soundtrack(False,None)
             
         #reinitialising the flags    
         storyboardObj.conditionTestingFlag = False
@@ -378,16 +336,15 @@ class starting_intro:
         
         #erasing the facilities and deciding the data file
  
-        data_file = 'storyboards/'+str(model.storyboard_file)+'/data/data1.pkl'
+        data_file = os.path.join('storyboards',str(model.storyboard_file),'data' ,'data1.pkl')
             
-        graphics_file = 'graphics_layout.pkl'
+        graphics_file = os.path.join('graphics_layout.pkl')
         level_obj.new_level_stats(data_file,graphics_file) 
          
         
         model.game_controller.reset_time() 
         
         gui_buttons.instruction_off_flag = True
-        #print gui_buttons.instruction_off_flag
         
     def select_save_or_new_game(self,button=None):
         global flag
@@ -448,7 +405,7 @@ class starting_intro:
                 self.item.onValueChanged = self.select_storyboard
                 vertical_dist = vertical_dist + 40
             else:
-                if os.path.exists('storyboards/'+str(item)+'/save_game.pkl'):
+                if os.path.exists(os.path.join('storyboards',str(item),'save_game.pkl')):
                     self.item = gui.OptionBox(position = threades.resize_pos((150.0,vertical_dist),(900.0,600.0),self.win.size),parent = self.win,style = op_style,text = str(item))
                     self.item.onValueChanged = self.select_storyboard
                     vertical_dist = vertical_dist + 40
@@ -669,9 +626,7 @@ class starting_intro:
             pygame.display.update()
     
     def startup_text(self,button = None):
-        ''' Displays the startup text
-        '''
-        
+        threades.audio.play_soundtrack(True,model.storyboard_file)
         threades.current_level = 1
         self.remove_buttons()
             
@@ -687,7 +642,7 @@ class starting_intro:
     
     def resume_saved_level(self,button = None):
         '''Resumes saved level'''
-        
+        threades.audio.play_soundtrack(True,model.storyboard_file)
         threades.resume_game()
         self.remove_buttons()
         self.run = False
@@ -929,7 +884,7 @@ def main():
     intro_thread = threading.Thread(target = load_images.load_images, args=[])
     intro_thread.start()
     # Loading and starting the sound play
-    threades.audio.play_soundtrack()
+    threades.audio.play_soundtrack(False,None)
     
     threades.check_saved_game_level()
     
@@ -953,7 +908,7 @@ def main():
      
     # loading the correct data file
     if threades.current_level == 1:       
-        data_file = 'storyboards/'+str(model.storyboard_file)+'/data/data1.pkl'
+        data_file = os.path.join('storyboards',str(model.storyboard_file),'data','data1.pkl')
         model.init_cons(data_file)
         model.init_obj()
 
@@ -1035,6 +990,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-

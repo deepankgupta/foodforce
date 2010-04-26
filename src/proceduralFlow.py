@@ -841,7 +841,7 @@ def openStoryBoardFile():
 
     global storyboardfile
     global storyboard_file_name
-    storyboardfile = open('storyboards/'+model.storyboard_file+'/storyboard.pkl','rb')
+    storyboardfile = open(os.path.join('storyboards',str(model.storyboard_file),'storyboard.pkl'),'rb')
 
 def closeStoryBoardFile():
     storyboardfile.close()
@@ -914,4 +914,3 @@ class storyboardFlow:
 
             except EOFError:
                 self.action.showCredentials()
-

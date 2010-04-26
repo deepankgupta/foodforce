@@ -266,7 +266,7 @@ def init_cons(file_name):
     
 
 
-init_cons('storyboards/Haiti Earthquake/data/data1.pkl')
+init_cons(os.path.join('storyboards','Haiti Earthquake','data','data1.pkl'))
         
 def save_cons():
     ''' Used to save constants
@@ -2323,6 +2323,4 @@ class game_time:
         return self.years
         
 game_controller=game_time()
-
-
 init_obj()
