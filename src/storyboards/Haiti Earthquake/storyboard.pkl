@@ -3,7 +3,7 @@ S'action'
 p1
 a(lp2
 I7
-aS'The city of Haiti has been seismicaly active from centuries.It has ,in the past, endured severe earthquakes some of which have collapsed the whole city and led to mass destruction. It is one of the poorest countries in the Western Hemisphere and thus it becomes more difficult for it to come back from such calamities and it greatly depends on the neighbouring countries for this.The travel advisory site of the Australian Government had previously expressed concerns that Haitian emergency services would be unable to cope in the event of a major disaster, and the country is considered economically vulnerable by the Food and Agriculture Organisation'
+aS'Haiti is a Carribbean country.Along with the Dominican Republic, it occupies the island of Hispaniola, in the Greater Antillean archipelago.The total area of Haiti is 27,750 square kilometres (10,714 sq mi) and its capital is Port-au-Prince. It was the first independent nation in Latin America and the first black-led republic in the world when it gained independence as part of a successful slave rebellion in 1804.Despite having common cultural links with its Hispano-Caribbean neighbors, Haiti is the only predominantly Francophone independent nation in the Americas'
 p3
 aa.(lp0
 S'action'
@@ -21,17 +21,17 @@ a(lp3
 (lp4
 S'Gilbert Fernandez'
 p5
-aS'The city of haiti has been struck by an catastrophic earthquake of magnitude 7.0.It has destroyed everything and the condition of the town is critical'
+aS'The city of Haiti has been struck by a catastrophic earthquake of magnitude 7.0'
 p6
 aS'Stevenson Gorbachev'
 p7
-aS'Several notable landmarks have been destroyed including the Presidential Palace,National Assembly building and the central jail.Several important leaders and personalities of public importance have also died in this earthquake'
+aS'Many notable landmarks such as Presidential Palace,National Assembly ,Port-au-Prince Cathedral,the main jail are completely destroyed.Many public figures are also the victims of this earthquake'
 p8
 ag5
-aS'The economic condition of the city is not sufficient to be able to bear dis disaster and recover from this situaltion'
+aS'Haiti is not self-sufficient to recover from this disaster'
 p9
 ag7
-aS'We have to call for help from our neighbouring countries to help us in this state.'
+aS'We have asked for help from our neighbouring countries.I hope we will be able to get through these dark times with their support'
 p10
 aaS'Haiti Earthquake/images/chat images/earthquake_st.png'
 p11
@@ -40,7 +40,7 @@ S'action'
 p1
 a(lp2
 I7
-aS'The earthquake has destroyed most of the buildings and severly deteriorated the condition of the city.Various teams has been sent by different countries to take care of the situation and help in any way they can.You being the head of the city have to work in collaboration with all the teams sent for your aid and ensure that the peace of the city is restored.The different teams sent to for your help will keep you updated on the current condition of improvement.'
+aS'This time it has been struck by an earthquake which has destroyed most of the buildings and severly deteriorated the condition of the city.Various teams has been sent by different countries to take care of the situation and help in any way they can.You being the head of the city have to work in collaboration with all the teams sent for your aid and ensure that the peace of the city is restored.The different teams sent to for your help will keep you updated on the current condition of improvement.'
 p3
 aa.(lp0
 S'action'
@@ -74,7 +74,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'The mission is to provide food and medicinal facilities to the survivors.Increase the progress bars of nutrition and health to 30% within a time span of 2 weeks and build a minimum of two wells in this period'
+aS'The mission is to provide food and medicinal facilities to the survivors.Increase the progress bars of nutrition and health to 30% within a time span of 2 weeks'
 p3
 aa.(lp0
 S'condition'
@@ -137,20 +137,11 @@ ag7
 aS'NUTRITION'
 p10
 aI30
-aa(lp11
-I00
-aI1
-aS'FOUNTAIN'
-p12
-ag6
-ag7
-ag6
-aI2
 aaaa.(lp0
 S'actionTrue'
 p1
 a(lp2
-I7
+I9
 aS'You have succeded in taking the first step towards resurrection of the town'
 p3
 aa.(lp0
@@ -200,7 +191,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'The mission is to provide proper housing to the people of the village.Increase the progress bar housing to 40% ,keeping the progress bars for nutrition and health above 30 % .This mission should be completed in a span of 2 weeks.'
+aS'The mission is to provide proper housing to the people of the village.Increase the progress bar housing to 40% ,keeping the progress bars for nutrition and health above 30 % .This mission should be completed in a span of 1 month.'
 p3
 aa.(lp0
 S'condition'
@@ -208,7 +199,7 @@ p1
 a(lp2
 S'NOR'
 p3
-aI14
+aI30
 a(lp4
 (lp5
 I00

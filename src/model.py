@@ -265,8 +265,9 @@ def init_cons(file_name):
     PDICT_TRAINING = pickle.load(data_file)
     
 
-
-init_cons(os.path.join('storyboards','Haiti Earthquake','data','data1.pkl'))
+pickle.load(list_file)
+storyboard_name = pickle.load(list_file)
+init_cons(os.path.join('storyboards',str(storyboard_name[1]),'data','data1.pkl'))
         
 def save_cons():
     ''' Used to save constants

@@ -326,9 +326,7 @@ class checkConditions:
         if not (self.timer == -1):
             self.time = 0
             self.init_days = model.game_controller.get_total_days()
-            #print "initial days = "
-            #print self.init_days
-
+            
     def checkConditions(self,events):
         ''' Returns 0/1/2 depending upon the state of conditions
             0 : The conditions are still being tested and the player has neither failed the mission nor has he passed it
@@ -338,12 +336,9 @@ class checkConditions:
 
         Flag = True
         if threades.levelStartFacilityBuildFlag > 0 or (not threades.levelStartUpdateFlag):
-            #print "levelstartfacilitybuildflage = ",threades.levelStartFacilityBuildFlag,"levelstartupdateflag",threades.levelStartUpdateFlag
             return 0
 
         for conditions in self.conditionslist:
-            #print 'Flag:',Flag
-            #print conditions.checkCondition(events)
             Flag = conditions.checkCondition(events) and Flag
 
         if self.closure == 'AND':
@@ -371,8 +366,6 @@ class checkConditions:
             self.init_days = model.game_controller.get_total_days()
         
         self.currentdays = model.game_controller.get_total_days()
-        #print "days = "
-        #print self.currentdays -self.init_days
         if self.currentdays >= self.timer + self.init_days:
             return True
         else:
@@ -491,11 +484,9 @@ class Actions:
 
     def loadNextLevel(self):
 
-        global storyboard_level
-           
-        data_file = 'storyboards/'+str(model.storyboard_file)+'/data/data'+str(storyboard_level+1)+'.pkl'
+        global storyboard_level   
+        data_file = os.path.join('storyboards',str(model.storyboard_file),'data','data'+str(storyboard_level+1)+'.pkl')
                
-        #print data_file
         model.game_controller.reset_time()
         graphics_file = 'graphics_layout.pkl'
         storyboard_level += 1
@@ -506,12 +497,10 @@ class Actions:
 
     def loadLevelAgain(self):
  
-        data_file = 'storyboards/'+str(model.storyboard_file)+'/data/data'+str(storyboard_level)+'.pkl'
+        data_file = os.path.join('storyboards',str(model.storyboard_file),'data','data'+str(storyboard_level)+'.pkl')
                 
         graphics_file = 'graphics_layout.pkl'
         load_level_obj.new_level_stats(data_file,graphics_file)
-        #print "StoryBoard level : "
-        #print storyboard_level
         # Seeking in the storyboard to the current level
         model.game_controller.reset_time()
         closeStoryBoardFile()
@@ -841,7 +830,7 @@ def openStoryBoardFile():
 
     global storyboardfile
     global storyboard_file_name
-    storyboardfile = open(os.path.join('storyboards',str(model.storyboard_file),'storyboard.pkl'),'rb')
+    storyboardfile = open(os.path.join('storyboards',model.storyboard_file,'storyboard.pkl'),'rb')
 
 def closeStoryBoardFile():
     storyboardfile.close()
@@ -914,3 +903,4 @@ class storyboardFlow:
 
             except EOFError:
                 self.action.showCredentials()
+

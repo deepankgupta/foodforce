@@ -64,7 +64,7 @@ class chat:
         pickle.load(list_file)
         name = pickle.load(list_file)
         self.characterImage={}
-        if model.storyboard_file == name:
+        if model.storyboard_file == name[1]:
             self.characterImage['KAMAT']=pygame.image.load(os.path.join('storyboards',model.storyboard_file,'images','character images', 'kamat.png')).convert_alpha()
             self.characterImage['SON']=pygame.image.load(os.path.join('storyboards',model.storyboard_file,'images','character images', 'son.png')).convert_alpha()          
             self.characterImage['AJMAL']=pygame.image.load(os.path.join('storyboards',model.storyboard_file,'images','character images', 'ajmal.png')).convert_alpha()

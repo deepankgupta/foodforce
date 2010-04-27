@@ -45,6 +45,8 @@ if model.FLAG_XO:
     import game_sharing
     import olpcgames.mesh as mesh
 
+
+
 desktop2 = gui.Desktop()
 set_icon(pygame.image.load(os.path.join('data', 'WFPLOGO.png')).convert_alpha())
 flag  = 1
@@ -284,7 +286,7 @@ class starting_intro:
             self.resume_button.onClick = self.resume
             
             self.start_game_again_button = gui.Button(position = threades.resize_pos((475,500)), size = threades.resize_pos((250,50)), parent = desktop2, text = "Start Game Again",style = self.button_style) 
-            self.start_game_again_button.onClick = self.start_game_again
+            self.start_game_again_button.onClick = self.storyboardWindow
             
             #Save Game Button
             if proceduralFlow.storyboard_level != 1:
@@ -311,6 +313,7 @@ class starting_intro:
         self.run = True
      
     def start_game_again(self,button=None):
+        global flag
         
         #stopping the soundtrack
         threades.audio.stop_soundtrack()
@@ -322,29 +325,16 @@ class starting_intro:
         storyboardObj.actionRunningFlag = False
         storyboardObj.prevConditionResult = -1
         storyboardObj.norConditionFlag = False
-
-        
-    
-        #closing the storyboard
-        proceduralFlow.closeStoryBoardFile()
-        
-        #selecting the storyboard
-        self.storyboardWindow()
-        
-        #opening the storyboard again
-        proceduralFlow.openStoryBoardFile()
+	self.close_win()
+        if flag:
+            self.resume_saved_level()
+        else:
+            self.startup_text()
         
         #erasing the facilities and deciding the data file
  
-        data_file = os.path.join('storyboards',str(model.storyboard_file),'data' ,'data1.pkl')
-            
-        graphics_file = os.path.join('graphics_layout.pkl')
-        level_obj.new_level_stats(data_file,graphics_file) 
-         
-        
-        model.game_controller.reset_time() 
-        
         gui_buttons.instruction_off_flag = True
+
         
     def select_save_or_new_game(self,button=None):
         global flag
@@ -354,7 +344,7 @@ class starting_intro:
             flag = True
         self.storyboardWindow()
         
-    def storyboardWindow(self):
+    def storyboardWindow(self,button = None):
         global flag
         self.remove_buttons()
         self.lightgreen_color = (0,80,0)
@@ -401,22 +391,21 @@ class starting_intro:
         for i in range(pickle.load(list_file)):
             item = pickle.load(list_file)
             if flag == False:
-                self.item = gui.OptionBox(position = threades.resize_pos((150.0,vertical_dist),(900.0,600.0),self.win.size),parent = self.win,style = op_style,text = str(item))
+                self.item = gui.OptionBox(position = threades.resize_pos((150.0,vertical_dist),(900.0,600.0),self.win.size),parent = self.win,style = op_style,text = str(item[1]))
                 self.item.onValueChanged = self.select_storyboard
                 vertical_dist = vertical_dist + 40
             else:
-                if os.path.exists(os.path.join('storyboards',str(item),'save_game.pkl')):
-                    self.item = gui.OptionBox(position = threades.resize_pos((150.0,vertical_dist),(900.0,600.0),self.win.size),parent = self.win,style = op_style,text = str(item))
+                if os.path.exists(os.path.join('storyboards',str(item[1]),'save_game.pkl')):
+                    self.item = gui.OptionBox(position = threades.resize_pos((150.0,vertical_dist),(900.0,600.0),self.win.size),parent = self.win,style = op_style,text = str(item[1]))
                     self.item.onValueChanged = self.select_storyboard
                     vertical_dist = vertical_dist + 40
         
         self.skip_button = gui.Button(position = threades.resize_pos((100,490),(900.0,600.0),self.win.size), size = threades.resize_pos((110,30),(900.0,600.0),self.win.size), parent = self.win, text = "  Skip  ",style = self.button_style)
         self.skip_button.onClick = self.close_win
         self.play_button = gui.Button(position = threades.resize_pos((500,490),(900.0,600.0),self.win.size), size = threades.resize_pos((110,30),(900.0,600.0),self.win.size), parent = self.win, text = "  Play  ",style = self.button_style)
-        if flag == False:
-            self.play_button.onClick = self.startup_text
-        else:
-            self.play_button.onClick = self.resume_saved_level
+        self.play_button.onClick = self.start_game_again
+        #else:
+            #self.play_button.onClick = self.resume_saved_level
         self.play_button.enabled = False
         logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
         ff_logo = pygame.transform.scale(logo,threades.resize_pos((1128,171)))
@@ -629,11 +618,25 @@ class starting_intro:
         threades.audio.play_soundtrack(True,model.storyboard_file)
         threades.current_level = 1
         self.remove_buttons()
-            
-        self.storyboard_menu_run = False       
+        if proceduralFlow.storyboardfile:
+            #closing the storyboard
+            proceduralFlow.closeStoryBoardFile()
+            #opening the storyboard again
+        proceduralFlow.openStoryBoardFile()
+        
+        
+        
+        
+        data_file = os.path.join('storyboards',str(model.storyboard_file),'data','data1.pkl')            
+        graphics_file = 'graphics_layout.pkl'
+        level_obj.new_level_stats(data_file,graphics_file) 
+         
+        model.game_controller.reset_time() 
+        
+        #self.storyboard_menu_run = False       
         self.run = False
-        self.win.close()
-    
+        #self.win.close()
+        threades.total_update_flag  = True
         
         
     def turnoff_startup_run(self,button = None):
@@ -663,6 +666,7 @@ class starting_intro:
         '''
         self.remove_buttons()
         self.run = False
+        threades.total_update_flag = True
 
     def controls(self,button = None):
         """"show controllers
@@ -902,15 +906,14 @@ def main():
     if threades.current_level != 1:
         load_resume_game()
     else:
+        data_file = os.path.join('storyboards',str(model.storyboard_file),'data','data1.pkl')
+        model.init_cons(data_file)
+        model.init_obj()
         threades.initialize_facilities(True)
         proceduralFlow.openStoryBoardFile()
 
      
     # loading the correct data file
-    if threades.current_level == 1:       
-        data_file = os.path.join('storyboards',str(model.storyboard_file),'data','data1.pkl')
-        model.init_cons(data_file)
-        model.init_obj()
 
     gui_buttons.initialize_gui()
 
@@ -932,8 +935,6 @@ def main():
         time_passed = clock.tick()
         model.game_controller.update_level_time(threades.update_thread_pause)
         threades.update_turn(time_passed)
-        #print "time passed"
-        #print time_passed
         animation_obj.update()
 
 
