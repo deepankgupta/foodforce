@@ -27,7 +27,7 @@ import os
 #Flag to check the operating system
 FLAG_XO = False
 
-list_file = open('storyboard_list.pkl')
+storyboard_list_file = open('storyboard_list.pkl')
 
 if os.path.exists('/sys/power/olpc-pm'):
        
@@ -265,8 +265,8 @@ def init_cons(file_name):
     PDICT_TRAINING = pickle.load(data_file)
     
 
-pickle.load(list_file)
-storyboard_name = pickle.load(list_file)
+pickle.load(storyboard_list_file)
+storyboard_name = pickle.load(storyboard_list_file)
 init_cons(os.path.join('storyboards',str(storyboard_name[1]),'data','data1.pkl'))
         
 def save_cons():

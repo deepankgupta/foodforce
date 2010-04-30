@@ -3,7 +3,7 @@ S'action'
 p1
 a(lp2
 I7
-aS'Haiti is a Carribbean country.Along with the Dominican Republic, it occupies the island of Hispaniola, in the Greater Antillean archipelago.The total area of Haiti is 27,750 square kilometres (10,714 sq mi) and its capital is Port-au-Prince. It was the first independent nation in Latin America and the first black-led republic in the world when it gained independence as part of a successful slave rebellion in 1804.Despite having common cultural links with its Hispano-Caribbean neighbors, Haiti is the only predominantly Francophone independent nation in the Americas'
+aS'Haiti is a Carribbean country.Along with the Dominican Republic, it occupies the island of Hispaniola, in the Greater Antillean archipelago.The total area of Haiti is 27,750 square kilometres and its capital is Port-au-Prince. It was the first independent nation in Latin America and the first black-led republic in the world when it gained independence as part of a successful slave rebellion in 1804.'
 p3
 aa.(lp0
 S'action'
@@ -33,14 +33,14 @@ p9
 ag7
 aS'We have asked for help from our neighbouring countries.I hope we will be able to get through these dark times with their support'
 p10
-aaS'Haiti Earthquake/images/chat images/earthquake_st.png'
+aaS'Haiti Earthquake\\images\\chat images\\earthquake_st.png'
 p11
 aaa.(lp0
 S'action'
 p1
 a(lp2
 I7
-aS'This time it has been struck by an earthquake which has destroyed most of the buildings and severly deteriorated the condition of the city.Various teams has been sent by different countries to take care of the situation and help in any way they can.You being the head of the city have to work in collaboration with all the teams sent for your aid and ensure that the peace of the city is restored.The different teams sent to for your help will keep you updated on the current condition of improvement.'
+aS'Haiti has been struck by an earthquake which has destroyed most of the buildings and severly deteriorated the condition of the city.Various teams has been sent by different countries to take care of the situation and help in any way they can.You being the head of the city have to work in collaboration with all the teams sent to you for your aid and ensure that the peace of the city is restored.'
 p3
 aa.(lp0
 S'action'
@@ -55,7 +55,7 @@ aS'The earthquake has destroyed everything.'
 p6
 aS'Tony Peralta'
 p7
-aS'At this point of time it is necessary that the survivors be located or people who cant be accessed due to blocking of all kinds of transportation be supplied with food and medicines.'
+aS'At this point of time it is necessary that the survivors be located or people who cant be accessed due to blocking of roads be supplied with food and medicines.'
 p8
 aS'Ragnar Stefansson'
 p9
@@ -65,11 +65,18 @@ ag5
 aS'Till then,something must be done for the survivors.'
 p11
 ag7
-aS'The city also need more hospitals , as only two fully functional hospitals are left in the city and they are overcrowded.There are hundreds of injured people.It is estimated that as many as 20,000 people will die each day that could have been saved by surgery'
+aS'The city also need more hospitals , as only one fully functional hospital is left in the city and they are overcrowded.There are hundreds of injured people.'
 p12
-aaS'Haiti Earthquake/images/chat images/haiti.png'
+aaS'Haiti Earthquake\\images\\chat images\\haiti.png'
 p13
 aaa.(lp0
+S'action'
+p1
+a(lp2
+I9
+aS'Farms and Hospitals help to increase the indicator bars for nutition and health'
+p3
+aa.(lp0
 S'action'
 p1
 a(lp2
@@ -141,7 +148,7 @@ aaaa.(lp0
 S'actionTrue'
 p1
 a(lp2
-I9
+I7
 aS'You have succeded in taking the first step towards resurrection of the town'
 p3
 aa.(lp0
@@ -184,7 +191,7 @@ aS'Stevenson Gorbachev'
 p9
 aS'We must start building more houses for the people but we must also ensure that the progress made so far should be maintained and not be wasted.'
 p10
-aaS'Haiti Earthquake/images/chat images/haiti.png'
+aaS'Haiti Earthquake\\images\\chat images\\haiti.png'
 p11
 aaa.(lp0
 S'action'
@@ -255,6 +262,13 @@ aS'HOUSING'
 p8
 aI40
 aaaa.(lp0
+S'action'
+p1
+a(lp2
+I7
+aS'You have provided proper housing to the people of your town.'
+p3
+aa.(lp0
 S'actionTrue'
 p1
 a(lp2
@@ -297,9 +311,16 @@ p10
 ag5
 aS'We are planning to launch a programme so as to provide employment to the people.'
 p11
-aaS'Haiti Earthquake/images/chat images/haiti.png'
+aaS'Haiti Earthquake\\images\\chat images\\haiti.png'
 p12
 aaa.(lp0
+S'action'
+p1
+a(lp2
+I9
+aS'The function of workshops is to train people and the production of tools for the village .'
+p3
+aa.(lp0
 S'action'
 p1
 a(lp2
@@ -380,7 +401,7 @@ aaaa.(lp0
 S'actionTrue'
 p1
 a(lp2
-I9
+I7
 aS'You have created employment for the people and have made them self-sufficient.Congratulations'
 p3
 aa.(lp0
@@ -423,7 +444,7 @@ aS'Gilbert Fernandez'
 p9
 aS'The city must also have sound monetary savings in order to ensure that these kind of calamities can be handled in a much effective way .'
 p10
-aaS'Haiti Earthquake/images/chat images/haiti.png'
+aaS'Haiti Earthquake\\images\\chat images\\haiti.png'
 p11
 aaa.(lp0
 S'action'
@@ -523,7 +544,7 @@ aaaa.(lp0
 S'actionTrue'
 p1
 a(lp2
-I9
+I7
 aS'You have completed this step of taking the town towards full recovery'
 p3
 aa.(lp0
@@ -577,7 +598,7 @@ aS'Ragnar Stefansson'
 p14
 aS'The housing area needs to be taken care of, we will need lot more houses to have proper shelters for all the people.'
 p15
-aaS'Haiti Earthquake/images/chat images/haiti.png'
+aaS'Haiti Earthquake\\images\\chat images\\haiti.png'
 p16
 aaa.(lp0
 S'action'
@@ -729,18 +750,8 @@ aaaa.(lp0
 S'actionTrue'
 p1
 a(lp2
-I9
-a(lp3
-S'Gilbert Fernandez'
-p4
+I7
 aS'You have completed this step of taking the town towards full recovery'
-p5
-aaa.(lp0
-S'actionTrue'
-p1
-a(lp2
-I2
-aS''
 p3
 aa.(lp0
 S'actionFalse'
@@ -773,186 +784,22 @@ aS'All our efforts have finally paid off, our work here in this city is done.'
 p8
 aS'Stevenson Gorbachev'
 p9
-aS'Although the city has recovered from the shock of the earthquake but being the Governnor of the city it is my duty to keep on thriving for the betterment of the people.'
+aS'Although the city has recovered from the shock of the earthquake but being the Governnor of the city it is my duty to keep the present condition of the village .'
 p10
-aS'Ragnar Stefansson'
+aaS'Haiti Earthquake\\images\\chat images\\haiti.png'
 p11
-aS' It is necessary that arrangements be made for a secure future and the standard of living of the people be increased.'
-p12
-aaS'Haiti Earthquake/images/chat images/haiti.png'
-p13
 aaa.(lp0
 S'action'
 p1
 a(lp2
-I9
-aS'Your work now is to ensure that the city keeps on developing and as the representative of the people you are able to provide good facilities to them.Increase all the progress bars to 75% taking care that none of them should fall below 40% and manage to obtain an amount of Rs 3000 at the end of 1 month.'
-p3
-aa.(lp0
-S'condition'
-p1
-a(lp2
-S'NOR'
-p3
-aI30
-a(lp4
-(lp5
-I00
-aI3
-aS''
-p6
-ag6
-aS'>='
-p7
-aS'HOUSING'
-p8
-aI40
-aa(lp9
-I00
-aI3
-ag6
-ag6
-ag7
-aS'HEALTH'
-p10
-aI40
-aa(lp11
-I00
-aI3
-ag6
-ag6
-ag7
-aS'EDUCATION'
-p12
-aI40
-aa(lp13
-I00
-aI3
-ag6
-ag6
-ag7
-aS'NUTRITION'
-p14
-aI40
-aa(lp15
-I00
-aI3
-ag6
-ag6
-ag7
-aS'TRAINING'
-p16
-aI40
-aaaa.(lp0
-S'actionFalse'
-p1
-a(lp2
-I8
-aS'You have not been able to complete the task.You must complete it to move on to the next level'
-p3
-aa.(lp0
-S'actionFalse'
-p1
-a(lp2
-I3
-aS''
-p3
-aa.(lp0
-S'condition'
-p1
-a(lp2
-S'NOR'
-p3
-aI1
-a(lp4
-(lp5
-I00
-aI3
-aS''
-p6
-ag6
-aS'>='
-p7
-aS'HOUSING'
-p8
-aI75
-aa(lp9
-I00
-aI3
-ag6
-ag6
-ag7
-aS'HEALTH'
-p10
-aI75
-aa(lp11
-I00
-aI3
-ag6
-ag6
-ag7
-aS'EDUCATION'
-p12
-aI75
-aa(lp13
-I00
-aI3
-ag6
-ag6
-ag7
-aS'NUTRITION'
-p14
-aI75
-aa(lp15
-I00
-aI3
-ag6
-ag6
-ag7
-aS'TRAINING'
-p16
-aI75
-aa(lp17
-I00
-aI5
-ag6
-ag6
-ag7
-ag6
-aI3000
-aaaa.(lp0
-S'actionTrue'
-p1
-a(lp2
-I9
-aS'You have completed this step of taking the town towards full recovery'
-p3
-aa.(lp0
-S'action'
-p1
-a(lp2
 I6
-aS'Congratulations you have restored the peace and prosperity of yout town'
+aS'Congratulations you have restored the peace and prosperity of your town'
 p3
 aa.(lp0
 S'action'
 p1
 a(lp2
 I10
-aS''
-p3
-aa.(lp0
-S'actionFalse'
-p1
-a(lp2
-I8
-aS'You have not been able to complete the task.You must complete it to move on to the next level'
-p3
-aa.(lp0
-S'actionFalse'
-p1
-a(lp2
-I3
 aS''
 p3
 aa.

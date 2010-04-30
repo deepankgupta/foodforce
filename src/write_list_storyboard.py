@@ -6,18 +6,18 @@ def write_data():
     num_of_storyboards = 0
     output = open('storyboard_list.pkl','wb')
     
-    for item in os.listdir(os.path.join("storyboards")):
-        if item == '.svn':
+    for storyboard_name in os.listdir(os.path.join("storyboards")):
+        if storyboard_name == '.svn':
             continue
         num_of_storyboards = num_of_storyboards + 1
     pickle.dump(num_of_storyboards,output)
-    index = 1
-    for item in os.listdir(os.path.join("storyboards")):
-        if item == '.svn':
+    storyboard_no = 1
+    for storyboard_name in os.listdir(os.path.join("storyboards")):
+        if storyboard_name == '.svn':
             continue
-        storyboard = [index,str(item)]
+        storyboard = [storyboard_no,str(storyboard_name)]
         pickle.dump(storyboard,output)
-        index +=1
+        storyboard_no +=1
         
         
     output.close()

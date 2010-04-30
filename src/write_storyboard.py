@@ -20,13 +20,13 @@
 
 import os
 import pickle
-flag = 1
-list_file = open('storyboard_list.pkl')
-pickle.load(list_file)
+storyboard_no = 1
+storyboard_list_file = open('storyboard_list.pkl')
+pickle.load(storyboard_list_file)
 storyboard_name = None
 while storyboard_name == None:
-    storyboard = pickle.load(list_file)
-    if flag == storyboard[0]:
+    storyboard = pickle.load(storyboard_list_file)
+    if storyboard_no == storyboard[0]:
         storyboard_name = storyboard[1]
     
     
@@ -226,7 +226,7 @@ def write_data():
     chatText = ['Kamat','Nice work with the setting up of the new village. I am really impressed.',
                 'Son','Thanks',
                 'Kamat','But I wonder, if you are capable enough to work without my guidance now that you have learnt the basics of building a village.',
-                'Kamat','I will leave you the responsibility of the village for the next 1 month while I go out for your cousin sister wedding.']
+                'Kamat','I will leave you the responsibility of the village for the next 3 months while I go out for your cousin sister wedding.']
     
     action = [1,[chatText,os.path.join(str(storyboard_name),'images','chat images','Wfpwork.png')]]
     actionData = ['action',action]
@@ -244,7 +244,7 @@ def write_data():
     condn4 = [False,3,'','','>=','NUTRITION',35]
     condn5 = [False,3,'','','>=','TRAINING',35]
     condnlist = [condn1,condn2,condn3,condn4,condn5]
-    condnGlobal = ['NOR',30,condnlist]
+    condnGlobal = ['NOR',90,condnlist]
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
     
@@ -281,7 +281,7 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    text = 'Earn Rs. 5000 more in the next 1 month. But remember, this should not come at the cost of village condition. Do not let the progress bars fall below 25. Good Luck!'
+    text = 'Earn Rs. 5000 more in the next 4 months. But remember, this should not come at the cost of village condition. Do not let the progress bars fall below 25. Good Luck!'
     
     action = [9,text]
     actionData = ['action',action]
@@ -293,7 +293,7 @@ def write_data():
     condn4 = [False,3,'','','>=','NUTRITION',25]
     condn5 = [False,3,'','','>=','TRAINING',25]
     condnlist = [condn1,condn2,condn3,condn4,condn5]
-    condnGlobal = ['NOR',30,condnlist]
+    condnGlobal = ['NOR',120,condnlist]
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
     
@@ -355,7 +355,7 @@ def write_data():
     pickle.dump(actionData,output)
     
     
-    text = 'Your mission is simple. Increase the progress bar of Education to 70 while not letting any of the other progress bars to fall below 30 within 1 month.'
+    text = 'Your mission is simple. Increase the progress bar of Education to 70 while not letting any of the other progress bars to fall below 30 within 3 months.'
     
     action = [9,text]
     actionData = ['action',action]
@@ -366,7 +366,7 @@ def write_data():
     condn4 = [False,3,'','','>=','NUTRITION',30]
     condn5 = [False,3,'','','>=','TRAINING',30]
     condnlist = [condn1,condn2,condn4,condn5]
-    condnGlobal = ['NOR',30,condnlist]
+    condnGlobal = ['NOR',90,condnlist]
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
     
@@ -553,7 +553,7 @@ def write_data():
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    text = 'Do not let the nutrition progress drop below 50% and also donot let the water level fall below 500 for the next 1 month.'
+    text = 'Do not let the nutrition progress drop below 50% and also donot let the water level fall below 500 for the next 2 months.'
     action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
@@ -561,7 +561,7 @@ def write_data():
     condn1 = [False,3,'','','>=','NUTRITION',48]
     condn2 = [False,4,'','WATER','>=','',500]
     condnlist = [condn1,condn2]
-    condnGlobal = ['NOR',30,condnlist]
+    condnGlobal = ['NOR',60,condnlist]
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
     

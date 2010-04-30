@@ -49,7 +49,7 @@ if model.FLAG_XO:
 
 desktop2 = gui.Desktop()
 set_icon(pygame.image.load(os.path.join('data', 'WFPLOGO.png')).convert_alpha())
-flag  = 1
+select_flag  = 1                #Used to determine the button clicked in the main menu..Start new game or Resume Saved Level
 update_thread = None
 message_thread = None
 level_obj = level_change.change_level()
@@ -313,7 +313,7 @@ class starting_intro:
         self.run = True
      
     def start_game_again(self,button=None):
-        global flag
+        global select_flag
         
         #stopping the soundtrack
         threades.audio.stop_soundtrack()
@@ -326,7 +326,7 @@ class starting_intro:
         storyboardObj.prevConditionResult = -1
         storyboardObj.norConditionFlag = False
 	self.close_win()
-        if flag:
+        if select_flag:
             self.resume_saved_level()
         else:
             self.startup_text()
@@ -337,15 +337,15 @@ class starting_intro:
 
         
     def select_save_or_new_game(self,button=None):
-        global flag
+        global select_flag
         if button.text == "Start New Game":
-            flag = False
+            select_flag = False
         else:
-            flag = True
+            select_flag = True
         self.storyboardWindow()
         
     def storyboardWindow(self,button = None):
-        global flag
+        global select_flag
         self.remove_buttons()
         self.lightgreen_color = (0,80,0)
         self.green_color = (0,150,0)
@@ -387,16 +387,16 @@ class starting_intro:
         
         vertical_dist = 200.0     #for the position of optionboxes
         
-        list_file = open('storyboard_list.pkl')
-        for i in range(pickle.load(list_file)):
-            item = pickle.load(list_file)
-            if flag == False:
-                self.item = gui.OptionBox(position = threades.resize_pos((150.0,vertical_dist),(900.0,600.0),self.win.size),parent = self.win,style = op_style,text = str(item[1]))
+        storyboard_list_file = open('storyboard_list.pkl')
+        for i in range(pickle.load(storyboard_list_file)):
+            storyboard_name = pickle.load(storyboard_list_file)
+            if select_flag == False:
+                self.item = gui.OptionBox(position = threades.resize_pos((150.0,vertical_dist),(900.0,600.0),self.win.size),parent = self.win,style = op_style,text = str(storyboard_name[1]))
                 self.item.onValueChanged = self.select_storyboard
                 vertical_dist = vertical_dist + 40
             else:
-                if os.path.exists(os.path.join('storyboards',str(item[1]),'save_game.pkl')):
-                    self.item = gui.OptionBox(position = threades.resize_pos((150.0,vertical_dist),(900.0,600.0),self.win.size),parent = self.win,style = op_style,text = str(item[1]))
+                if os.path.exists(os.path.join('storyboards',str(storyboard_name[1]),'save_game.pkl')):
+                    self.item = gui.OptionBox(position = threades.resize_pos((150.0,vertical_dist),(900.0,600.0),self.win.size),parent = self.win,style = op_style,text = str(storyboard_name[1]))
                     self.item.onValueChanged = self.select_storyboard
                     vertical_dist = vertical_dist + 40
         
@@ -404,8 +404,8 @@ class starting_intro:
         self.skip_button.onClick = self.close_win
         self.play_button = gui.Button(position = threades.resize_pos((500,490),(900.0,600.0),self.win.size), size = threades.resize_pos((110,30),(900.0,600.0),self.win.size), parent = self.win, text = "  Play  ",style = self.button_style)
         self.play_button.onClick = self.start_game_again
-        #else:
-            #self.play_button.onClick = self.resume_saved_level
+
+	
         self.play_button.enabled = False
         logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
         ff_logo = pygame.transform.scale(logo,threades.resize_pos((1128,171)))
@@ -636,7 +636,7 @@ class starting_intro:
         #self.storyboard_menu_run = False       
         self.run = False
         #self.win.close()
-        threades.total_update_flag  = True
+        #threades.total_update_flag  = True
         
         
     def turnoff_startup_run(self,button = None):
@@ -650,7 +650,7 @@ class starting_intro:
         self.remove_buttons()
         self.run = False
         self.storyboard_menu_run = False
-        self.win.close()
+        #self.win.close()
 
         
     def save_current_level(self,button = None):
@@ -666,7 +666,7 @@ class starting_intro:
         '''
         self.remove_buttons()
         self.run = False
-        threades.total_update_flag = True
+        #threades.total_update_flag = True
 
     def controls(self,button = None):
         """"show controllers
@@ -874,6 +874,7 @@ def facility_placement():
         gui_buttons.gui_obj.setup_button.enabled = True
             
 message_thread = None
+
 def main():
 
     global panel

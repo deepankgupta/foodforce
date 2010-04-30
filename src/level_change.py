@@ -75,7 +75,6 @@ class change_level:
             if self.run==False:
                 break
            
-        #print 'now reached here\n'
         
             
         self.ff_logo = 0

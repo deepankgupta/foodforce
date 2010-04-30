@@ -58,7 +58,7 @@ except:
     
     new_screen_size = [800,600]
     
-#new_screen_size = [800,600]
+new_screen_size = [800,600]
 
 global screen   
 if model.FLAG_XO:
@@ -67,8 +67,8 @@ if model.FLAG_XO:
     screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
 else:
     
-    screen = pygame.display.set_mode(new_screen_size,FULLSCREEN|SRCALPHA,32)
-    #screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
+    #screen = pygame.display.set_mode(new_screen_size,FULLSCREEN|SRCALPHA,32)
+    screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
 
 
 defaultStyle.init(gui)
@@ -978,10 +978,10 @@ def check_saved_game_level():
     '''Used to check the status of game, saved or unsaved'''
  
     global game_save_flag
-    list_file = open('storyboard_list.pkl')
-    for i in range(pickle.load(list_file)):
-        item = pickle.load(list_file)
-        if os.path.exists(os.path.join('storyboards',str(item),'save_game.pkl')):
+    storyboard_list_file = open('storyboard_list.pkl')
+    for i in range(pickle.load(storyboard_list_file)):
+        storyboard_name = pickle.load(storyboard_list_file)
+        if os.path.exists(os.path.join('storyboards',str(storyboard_name[1]),'save_game.pkl')):
             game_save_flag = True       
             break
     
