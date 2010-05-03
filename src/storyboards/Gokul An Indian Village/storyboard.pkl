@@ -23,7 +23,7 @@ p8
 ag5
 aS'Yes, this is the place where once stood the village of Abujamara. The village became a barren land when Ganga cursed the people of Abujamara by changing its course and flooding the Abujamara village. The people are homeless are we will help rebuild their village.'
 p9
-aaS'Gokul An Indian Village\\images\\chat images\\Wfpwork.png'
+aaS'Wfpwork.png'
 p10
 aaa.(lp0
 S'action'
@@ -374,7 +374,7 @@ p9
 ag5
 aS'I will leave you the responsibility of the village for the next 3 months while I go out for your cousin sister wedding.'
 p10
-aaS'Gokul An Indian Village\\images\\chat images\\Wfpwork.png'
+aaS'Wfpwork.png'
 p11
 aaa.(lp0
 S'action'
@@ -449,7 +449,7 @@ S'Kamat'
 p5
 aS'Well done Son. It seems that you are capable of handling the village after me.'
 p6
-aaS'Gokul An Indian Village\\images\\chat images\\prosper.png'
+aaS'prosper.png'
 p7
 aaa.(lp0
 S'actionTrue'
@@ -492,7 +492,7 @@ p8
 ag5
 aS'As you have already learnt that Tools made in workshops can be traded in market to earn money, you should focus on that.'
 p9
-aaS'Gokul An Indian Village\\images\\chat images\\Wfpwork.png'
+aaS'Wfpwork.png'
 p10
 aaa.(lp0
 S'action'
@@ -620,7 +620,7 @@ S'Kamat'
 p5
 aS'Respected members of Panchayat, my son has brought Rs 5000 more into the village funds. Now, it is for us to decide what needs to be done with it.'
 p6
-aaS'Gokul An Indian Village\\images\\chat images\\Wfpwork.png'
+aaS'Wfpwork.png'
 p7
 aaa.(lp0
 S'action'
@@ -651,7 +651,7 @@ aS'Son'
 p10
 aS'It will be my pleasure.'
 p11
-aaS'Gokul An Indian Village\\images\\chat images\\Wfpwork.png'
+aaS'Wfpwork.png'
 p12
 aaa.(lp0
 S'action'
@@ -793,7 +793,7 @@ p13
 ag7
 aS'Can you do all this to avoid an epidemic'
 p14
-aaS'Gokul An Indian Village\\images\\chat images\\Wfpwork.png'
+aaS'Wfpwork.png'
 p15
 aaa.(lp0
 S'action'
@@ -865,7 +865,7 @@ p9
 ag5
 aS'There will be more like me coming. I will work hard, but please give me a place to live peacefully.'
 p10
-aaS'Gokul An Indian Village\\images\\chat images\\Wfpwork.png'
+aaS'Wfpwork.png'
 p11
 aaa.(lp0
 S'action'
@@ -885,7 +885,7 @@ S'Panch'
 p5
 aS'Panchayat has decided that we will let the incoming immigrants into our village and will treat them as our guests. Athiti Devo Bhav.'
 p6
-aaS'Gokul An Indian Village\\images\\chat images\\Wfpwork.png'
+aaS'Wfpwork.png'
 p7
 aaa.(lp0
 S'action'
@@ -954,7 +954,7 @@ aS'Kamat'
 p8
 aS'So, what. We will train them in our workshops to produce bricks for our village. Also, we can train them as labourers and they will become a part and parcel of the village.'
 p9
-aaS'Gokul An Indian Village\\images\\chat images\\Wfpwork.png'
+aaS'Wfpwork.png'
 p10
 aaa.(lp0
 S'action'
@@ -1015,7 +1015,7 @@ aS'Kamat'
 p9
 aS'I will do what I can.'
 p10
-aaS'Gokul An Indian Village\\images\\chat images\\drought.png'
+aaS'drought.png'
 p11
 aaa.(lp0
 S'action'
@@ -1041,7 +1041,7 @@ p10
 ag7
 aS'Yes Father.'
 p11
-aaS'Gokul An Indian Village\\images\\chat images\\drought.png'
+aaS'drought.png'
 p12
 aaa.(lp0
 S'action'
@@ -1097,7 +1097,7 @@ aS'Son'
 p9
 aS'Thanks, father. But it was all due to your guidance and support only that I am able to serve for the prosperity of the village.'
 p10
-aaS'Gokul An Indian Village\\images\\chat images\\happy.png'
+aaS'happy.png'
 p11
 aaa.(lp0
 S'actionTrue'
@@ -1145,7 +1145,7 @@ p8
 ag5
 aS'The signs are there in the animals. Look how the cattle and the sheep are getting restless. They are the ones who know first that the Gods are angry.'
 p9
-aaS'Gokul An Indian Village\\images\\chat images\\earthquake_st.png'
+aaS'earthquake_st.png'
 p10
 aaa.(lp0
 S'action'
@@ -1185,7 +1185,7 @@ p10
 ag7
 aS'Dont worry brother; I will rebuild the village to its former glory.'
 p11
-aaS'Gokul An Indian Village\\images\\chat images\\earthquake_st.png'
+aaS'earthquake_st.png'
 p12
 aaa.(lp0
 S'action'

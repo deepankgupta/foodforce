@@ -33,7 +33,7 @@ p9
 ag7
 aS'We have asked for help from our neighbouring countries.I hope we will be able to get through these dark times with their support'
 p10
-aaS'Haiti Earthquake\\images\\chat images\\earthquake_st.png'
+aaS'earthquake_st.png'
 p11
 aaa.(lp0
 S'action'
@@ -67,7 +67,7 @@ p11
 ag7
 aS'The city also need more hospitals , as only one fully functional hospital is left in the city and they are overcrowded.There are hundreds of injured people.'
 p12
-aaS'Haiti Earthquake\\images\\chat images\\haiti.png'
+aaS'haiti.png'
 p13
 aaa.(lp0
 S'action'
@@ -191,7 +191,7 @@ aS'Stevenson Gorbachev'
 p9
 aS'We must start building more houses for the people but we must also ensure that the progress made so far should be maintained and not be wasted.'
 p10
-aaS'Haiti Earthquake\\images\\chat images\\haiti.png'
+aaS'haiti.png'
 p11
 aaa.(lp0
 S'action'
@@ -311,7 +311,7 @@ p10
 ag5
 aS'We are planning to launch a programme so as to provide employment to the people.'
 p11
-aaS'Haiti Earthquake\\images\\chat images\\haiti.png'
+aaS'haiti.png'
 p12
 aaa.(lp0
 S'action'
@@ -444,7 +444,7 @@ aS'Gilbert Fernandez'
 p9
 aS'The city must also have sound monetary savings in order to ensure that these kind of calamities can be handled in a much effective way .'
 p10
-aaS'Haiti Earthquake\\images\\chat images\\haiti.png'
+aaS'haiti.png'
 p11
 aaa.(lp0
 S'action'
@@ -598,7 +598,7 @@ aS'Ragnar Stefansson'
 p14
 aS'The housing area needs to be taken care of, we will need lot more houses to have proper shelters for all the people.'
 p15
-aaS'Haiti Earthquake\\images\\chat images\\haiti.png'
+aaS'haiti.png'
 p16
 aaa.(lp0
 S'action'
@@ -786,7 +786,7 @@ aS'Stevenson Gorbachev'
 p9
 aS'Although the city has recovered from the shock of the earthquake but being the Governnor of the city it is my duty to keep the present condition of the village .'
 p10
-aaS'Haiti Earthquake\\images\\chat images\\haiti.png'
+aaS'haiti.png'
 p11
 aaa.(lp0
 S'action'

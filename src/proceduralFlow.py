@@ -875,6 +875,8 @@ class storyboardFlow:
                 variable = pickle.load(storyboardfile)
                 if variable[0] == 'action':
                     tempAction = actionTemplate(variable[1][0],variable[1][1])
+                    if tempAction.actionType == 1:
+                        tempAction.data[1] = os.path.join(str(model.storyboard_file),'images','chat images',tempAction.data[1])
                     self.action = Actions(tempAction)
                     self.actionRunningFlag = True
                     self.norConditionFlag = False
