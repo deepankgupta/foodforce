@@ -107,7 +107,7 @@ def initialize_facilities(autobuild_flag = True):
     global levelStartUpdateFlag
     levelStartUpdateFlag = False
     global PLACING_LIST_TEMP
-
+    
     PLACING_DATA_LIST = PLACING_LIST_TEMP
     new_list = []
 
@@ -271,46 +271,6 @@ def get_upgrade_text(facility_obj):
     
     return text
 
-
-class facility_placement_data:
-        
-    def __init__(self,data_file):
-        self.data_file = data_file
-        self.PLACING_LIST = []
-        self._PLACING_LIST_TEMP = []
-    def store_placement_data(self,PLACING_DATA_LIST):
-        self._PLACING_LIST_TEMP = PLACING_DATA_LIST
-        output = open(self.data_file,'ab')
-        pickle.dump(self._PLACING_LIST_TEMP,output)
-        output.close()
-        PLACING_LIST_TEMP.append(self._PLACING_LIST_TEMP)
-    def read_placement_data(self):
-        output = open(self.data_file,'rb')
-        while True:
-            try:
-                self._PLACING_LIST_TEMP = pickle.load(output)
-                self.PLACING_LIST.append(self._PLACING_LIST_TEMP)
-            except EOFError:
-                break
-        output.close()
-        return self.PLACING_LIST
-    
-    def clear_placement_data(self):
-            try:
-                output = open(self.data_file,'wb')
-                output.close()
-            except:
-                return
-
-    
-if model.FLAG_XO or model.FLAG_SOAS:
-    import olpcgames.util
-    facplace_file = os.path.join(olpcgames.util.get_activity_root(),'data','facplace.pkl')
-else:
-    facplace_file = 'facplace.pkl'
-facility_placement_data_obj = facility_placement_data(facplace_file)
-facility_placement_data_obj.clear_placement_data()
-
 def set_build_facility_placement_flag(facility_obj = None):
     global buildFacilityPlacementFlag
     if facility_obj:
@@ -332,9 +292,7 @@ def build_placed_facility(facility_name, autobuild_flag, PLACING_DATA_LIST):
     place_pos_y = rect_obj[1]
         
     if autobuild_flag == False:
-        audio.play_sound('build')
-        facility_placement_data_obj.store_placement_data(PLACING_DATA_LIST)
-        
+        audio.play_sound('build')       
         
     if facility_name == 'HOUSE':
         images_obj.initialize_facility('HOUSE')
@@ -985,7 +943,19 @@ def check_saved_game_level():
             game_save_flag = True       
             break
     
-   
+def load_initial_facilities():
+    global PLACING_LIST_TEMP
+    PLACING_LIST_TEMP = []
+    
+    fac_load_file = open(os.path.join('storyboards',str(model.storyboard_file),'init_fac.pkl'))
+    while True:
+        try:
+            PLACING_LIST_TEMP.append(pickle.load(fac_load_file))
+        except EOFError:
+            break
+    fac_load_file.close()
+        
+    
 # The messages Classes    
 class Messages:
     ''' Class which handles the messaging system
@@ -2314,12 +2284,16 @@ class Sounds:
             channel = sound_object.play()
             channel.set_volume(volume[0],volume[1])
             
-    def play_soundtrack(self,storyboard_music_enabled,storyboard_name):
+    def play_music(self,storyboard_music_enabled,sound_name):
         if storyboard_music_enabled:
+            if sound_name != 'soundtrack':
+                loop = 1
+            else:
+                loop = -1
             if pygame.mixer.get_busy():
                 pygame.mixer.music.stop()
-            pygame.mixer.music.load(os.path.join('storyboards',str(model.storyboard_file),'soundtrack.ogg'))
-            pygame.mixer.music.play(-1)
+            pygame.mixer.music.load(os.path.join('storyboards',str(model.storyboard_file),sound_name+'.ogg'))
+            pygame.mixer.music.play(loop)
             pygame.mixer.music.set_volume(0.5)
         else:
             if pygame.mixer.get_busy():
@@ -2327,7 +2301,7 @@ class Sounds:
             pygame.mixer.music.load(os.path.join('sounds','soundtrack.ogg'))
             pygame.mixer.music.play(-1)
             pygame.mixer.music.set_volume(0.5)
-                     
+              
     def stop_soundtrack(self):
         pygame.mixer.music.stop()
             

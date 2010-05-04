@@ -80,7 +80,6 @@ class change_level:
         self.ff_logo = 0
         threades.initialize_facilities(True)
         threades.set_build_facility_placement_flag()
-        threades.facility_placement_data_obj.clear_placement_data()
         #threades.current_level = proceduralFlow.storyboard_level
                 
         threades.total_update_flag = True

@@ -317,7 +317,7 @@ class starting_intro:
         
         #stopping the soundtrack
         threades.audio.stop_soundtrack()
-        threades.audio.play_soundtrack(False,None)
+        threades.audio.play_music(False,'soundtrack')
             
         #reinitialising the flags    
         storyboardObj.conditionTestingFlag = False
@@ -615,7 +615,7 @@ class starting_intro:
             pygame.display.update()
     
     def startup_text(self,button = None):
-        threades.audio.play_soundtrack(True,model.storyboard_file)
+        threades.audio.play_music(True,'soundtrack')
         threades.current_level = 1
         self.remove_buttons()
         if proceduralFlow.storyboardfile:
@@ -645,7 +645,7 @@ class starting_intro:
     
     def resume_saved_level(self,button = None):
         '''Resumes saved level'''
-        threades.audio.play_soundtrack(True,model.storyboard_file)
+        threades.audio.play_music(True,'soundtrack')
         threades.resume_game()
         self.remove_buttons()
         self.run = False
@@ -889,24 +889,20 @@ def main():
     intro_thread = threading.Thread(target = load_images.load_images, args=[])
     intro_thread.start()
     # Loading and starting the sound play
-    threades.audio.play_soundtrack(False,None)
+    threades.audio.play_music(False,'soundtrack')
     
     threades.check_saved_game_level()
-    
-    
     
     model.game_controller.reset_time()
         
     pause_screen()
     intro_thread.join()
     
-    
-        
-    
     proceduralFlow.storyboard_level = threades.current_level
     if threades.current_level != 1:
         load_resume_game()
     else:
+	threades.load_initial_facilities()
         data_file = os.path.join('storyboards',str(model.storyboard_file),'data','data1.pkl')
         model.init_cons(data_file)
         model.init_obj()

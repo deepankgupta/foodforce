@@ -82,6 +82,7 @@ class Earthquake(pygame.sprite.Sprite):
                 display_text = ' Your Village has been hit by an Earthquake'
                 threades.message.push_message(display_text,'high')
             if self.counter == 80:
+                threades.audio.play_music(True,'soundtrack')
                 display_earthquake_images()
                 threades.demolish_facility('Hospital')
                 threades.demolish_facility('House')
@@ -130,3 +131,4 @@ def earthquake():
 
     earth_quake  = Earthquake()
     threades.natural_calamities.add(earth_quake)
+    threades.audio.play_music(True,'earthquake')
