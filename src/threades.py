@@ -284,7 +284,9 @@ def build_placed_facility(facility_name, autobuild_flag, PLACING_DATA_LIST):
      facility_obj: The to be built facility object
      place_facility_thread: Thread for placing facility
     '''
-
+    global PLACING_LIST_TEMP
+    PLACING_LIST_TEMP.append(PLACING_DATA_LIST)
+    
     facility_name = PLACING_DATA_LIST[0]
     rect_obj = PLACING_DATA_LIST[1]
     
