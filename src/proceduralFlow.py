@@ -831,10 +831,12 @@ def openStoryBoardFile():
 
     global storyboardfile
     global storyboard_file_name
-    storyboardfile = open(os.path.join('storyboards',model.storyboard_file,'storyboard.pkl'),'rb')
+    if model.storyboard_file != '':
+        storyboardfile = open(os.path.join('storyboards',model.storyboard_file,'storyboard.pkl'),'rb')
 
 def closeStoryBoardFile():
-    storyboardfile.close()
+    if model.storyboard_file != '':
+        storyboardfile.close()
 
 
 # Functions to handle events and conditions
