@@ -326,11 +326,12 @@ class starting_intro:
         storyboardObj.prevConditionResult = -1
         storyboardObj.norConditionFlag = False
 	self.close_win()
-        if select_flag:
+        if select_flag == False:
             self.resume_saved_level()
         else:
             self.startup_text()
-        
+        select_flag = True
+	
         #erasing the facilities and deciding the data file
  
         gui_buttons.instruction_off_flag = True
@@ -339,9 +340,9 @@ class starting_intro:
     def select_save_or_new_game(self,button=None):
         global select_flag
         if button.text == "Start New Game":
-            select_flag = False
-        else:
             select_flag = True
+        else:
+            select_flag = False
         self.storyboardWindow()
         
     def storyboardWindow(self,button = None):
@@ -390,7 +391,7 @@ class starting_intro:
         storyboard_list_file = open('storyboard_list.pkl')
         for i in range(pickle.load(storyboard_list_file)):
             storyboard_name = pickle.load(storyboard_list_file)
-            if select_flag == False:
+            if select_flag == True:
                 self.item = gui.OptionBox(position = threades.resize_pos((150.0,vertical_dist),(900.0,600.0),self.win.size),parent = self.win,style = op_style,text = str(storyboard_name[1]))
                 self.item.onValueChanged = self.select_storyboard
                 vertical_dist = vertical_dist + 40
@@ -623,20 +624,15 @@ class starting_intro:
             proceduralFlow.closeStoryBoardFile()
             #opening the storyboard again
         proceduralFlow.openStoryBoardFile()
-        
-        
-        
-        
+	
         data_file = os.path.join('storyboards',str(model.storyboard_file),'data','data1.pkl')            
         graphics_file = 'graphics_layout.pkl'
         level_obj.new_level_stats(data_file,graphics_file) 
-         
         model.game_controller.reset_time() 
-        
-        #self.storyboard_menu_run = False       
         self.run = False
-        #self.win.close()
-        #threades.total_update_flag  = True
+	if threades.PLACING_LIST_TEMP == []:
+	    threades.load_initial_facilities()
+	    threades.initialize_facilities()
         
         
     def turnoff_startup_run(self,button = None):
