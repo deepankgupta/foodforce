@@ -107,7 +107,7 @@ def initialize_facilities(autobuild_flag = True):
     global levelStartUpdateFlag
     levelStartUpdateFlag = False
     global PLACING_LIST_TEMP
-    
+
     PLACING_DATA_LIST = PLACING_LIST_TEMP
     new_list = []
 
@@ -117,6 +117,7 @@ def initialize_facilities(autobuild_flag = True):
     FARM_NO = model.INIT_FARM
     FOUNTAIN_NO = model.INIT_FOUNTAIN
     WORKS_NO = model.INIT_WORKSHOP
+    
     
     for i in range(len(PLACING_DATA_LIST)):
         if PLACING_DATA_LIST[i][0] == 'HOUSE' and HOUSE_NO>0:
@@ -948,7 +949,6 @@ def check_saved_game_level():
 def load_initial_facilities():
     global PLACING_LIST_TEMP
     PLACING_LIST_TEMP = []
-    
     fac_load_file = open(os.path.join('storyboards',str(model.storyboard_file),'init_fac.pkl'))
     while True:
         try:
