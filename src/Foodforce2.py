@@ -630,7 +630,7 @@ class starting_intro:
         level_obj.new_level_stats(data_file,graphics_file) 
         model.game_controller.reset_time() 
         self.run = False
-	#threades.load_initial_facilities()
+	threades.load_initial_facilities()
 	#threades.initialize_facilities()
 	#level_obj.new_level_stats(data_file,graphics_file) 
 

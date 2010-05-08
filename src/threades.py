@@ -96,9 +96,7 @@ game_save_flag = False
 PLACING_LIST_TEMP = []
 current_level = 0
 SOUND_PATH = os.path.join('sounds/')
-    
-
-        
+SOUND_VOLUME = [1,1]  #max Vol is [1,1] i.e [left,right]
 
 def initialize_facilities(autobuild_flag = True):
     
@@ -949,7 +947,7 @@ def check_saved_game_level():
 def load_initial_facilities():
     global PLACING_LIST_TEMP
     PLACING_LIST_TEMP = []
-    fac_load_file = open(os.path.join('storyboards',str(model.storyboard_file),'init_fac.pkl'))
+    fac_load_file = open(os.path.join('storyboards',str(model.storyboard_file),'init_fac.pkl'),'rb')
     while True:
         try:
             PLACING_LIST_TEMP.append(pickle.load(fac_load_file))
@@ -2254,6 +2252,7 @@ class Sounds:
         self.SOUND_PATH = SOUND_PATH
         self.SOUND_DIC = {}
         self.SOUND_DIC = self.load_sound()
+        self.volume = SOUND_VOLUME
     
     def load_sound(self,sound_path = SOUND_PATH):
         '''Gets a dictionary of sounds with just their names from SOUND_PATH and loads them into buffer'''
@@ -2269,12 +2268,11 @@ class Sounds:
                 print "Error Loading Sound: " + sound_name
         return sound_dic
     
-    def play_sound(self,sound_name,volume = [0.5,0.5]):
+    def play_sound(self,sound_name,volume = SOUND_VOLUME):
         '''Plays the requested sound effect
         The function shuffles between the available sound effects
         volume: [0.0 to 1.0] :volume [left, right]
         '''
-        vol_r, vol_l = volume
         sound_set = []
         for key in self.SOUND_DIC:
             if sound_name in key:
@@ -2296,13 +2294,13 @@ class Sounds:
                 pygame.mixer.music.stop()
             pygame.mixer.music.load(os.path.join('storyboards',str(model.storyboard_file),sound_name+'.ogg'))
             pygame.mixer.music.play(loop)
-            pygame.mixer.music.set_volume(0.5)
+            pygame.mixer.music.set_volume((self.volume[0]+self.volume[1])/2)
         else:
             if pygame.mixer.get_busy():
                 pygame.mixer.music.stop()
             pygame.mixer.music.load(os.path.join('sounds','soundtrack.ogg'))
             pygame.mixer.music.play(-1)
-            pygame.mixer.music.set_volume(0.5)
+            pygame.mixer.music.set_volume((self.volume[0]+self.volume[1])/2)
               
     def stop_soundtrack(self):
         pygame.mixer.music.stop()
