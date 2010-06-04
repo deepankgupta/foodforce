@@ -32,6 +32,7 @@ import pygame
 import os
 from pygame.locals import *
 pygame.init()
+pygame.mixer.init()
 #from load_images import *
 import game_events
 import load_images
