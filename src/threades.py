@@ -38,6 +38,7 @@ import game_events
 import load_images
 import pickle
 import glob
+from texts import setup_text, upgrade_fac_text, buysell_exceptions, setup_fac_exceptions, upgrade_fac_exceptions, fac_running_exceptions, setup_format_text
 #import proceduralFlow
 
 
@@ -59,7 +60,7 @@ except:
     
     new_screen_size = [800,600]
     
-#new_screen_size = [800,600]
+new_screen_size = [800,600]
 
 global screen   
 if model.FLAG_XO:
@@ -68,8 +69,8 @@ if model.FLAG_XO:
     screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
 else:
     
-    screen = pygame.display.set_mode(new_screen_size,FULLSCREEN|SRCALPHA,32)
-    #screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
+    #screen = pygame.display.set_mode(new_screen_size,FULLSCREEN|SRCALPHA,32)
+    screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
 
 
 defaultStyle.init(gui)
@@ -163,13 +164,8 @@ def initialize_facilities(autobuild_flag = True):
     transform_obj.set_ratio(0.5)
     calculate_indicators_starting()
 
-
-
-
-
 # A Switch for pausing the update thread
 update_thread_pause = True
-
 
 
 ''' Utility Functions '''
@@ -178,7 +174,8 @@ def stop_facility(facility_obj,name_res = ''):
     ''' Thread to stop a facility it resumes the facility when the village
     has enough model.resources to run the facility
     '''
-    message.push_message('Facility '+model.FACILITY_NAMES[facility_obj.get_name()]+' has been temporarily stopped due to insufficient '+str.lower(name_res)+' to run the facility','high')
+    text = fac_running_exceptions['insufficient_res']%{'facility':model.FACILITY_NAMES[facility_obj.get_name()],'resource':str(name_res).lower()}
+    message.push_message(text,'high')
     event = game_events.Event(type = game_events.STOPFACILITYEVENT, facility_name = facility_obj.get_name())
     game_events.EventQueue.add(event)
     res_cost = facility_obj.get_consumption()
@@ -186,7 +183,6 @@ def stop_facility(facility_obj,name_res = ''):
     a=1
     while True:
         a=0
-        
         for i in range(len(model.resources)):
             name = model.resources[i].get_name()
             if res_cost.has_key(name):
@@ -203,50 +199,73 @@ def stop_facility(facility_obj,name_res = ''):
         if GAME_EXIT_FLAG:
             return
         
-
     facility_obj.resume_facility()
-    message.push_message('Facility '+model.FACILITY_NAMES[facility_obj.get_name()]+' has been resumed','low')
+    text = fac_running_exceptions['resume']%{'facility':model.FACILITY_NAMES[facility_obj.get_name()]}
+    message.push_message(text,'low')
     event = game_events.Event(type = game_events.RESUMEFACILITYEVENT, facility_name = facility_obj.get_name())
     game_events.EventQueue.add(event)
     
-
-
-
 def get_setup_text(facility_obj):
     
-    text = ''
-    text += 'Number :'
-    text += str(int(facility_obj.get_original_number()))
-    text += '   Level :'
-    text += str(int(facility_obj.get_level()))
-    text +='\n'
-    cost_build = facility_obj.get_cost_build()
-    text +='Resources required to build :  BRICKS:'+str(int(cost_build['BUILDING MATERIAL']))+' TOOLS :'+str(int(cost_build['TOOLS']))+' WATER :'+str(int(cost_build['WATER']))+'\n'
-    cost_run = facility_obj.get_cons_dict()
-    if cost_run:
-        text +='Resources required to run : '
-        for key in cost_run.keys():
-            text +=key+': '+str(int(cost_run[key]))+' '
-        text +='\n'
-    text +='Manpower required : To build: '+str(int(model.FACILITY_MANP_DICT_BUILD[facility_obj.get_name()]['EMPLOYED PEOPLE IN CONSTRUCTION']))+' To run: '
-    if model.FACILITY_MANP_DICT_RUN[facility_obj.get_name()]:
-        for key in model.FACILITY_MANP_DICT_RUN[facility_obj.get_name()].keys():
-            text +=str(int(model.FACILITY_MANP_DICT_RUN[facility_obj.get_name()][key]))
+    ty = setup_format_text[0]
+    
+    facility=facility_obj.get_name()
+    number = str(int(facility_obj.get_original_number()))
+    costbuild = facility_obj.get_cost_build() or 'no resources'
+    costrun = facility_obj.get_cons_dict() or 'no resources'
+    manbuild = str(int(model.FACILITY_MANP_DICT_BUILD[facility_obj.get_name()]['EMPLOYED PEOPLE IN CONSTRUCTION']))
+    try:
+        manrun = model.FACILITY_MANP_DICT_RUN[facility_obj.get_name()]['EMPLOYED PEOPLE IN %(facility)s'%{'facility':facility}]
+    except:
+        manrun = 'zero'
+    rem_build_mat = int(model.resources[1].get_vquantity()) - int(costbuild['BUILDING MATERIAL'])
+    rem_tools = int(model.resources[2].get_vquantity()) - int(costbuild['TOOLS'])
+    rem_water = int(model.resources[0].get_vquantity()) - int(costbuild['WATER'])
+    
+    if rem_build_mat < 0:
+        resafter = setup_fac_exceptions['low_resource']%{'resource':'bricks'}
+    elif rem_tools < 0:
+        resafter = setup_fac_exceptions['low_resource']%{'resource':'tools'}
+    elif rem_water < 0:
+        resafter = setup_fac_exceptions['low_resource']%{'resource':'water'}
     else:
-        text += '0'
+        resafter = ' Bricks: '+ str(rem_build_mat)+ ' Tools: '+str(rem_tools)+' Water: '+str(rem_water)
+    
+    return ty%{'facility':facility,'number':number,'costbuild':costbuild,'costrun':costrun,'manbuild':manbuild,'manrun':manrun,'resafter':resafter}
+    
+    #text = ''
+    #text += 'Number :'
+    #text += str(int(facility_obj.get_original_number()))
+    #text += '   Level :'
+    #text += str(int(facility_obj.get_level()))
+    #text +='\n'
+    #cost_build = facility_obj.get_cost_build()
+    #text +='Resources required to build :  BRICKS:'+str(int(cost_build['BUILDING MATERIAL']))+' TOOLS :'+str(int(cost_build['TOOLS']))+' WATER :'+str(int(cost_build['WATER']))+'\n'
+    #cost_run = facility_obj.get_cons_dict()
+    #if cost_run:
+        #text +='Resources required to run : '
+        #for key in cost_run.keys():
+            #text +=key+': '+str(int(cost_run[key]))+' '
+        #text +='\n'
+    #text +='Manpower required : To build: '+str(int(model.FACILITY_MANP_DICT_BUILD[facility_obj.get_name()]['EMPLOYED PEOPLE IN CONSTRUCTION']))+' To run: '
+    #if model.FACILITY_MANP_DICT_RUN[facility_obj.get_name()]:
+        #for key in model.FACILITY_MANP_DICT_RUN[facility_obj.get_name()].keys():
+            #text +=str(int(model.FACILITY_MANP_DICT_RUN[facility_obj.get_name()][key]))
+    #else:
+        #text += '0'
 
-    rem_build_mat = int(model.resources[1].get_vquantity()) - int(cost_build['BUILDING MATERIAL'])
-    rem_tools = int(model.resources[2].get_vquantity()) - int(cost_build['TOOLS'])
-    rem_water = int(model.resources[0].get_vquantity()) - int(cost_build['WATER'])
+    #rem_build_mat = int(model.resources[1].get_vquantity()) - int(cost_build['BUILDING MATERIAL'])
+    #rem_tools = int(model.resources[2].get_vquantity()) - int(cost_build['TOOLS'])
+    #rem_water = int(model.resources[0].get_vquantity()) - int(cost_build['WATER'])
     
-    if rem_build_mat < 0 or rem_tools < 0 or rem_water < 0 :
-        text += '\nInsufficient Resources available.\n'
+    #if rem_build_mat < 0 or rem_tools < 0 or rem_water < 0 :
+        #text += '\nInsufficient Resources available.\n'
     
-    else:
-        text +='\nResources after building facility :  BRICKS:'+str(rem_build_mat)+' TOOLS :'+str(rem_tools)+' WATER :'+str(rem_water) + '\n'
+    #else:
+        #text +='\nResources after building facility :  BRICKS:'+str(rem_build_mat)+' TOOLS :'+str(rem_tools)+' WATER :'+str(rem_water) + '\n'
 
         
-    return text
+    #return ty
 
 def get_upgrade_text(facility_obj):
     
@@ -375,10 +394,9 @@ def build_facility(facility_obj, PLACING_DATA_LIST = [], list_food = model.DEF_F
     if facility_obj.get_number() == 0:
         
         if facility_obj.get_original_number() > 0:
-            text = 'You cannot build a facility when it has been temporarily stopped, try building it when it is resumed'
+            text = setup_fac_exceptions['stopped']
             message.push_message(text,'high')
             return text
-    
     try:
         
         if facility_obj.check_manp_res(model.ppl)<0:
@@ -401,23 +419,21 @@ def build_facility(facility_obj, PLACING_DATA_LIST = [], list_food = model.DEF_F
         
         
     except Exceptions.Resources_Underflow_Exception,args:
-        if str(args) == 'BUILDING MATERIAL':
-            text = 'You dont have enough '+'Bricks'+' to build the facility,  please try later'
-        else:
-            text = 'You dont have enough '+str.lower(str(args))+' to build the facility,  please try later'
+        res = str(args).lower()
+        text = setup_fac_exceptions['low_resource']%{'resource':res}
         return text
     except Exceptions.Low_Manpower_Resources_Exception:
-        text = 'You dont have enough manpower to build the facility, please try later'
+        text = setup_fac_exceptions['low_manpower']
         return text
     except Exceptions.Maximum_Number_Reached:
-        text = 'You cannot setup more buildings of this facility, try setting up some other facility'
+        text = setup_fac_exceptions['max_limit']
         return text
     if autobuild_flag == False:
         set_build_facility_placement_flag(facility_obj)
     else:
         build_placed_facility("",True,PLACING_DATA_LIST)
     
-    return 'Facility has been build'
+    return setup_text[4]
 
 def check_collide_villager(sprite):
     ''' Checks if an installation collides with a position of a villager, If yes, then it deletes 
@@ -436,10 +452,7 @@ def check_collide_villager(sprite):
                 new_sprite.add(villagers,all)    
         else:
             break
-    
-
-
-
+        
 def build_end_facility(facility_obj):
     global levelStartFacilityBuildFlag
     model.ppl = facility_obj.build_end(model.ppl)
@@ -452,8 +465,6 @@ def build_end_facility(facility_obj):
     calculate_indicators_starting()
     
 
-
-
 def upgrade_facility(facility_obj):
     ''' Upgrades a facility
     COMMENT : change the view of facility if you want to do so
@@ -461,24 +472,21 @@ def upgrade_facility(facility_obj):
     if facility_obj.get_number() == 0:
         
         if facility_obj.get_original_number() > 0:
-            text = 'You cannot upgrade a facility when it has been temporarily stopped, try upgrading it when it is resumed'
+            text = upgrade_fac_exceptions['stopped']
             message.push_message(text,'high')
             return text
-        text = 'You need to setup a facility first to upgrade it'
-#        message.push_message(text,'high')
+        text = upgrade_fac_exceptions['none_setup']
         return text
         
     #global model.resources
     try:
         model.resources = facility_obj.update_level(model.resources,model.ppl)
     except Exceptions.Resources_Underflow_Exception,args:
-        if str(args) == 'BUILDING MATERIAL':
-            text = 'You dont have enough '+'Bricks'+' to upgrade the facility,  please try later'
-        else:
-            text = 'You dont have enough '+str.lower(str(args))+' to upgrade the facility,  please try later'
+        res = str(args).lower()
+        text = upgrade_fac_exceptions['low_resource']%{'resource':res}
         return text
     except Exceptions.Maximum_Level_Reached:
-        text =  'Facility has reached its maximum level you cant upgrade it now'
+        text =  upgrade_fac_exceptions['max_level']
         return text
     
     if facility_obj.get_name() == 'HOUSE':
@@ -499,7 +507,7 @@ def upgrade_facility(facility_obj):
     event = game_events.Event(type = game_events.UPGRADEFACILITYEVENT, facility_name = facility_obj.get_name())
     game_events.EventQueue.add(event)
     
-    text = 'Facility has been upgraded'
+    text = upgrade_fac_text[4]
     return text
 
 
@@ -617,21 +625,13 @@ def update_turn(delay = 0):
             # updation of manpower model.resources
             
             model.resources = model.ppl.update_turn(model.resources,model.facilities_list)
-    
-        
-    
+
             # updation of prices of model.resources and the check on model.resources if their market value decreases a certain value then it should increase it
             
             for i in range(len(model.resources)):
                 model.resources[i].update_price()
                 if model.resources[i].get_mquantity < 500:
                     model.resources[i].change_mquantity(8000)
-    
-    
-    
-    
-    
-            # updation of indicators
     
             # housing
             ratio_people_sheltered = model.ppl.get_no_of_ppl_sheltered()/model.ppl.get_total_population()
@@ -698,11 +698,6 @@ def update_turn(delay = 0):
 
             update_turn_time =0
 
-
-
-
-
-
 # Functions for making the code resolution independent
 
 def resize_pos(original_pos,original_size = original_screen_size,new_size = new_screen_size):
@@ -747,16 +742,16 @@ def buy_res(res,res_quantity):
         quantity=int(res_quantity)
         model.money = res.buy(quantity , model.money)
     except Exceptions.Money_Underflow_Exception:
-        text ='You dont have enough money to buy this resource. Please change the quantity or try later'
+        text = buysell_exceptions['low_money']
         return text
     except Exceptions.Resources_Underflow_Exception,args:
-        text ='The market does not have enough quantity to sell this resource to village'
+        text = buysell_exceptions['low_mkt_qty']
         return text
     except Exceptions.Resources_Overflow_Exception:
-        text ='The Village cannot store so much amount of resources you should try and use the money to buy some other resources '
+        text = buysell_exceptions['overflow']
         return text
         
-    text = 'The Village has bought the resource you demanded'
+    text = buysell_exceptions['no_exception']
     
     event = game_events.Event(type = game_events.BUYRESOURCESEVENT, res_name = res.get_name(), res_quantity = res_quantity)
     game_events.EventQueue.add(event)
@@ -771,12 +766,12 @@ def sell_res(res,res_quantity):
         quantity=int(res_quantity)
         model.money = res.sell(quantity , model.money)       
     except Exceptions.Resources_Underflow_Exception,args:
-        text = 'The village does not have enough quantity to sell this resource to market'
+        text = buysell_exceptions['low_qty']
         return text
     except Exceptions.Resources_Overflow_Exception:
-        text = 'The Village has sold the resource you demanded'
+        text = buysell_exceptions['no_exception']
         return text
-    text = 'The Village has sold the resource you demanded'
+    text = buysell_exceptions['no_exception']
     
     event = game_events.Event(type = game_events.SELLRESOURCESEVENT, res_name = res.get_name(), res_quantity = res_quantity)
     game_events.EventQueue.add(event)
@@ -2092,12 +2087,7 @@ class update_images:
                         y *= transform_obj.ratio
                         load_images.Girl_tiles[i][j] = pygame.transform.scale(load_images.Girl_tiles[i][j],(int(x),int(y)))
                 
-                
-                    
-    
-    
-                    
-                    
+            
     def initialize_facility(self,facility_name = '',level = 0):
         
         if facility_name == 'HOUSE' and (not self.House_flag):
@@ -2170,11 +2160,6 @@ class update_images:
                     y *= transform_obj.ratio
                     load_images.Farm_tiles[i][j] = pygame.transform.scale(load_images.Farm_tiles[i][j],(int(x),int(y)))
             
-                    
-            
-        
-         
-
 
 images_obj = update_images()
 
@@ -2216,8 +2201,7 @@ class Animation:
         for sprite in drawable_sprites:
             sprite.set_frame()
             sprite.add(all_drawable)
-        
-        
+            
         
         # Checking for collision of villagers nd other facilities and the market
         collide = pygame.sprite.groupcollide(villagers, facilities_group, False, False)

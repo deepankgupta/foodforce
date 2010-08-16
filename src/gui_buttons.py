@@ -35,6 +35,7 @@ import model
 if model.FLAG_XO:
     import game_sharing    
 instruction_off_flag = False
+from texts import *
 
 class marketBarChart:
     '''Class which displays the bar chart in the market window
@@ -281,7 +282,7 @@ class setup_button:
         size_win =threades.resize_pos((800.0,600.0))
 
         # Creating window
-        self.win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = "Set up a facility for your village " ,style = win_style,shadeable = False)
+        self.win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = setup_text[0] ,style = win_style,shadeable = False)
 
         self.win.surf.set_alpha(140)
         self.win.onClose = lambda button: self.close_win_safe()
@@ -299,9 +300,9 @@ class setup_button:
         labelStyleCopy['autosize'] = False
         labelStyleCopy['font'] = myfont2
         labelStyleCopy['font-color'] = self.rect_color
-        default_text = 'What would you like to set up? '
+        default_text = setup_text[1]
         self.message_label = gui.Label(position = threades.resize_pos((450,120),(800.0,600.0),self.win.size),size = threades.resize_pos((250,100),(800.0,600.0),self.win.size), parent = self.win, text = default_text, style = labelStyleCopy)
-        text ='Please select a Facility to see its status and Requirements'
+        text = setup_text[2]
         labelStyleCopy2 = gui.defaultLabelStyle.copy()
         labelStyleCopy2['border-width'] = 1
         labelStyleCopy2['wordwrap'] = True
@@ -406,9 +407,9 @@ class setup_button:
         elif button.text == 'Farm':
             label_text =  self.build_facility_farm()
         else:
-            label_text = 'Please select a Facility for building'
+            label_text = setup_text[3]
         self.message_label.text = label_text
-        if label_text== 'Facility has been build':
+        if label_text== setup_text[4]:
             self.close_win()
 
     def build_facility_farm(self):
@@ -426,7 +427,7 @@ class setup_button:
         size_win =threades.resize_pos((600.0,400.0))
 
         # Creating window
-        self.child_win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = "Setup Farm " ,style = win_style,shadeable = False,moveable = False)
+        self.child_win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = setup_text[5] ,style = win_style,shadeable = False,moveable = False)
         #self.child_win.surf.set_alpha(190)
         self.win.enabled = False
         self.child_win_flag = True
@@ -457,7 +458,7 @@ class setup_button:
         labelStyleCopy2['border-color'] = self.rect_color
         labelStyleCopy2['font-color'] = self.rect_color
 
-        text = 'Balance the bar chart to select the percentages of different food items you want to grow in your farm'
+        text = setup_text[6]
         self.message_label2 = gui.Label(position = threades.resize_pos((20,320),(600.0,400.0),self.child_win.size),size = threades.resize_pos((470,70),(600.0,400.0),self.child_win.size), parent = self.child_win, text = text, style = labelStyleCopy2)
 
         '''
@@ -475,7 +476,7 @@ class setup_button:
         button_style = gui.defaultButtonStyle.copy()
         button_style['font'] = myfont2
 
-        self.button_setup_farm = gui.Button(position = threades.resize_pos((500.0,320.0),(600.0,400.0),size_win), size = threades.resize_pos((80.0,50.0),(600.0,400.0),size_win), parent = self.child_win, text = "Set Up",style = button_style)
+        self.button_setup_farm = gui.Button(position = threades.resize_pos((500.0,320.0),(600.0,400.0),size_win), size = threades.resize_pos((80.0,50.0),(600.0,400.0),size_win), parent = self.child_win, text = setup_text[7],style = button_style)
         self.button_setup_farm.onClick = self.setup_facility_farm
 
         self.return_text_farm = ' '
@@ -491,7 +492,7 @@ class setup_button:
         list_food = [quantity1,quantity2,quantity3]
         #print list_food
         label_text = threades.build_facility(model.Farm,[],list_food)
-        if label_text == 'Facility has been build':
+        if label_text == setup_text[4]:
             self.child_win.close()
             self.enable_parent_win()
             self.close_win()
@@ -543,7 +544,7 @@ class upgrade_button:
         size_win =threades.resize_pos((800.0,600.0))
 
         # Creating window
-        self.win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = "Upgrade Facility " ,style = win_style,shadeable = False)
+        self.win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = upgrade_fac_text[0] ,style = win_style,shadeable = False)
         self.win.surf.set_alpha(140)
         self.win.onClose = lambda button: self.close_win_safe()
         self.win_flag = True
@@ -560,7 +561,7 @@ class upgrade_button:
         labelStyleCopy['font'] = myfont2
         labelStyleCopy['font-color'] = self.rect_color
         labelStyleCopy['border-color'] = self.color_grey
-        text = 'Please select a Facility to upgrade.'
+        text = upgrade_fac_text[1]
         self.message_label = gui.Label(position = threades.resize_pos((450,150),(800.0,600.0),self.win.size),size = threades.resize_pos((200,100),(800.0,600.0),self.win.size), parent = self.win, text = text, style = labelStyleCopy)
 
 
@@ -595,7 +596,7 @@ class upgrade_button:
         self.fountain_box.onClick = self.upgrade_facility
 
 
-        text ='Please select a Facility to see its next upgrade'
+        text =upgrade_fac_text[2]
         labelStyleCopy2 = gui.defaultLabelStyle.copy()
         labelStyleCopy2['border-width'] = 1
         labelStyleCopy2['wordwrap'] = True
@@ -655,9 +656,9 @@ class upgrade_button:
         elif button.text == 'Farm':
             label_text =  threades.upgrade_facility(model.Farm)
         else:
-            label_text = 'Please select a Facility for Upgrading'
+            label_text = upgrade_fac_text[3]
         self.message_label.text = label_text
-        if label_text== 'Facility has been upgraded':
+        if label_text== upgrade_fac_text[4]:
             self.close_win()
 
     # Functions for upgrading a facility end here........
@@ -710,7 +711,7 @@ class buysell_button:
         size_win =threades.resize_pos((800.0,600.0))
 
         # Creating window
-        self.win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = " Buy or Sell Resources " ,style = win_style,shadeable = False, moveable = False)
+        self.win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = buysell_text[0] ,style = win_style,shadeable = False, moveable = False)
         self.win.surf.set_alpha(140)
         self.win.onClose = lambda button: self.close_win_safe()
         self.win_flag = True
@@ -784,7 +785,7 @@ class buysell_button:
             if game_sharing.test_connected():
 
                 #Creating Checkbox for share trade with peer villages
-                self.shareCheckBox = gui.CheckBox(position = threades.resize_pos((440, 140), (800, 600), self.win.size),  parent = self.win,  style = ch_style,  text = 'Trade with Peer Villages' )
+                self.shareCheckBox = gui.CheckBox(position = threades.resize_pos((440, 140), (800, 600), self.win.size),  parent = self.win,  style = ch_style,  text = buysell_text[1] )
                 self.shareCheckBox.value = False
                 self.shareCheckBox.onValueChanged = self.drawPriceChart()
 
@@ -874,7 +875,7 @@ class buysell_button:
         labelStyleCopy['font'] = myfont2
         labelStyleCopy['font-color'] = self.rect_color
 
-        text = 'Welcome to the market of SHEYLAN, where you can trade resources. Select which item you would like to buy or sell on the left-hand column, enter the amount, and then choose buy or sell'
+        text = buysell_text[2]
         self.message_label = gui.Label(position = threades.resize_pos((80,470),(800.0,600.0),self.win.size),size = threades.resize_pos((500,100),(800.0,600.0),self.win.size), parent = self.win, text = text, style = labelStyleCopy)
 
     def updateMarketLabelValues(self,button = None):
@@ -955,7 +956,7 @@ class buysell_button:
         # Checking whether the user has entered the value in text box properly
         quantity = self.barObject.bar1Val
         if int(quantity) == 0:
-            self.message_label.text = "The quantity needs to be more than zero."
+            self.message_label.text = buysell_exceptions['zero_qty']
             return
         price = 0
         if model.FLAG_XO:
@@ -969,7 +970,7 @@ class buysell_button:
                 initiateTrade(True,model.Water,quantity,price)
             else:
                 label_text =  threades.buy_res(model.Water,quantity)
-                if label_text == 'The Village has bought the resource you demanded':
+                if label_text == buysell_exceptions['no_exception']:
                     self.label_vwater.text = str(int(model.Water.get_vquantity()))
                     self.label_mwater.text = str(int(model.Water.get_mquantity()))
         elif self.buildmat_box.value:
@@ -977,7 +978,7 @@ class buysell_button:
                 initiateTrade(True,model.Buildmat,quantity,price)
             else:
                 label_text =  threades.buy_res(model.Buildmat,quantity)
-                if label_text == 'The Village has bought the resource you demanded':
+                if label_text == buysell_exceptions['no_exception']:
                     self.label_vbuildmat.text = str(int(model.Buildmat.get_vquantity()))
                     self.label_mbuildmat.text = str(int(model.Buildmat.get_mquantity()))
         elif self.tools_box.value:
@@ -985,7 +986,7 @@ class buysell_button:
                 initiateTrade(True,model.Tools,quantity,price)
             else:
                 label_text =  threades.buy_res(model.Tools,quantity)
-                if label_text == 'The Village has bought the resource you demanded':
+                if label_text == buysell_exceptions['no_exception']:
                     self.label_vtools.text = str(int(model.Tools.get_vquantity()))
                     self.label_mtools.text = str(int(model.Tools.get_mquantity()))
         elif self.medicine_box.value:
@@ -993,7 +994,7 @@ class buysell_button:
                 initiateTrade(True,model.Medicine,quantity,price)
             else:
                 label_text =  threades.buy_res(model.Medicine,quantity)
-                if label_text == 'The Village has bought the resource you demanded':
+                if label_text == buysell_exceptions['no_exception']:
                     self.label_vmedicine.text = str(int(model.Medicine.get_vquantity()))
                     self.label_mmedicine.text = str(int(model.Medicine.get_mquantity()))
         elif self.books_box.value:
@@ -1001,7 +1002,7 @@ class buysell_button:
                 initiateTrade(True,model.Books,quantity,price)
             else:
                 label_text =  threades.buy_res(model.Book,quantity)
-                if label_text == 'The Village has bought the resource you demanded':
+                if label_text == buysell_exceptions['no_exception']:
                     self.label_vbooks.text = str(int(model.Book.get_vquantity()))
                     self.label_mbooks.text = str(int(model.Book.get_mquantity()))
         elif self.rice_box.value:
@@ -1009,7 +1010,7 @@ class buysell_button:
                 initiateTrade(True,model.Rice,quantity,price)
             else:
                 label_text =  threades.buy_res(model.Rice,quantity)
-                if label_text == 'The Village has bought the resource you demanded':
+                if label_text == buysell_exceptions['no_exception']:
                     self.label_vrice.text = str(int(model.Rice.get_vquantity()))
                     self.label_mrice.text = str(int(model.Rice.get_mquantity()))
         elif self.wheat_box.value:
@@ -1017,7 +1018,7 @@ class buysell_button:
                 initiateTrade(True,model.Wheat,quantity,price)
             else:
                 label_text =  threades.buy_res(model.Wheat,quantity)
-                if label_text == 'The Village has bought the resource you demanded':
+                if label_text == buysell_exceptions['no_exception']:
                     self.label_vwheat.text = str(int(model.Wheat.get_vquantity()))
                     self.label_mwheat.text = str(int(model.Wheat.get_mquantity()))
         elif self.beans_box.value:
@@ -1025,7 +1026,7 @@ class buysell_button:
                 initiateTrade(True,model.Beans,quantity,price)
             else:
                 label_text =  threades.buy_res(model.Beans,quantity)
-                if label_text == 'The Village has bought the resource you demanded':
+                if label_text == buysell_exceptions['no_exception']:
                     self.label_vbeans.text = str(int(model.Beans.get_vquantity()))
                     self.label_mbeans.text = str(int(model.Beans.get_mquantity()))
         elif self.sugar_box.value:
@@ -1033,7 +1034,7 @@ class buysell_button:
                 initiateTrade(True,model.Sugar,quantity,price)
             else:
                 label_text =  threades.buy_res(model.Sugar,quantity)
-                if label_text == 'The Village has bought the resource you demanded':
+                if label_text == buysell_exceptions['no_exception']:
                     self.label_vsugar.text = str(int(model.Sugar.get_vquantity()))
                     self.label_msugar.text = str(int(model.Sugar.get_mquantity()))
         elif self.salt_box.value:
@@ -1041,7 +1042,7 @@ class buysell_button:
                 initiateTrade(True,model.Salt,quantity,price)
             else:
                 label_text =  threades.buy_res(model.Salt,quantity)
-                if label_text == 'The Village has bought the resource you demanded':
+                if label_text == buysell_exceptions['no_exception']:
                     self.label_vsalt.text = str(int(model.Salt.get_vquantity()))
                     self.label_msalt.text = str(int(model.Salt.get_mquantity()))
         elif self.oil_box.value:
@@ -1049,11 +1050,11 @@ class buysell_button:
                 initiateTrade(True,model.Oil,quantity,price)
             else:
                 label_text =  threades.buy_res(model.Oil,quantity)
-                if label_text == 'The Village has bought the resource you demanded':
+                if label_text == buysell_exceptions['no_exception']:
                     self.label_voil.text = str(int(model.Oil.get_vquantity()))
                     self.label_moil.text = str(int(model.Oil.get_mquantity()))
         else:
-            label_text = ' Please select a Resource for Trading'
+            label_text = buysell_text[3]
 
         self.message_label.text = label_text
 
@@ -1066,7 +1067,7 @@ class buysell_button:
         # Checking whether the user has entered the value in text box properly
         quantity = self.barObject.bar1Val
         if int(quantity) == 0:
-            self.message_label.text = "The quantity needs to be more than zero."
+            self.message_label.text = buysell_exceptions['zero_qty']
             return
         price = 0
         if model.FLAG_XO:
@@ -1080,7 +1081,7 @@ class buysell_button:
                 initiateTrade(True,model.Water,quantity,price)
             else:
                 label_text =  threades.sell_res(model.Water,quantity)
-                if label_text == 'The Village has sold the resource you demanded':
+                if label_text == buysell_exceptions['no_exception']:
                     self.label_vwater.text = str(int(model.Water.get_vquantity()))
                     self.label_mwater.text = str(int(model.Water.get_mquantity()))
         elif self.buildmat_box.value:
@@ -1088,7 +1089,7 @@ class buysell_button:
                 initiateTrade(True,model.Buildmat,quantity,price)
             else:
                 label_text =  threades.sell_res(model.Buildmat,quantity)
-                if label_text == 'The Village has sold the resource you demanded':
+                if label_text == buysell_exceptions['no_exception']:
                     self.label_vbuildmat.text = str(int(model.Buildmat.get_vquantity()))
                     self.label_mbuildmat.text = str(int(model.Buildmat.get_mquantity()))
         elif self.tools_box.value:
@@ -1096,7 +1097,7 @@ class buysell_button:
                 initiateTrade(True,model.Tools,quantity,price)
             else:
                 label_text =  threades.sell_res(model.Tools,quantity)
-                if label_text == 'The Village has sold the resource you demanded':
+                if label_text == buysell_exceptions['no_exception']:
                     self.label_vtools.text = str(int(model.Tools.get_vquantity()))
                     self.label_mtools.text = str(int(model.Tools.get_mquantity()))
         elif self.medicine_box.value:
@@ -1104,7 +1105,7 @@ class buysell_button:
                 initiateTrade(True,model.Medicine,quantity,price)
             else:
                 label_text =  threades.sell_res(model.Medicine,quantity)
-                if label_text == 'The Village has sold the resource you demanded':
+                if label_text == buysell_exceptions['no_exception']:
                     self.label_vmedicine.text = str(int(model.Medicine.get_vquantity()))
                     self.label_mmedicine.text = str(int(model.Medicine.get_mquantity()))
         elif self.books_box.value:
@@ -1112,7 +1113,7 @@ class buysell_button:
                 initiateTrade(True,model.Books,quantity,price)
             else:
                 label_text =  threades.sell_res(model.Book,quantity)
-                if label_text == 'The Village has sold the resource you demanded':
+                if label_text == buysell_exceptions['no_exception']:
                     self.label_vbooks.text = str(int(model.Book.get_vquantity()))
                     self.label_mbooks.text = str(int(model.Book.get_mquantity()))
         elif self.rice_box.value:
@@ -1120,7 +1121,7 @@ class buysell_button:
                 initiateTrade(True,model.Rice,quantity,price)
             else:
                 label_text =  threades.sell_res(model.Rice,quantity)
-                if label_text == 'The Village has sold the resource you demanded':
+                if label_text == buysell_exceptions['no_exception']:
                     self.label_vrice.text = str(int(model.Rice.get_vquantity()))
                     self.label_mrice.text = str(int(model.Rice.get_mquantity()))
         elif self.wheat_box.value:
@@ -1128,7 +1129,7 @@ class buysell_button:
                 initiateTrade(True,model.Wheat,quantity,price)
             else:
                 label_text =  threades.sell_res(model.Wheat,quantity)
-                if label_text == 'The Village has sold the resource you demanded':
+                if label_text == buysell_exceptions['no_exception']:
                     self.label_vwheat.text = str(int(model.Wheat.get_vquantity()))
                     self.label_mwheat.text = str(int(model.Wheat.get_mquantity()))
         elif self.beans_box.value:
@@ -1136,7 +1137,7 @@ class buysell_button:
                 initiateTrade(True,model.Beans,quantity,price)
             else:
                 label_text =  threades.sell_res(model.Beans,quantity)
-                if label_text == 'The Village has sold the resource you demanded':
+                if label_text == buysell_exceptions['no_exception']:
                     self.label_vbeans.text = str(int(model.Beans.get_vquantity()))
                     self.label_mbeans.text = str(int(model.Beans.get_mquantity()))
         elif self.sugar_box.value:
@@ -1144,7 +1145,7 @@ class buysell_button:
                 initiateTrade(True,model.Sugar,quantity,price)
             else:
                 label_text =  threades.sell_res(model.Sugar,quantity)
-                if label_text == 'The Village has sold the resource you demanded':
+                if label_text == buysell_exceptions['no_exception']:
                     self.label_vsugar.text = str(int(model.Sugar.get_vquantity()))
                     self.label_msugar.text = str(int(model.Sugar.get_mquantity()))
         elif self.salt_box.value:
@@ -1152,7 +1153,7 @@ class buysell_button:
                 initiateTrade(True,model.Salt,quantity,price)
             else:
                 label_text =  threades.sell_res(model.Salt,quantity)
-                if label_text == 'The Village has sold the resource you demanded':
+                if label_text == buysell_exceptions['no_exception']:
                     self.label_vsalt.text = str(int(model.Salt.get_vquantity()))
                     self.label_msalt.text = str(int(model.Salt.get_mquantity()))
         elif self.oil_box.value:
@@ -1160,11 +1161,11 @@ class buysell_button:
                 initiateTrade(True,model.Oil,quantity,price)
             else:
                 label_text =  threades.sell_res(model.Oil,quantity)
-                if label_text == 'The Village has sold the resource you demanded':
+                if label_text == buysell_exceptions['no_exception']:
                     self.label_voil.text = str(int(model.Oil.get_vquantity()))
                     self.label_moil.text = str(int(model.Oil.get_mquantity()))
         else:
-            label_text = ' Please select a Resource for Trading'
+            label_text = buysell_text[3]
         self.message_label.text = label_text
 
 
@@ -1227,7 +1228,7 @@ class showInstructions:
         labelStyleCopy['font-color'] = font_color
     
         # Creating window
-        win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = "Current Objective" ,style = win_style ,closeable = False ,shadeable = False,moveable = False)
+        win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = objective[0] ,style = win_style ,closeable = False ,shadeable = False,moveable = False)
         pygame.draw.rect(win.surf,font_color,threades.resize_rect((3,3,695,195)),1)            
         
         # Creating label
@@ -1320,7 +1321,7 @@ class gui_buttons:
         buttonsurf = pygame.transform.scale(buttonsurf, (36, threades.resize_pt_y(30)))
         button_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
         button_style['font'] = myfont
-        self.instructions_button = gui.Button(position = threades.resize_pos((1000,10)), size = threades.resize_pos((190,25)), parent = threades.desktop, text = "Current Objective",style = button_style)
+        self.instructions_button = gui.Button(position = threades.resize_pos((1000,10)), size = threades.resize_pos((190,25)), parent = threades.desktop, text = objective[0],style = button_style)
 
         self.setup_obj = setup_button()
         self.upgrade_obj = upgrade_button()

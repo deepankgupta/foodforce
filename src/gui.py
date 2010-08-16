@@ -5,7 +5,7 @@ from pygame import draw
 from pygame import Rect
 from pygame import mouse
 
-## COSTANTS ##
+## CONSTANTS ##
 APP_FLAT = 1
 APP_3D = 2
 
