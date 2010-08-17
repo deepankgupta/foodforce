@@ -38,7 +38,7 @@ import game_events
 import load_images
 import pickle
 import glob
-from texts import setup_text, upgrade_fac_text, buysell_exceptions, setup_fac_exceptions, upgrade_fac_exceptions, fac_running_exceptions, setup_format_text
+from texts import setup_text, upgrade_fac_text, buysell_exceptions, setup_fac_exceptions, upgrade_fac_exceptions, fac_running_exceptions, setup_format_text, upgrade_format_text
 #import proceduralFlow
 
 
@@ -231,64 +231,46 @@ def get_setup_text(facility_obj):
     else:
         resafter = ' Bricks: '+ str(rem_build_mat)+ ' Tools: '+str(rem_tools)+' Water: '+str(rem_water)
     
-    return ty%{'facility':facility,'number':number,'costbuild':costbuild,'costrun':costrun,'manbuild':manbuild,'manrun':manrun,'resafter':resafter}
+    strcostbuild = ''
+    strcostrun = ''
+    if type(costbuild) != str:
+        for cost in costbuild.iteritems():
+            strcostbuild+=' '+str(cost[1])+' '+str(cost[0])
+    else:
+        strcostbuild=costbuild
+    if type(costrun) != str:
+        for cost in costrun.iteritems():
+            strcostrun+=' '+str(cost[1])+' '+str(cost[0])
+    else:
+        strcostrun=costrun
     
-    #text = ''
-    #text += 'Number :'
-    #text += str(int(facility_obj.get_original_number()))
-    #text += '   Level :'
-    #text += str(int(facility_obj.get_level()))
-    #text +='\n'
-    #cost_build = facility_obj.get_cost_build()
-    #text +='Resources required to build :  BRICKS:'+str(int(cost_build['BUILDING MATERIAL']))+' TOOLS :'+str(int(cost_build['TOOLS']))+' WATER :'+str(int(cost_build['WATER']))+'\n'
-    #cost_run = facility_obj.get_cons_dict()
-    #if cost_run:
-        #text +='Resources required to run : '
-        #for key in cost_run.keys():
-            #text +=key+': '+str(int(cost_run[key]))+' '
-        #text +='\n'
-    #text +='Manpower required : To build: '+str(int(model.FACILITY_MANP_DICT_BUILD[facility_obj.get_name()]['EMPLOYED PEOPLE IN CONSTRUCTION']))+' To run: '
-    #if model.FACILITY_MANP_DICT_RUN[facility_obj.get_name()]:
-        #for key in model.FACILITY_MANP_DICT_RUN[facility_obj.get_name()].keys():
-            #text +=str(int(model.FACILITY_MANP_DICT_RUN[facility_obj.get_name()][key]))
-    #else:
-        #text += '0'
-
-    #rem_build_mat = int(model.resources[1].get_vquantity()) - int(cost_build['BUILDING MATERIAL'])
-    #rem_tools = int(model.resources[2].get_vquantity()) - int(cost_build['TOOLS'])
-    #rem_water = int(model.resources[0].get_vquantity()) - int(cost_build['WATER'])
-    
-    #if rem_build_mat < 0 or rem_tools < 0 or rem_water < 0 :
-        #text += '\nInsufficient Resources available.\n'
-    
-    #else:
-        #text +='\nResources after building facility :  BRICKS:'+str(rem_build_mat)+' TOOLS :'+str(rem_tools)+' WATER :'+str(rem_water) + '\n'
-
-        
-    #return ty
+    return ty%{'facility':facility,'number':number,'costbuild':strcostbuild,'costrun':strcostrun,'manbuild':manbuild,'manrun':manrun,'resafter':resafter}
 
 def get_upgrade_text(facility_obj):
     
-    text = ''
-    if facility_obj.get_level() < 3:
-        text += texts.upgrade_text[facility_obj.get_name()][facility_obj.get_level()]
-        text += '\n'
+    ty = upgrade_format_text[0]
+    try:
+        assert (facility_obj.get_level()<3)
+        text = texts.upgrade_text[facility_obj.get_name()][facility_obj.get_level()]
+        facility=facility_obj.get_name()
+        number = str(int(facility_obj.get_original_number()))
         cost_upgrade = facility_obj.get_cost_inc_level()
-        text += 'Resources required to upgrade :  BRICKS:'+str(int(cost_upgrade['BUILDING MATERIAL']))+' TOOLS :'+str(int(cost_upgrade['TOOLS']))
-    else:
-        text = 'You cannot upgrade the facility anymore, it has reached its maximum level'
-        return text
-    
-    rem_build_mat = int(model.resources[1].get_vquantity()) - int(cost_upgrade['BUILDING MATERIAL'])
-    rem_tools = int(model.resources[2].get_vquantity()) - int(cost_upgrade['TOOLS'])
-    
-    if rem_build_mat < 0 or rem_tools < 0 :
-        text += '\nInsufficient Resources available for upgrade.\n'
-    
-    else:
-        text +='\nResources after upgrading facility :  BRICKS:'+str(rem_build_mat)+' TOOLS :'+str(rem_tools) + '\n'
-    
-    return text
+        rem_build_mat = int(model.resources[1].get_vquantity()) - int(cost_upgrade['BUILDING MATERIAL'])
+        rem_tools = int(model.resources[2].get_vquantity()) - int(cost_upgrade['TOOLS'])
+        if rem_build_mat < 0:
+            resafter = setup_fac_exceptions['low_resource']%{'resource':'bricks'}
+        if rem_tools < 0 :
+            resafter = setup_fac_exceptions['low_resource']%{'resource':'tools'}
+        else:
+            resafter = ' Bricks: '+ str(rem_build_mat)+ ' Tools: '+str(rem_tools)
+        strcostupgrade=''
+        for cost in cost_upgrade.iteritems():
+            strcostupgrade+=' '+str(cost[1])+' '+str(cost[0])
+    except:
+        resafter=upgrade_fac_exceptions['max_level']
+        return resafter
+               
+    return ty%{'text':text,'number':number,'facility':facility,'costupgrade':strcostupgrade,'resafter':resafter}
 
 def set_build_facility_placement_flag(facility_obj = None):
     global buildFacilityPlacementFlag
