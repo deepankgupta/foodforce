@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-#
+# -*- coding: ISO-8859-1 -*-
 #   Author : Mohit Taneja (mohitgenii@gmail.com)
 #   Date : 9/06/2008
 #
@@ -984,7 +984,7 @@ def main():
     threades.audio.play_music(False,'soundtrack')
     
     threades.check_saved_game_level()
-    
+    print 'special character : ú'
     model.game_controller.reset_time()
     pause_screen()
     intro_thread.join()

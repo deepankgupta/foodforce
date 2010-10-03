@@ -14,14 +14,14 @@ a(lp3
 (lp4
 S'Kamat'
 p5
-aS'Hijo, te voy a ense\xc3\xb1ar sobre los distintos aspectos para llevar adelante una aldea en la actualidad. \xc2\xbfEst\xc3\xa1s listo para aprender? Vayamos a la aldea de Abujamara. '
+aS'Hijo, te voy a ense\xf1ar sobre los distintos aspectos para llevar adelante una aldea en la actualidad. \xbfEst\xe1s listo para aprender? Vayamos a la aldea de Abujamara. '
 p6
 aS'Son'
 p7
-aS' Padre, esto no es una aldea, es una terreno vac\xc3\xado .... '
+aS' Padre, esto no es una aldea, es una terreno vac\xedo .... '
 p8
 ag5
-aS' S\xc3\xad, \xc3\xa9ste es el lugar donde alguna vez existi\xc3\xb3 la aldea de Abujamara. La aldea se convirti\xc3\xb3 en tierra est\xc3\xa9ril cuando Ganga maldijo a los habitantes de Abujamara cambiando el curso del r\xc3\xado, inundando Abujamara. Las personas perdieron sus hogares y nosotros les ayudaremos a reconstruir su aldea'
+aS' S\xed, \xe9ste es el lugar donde alguna vez existi\xf3 la aldea de Abujamara. La aldea se convirti\xf3 en tierra est\xe9ril cuando Ganga maldijo a los habitantes de Abujamara cambiando el curso del r\xedo, inundando Abujamara. Las personas perdieron sus hogares y nosotros les ayudaremos a reconstruir su aldea'
 p9
 aaS'Wfpwork.png'
 p10
@@ -56,7 +56,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'Cuando se construye una choza, una cierta cantidad de sus recursos son utilizados. Para cada Choza que construyes, 10 unidades de ladrillos, 10 unidades de herramientas y 3 unidades de agua se utilizan. Adem\xc3\xa1s, las personas est\xc3\xa1n obligadas a construir una choza. Del mismo modo, cualquier cosa que construyas requerir\xc3\xa1 materiales de construcci\xc3\xb3n como ladrillos y mano de obra. Intenta construir otra choza.'
+aS'Cuando se construye una choza, una cierta cantidad de sus recursos son utilizados. Para cada Choza que construyes, 10 unidades de ladrillos, 10 unidades de herramientas y 3 unidades de agua se utilizan. Adem\xe1s, las personas est\xe1n obligadas a construir una choza. Del mismo modo, cualquier cosa que construyas requerir\xe1 materiales de construcci\xf3n como ladrillos y mano de obra. Intenta construir otra choza.'
 p3
 aa.(lp0
 S'condition'
@@ -82,21 +82,21 @@ S'action'
 p1
 a(lp2
 I9
-aS'Cuando se construye una Choza la barra de Vivienda en la esquina inferior derecha de la pantalla aumenta. Cuanto m\xc3\xa1s este completa est\xc3\xa9 esta barra mayor es el n\xc3\xbamero de personas que tienen casas disponibles.  Barras de progreso altas indican un pueblo feliz y pr\xc3\xb3spero.'
+aS'Cuando se construye una Choza la barra de Vivienda en la esquina inferior derecha de la pantalla aumenta. Cuanto m\xe1s este completa est\xe9 esta barra mayor es el n\xfamero de personas que tienen casas disponibles.  Barras de progreso altas indican un pueblo feliz y pr\xf3spero.'
 p3
 aa.(lp0
 S'action'
 p1
 a(lp2
 I9
-aS'En la esquina inferior izquierda puedes ver la poblaci\xc3\xb3n total y el total de personas albergadas. La poblaci\xc3\xb3n total aumenta con el tiempo. La construcci\xc3\xb3n de Casas aumenta la poblaci\xc3\xb3n protegida. Usted siempre debe tratar de construir suficientes casas para albergar a todo el pueblo.'
+aS'En la esquina inferior izquierda puedes ver la poblaci\xf3n total y el total de personas albergadas. La poblaci\xf3n total aumenta con el tiempo. La construcci\xf3n de Casas aumenta la poblaci\xf3n protegida. Usted siempre debe tratar de construir suficientes casas para albergar a todo el pueblo.'
 p3
 aa.(lp0
 S'action'
 p1
 a(lp2
 I9
-aS'El agua, la necesidad m\xc3\xa1s b\xc3\xa1sica de la vida, siempre debe estar presente para apoyar cualquier tipo de habitaci\xc3\xb3n. Construir un Pozo permite a la gente obtener el agua de ah\xc3\xad.'
+aS'El agua, la necesidad m\xe1s b\xe1sica de la vida, siempre debe estar presente para apoyar cualquier tipo de habitaci\xf3n. Construir un Pozo permite a la gente obtener el agua de ah\xed.'
 p3
 aa.(lp0
 S'condition'
@@ -122,7 +122,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'La siguiente necesidad b\xc3\xa1sica de una aldea es la comida. Para producir alimentos, tendr\xc3\xa1 que construir granjas. Lo mejor es proporcionar una saludable mezcla de arroz, frijoles con  frutas y verduras. Esto asegurar\xc3\xa1 una nutrici\xc3\xb3n variada y saludable.  Puedes elegir el tipo de producci\xc3\xb3n para tu granja desde la gr\xc3\xa1fica de barras. Haga clic en Crear -> Granja y ajustar la producci\xc3\xb3n.'
+aS'La siguiente necesidad b\xe1sica de una aldea es la comida. Para producir alimentos, tendr\xe1 que construir granjas. Lo mejor es proporcionar una saludable mezcla de arroz, frijoles con  frutas y verduras. Esto asegurar\xe1 una nutrici\xf3n variada y saludable.  Puedes elegir el tipo de producci\xf3n para tu granja desde la gr\xe1fica de barras. Haga clic en Crear -> Granja y ajustar la producci\xf3n.'
 p3
 aa.(lp0
 S'condition'
@@ -148,14 +148,14 @@ S'action'
 p1
 a(lp2
 I9
-aS'A medida que contin\xc3\xbaes edificando, requerir\xc3\xa1s Herramientas y Ladrillos. Si te quedas sin ellos puedes comprarlos en el mercado. Para comprar cualquier cosa se necesita dinero y tu puedes ver la cantidad de dinero disponible en la esquina superior derecha de la pantalla.'
+aS'A medida que contin\xfaes edificando, requerir\xe1s Herramientas y Ladrillos. Si te quedas sin ellos puedes comprarlos en el mercado. Para comprar cualquier cosa se necesita dinero y tu puedes ver la cantidad de dinero disponible en la esquina superior derecha de la pantalla.'
 p3
 aa.(lp0
 S'action'
 p1
 a(lp2
 I9
-aS'El asentamiento ha crecido, los ni\xc3\xb1os necesitan un lugar para estudiar. Construye una escuela para ellos.'
+aS'El asentamiento ha crecido, los ni\xf1os necesitan un lugar para estudiar. Construye una escuela para ellos.'
 p3
 aa.(lp0
 S'condition'
@@ -181,7 +181,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'Bien hecho. Pero no hay libros en esta escuela. Compra los libros para la escuela en el mercado. La ventana Mercado puede ser abierta haciendo clic en el bot\xc3\xb3n Mercado en la parte inferior. Una vez abierta la ventana Mercado, puede hacer click en las cosas que necesitas comprar y vender. A continuaci\xc3\xb3n, selecciona la cantidad que debe ser comprada o vendida.'
+aS'Bien hecho. Pero no hay libros en esta escuela. Compra los libros para la escuela en el mercado. La ventana Mercado puede ser abierta haciendo clic en el bot\xf3n Mercado en la parte inferior. Una vez abierta la ventana Mercado, puede hacer click en las cosas que necesitas comprar y vender. A continuaci\xf3n, selecciona la cantidad que debe ser comprada o vendida.'
 p3
 aa.(lp0
 S'condition'
@@ -207,7 +207,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'El bot\xc3\xb3n de actualizaci\xc3\xb3n proporciona mejoras tecnol\xc3\xb3gicas. Intente actualizar las chozas con ladrillos. Haga click sobre Actualizaci\xc3\xb3n y seleccione Choza.'
+aS'El bot\xf3n de actualizaci\xf3n proporciona mejoras tecnol\xf3gicas. Intente actualizar las chozas con ladrillos. Haga click sobre Actualizaci\xf3n y seleccione Choza.'
 p3
 aa.(lp0
 S'condition'
@@ -233,7 +233,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'Las mejoras tecnol\xc3\xb3gicas proveen mejores edificios con capacidad para albergar a m\xc3\xa1s trabajadores y producir m\xc3\xa1s recursos. Por lo tanto, suelen ser \xc3\xbatiles para aumentar la prosperidad del pueblo. Actualice su escuela.'
+aS'Las mejoras tecnol\xf3gicas proveen mejores edificios con capacidad para albergar a m\xe1s trabajadores y producir m\xe1s recursos. Por lo tanto, suelen ser \xfatiles para aumentar la prosperidad del pueblo. Actualice su escuela.'
 p3
 aa.(lp0
 S'condition'
@@ -259,14 +259,14 @@ S'action'
 p1
 a(lp2
 I9
-aS'Debes notar que la actualizaci\xc3\xb3n de una instalaci\xc3\xb3n aumenta su productividad. El n\xc3\xbamero de ni\xc3\xb1os a los que se ense\xc3\xb1a en la Escuela se ha incrementado considerablemente, tambi\xc3\xa9n la calidad de la educaci\xc3\xb3n es ahora mejor. Las barras de progreso tambi\xc3\xa9n han aumentado.'
+aS'Debes notar que la actualizaci\xf3n de una instalaci\xf3n aumenta su productividad. El n\xfamero de ni\xf1os a los que se ense\xf1a en la Escuela se ha incrementado considerablemente, tambi\xe9n la calidad de la educaci\xf3n es ahora mejor. Las barras de progreso tambi\xe9n han aumentado.'
 p3
 aa.(lp0
 S'action'
 p1
 a(lp2
 I9
-aS'Las personas est\xc3\xa1n ociosas en la aldea, debes construir un taller para crear m\xc3\xa1s trabajo para ellos. La construcci\xc3\xb3n de un taller tambi\xc3\xa9n agrega Herramientas para el acopio de tu aldea.'
+aS'Las personas est\xe1n ociosas en la aldea, debes construir un taller para crear m\xe1s trabajo para ellos. La construcci\xf3n de un taller tambi\xe9n agrega Herramientas para el acopio de tu aldea.'
 p3
 aa.(lp0
 S'condition'
@@ -292,7 +292,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'Tu aldea ha crecido considerablemente ahora, la higiene y la sanidad son los dos aspectos m\xc3\xa1s importantes de una vida saludable. Debes construir un Hospital ahora para que la gente reciba  buenos tratamientos y medicinas.'
+aS'Tu aldea ha crecido considerablemente ahora, la higiene y la sanidad son los dos aspectos m\xe1s importantes de una vida saludable. Debes construir un Hospital ahora para que la gente reciba  buenos tratamientos y medicinas.'
 p3
 aa.(lp0
 S'condition'
@@ -318,7 +318,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'\xc2\xa1Tendr\xc3\xa1s que comprar medicina en el mercado para que el hospital trabaje!'
+aS'\xa1Tendr\xe1s que comprar medicina en el mercado para que el hospital trabaje!'
 p3
 aa.(lp0
 S'condition'
@@ -344,7 +344,7 @@ S'action'
 p1
 a(lp2
 I7
-aS'Tu aldea ha dado el primer paso hacia la prosperidad. \xc2\xa1Felicitaciones!'
+aS'Tu aldea ha dado el primer paso hacia la prosperidad. \xa1Felicitaciones!'
 p3
 aa.(lp0
 S'action'
@@ -362,17 +362,17 @@ a(lp3
 (lp4
 S'Kamat'
 p5
-aS'Buen trabajo con la creaci\xc3\xb3n de la nueva aldea. Estoy realmente impresionado.'
+aS'Buen trabajo con la creaci\xf3n de la nueva aldea. Estoy realmente impresionado.'
 p6
 aS'Son'
 p7
 aS' Gracias '
 p8
 ag5
-aS'Pero yo me pregunto, si eres lo suficientemente capaz de trabajar sin mi gu\xc3\xada, ahora que has aprendido lo b\xc3\xa1sico para construir una aldea.'
+aS'Pero yo me pregunto, si eres lo suficientemente capaz de trabajar sin mi gu\xeda, ahora que has aprendido lo b\xe1sico para construir una aldea.'
 p9
 ag5
-aS'Yo te dejar\xc3\xa9 la responsabilidad de la aldea por los pr\xc3\xb3ximos 3 meses, mientras estoy fuera por la boda de tu prima hermana. '
+aS'Yo te dejar\xe9 la responsabilidad de la aldea por los pr\xf3ximos 3 meses, mientras estoy fuera por la boda de tu prima hermana. '
 p10
 aaS'Wfpwork.png'
 p11
@@ -381,7 +381,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'No permitas que ninguna de las barras de progreso caigan por debajo de 35 ... o Kamat no estar\xc3\xa1 muy contento. \xc2\xa1Buena suerte!'
+aS'No permitas que ninguna de las barras de progreso caigan por debajo de 35 ... o Kamat no estar\xe1 muy contento. \xa1Buena suerte!'
 p3
 aa.(lp0
 S'condition'
@@ -447,7 +447,7 @@ a(lp3
 (lp4
 S'Kamat'
 p5
-aS'Bien hecho Hijo. Parece que eres capaz de manejar el pueblo despues de m\xc3\xad.'
+aS'Bien hecho Hijo. Parece que eres capaz de manejar el pueblo despues de m\xed.'
 p6
 aaS'prosper.png'
 p7
@@ -481,13 +481,13 @@ a(lp3
 (lp4
 S'Kamat'
 p5
-aS'Bien hecho hijo, por cierto no me has decepcionado. Pero nuestra aldea est\xc3\xa1 ahora a punto de agotar el dinero.'
+aS'Bien hecho hijo, por cierto no me has decepcionado. Pero nuestra aldea est\xe1 ahora a punto de agotar el dinero.'
 p6
 ag5
-aS'Te dar\xc3\xa9 cuatro meses para traer m\xc3\xa1s dinero a la aldea. Las reservas en efectivo siempre son \xc3\xbatiles en tiempos de calamidades.'
+aS'Te dar\xe9 cuatro meses para traer m\xe1s dinero a la aldea. Las reservas en efectivo siempre son \xfatiles en tiempos de calamidades.'
 p7
 ag5
-aS'Tambi\xc3\xa9n, m\xc3\xa1s reservas en efectivo nos permitir\xc3\xa1 mejorar los edificios, comprar materiales y alimentos para mejorar las condiciones de nuestro pueblo.'
+aS'Tambi\xe9n, m\xe1s reservas en efectivo nos permitir\xe1 mejorar los edificios, comprar materiales y alimentos para mejorar las condiciones de nuestro pueblo.'
 p8
 ag5
 aS'Como ya has aprendido, las Herramientas hechas en los talleres se pueden vender en el mercado para ganar dinero, debes dedicarte a eso.'
@@ -499,7 +499,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'Gana  5000 Rs. m\xc3\xa1s en los pr\xc3\xb3ximos 4 meses. Pero recuerda, esto no deber\xc3\xada ser a costa de la condici\xc3\xb3n de la aldea. No dejes que las barras de progreso caigan por debajo de 25. \xc2\xa1Buena suerte!'
+aS'Gana  5000 Rs. m\xe1s en los pr\xf3ximos 4 meses. Pero recuerda, esto no deber\xeda ser a costa de la condici\xf3n de la aldea. No dejes que las barras de progreso caigan por debajo de 25. \xa1Buena suerte!'
 p3
 aa.(lp0
 S'condition'
@@ -618,7 +618,7 @@ a(lp3
 (lp4
 S'Kamat'
 p5
-aS'Respetados miembros de Panchayat, mi hijo ha generado 5000 Rs m\xc3\xa1s en las arcas de la aldea. Ahora, nos corresponde a nosotros decidir qu\xc3\xa9 necesitamos hacer con ella.'
+aS'Respetados miembros de Panchayat, mi hijo ha generado 5000 Rs m\xe1s en las arcas de la aldea. Ahora, nos corresponde a nosotros decidir qu\xe9 necesitamos hacer con ella.'
 p6
 aaS'Wfpwork.png'
 p7
@@ -638,18 +638,18 @@ a(lp3
 (lp4
 S'Panch'
 p5
-aS'El Panchayat ha logrado una decisi\xc3\xb3n. Vamos a invertir el dinero en la construcci\xc3\xb3n de m\xc3\xa1s escuelas. '
+aS'El Panchayat ha logrado una decisi\xf3n. Vamos a invertir el dinero en la construcci\xf3n de m\xe1s escuelas. '
 p6
 aS'Kamat'
 p7
-aS' S\xc3\xad, los ni\xc3\xb1os son el futuro de nuestra aldea. Queremos ense\xc3\xb1arles que sean capaces de sostenerse por si mismos y crear riqueza y prosperidad en la aldea m\xc3\xa1s adelante. '
+aS' S\xed, los ni\xf1os son el futuro de nuestra aldea. Queremos ense\xf1arles que sean capaces de sostenerse por si mismos y crear riqueza y prosperidad en la aldea m\xe1s adelante. '
 p8
 ag5
-aS' S\xc3\xad, y ya que su hijo ha demostrado ser experto en administraci\xc3\xb3n, queremos que se haga cargo del dinero generado y usarlo para para educar a los hijos de nuestra aldea.'
+aS' S\xed, y ya que su hijo ha demostrado ser experto en administraci\xf3n, queremos que se haga cargo del dinero generado y usarlo para para educar a los hijos de nuestra aldea.'
 p9
 aS'Son'
 p10
-aS'Ser\xc3\xa1 un placer.'
+aS'Ser\xe1 un placer.'
 p11
 aaS'Wfpwork.png'
 p12
@@ -658,7 +658,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'Tu misi\xc3\xb3n es simple. Aumenta la barra de progreso de Educaci\xc3\xb3n a 70, mientras que no permitas que ninguna de las otras barras de progreso caigan por debajo de 30 durante 3 meses.'
+aS'Tu misi\xf3n es simple. Aumenta la barra de progreso de Educaci\xf3n a 70, mientras que no permitas que ninguna de las otras barras de progreso caigan por debajo de 30 durante 3 meses.'
 p3
 aa.(lp0
 S'condition'
@@ -769,17 +769,17 @@ a(lp3
 (lp4
 S'Kamat'
 p5
-aS'Bienvenido Ajmal, hijo m\xc3\xado. \xc2\xbfC\xc3\xb3mo te ha ido en tus estudios? '
+aS'Bienvenido Ajmal, hijo m\xedo. \xbfC\xf3mo te ha ido en tus estudios? '
 p6
 aS'Ajmal'
 p7
-aS'Gracias pap\xc3\xa1. Yo soy un m\xc3\xa9dico titulado ... pero qu\xc3\xa9 es esto. La higiene del pueblo es tan pobre. Esta aldea es un caldo de cultivo para todas las enfermedades.'
+aS'Gracias pap\xe1. Yo soy un m\xe9dico titulado ... pero qu\xe9 es esto. La higiene del pueblo es tan pobre. Esta aldea es un caldo de cultivo para todas las enfermedades.'
 p8
 ag7
-aS' Con el agua estancada y el mercado sucio, las enfermedades est\xc3\xa1n obligados a permanecer. Todas estas enfermedades pronto tomar\xc3\xa1n forma de epidemia si nada muy pronto'
+aS' Con el agua estancada y el mercado sucio, las enfermedades est\xe1n obligados a permanecer. Todas estas enfermedades pronto tomar\xe1n forma de epidemia si nada muy pronto'
 p9
 ag5
-aS'\xc2\xbfPuedes trabajar con tu hermano menor para ayudar a evitar esta situaci\xc3\xb3n. '
+aS'\xbfPuedes trabajar con tu hermano menor para ayudar a evitar esta situaci\xf3n. '
 p10
 ag7
 aS'claro padre'
@@ -788,10 +788,10 @@ ag7
 aS' Por proporcionar buena salud, tenemos que proporcionar alimentos nutritivos a los aldeanos. Una dieta nutritiva consiste en todos los componentes, tales como trigo, frutas, verduras y frijoles.'
 p12
 ag7
-aS' Tambi\xc3\xa9n necesitamos instalar hospitales y educar acerca de buenas pr\xc3\xa1cticas y medidas sencillas para evitar las enfermedades. Escuelas instaladas por ti ya est\xc3\xa1 haciendo un buen trabajo. S\xc3\xb3lo tenemos que traer buenos m\xc3\xa9dicos aqu\xc3\xad '
+aS' Tambi\xe9n necesitamos instalar hospitales y educar acerca de buenas pr\xe1cticas y medidas sencillas para evitar las enfermedades. Escuelas instaladas por ti ya est\xe1 haciendo un buen trabajo. S\xf3lo tenemos que traer buenos m\xe9dicos aqu\xed '
 p13
 ag7
-aS'\xc2\xbfPuedes hacer todo esto para evitar una epidemia '
+aS'\xbfPuedes hacer todo esto para evitar una epidemia '
 p14
 aaS'Wfpwork.png'
 p15
@@ -800,7 +800,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'S\xc3\xad, esta misi\xc3\xb3n es m\xc3\xa1s dif\xc3\xadcil. Lleva la barra de progreso de salud a 65 y la de nutrici\xc3\xb3n por sobre 45 y ser\xc3\xa1s calificado a seguir.'
+aS'S\xed, esta misi\xf3n es m\xe1s dif\xedcil. Lleva la barra de progreso de salud a 65 y la de nutrici\xf3n por sobre 45 y ser\xe1s calificado a seguir.'
 p3
 aa.(lp0
 S'condition'
@@ -835,7 +835,7 @@ S'action'
 p1
 a(lp2
 I8
-aS'Fuiste capaz de completar la tarea asignada.\xc2\xa1Muy bien!'
+aS'Fuiste capaz de completar la tarea asignada.\xa1Muy bien!'
 p3
 aa.(lp0
 S'action'
@@ -853,17 +853,17 @@ a(lp3
 (lp4
 S'Farmer'
 p5
-aS'S\xc3\xa1lvanos, s\xc3\xa1lvanos ....'
+aS'S\xe1lvanos, s\xe1lvanos ....'
 p6
 aS'Kamat'
 p7
-aS'\xc2\xbfQu\xc3\xa9 paso? \xc2\xbfDe d\xc3\xb3nde est\xc3\xa1s huyendo? \xc2\xbfD\xc3\xb3nde est\xc3\xa1 tu ganado y pertenencias. '
+aS'\xbfQu\xe9 paso? \xbfDe d\xf3nde est\xe1s huyendo? \xbfD\xf3nde est\xe1 tu ganado y pertenencias. '
 p8
 ag5
-aS' No tengo ninguno se\xc3\xb1or .. He huido de mi casa con mis hijos y esposa ya que hay una guerra desatada. '
+aS' No tengo ninguno se\xf1or .. He huido de mi casa con mis hijos y esposa ya que hay una guerra desatada. '
 p9
 ag5
-aS' Vendr\xc3\xa1n m\xc3\xa1s personas como yo. Voy a trabajar duro, pero por favor, dame un lugar para vivir en paz.'
+aS' Vendr\xe1n m\xe1s personas como yo. Voy a trabajar duro, pero por favor, dame un lugar para vivir en paz.'
 p10
 aaS'Wfpwork.png'
 p11
@@ -883,7 +883,7 @@ a(lp3
 (lp4
 S'Panch'
 p5
-aS'Panchayat ha decidido que dejaremos entrar a nuestra aldea a los inmigrantes y los trataremos como nuestros hu\xc3\xa9spedes. Athiti Devo Bhav'
+aS'Panchayat ha decidido que dejaremos entrar a nuestra aldea a los inmigrantes y los trataremos como nuestros hu\xe9spedes. Athiti Devo Bhav'
 p6
 aaS'Wfpwork.png'
 p7
@@ -892,7 +892,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'Parece que no hay suficientes chozas para todos los inmigrantes. Construye m\xc3\xa1s chozas y aumenta la barra de progreso de Vivienda hasta 80. Tambi\xc3\xa9n aumenta los progresos en Nutrici\xc3\xb3n hasta 50.'
+aS'Parece que no hay suficientes chozas para todos los inmigrantes. Construye m\xe1s chozas y aumenta la barra de progreso de Vivienda hasta 80. Tambi\xe9n aumenta los progresos en Nutrici\xf3n hasta 50.'
 p3
 aa.(lp0
 S'condition'
@@ -927,7 +927,7 @@ S'action'
 p1
 a(lp2
 I8
-aS'Fuiste capaz de completar la tarea asignada.\xc2\xa1Muy bien!'
+aS'Fuiste capaz de completar la tarea asignada.\xa1Muy bien!'
 p3
 aa.(lp0
 S'action'
@@ -945,14 +945,14 @@ a(lp3
 (lp4
 S'Panch'
 p5
-aS'Buenos d\xc3\xadas, miembros del Panchayat. Ha sido casi 4 meses desde que los primeros inmigrantes llegaron a nuestra aldea. '
+aS'Buenos d\xedas, miembros del Panchayat. Ha sido casi 4 meses desde que los primeros inmigrantes llegaron a nuestra aldea. '
 p6
 ag5
-aS'Pero la mayor\xc3\xada de ellos est\xc3\xa1n sentados sin hacer nada, puesto que originalmente eran agricultores y ahora no tienen fincas. '
+aS'Pero la mayor\xeda de ellos est\xe1n sentados sin hacer nada, puesto que originalmente eran agricultores y ahora no tienen fincas. '
 p7
 aS'Kamat'
 p8
-aS' Por lo tanto, los vamos a entrenar en nuestros talleres para fabricar ladrillos para nuestra aldea. Tambi\xc3\xa9n, podemos entrenarlos como obreros y se convertir\xc3\xa1n en una parte integral de la aldea.'
+aS' Por lo tanto, los vamos a entrenar en nuestros talleres para fabricar ladrillos para nuestra aldea. Tambi\xe9n, podemos entrenarlos como obreros y se convertir\xe1n en una parte integral de la aldea.'
 p9
 aaS'Wfpwork.png'
 p10
@@ -961,7 +961,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'Buen trabajo recuper\xc3\xa1ndose de la calamidad. Entrena a tu gente para que se conviertan en recursos \xc3\xbatiles. Aumenta la barra de progreso de capacitaci\xc3\xb3n a 70 para aprobar esta misi\xc3\xb3n.'
+aS'Buen trabajo recuper\xe1ndose de la calamidad. Entrena a tu gente para que se conviertan en recursos \xfatiles. Aumenta la barra de progreso de capacitaci\xf3n a 70 para aprobar esta misi\xf3n.'
 p3
 aa.(lp0
 S'condition'
@@ -987,7 +987,7 @@ S'action'
 p1
 a(lp2
 I8
-aS'Fuiste capaz de completar la tarea asignada.\n\xc2\xa1Muy bien!'
+aS'Fuiste capaz de completar la tarea asignada.\n\xa1Muy bien!'
 p3
 aa.(lp0
 S'action'
@@ -1005,13 +1005,13 @@ a(lp3
 (lp4
 S'Farmer'
 p5
-aS'Sarpanch ji, no hay agua. Los cultivos se est\xc3\xa1n muriendo. Ay\xc3\xbadenos'
+aS'Sarpanch ji, no hay agua. Los cultivos se est\xe1n muriendo. Ay\xfadenos'
 p6
-aS'Priest, "\xc2\xbfC\xc3\xb3mo puede ayudar Sarpanch ji? Es el dios de la lluvia: Indra, que est\xc3\xa1 disgustado con nosotros. Celebraremos una ceremonia para complacer a Indra. '
+aS'Priest, "\xbfC\xf3mo puede ayudar Sarpanch ji? Es el dios de la lluvia: Indra, que est\xe1 disgustado con nosotros. Celebraremos una ceremonia para complacer a Indra. '
 p7
 aS'Kamat'
 p8
-aS'Har\xc3\xa9 lo que pueda.'
+aS'Har\xe9 lo que pueda.'
 p9
 aaS'drought.png'
 p10
@@ -1028,16 +1028,16 @@ aS'Hijo ...'
 p6
 aS'Son'
 p7
-aS' S\xc3\xad padre, \xc2\xbfhay algo que puedo hacer por usted.'
+aS' S\xed padre, \xbfhay algo que puedo hacer por usted.'
 p8
 ag5
-aS' S\xc3\xad, hijo, el monz\xc3\xb3n nos ha abandonado. Los cultivos se est\xc3\xa1n muriendo. Los agricultores creen que el dios Indra que est\xc3\xa1 disgustado, pero usted sabe mejor.'
+aS' S\xed, hijo, el monz\xf3n nos ha abandonado. Los cultivos se est\xe1n muriendo. Los agricultores creen que el dios Indra que est\xe1 disgustado, pero usted sabe mejor.'
 p9
 ag5
-aS'Se llevar\xc3\xa1 a cabo una ceremonia pronto. Pero tenemos que hacer m\xc3\xa1s que eso. '
+aS'Se llevar\xe1 a cabo una ceremonia pronto. Pero tenemos que hacer m\xe1s que eso. '
 p10
 ag7
-aS' S\xc3\xad Padre.'
+aS' S\xed Padre.'
 p11
 aaS'drought.png'
 p12
@@ -1046,7 +1046,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'No permitas que los progresos de nutrici\xc3\xb3n caigan por debajo del 50% y no permitas que el nivel del agua caiga por debajo de 500 durante los pr\xc3\xb3ximos 2 meses.'
+aS'No permitas que los progresos de nutrici\xf3n caigan por debajo del 50% y no permitas que el nivel del agua caiga por debajo de 500 durante los pr\xf3ximos 2 meses.'
 p3
 aa.(lp0
 S'condition'
@@ -1085,15 +1085,15 @@ a(lp3
 (lp4
 S'Farmer'
 p5
-aS'Gracias, Sarpanchji por resolver un problema tan grave. Sin su ayuda, hubi\xc3\xa9semos muerto de hambre junto con nuestras familias.'
+aS'Gracias, Sarpanchji por resolver un problema tan grave. Sin su ayuda, hubi\xe9semos muerto de hambre junto con nuestras familias.'
 p6
 aS'Kamat'
 p7
-aS'Bueno esta vez no fui yo. Es mi hijo quien debe estar recibiendo el cr\xc3\xa9dito de todo este trabajo.'
+aS'Bueno esta vez no fui yo. Es mi hijo quien debe estar recibiendo el cr\xe9dito de todo este trabajo.'
 p8
 aS'Son'
 p9
-aS' Gracias, padre. Pero todo fue gracias a su orientaci\xc3\xb3n y apoyo es que soy capaz de servir para la prosperidad de la aldea.'
+aS' Gracias, padre. Pero todo fue gracias a su orientaci\xf3n y apoyo es que soy capaz de servir para la prosperidad de la aldea.'
 p10
 aaS'happy.png'
 p11
@@ -1102,7 +1102,7 @@ S'actionTrue'
 p1
 a(lp2
 I6
-aS'El WFP ha planificado ense\xc3\xb1ar a los agricultores de su aldea.Se estar\xc3\xada ayudando a los agricultores aumentar su productividad, ayud\xc3\xa1ndoles a realizar una adecuado riego de sus fincas. Ayudar\xc3\xada a los agricultores aplicar t\xc3\xa9cnicas como la rotaci\xc3\xb3n de cultivos, uso de fertilizantes, etc, por que aumente la productividad de las granjas y la fertilidad del suelo se mantenga intacta.'
+aS'El WFP ha planificado ense\xf1ar a los agricultores de su aldea.Se estar\xeda ayudando a los agricultores aumentar su productividad, ayud\xe1ndoles a realizar una adecuado riego de sus fincas. Ayudar\xeda a los agricultores aplicar t\xe9cnicas como la rotaci\xf3n de cultivos, uso de fertilizantes, etc, por que aumente la productividad de las granjas y la fertilidad del suelo se mantenga intacta.'
 p3
 aa.(lp0
 S'actionTrue'
@@ -1134,14 +1134,14 @@ a(lp3
 (lp4
 S'Kamat'
 p5
-aS'Hijo, estoy envejeciendo, pero tengo una mala sensaci\xc3\xb3n de que algo malo est\xc3\xa1 a punto de suceder'
+aS'Hijo, estoy envejeciendo, pero tengo una mala sensaci\xf3n de que algo malo est\xe1 a punto de suceder'
 p6
 aS'Son'
 p7
-aS'\xc2\xbfPor qu\xc3\xa9 cree usted eso, padre? '
+aS'\xbfPor qu\xe9 cree usted eso, padre? '
 p8
 ag5
-aS' Los signos est\xc3\xa1n ah\xc3\xad en los animales. Mira c\xc3\xb3mo el ganado y las ovejas est\xc3\xa1n cada vez m\xc3\xa1s inquietos. Ellos son los que saben primero que los dioses est\xc3\xa1n enojados'
+aS' Los signos est\xe1n ah\xed en los animales. Mira c\xf3mo el ganado y las ovejas est\xe1n cada vez m\xe1s inquietos. Ellos son los que saben primero que los dioses est\xe1n enojados'
 p9
 aaS'earthquake_st.png'
 p10
@@ -1157,7 +1157,7 @@ S'action'
 p1
 a(lp2
 I7
-aS' Un terremoto golpea la aldea.\n\nKamat muere durante el terremoto.\n\nAjmal tambi\xc3\xa9n regresa a la aldea despu\xc3\xa9s de recibir la noticia.'
+aS' Un terremoto golpea la aldea.\n\nKamat muere durante el terremoto.\n\nAjmal tambi\xe9n regresa a la aldea despu\xe9s de recibir la noticia.'
 p3
 aa.(lp0
 S'action'
@@ -1172,10 +1172,10 @@ aS'Hermano, la responsabilidad de manejar la aldea depende de ti ahora. Debes ay
 p6
 aS'Son'
 p7
-aS'Pero bhaiyya, yo no ser\xc3\xa9 capaz de hacer todo esto sin la ayuda y apoyo del Padre. '
+aS'Pero bhaiyya, yo no ser\xe9 capaz de hacer todo esto sin la ayuda y apoyo del Padre. '
 p8
 ag5
-aS' Padre ten\xc3\xada una visi\xc3\xb3n para esta aldea. Le hab\xc3\xada llevado toda una vida levantar esta aldea. Tu debes trabajar para su misi\xc3\xb3n.'
+aS' Padre ten\xeda una visi\xf3n para esta aldea. Le hab\xeda llevado toda una vida levantar esta aldea. Tu debes trabajar para su misi\xf3n.'
 p9
 ag5
 aS'Debes reconstruir todo y reponer la aldea en el camino hacia el progreso y la prosperidad'
@@ -1190,7 +1190,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'Objetivo de la Misi\xc3\xb3n: reconstruir el pueblo y subir los niveles de progreso a un 40%'
+aS'Objetivo de la Misi\xf3n: reconstruir el pueblo y subir los niveles de progreso a un 40%'
 p3
 aa.(lp0
 S'condition'
@@ -1252,7 +1252,7 @@ S'action'
 p1
 a(lp2
 I6
-aS'La aldea Panchayat ha decidido elegirte como el pr\xc3\xb3ximo Sarpanch de la aldea. Tambi\xc3\xa9n han decidido hacer una nueva escuela en recuerdo del mejor Sarpanch que ha tenido esta aldea en a\xc3\xb1os, tu padre, Kamat.'
+aS'La aldea Panchayat ha decidido elegirte como el pr\xf3ximo Sarpanch de la aldea. Tambi\xe9n han decidido hacer una nueva escuela en recuerdo del mejor Sarpanch que ha tenido esta aldea en a\xf1os, tu padre, Kamat.'
 p3
 aa.(lp0
 S'action'
