@@ -17,7 +17,7 @@
 #   along with this program; if not, write to the Free Software
 #   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #
-
+import texts_eng
 import Exceptions
 import pickle
 import pygame
@@ -48,7 +48,8 @@ Facility_Size = [['HOUSE',360,360],['HOSPITAL',370,300],['FARM',516,500],['FOUNT
 
 #Facility_Size = [['HOUSE',360],['HOSPITAL',370],['FARM',516],['FOUNTAIN',197],['SCHOOL',420],['WORKSHOP',600]]
 storyboard_file = ''
-
+select_lang_flag = 'eng'
+text_file = texts_eng
 
 def init_cons(file_name):
     """ used to read the values of constant from data file file_name

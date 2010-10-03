@@ -35,7 +35,8 @@ import model
 if model.FLAG_XO:
     import game_sharing    
 instruction_off_flag = False
-from texts import *
+from texts_spa import *
+from texts_eng import *
 
 class marketBarChart:
     '''Class which displays the bar chart in the market window
@@ -282,7 +283,7 @@ class setup_button:
         size_win =threades.resize_pos((800.0,600.0))
 
         # Creating window
-        self.win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = setup_text[0] ,style = win_style,shadeable = False)
+        self.win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = model.text_file.setup_text[0] ,style = win_style,shadeable = False)
 
         self.win.surf.set_alpha(140)
         self.win.onClose = lambda button: self.close_win_safe()
@@ -300,9 +301,9 @@ class setup_button:
         labelStyleCopy['autosize'] = False
         labelStyleCopy['font'] = myfont2
         labelStyleCopy['font-color'] = self.rect_color
-        default_text = setup_text[1]
+        default_text = model.text_file.setup_text[1]
         self.message_label = gui.Label(position = threades.resize_pos((450,120),(800.0,600.0),self.win.size),size = threades.resize_pos((250,100),(800.0,600.0),self.win.size), parent = self.win, text = default_text, style = labelStyleCopy)
-        text = setup_text[2]
+        text = model.text_file.setup_text[2]
         labelStyleCopy2 = gui.defaultLabelStyle.copy()
         labelStyleCopy2['border-width'] = 1
         labelStyleCopy2['wordwrap'] = True
@@ -322,22 +323,22 @@ class setup_button:
         # Creating option boxes for all the facilities
         position_bt = threades.resize_pos((50.0,90.0),(800.0,600.0),size_win)
         size_bt = threades.resize_pos((320.0,200.0),(800.0,600.0),size_win)
-        self.housing_box = gui.Button(position = position_bt, size = size_bt,  parent = self.win, style = bt_style, text = 'Hut')
+        self.housing_box = gui.Button(position = position_bt, size = size_bt,  parent = self.win, style = bt_style, text = model.text_file.fac_name[0])
         self.housing_box.onMouseOver =  self.on_select_setup_option_box
         self.housing_box.onClick = self.setup_facility
-        self.hospital_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'Hospital')
+        self.hospital_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = model.text_file.fac_name[1])
         self.hospital_box.onMouseOver = self.on_select_setup_option_box
         self.hospital_box.onClick = self.setup_facility
-        self.workshop_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'Workshop')
+        self.workshop_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = model.text_file.fac_name[2])
         self.workshop_box.onMouseOver = self.on_select_setup_option_box
         self.workshop_box.onClick = self.setup_facility
-        self.school_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'School')
+        self.school_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = model.text_file.fac_name[3])
         self.school_box.onMouseOver = self.on_select_setup_option_box
         self.school_box.onClick = self.setup_facility
-        self.farm_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'Farm')
+        self.farm_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = model.text_file.fac_name[4])
         self.farm_box.onMouseOver = self.on_select_setup_option_box
         self.farm_box.onClick = self.setup_facility
-        self.fountain_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'Well')
+        self.fountain_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = model.text_file.fac_name[5])
         self.fountain_box.onMouseOver = self.on_select_setup_option_box
         self.fountain_box.onClick = self.setup_facility
 
@@ -349,28 +350,28 @@ class setup_button:
         #self.win.surf.blit(self.background_pic,threades.resize_pos((450,250)))
         #self.win.surf.set_alpha(140)
 
-        if button.text == 'Hut':
-            text = 'Hut: '
+        if button.text == model.text_file.fac_name[0]:
+            text = model.text_file.fac_name[0]+':'
             #image = load_images. House_tiles_list[2][2]
             text += threades.get_setup_text(model.House)
-        if button.text == 'Hospital':
-            text = 'Hospital: '
+        if button.text == model.text_file.fac_name[1]:
+            text = model.text_file.fac_name[1]+':'
             #image = load_images. Hospital_tiles_list[2][2]
             text += threades.get_setup_text(model.Hospital)
-        if button.text == 'School':
-            text = 'School: '
+        if button.text == model.text_file.fac_name[3]:
+            text = model.text_file.fac_name[3]+':'
             #image = load_images.School_tiles_list[2][2]
             text += threades.get_setup_text(model.School)
-        if button.text == 'Workshop':
-            text = 'Workshop: '
+        if button.text == model.text_file.fac_name[2]:
+            text = model.text_file.fac_name[2]+':'
             #image = load_images.Workshop_tiles_list[2][2]
             text += threades.get_setup_text(model.Workshop)
-        if button.text == 'Farm':
-            text = 'Farm: '
+        if button.text == model.text_file.fac_name[4]:
+            text = model.text_file.fac_name[4]+':'
             #image = load_images.Farm_tiles[0][1]
             text += threades.get_setup_text(model.Farm)
-        if button.text == 'Well':
-            text = 'Well: '
+        if button.text == model.text_file.fac_name[5]:
+            text = model.text_file.fac_name[5]+':'
             #image = load_images.Fountain_tiles[0][3]
             text += threades.get_setup_text(model.Fountain)
         #display_image = pygame.transform.scale(image,threades.resize_pos((140,140)))
@@ -394,22 +395,22 @@ class setup_button:
         '''
 
 
-        if button.text == 'Hut':
+        if button.text == model.text_file.fac_name[0]:
             label_text =  threades.build_facility(model.House)
-        elif button.text == 'Hospital':
+        elif button.text == model.text_file.fac_name[1]:
             label_text =  threades.build_facility(model.Hospital)
-        elif button.text == 'Workshop':
+        elif button.text == model.text_file.fac_name[2]:
             label_text =  threades.build_facility(model.Workshop)
-        elif button.text == 'Well':
+        elif button.text == model.text_file.fac_name[5]:
             label_text =  threades.build_facility(model.Fountain)
-        elif button.text == 'School':
+        elif button.text == model.text_file.fac_name[3]:
             label_text =  threades.build_facility(model.School)
-        elif button.text == 'Farm':
+        elif button.text == model.text_file.fac_name[4]:
             label_text =  self.build_facility_farm()
         else:
-            label_text = setup_text[3]
+            label_text = model.text_file.setup_text[3]
         self.message_label.text = label_text
-        if label_text== setup_text[4]:
+        if label_text== model.text_file.setup_text[4]:
             self.close_win()
 
     def build_facility_farm(self):
@@ -427,7 +428,7 @@ class setup_button:
         size_win =threades.resize_pos((600.0,400.0))
 
         # Creating window
-        self.child_win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = setup_text[5] ,style = win_style,shadeable = False,moveable = False)
+        self.child_win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = model.text_file.setup_text[5] ,style = win_style,shadeable = False,moveable = False)
         #self.child_win.surf.set_alpha(190)
         self.win.enabled = False
         self.child_win_flag = True
@@ -445,9 +446,9 @@ class setup_button:
         labelstyle1['font'] = myfont2
         labelstyle1['font-color'] = self.rect_color
 
-        label_rice = gui.Label(position = threades.resize_pos((100.0,260.0),(600.0,400.0),self.child_win.size), parent = self.child_win, text = 'Rice', style = labelstyle1)
-        label_veg = gui.Label(position = threades.resize_pos((250.0,260.0),(600.0,400.0),self.child_win.size), parent = self.child_win, text = 'Fruit and \nVegetables', style = labelstyle1)
-        label_beans = gui.Label(position = threades.resize_pos((400.0,260.0),(600.0,400.0),self.child_win.size), parent = self.child_win, text = 'Beans', style = labelstyle1)
+        label_rice = gui.Label(position = threades.resize_pos((100.0,260.0),(600.0,400.0),self.child_win.size), parent = self.child_win, text = model.text_file.food_ingredient_list[0], style = labelstyle1)
+        label_veg = gui.Label(position = threades.resize_pos((250.0,260.0),(600.0,400.0),self.child_win.size), parent = self.child_win, text = model.text_file.food_ingredient_list[1], style = labelstyle1)
+        label_beans = gui.Label(position = threades.resize_pos((400.0,260.0),(600.0,400.0),self.child_win.size), parent = self.child_win, text = model.text_file.food_ingredient_list[2], style = labelstyle1)
 
         # Creating second custom label style
         labelStyleCopy2 = gui.defaultLabelStyle.copy()
@@ -458,7 +459,7 @@ class setup_button:
         labelStyleCopy2['border-color'] = self.rect_color
         labelStyleCopy2['font-color'] = self.rect_color
 
-        text = setup_text[6]
+        text = model.text_file.setup_text[6]
         self.message_label2 = gui.Label(position = threades.resize_pos((20,320),(600.0,400.0),self.child_win.size),size = threades.resize_pos((470,70),(600.0,400.0),self.child_win.size), parent = self.child_win, text = text, style = labelStyleCopy2)
 
         '''
@@ -492,7 +493,7 @@ class setup_button:
         list_food = [quantity1,quantity2,quantity3]
         #print list_food
         label_text = threades.build_facility(model.Farm,[],list_food)
-        if label_text == setup_text[4]:
+        if label_text == model.text_file.setup_text[4]:
             self.child_win.close()
             self.enable_parent_win()
             self.close_win()
@@ -544,7 +545,7 @@ class upgrade_button:
         size_win =threades.resize_pos((800.0,600.0))
 
         # Creating window
-        self.win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = upgrade_fac_text[0] ,style = win_style,shadeable = False)
+        self.win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = model.text_file.upgrade_fac_text[0] ,style = win_style,shadeable = False)
         self.win.surf.set_alpha(140)
         self.win.onClose = lambda button: self.close_win_safe()
         self.win_flag = True
@@ -561,7 +562,7 @@ class upgrade_button:
         labelStyleCopy['font'] = myfont2
         labelStyleCopy['font-color'] = self.rect_color
         labelStyleCopy['border-color'] = self.color_grey
-        text = upgrade_fac_text[1]
+        text = model.text_file.upgrade_fac_text[1]
         self.message_label = gui.Label(position = threades.resize_pos((450,150),(800.0,600.0),self.win.size),size = threades.resize_pos((200,100),(800.0,600.0),self.win.size), parent = self.win, text = text, style = labelStyleCopy)
 
 
@@ -576,27 +577,27 @@ class upgrade_button:
         # Creating buttons for all the facilities
         position_bt = threades.resize_pos((50.0,90.0),(800.0,600.0),size_win)
         size_bt = threades.resize_pos((320.0,200.0),(800.0,600.0),size_win)
-        self.housing_box = gui.Button(position = position_bt, size = size_bt,  parent = self.win, style = bt_style, text = 'Hut')
+        self.housing_box = gui.Button(position = position_bt, size = size_bt,  parent = self.win, style = bt_style, text = model.text_file.fac_name[0])
         self.housing_box.onMouseOver =  self.on_select_upgrade_option_box
         self.housing_box.onClick = self.upgrade_facility
-        self.hospital_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'Hospital')
+        self.hospital_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = model.text_file.fac_name[1])
         self.hospital_box.onMouseOver = self.on_select_upgrade_option_box
         self.hospital_box.onClick = self.upgrade_facility
-        self.workshop_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'Workshop')
+        self.workshop_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = model.text_file.fac_name[2])
         self.workshop_box.onMouseOver = self.on_select_upgrade_option_box
         self.workshop_box.onClick = self.upgrade_facility
-        self.school_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'School')
+        self.school_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = model.text_file.fac_name[3])
         self.school_box.onMouseOver = self.on_select_upgrade_option_box
         self.school_box.onClick = self.upgrade_facility
-        self.farm_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'Farm')
+        self.farm_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = model.text_file.fac_name[4])
         self.farm_box.onMouseOver = self.on_select_upgrade_option_box
         self.farm_box.onClick = self.upgrade_facility
-        self.fountain_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = 'Well')
+        self.fountain_box = gui.Button(position = self.win.nextPosition(threades.resize_pt_y(10)), size = size_bt, parent = self.win, style = bt_style, text = model.text_file.fac_name[5])
         self.fountain_box.onMouseOver = self.on_select_upgrade_option_box
         self.fountain_box.onClick = self.upgrade_facility
 
 
-        text =upgrade_fac_text[2]
+        text = model.text_file.upgrade_fac_text[2]
         labelStyleCopy2 = gui.defaultLabelStyle.copy()
         labelStyleCopy2['border-width'] = 1
         labelStyleCopy2['wordwrap'] = True
@@ -615,50 +616,51 @@ class upgrade_button:
         #self.win.surf.set_alpha(140)
 
         text = ''
-        if button.text == 'Hut':
+        if button.text == model.text_file.fac_name[0]:
             #image = load_images. House_tiles_list[2][2]
             text += threades.get_upgrade_text(model.House)
-        if button.text == 'Hospital':
+        if button.text == model.text_file.fac_name[1]:
             #image = load_images. Hospital_tiles_list[2][2]
             text += threades.get_upgrade_text(model.Hospital)
-        if button.text == 'School':
+        if button.text == model.text_file.fac_name[3]:
             #image = load_images.School_tiles_list[2][2]
             text += threades.get_upgrade_text(model.School)
-        if button.text == 'Workshop':
+        if button.text == model.text_file.fac_name[2]:
             #image = load_images.Workshop_tiles_list[2][2]
             text += threades.get_upgrade_text(model.Workshop)
-        if button.text == 'Farm':
+        if button.text == model.text_file.fac_name[4]:
             #image = load_images.Farm_tiles[0][1]
             text += threades.get_upgrade_text(model.Farm)
-        if button.text == 'Well':
+        if button.text == model.text_file.fac_name[5]:
             #image = load_images.Fountain_tiles[0][3]
             text += threades.get_upgrade_text(model.Fountain)
         #display_image = pygame.transform.scale(image,threades.resize_pos((140,140)))
         #self.win.surf.blit(display_image,threades.resize_pos((450,250)))
         self.message_label2.text = text
-        self.message_label.text = 'Upgrades ' + button.text
+        self.message_label.text = model.text_file.Upgrade_box_text[0]+'\n' + button.text
+        
 
     def upgrade_facility(self,button=None):
         ''' Upgrades the facility
         '''
 
 
-        if button.text == 'Hut':
+        if button.text == model.text_file.fac_name[0]:
             label_text =  threades.upgrade_facility(model.House)
-        elif button.text == 'Hospital':
+        elif button.text == model.text_file.fac_name[1]:
             label_text =  threades.upgrade_facility(model.Hospital)
-        elif button.text == 'Workshop':
+        elif button.text == model.text_file.fac_name[2]:
             label_text =  threades.upgrade_facility(model.Workshop)
-        elif button.text == 'Well':
+        elif button.text == model.text_file.fac_name[5]:
             label_text =  threades.upgrade_facility(model.Fountain)
-        elif button.text == 'School':
+        elif button.text == model.text_file.fac_name[3]:
             label_text =  threades.upgrade_facility(model.School)
-        elif button.text == 'Farm':
+        elif button.text == model.text_file.fac_name[4]:
             label_text =  threades.upgrade_facility(model.Farm)
         else:
-            label_text = upgrade_fac_text[3]
+            label_text = model.text_file.upgrade_fac_text[3]
         self.message_label.text = label_text
-        if label_text== upgrade_fac_text[4]:
+        if label_text== model.text_file.upgrade_fac_text[4]:
             self.close_win()
 
     # Functions for upgrading a facility end here........
@@ -711,7 +713,7 @@ class buysell_button:
         size_win =threades.resize_pos((800.0,600.0))
 
         # Creating window
-        self.win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = buysell_text[0] ,style = win_style,shadeable = False, moveable = False)
+        self.win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = model.text_file.buysell_text[0] ,style = win_style,shadeable = False, moveable = False)
         self.win.surf.set_alpha(140)
         self.win.onClose = lambda button: self.close_win_safe()
         self.win_flag = True
@@ -728,13 +730,13 @@ class buysell_button:
         labelstyle1['font'] = myfont2
         labelstyle1['font-color'] = self.rect_color
 
-        heading_label1 = gui.Label(position = threades.resize_pos((10.0,70.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Resources', style = labelstyle1)
-        heading_label2 = gui.Label(position = threades.resize_pos((180.0,70.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Village', style = labelstyle1)
-        heading_label3 = gui.Label(position = threades.resize_pos((180.0,85.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Quantity', style = labelstyle1)
-        heading_label4 = gui.Label(position = threades.resize_pos((370.0,70.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Price', style = labelstyle1)
+        heading_label1 = gui.Label(position = threades.resize_pos((10.0,70.0),(800.0,600.0),self.win.size), parent = self.win, text = model.text_file.buysell_window_text[0], style = labelstyle1)
+        heading_label2 = gui.Label(position = threades.resize_pos((180.0,70.0),(800.0,600.0),self.win.size), parent = self.win, text = model.text_file.buysell_window_text[1], style = labelstyle1)
+        heading_label3 = gui.Label(position = threades.resize_pos((180.0,85.0),(800.0,600.0),self.win.size), parent = self.win, text = model.text_file.buysell_window_text[2], style = labelstyle1)
+        heading_label4 = gui.Label(position = threades.resize_pos((370.0,70.0),(800.0,600.0),self.win.size), parent = self.win, text = model.text_file.buysell_window_text[3], style = labelstyle1)
         #heading_label5 = gui.Label(position = threades.resize_pos((520.0,70.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Resources', style = labelstyle1)
-        heading_label6 = gui.Label(position = threades.resize_pos((270.0,70.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Market', style = labelstyle1)
-        heading_label7 = gui.Label(position = threades.resize_pos((270.0,85.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Quantity', style = labelstyle1)
+        heading_label6 = gui.Label(position = threades.resize_pos((270.0,70.0),(800.0,600.0),self.win.size), parent = self.win, text =model.text_file.buysell_window_text[4], style = labelstyle1)
+        heading_label7 = gui.Label(position = threades.resize_pos((270.0,85.0),(800.0,600.0),self.win.size), parent = self.win, text = model.text_file.buysell_window_text[2], style = labelstyle1)
 
         # creating custom style for option box
         op_style = gui.defaultOptionBoxStyle.copy()
@@ -747,27 +749,27 @@ class buysell_button:
 
         # Creating option boxes for all the resources
         position_optionbox = threades.resize_pos((10.0,140.0),(800.0,600.0),self.win.size)
-        self.water_box = gui.OptionBox(position = position_optionbox, parent = self.win, style = op_style, text = 'Water')
+        self.water_box = gui.OptionBox(position = position_optionbox, parent = self.win, style = op_style, text = model.text_file.list_gen_res[0])
         self.water_box.onValueChanged = self.onOptionSelect
-        self.buildmat_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = 'Bricks')
+        self.buildmat_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = model.text_file.list_gen_res[1])
         self.buildmat_box.onValueChanged = self.onOptionSelect
-        self.tools_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = 'Tools')
+        self.tools_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = model.text_file.list_gen_res[2])
         self.tools_box.onValueChanged = self.onOptionSelect
-        self.books_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = 'Books')
+        self.books_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = model.text_file.list_gen_res[4])
         self.books_box.onValueChanged = self.onOptionSelect
-        self.medicine_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = 'Medicines')
+        self.medicine_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = model.text_file.list_gen_res[3])
         self.medicine_box.onValueChanged = self.onOptionSelect
-        self.rice_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = 'Rice')
+        self.rice_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = model.text_file.list_food_res[0])
         self.rice_box.onValueChanged = self.onOptionSelect
-        self.wheat_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = 'Fruit & Vegetables')
+        self.wheat_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = model.text_file.list_food_res[1])
         self.wheat_box.onValueChanged = self.onOptionSelect
-        self.beans_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = 'Beans')
+        self.beans_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = model.text_file.list_food_res[2])
         self.beans_box.onValueChanged = self.onOptionSelect
-        self.sugar_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = 'Sugar')
+        self.sugar_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = model.text_file.list_food_res[3])
         self.sugar_box.onValueChanged = self.onOptionSelect
-        self.salt_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = 'Salt')
+        self.salt_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = model.text_file.list_food_res[4])
         self.salt_box.onValueChanged = self.onOptionSelect
-        self.oil_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = 'Oil')
+        self.oil_box = gui.OptionBox(position = self.win.nextPosition(threades.resize_pt_y(7)), parent = self.win, style = op_style, text = model.text_file.list_food_res[5])
         self.oil_box.onValueChanged = self.onOptionSelect
         
         #Creating CheckBox style
@@ -785,7 +787,7 @@ class buysell_button:
             if game_sharing.test_connected():
 
                 #Creating Checkbox for share trade with peer villages
-                self.shareCheckBox = gui.CheckBox(position = threades.resize_pos((440, 140), (800, 600), self.win.size),  parent = self.win,  style = ch_style,  text = buysell_text[1] )
+                self.shareCheckBox = gui.CheckBox(position = threades.resize_pos((440, 140), (800, 600), self.win.size),  parent = self.win,  style = ch_style,  text = model.text_file.buysell_text[1] )
                 self.shareCheckBox.value = False
                 self.shareCheckBox.onValueChanged = self.drawPriceChart()
 
@@ -809,12 +811,12 @@ class buysell_button:
         self.label_res_value = gui.Label(position = threades.resize_pos((650.0,200.0),(800.0,600.0),self.win.size), parent = self.win, text = str(int(self.barObject.bar1Val)), style = labelstyle1)
 
         #Creating a label for value to be printed
-        self.label_quantity = gui.Label(position = threades.resize_pos((440.0,170.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Quantity ', style = labelstyle1)
+        self.label_quantity = gui.Label(position = threades.resize_pos((440.0,170.0),(800.0,600.0),self.win.size), parent = self.win, text = model.text_file.buysell_window_text[2], style = labelstyle1)
 
         if model.FLAG_XO:
             if game_sharing.test_connected():
                 if self.shareCheckBox.value:
-                    self.label_price = gui.Label(position = threades.resize_pos((400.0,250.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Price ', style = labelstyle1)
+                    self.label_price = gui.Label(position = threades.resize_pos((400.0,250.0),(800.0,600.0),self.win.size), parent = self.win, text = model.text_file.buysell_window_text[3], style = labelstyle1)
                     self.label_res_price = gui.Label(position = threades.resize_pos((650.0,280.0),(800.0,600.0),self.win.size), parent = self.win, text = str(int(self.barObject.bar2Val)), style = labelstyle1)
 
         # Creating labels for prices of Resources
@@ -844,9 +846,9 @@ class buysell_button:
         buttonsurf = pygame.transform.scale(buttonsurf, (36, threades.resize_pt_y( 40)))
         button_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
 
-        self.button_buy = gui.Button(position = threades.resize_pos((560.0,350.0),(800.0,600.0),size_win), size = threades.resize_pos((100.0,50.0),(800.0,600.0),size_win), parent = self.win, text = " Buy ",style = button_style)
-        self.button_sell = gui.Button(position = threades.resize_pos((460.0,350.0),(800.0,600.0),size_win), size = threades.resize_pos((100.0,50.0),(800.0,600.0),size_win), parent = self.win, text = " Sell ",style = button_style)
-        self.button_close = gui.Button(position = threades.resize_pos((650.0,500.0),(800.0,600.0),size_win), size = threades.resize_pos((120.0,50.0),(800.0,600.0),size_win), parent = self.win, text = "Close",style = button_style)
+        self.button_buy = gui.Button(position = threades.resize_pos((560.0,350.0),(800.0,600.0),size_win), size = threades.resize_pos((100.0,50.0),(800.0,600.0),size_win), parent = self.win, text = model.text_file.buysell_window_buttons[0],style = button_style)
+        self.button_sell = gui.Button(position = threades.resize_pos((460.0,350.0),(800.0,600.0),size_win), size = threades.resize_pos((100.0,50.0),(800.0,600.0),size_win), parent = self.win, text =model.text_file.buysell_window_buttons[1],style = button_style)
+        self.button_close = gui.Button(position = threades.resize_pos((650.0,500.0),(800.0,600.0),size_win), size = threades.resize_pos((120.0,50.0),(800.0,600.0),size_win), parent = self.win, text = model.text_file.buysell_window_buttons[2],style = button_style)
         self.button_buy.onClick = self.buy_resources
         self.button_sell.onClick = self.sell_resources
         self.button_close.onClick  = self.close_win
@@ -875,7 +877,7 @@ class buysell_button:
         labelStyleCopy['font'] = myfont2
         labelStyleCopy['font-color'] = self.rect_color
 
-        text = buysell_text[2]
+        text = model.text_file.buysell_text[2]
         self.message_label = gui.Label(position = threades.resize_pos((80,470),(800.0,600.0),self.win.size),size = threades.resize_pos((500,100),(800.0,600.0),self.win.size), parent = self.win, text = text, style = labelStyleCopy)
 
     def updateMarketLabelValues(self,button = None):
@@ -942,7 +944,7 @@ class buysell_button:
 
                     self.barObject.drawPriceChart(self.win.surf)
                     if not self.label_res_price_flag:
-                        self.label_price = gui.Label(position = threades.resize_pos((440.0,250.0),(800.0,600.0),self.win.size), parent = self.win, text = 'Price ', style = labelstyle1)
+                        self.label_price = gui.Label(position = threades.resize_pos((440.0,250.0),(800.0,600.0),self.win.size), parent = self.win, text = model.text_file.buysell_window_text[3], style = labelstyle1)
                         self.label_res_price = gui.Label(position = threades.resize_pos((650.0,280.0),(800.0,600.0),self.win.size), parent = self.win, text = str(int(self.barObject.bar2Val)), style = labelstyle1)
                         self.label_res_price_flag = True
 
@@ -956,7 +958,7 @@ class buysell_button:
         # Checking whether the user has entered the value in text box properly
         quantity = self.barObject.bar1Val
         if int(quantity) == 0:
-            self.message_label.text = buysell_exceptions['zero_qty']
+            self.message_label.text = model.text_file.buysell_exceptions['zero_qty']
             return
         price = 0
         if model.FLAG_XO:
@@ -970,7 +972,7 @@ class buysell_button:
                 initiateTrade(True,model.Water,quantity,price)
             else:
                 label_text =  threades.buy_res(model.Water,quantity)
-                if label_text == buysell_exceptions['no_exception']:
+                if label_text == model.text_file.buysell_exceptions['no_exception']:
                     self.label_vwater.text = str(int(model.Water.get_vquantity()))
                     self.label_mwater.text = str(int(model.Water.get_mquantity()))
         elif self.buildmat_box.value:
@@ -978,7 +980,7 @@ class buysell_button:
                 initiateTrade(True,model.Buildmat,quantity,price)
             else:
                 label_text =  threades.buy_res(model.Buildmat,quantity)
-                if label_text == buysell_exceptions['no_exception']:
+                if label_text == model.text_file.buysell_exceptions['no_exception']:
                     self.label_vbuildmat.text = str(int(model.Buildmat.get_vquantity()))
                     self.label_mbuildmat.text = str(int(model.Buildmat.get_mquantity()))
         elif self.tools_box.value:
@@ -986,7 +988,7 @@ class buysell_button:
                 initiateTrade(True,model.Tools,quantity,price)
             else:
                 label_text =  threades.buy_res(model.Tools,quantity)
-                if label_text == buysell_exceptions['no_exception']:
+                if label_text == model.text_file.buysell_exceptions['no_exception']:
                     self.label_vtools.text = str(int(model.Tools.get_vquantity()))
                     self.label_mtools.text = str(int(model.Tools.get_mquantity()))
         elif self.medicine_box.value:
@@ -994,7 +996,7 @@ class buysell_button:
                 initiateTrade(True,model.Medicine,quantity,price)
             else:
                 label_text =  threades.buy_res(model.Medicine,quantity)
-                if label_text == buysell_exceptions['no_exception']:
+                if label_text == model.text_file.buysell_exceptions['no_exception']:
                     self.label_vmedicine.text = str(int(model.Medicine.get_vquantity()))
                     self.label_mmedicine.text = str(int(model.Medicine.get_mquantity()))
         elif self.books_box.value:
@@ -1002,7 +1004,7 @@ class buysell_button:
                 initiateTrade(True,model.Books,quantity,price)
             else:
                 label_text =  threades.buy_res(model.Book,quantity)
-                if label_text == buysell_exceptions['no_exception']:
+                if label_text == model.text_file.buysell_exceptions['no_exception']:
                     self.label_vbooks.text = str(int(model.Book.get_vquantity()))
                     self.label_mbooks.text = str(int(model.Book.get_mquantity()))
         elif self.rice_box.value:
@@ -1010,7 +1012,7 @@ class buysell_button:
                 initiateTrade(True,model.Rice,quantity,price)
             else:
                 label_text =  threades.buy_res(model.Rice,quantity)
-                if label_text == buysell_exceptions['no_exception']:
+                if label_text == model.text_file.buysell_exceptions['no_exception']:
                     self.label_vrice.text = str(int(model.Rice.get_vquantity()))
                     self.label_mrice.text = str(int(model.Rice.get_mquantity()))
         elif self.wheat_box.value:
@@ -1018,7 +1020,7 @@ class buysell_button:
                 initiateTrade(True,model.Wheat,quantity,price)
             else:
                 label_text =  threades.buy_res(model.Wheat,quantity)
-                if label_text == buysell_exceptions['no_exception']:
+                if label_text == model.text_file.buysell_exceptions['no_exception']:
                     self.label_vwheat.text = str(int(model.Wheat.get_vquantity()))
                     self.label_mwheat.text = str(int(model.Wheat.get_mquantity()))
         elif self.beans_box.value:
@@ -1026,7 +1028,7 @@ class buysell_button:
                 initiateTrade(True,model.Beans,quantity,price)
             else:
                 label_text =  threades.buy_res(model.Beans,quantity)
-                if label_text == buysell_exceptions['no_exception']:
+                if label_text == model.text_file.buysell_exceptions['no_exception']:
                     self.label_vbeans.text = str(int(model.Beans.get_vquantity()))
                     self.label_mbeans.text = str(int(model.Beans.get_mquantity()))
         elif self.sugar_box.value:
@@ -1034,7 +1036,7 @@ class buysell_button:
                 initiateTrade(True,model.Sugar,quantity,price)
             else:
                 label_text =  threades.buy_res(model.Sugar,quantity)
-                if label_text == buysell_exceptions['no_exception']:
+                if label_text == model.text_file.buysell_exceptions['no_exception']:
                     self.label_vsugar.text = str(int(model.Sugar.get_vquantity()))
                     self.label_msugar.text = str(int(model.Sugar.get_mquantity()))
         elif self.salt_box.value:
@@ -1042,7 +1044,7 @@ class buysell_button:
                 initiateTrade(True,model.Salt,quantity,price)
             else:
                 label_text =  threades.buy_res(model.Salt,quantity)
-                if label_text == buysell_exceptions['no_exception']:
+                if label_text == model.text_file.buysell_exceptions['no_exception']:
                     self.label_vsalt.text = str(int(model.Salt.get_vquantity()))
                     self.label_msalt.text = str(int(model.Salt.get_mquantity()))
         elif self.oil_box.value:
@@ -1050,11 +1052,11 @@ class buysell_button:
                 initiateTrade(True,model.Oil,quantity,price)
             else:
                 label_text =  threades.buy_res(model.Oil,quantity)
-                if label_text == buysell_exceptions['no_exception']:
+                if label_text == model.text_file.buysell_exceptions['no_exception']:
                     self.label_voil.text = str(int(model.Oil.get_vquantity()))
                     self.label_moil.text = str(int(model.Oil.get_mquantity()))
         else:
-            label_text = buysell_text[3]
+            label_text = model.text_file.buysell_text[3]
 
         self.message_label.text = label_text
 
@@ -1067,7 +1069,7 @@ class buysell_button:
         # Checking whether the user has entered the value in text box properly
         quantity = self.barObject.bar1Val
         if int(quantity) == 0:
-            self.message_label.text = buysell_exceptions['zero_qty']
+            self.message_label.text = model.text_file.buysell_exceptions['zero_qty']
             return
         price = 0
         if model.FLAG_XO:
@@ -1081,7 +1083,7 @@ class buysell_button:
                 initiateTrade(True,model.Water,quantity,price)
             else:
                 label_text =  threades.sell_res(model.Water,quantity)
-                if label_text == buysell_exceptions['no_exception']:
+                if label_text == model.text_file.buysell_exceptions['no_exception']:
                     self.label_vwater.text = str(int(model.Water.get_vquantity()))
                     self.label_mwater.text = str(int(model.Water.get_mquantity()))
         elif self.buildmat_box.value:
@@ -1089,7 +1091,7 @@ class buysell_button:
                 initiateTrade(True,model.Buildmat,quantity,price)
             else:
                 label_text =  threades.sell_res(model.Buildmat,quantity)
-                if label_text == buysell_exceptions['no_exception']:
+                if label_text == model.text_file.buysell_exceptions['no_exception']:
                     self.label_vbuildmat.text = str(int(model.Buildmat.get_vquantity()))
                     self.label_mbuildmat.text = str(int(model.Buildmat.get_mquantity()))
         elif self.tools_box.value:
@@ -1097,7 +1099,7 @@ class buysell_button:
                 initiateTrade(True,model.Tools,quantity,price)
             else:
                 label_text =  threades.sell_res(model.Tools,quantity)
-                if label_text == buysell_exceptions['no_exception']:
+                if label_text == model.text_file.buysell_exceptions['no_exception']:
                     self.label_vtools.text = str(int(model.Tools.get_vquantity()))
                     self.label_mtools.text = str(int(model.Tools.get_mquantity()))
         elif self.medicine_box.value:
@@ -1105,7 +1107,7 @@ class buysell_button:
                 initiateTrade(True,model.Medicine,quantity,price)
             else:
                 label_text =  threades.sell_res(model.Medicine,quantity)
-                if label_text == buysell_exceptions['no_exception']:
+                if label_text == model.text_file.buysell_exceptions['no_exception']:
                     self.label_vmedicine.text = str(int(model.Medicine.get_vquantity()))
                     self.label_mmedicine.text = str(int(model.Medicine.get_mquantity()))
         elif self.books_box.value:
@@ -1113,7 +1115,7 @@ class buysell_button:
                 initiateTrade(True,model.Books,quantity,price)
             else:
                 label_text =  threades.sell_res(model.Book,quantity)
-                if label_text == buysell_exceptions['no_exception']:
+                if label_text == model.text_file.buysell_exceptions['no_exception']:
                     self.label_vbooks.text = str(int(model.Book.get_vquantity()))
                     self.label_mbooks.text = str(int(model.Book.get_mquantity()))
         elif self.rice_box.value:
@@ -1121,7 +1123,7 @@ class buysell_button:
                 initiateTrade(True,model.Rice,quantity,price)
             else:
                 label_text =  threades.sell_res(model.Rice,quantity)
-                if label_text == buysell_exceptions['no_exception']:
+                if label_text == model.text_file.buysell_exceptions['no_exception']:
                     self.label_vrice.text = str(int(model.Rice.get_vquantity()))
                     self.label_mrice.text = str(int(model.Rice.get_mquantity()))
         elif self.wheat_box.value:
@@ -1129,7 +1131,7 @@ class buysell_button:
                 initiateTrade(True,model.Wheat,quantity,price)
             else:
                 label_text =  threades.sell_res(model.Wheat,quantity)
-                if label_text == buysell_exceptions['no_exception']:
+                if label_text == model.text_file.buysell_exceptions['no_exception']:
                     self.label_vwheat.text = str(int(model.Wheat.get_vquantity()))
                     self.label_mwheat.text = str(int(model.Wheat.get_mquantity()))
         elif self.beans_box.value:
@@ -1137,7 +1139,7 @@ class buysell_button:
                 initiateTrade(True,model.Beans,quantity,price)
             else:
                 label_text =  threades.sell_res(model.Beans,quantity)
-                if label_text == buysell_exceptions['no_exception']:
+                if label_text == model.text_file.buysell_exceptions['no_exception']:
                     self.label_vbeans.text = str(int(model.Beans.get_vquantity()))
                     self.label_mbeans.text = str(int(model.Beans.get_mquantity()))
         elif self.sugar_box.value:
@@ -1145,7 +1147,7 @@ class buysell_button:
                 initiateTrade(True,model.Sugar,quantity,price)
             else:
                 label_text =  threades.sell_res(model.Sugar,quantity)
-                if label_text == buysell_exceptions['no_exception']:
+                if label_text == model.text_file.buysell_exceptions['no_exception']:
                     self.label_vsugar.text = str(int(model.Sugar.get_vquantity()))
                     self.label_msugar.text = str(int(model.Sugar.get_mquantity()))
         elif self.salt_box.value:
@@ -1153,7 +1155,7 @@ class buysell_button:
                 initiateTrade(True,model.Salt,quantity,price)
             else:
                 label_text =  threades.sell_res(model.Salt,quantity)
-                if label_text == buysell_exceptions['no_exception']:
+                if label_text == model.text_file.buysell_exceptions['no_exception']:
                     self.label_vsalt.text = str(int(model.Salt.get_vquantity()))
                     self.label_msalt.text = str(int(model.Salt.get_mquantity()))
         elif self.oil_box.value:
@@ -1161,11 +1163,11 @@ class buysell_button:
                 initiateTrade(True,model.Oil,quantity,price)
             else:
                 label_text =  threades.sell_res(model.Oil,quantity)
-                if label_text == buysell_exceptions['no_exception']:
+                if label_text == model.text_file.buysell_exceptions['no_exception']:
                     self.label_voil.text = str(int(model.Oil.get_vquantity()))
                     self.label_moil.text = str(int(model.Oil.get_mquantity()))
         else:
-            label_text = buysell_text[3]
+            label_text = model.text_file.buysell_text[3]
         self.message_label.text = label_text
 
 
@@ -1312,16 +1314,16 @@ class gui_buttons:
         button_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
         button_style['font'] = myfont
 
-        self.setup_button = gui.Button(position = threades.resize_pos((7,859)), size = threades.resize_pos((290,25)), parent = threades.desktop, text = "Build",style = button_style)
-        self.upgrade_button = gui.Button(position = threades.resize_pos((307,859)), size = threades.resize_pos((290,25)), parent = threades.desktop, text = "Upgrade",style = button_style)
-        self.buysell_button = gui.Button(position = threades.resize_pos((607,859)), size = threades.resize_pos((290,25)), parent = threades.desktop, text = "Market",style = button_style)
+        self.setup_button = gui.Button(position = threades.resize_pos((7,859)), size = threades.resize_pos((290,25)), parent = threades.desktop, text = model.text_file.panel_text[0],style = button_style)
+        self.upgrade_button = gui.Button(position = threades.resize_pos((307,859)), size = threades.resize_pos((290,25)), parent = threades.desktop, text = model.text_file.panel_text[1],style = button_style)
+        self.buysell_button = gui.Button(position = threades.resize_pos((607,859)), size = threades.resize_pos((290,25)), parent = threades.desktop, text = model.text_file.panel_text[2],style = button_style)
 
         #Creating new button style
         buttonsurf = pygame.image.load(os.path.join('art','button.png')).convert_alpha()
         buttonsurf = pygame.transform.scale(buttonsurf, (36, threades.resize_pt_y(30)))
         button_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
         button_style['font'] = myfont
-        self.instructions_button = gui.Button(position = threades.resize_pos((1000,10)), size = threades.resize_pos((190,25)), parent = threades.desktop, text = objective[0],style = button_style)
+        self.instructions_button = gui.Button(position = threades.resize_pos((1000,10)), size = threades.resize_pos((190,25)), parent = threades.desktop, text = model.text_file.objective[0],style = button_style)
 
         self.setup_obj = setup_button()
         self.upgrade_obj = upgrade_button()
@@ -1415,13 +1417,13 @@ def initiateTrade(buysell,resource,quantity,price):
     if not buysell:
         cost  = quantity*price
         if cost > model.money.get_money():
-            gui_obj.buysell_obj.message_label.text = " Village doesn't have enough money to buy the resources"
+            gui_obj.buysell_obj.message_label.text = exceptions_text[0]
             return
         game_sharing.broadcast_msg(['Trade',resource.get_name(),str(quantity),str(price),'sell'])
         game_sharing.setUnicastTradingFlag('sell')
     else:
         if quantity > resource.get_vquantity():
-            gui_obj.buysell_obj.message_label.text = " There are not enough resources in the village to trade"
+            gui_obj.buysell_obj.message_label.text = exceptions_text[1]
             return
         game_sharing.broadcast_msg(['Trade',resource.get_name(),str(quantity),str(price),'buy'])
         game_sharing.setUnicastTradingFlag('buy')

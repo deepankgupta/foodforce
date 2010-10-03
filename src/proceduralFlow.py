@@ -35,7 +35,8 @@ import game_events
 #from chat import *
 import model
 import chat
-import texts
+import texts_spa
+import texts_eng
 #from Foodforce2 import Earthquake
 import natural_calamities
 import level_change
@@ -793,7 +794,7 @@ class Actions:
         self.storyboardwin_run = True
         #logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
         #ff_logo = pygame.transform.scale(logo,threades.resize_pos((1111,250)))
-        text = texts.credits_text
+        text = model.text_file.credits_text
         #self.instructions_counter = 0
         label = gui.Label(position = threades.resize_pos((100.0,100.0),(900.0,500.0),self.win.size),size = threades.resize_pos((700.0,380.0),(900.0,500.0),self.win.size), parent = self.win, text = text, style = labelStyleCopy)
 
@@ -832,7 +833,7 @@ def openStoryBoardFile():
     global storyboardfile
     global storyboard_file_name
     if model.storyboard_file != '':
-        storyboardfile = open(os.path.join('storyboards',model.storyboard_file,'storyboard.pkl'),'rb')
+        storyboardfile = open(os.path.join('storyboards',model.storyboard_file,'storyboard_'+model.select_lang_flag+'.pkl'),'rb')
 
 def closeStoryBoardFile():
     if model.storyboard_file != '':

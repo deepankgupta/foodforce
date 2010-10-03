@@ -93,7 +93,6 @@ class chat:
         #self.label_tempSurface = pygame.transform.scale(self.chatBox,(800,30))
         
         #creating a label for the chat window
-        self.label_text='     ENTER : To show whole chat              ESC : To skip chat           '
         self.myfont2 = pygame.font.Font("font.ttf", threades.resize_pt(20))
         self.labelStyleCopy = gui.defaultLabelStyle.copy()
         self.labelStyleCopy['border-width'] = 1
@@ -142,7 +141,7 @@ class chat:
         #print self.button_skip.enabled
         
         #creating label for writing the text
-        self.label = gui.Label(position = threades.resize_pos((100.0,760.0),(900.0,800.0),self.chatWin.size),size = threades.resize_pos((700.0,30.0),(900.0,800.0),self.chatWin.size), parent = self.chatWin, text = self.label_text, style = self.labelStyleCopy)
+        self.label = gui.Label(position = threades.resize_pos((100.0,760.0),(900.0,800.0),self.chatWin.size),size = threades.resize_pos((700.0,30.0),(900.0,800.0),self.chatWin.size), parent = self.chatWin, text = model.text_file.proceed_text[0], style = self.labelStyleCopy)
         
         
         

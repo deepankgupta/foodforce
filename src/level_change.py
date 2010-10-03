@@ -180,10 +180,9 @@ class change_level:
         labelStyleCopy['font'] = myfont
         labelStyleCopy['font-color'] = (0,200,0)
         
-        text1='Loading....'
             
         #creating the label
-        label = gui.Label(position = threades.resize_pos((500,600)), size = threades.resize_pos((250,50)), parent = desktop_level,style=labelStyleCopy,text=text1)
+        label = gui.Label(position = threades.resize_pos((500,600)), size = threades.resize_pos((250,50)), parent = desktop_level,style=labelStyleCopy,text=model.text_file.loading_text[0])
         
         #self.run=True
         

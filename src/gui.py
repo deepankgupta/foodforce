@@ -185,6 +185,7 @@ def wrapText(text, font, width):
                 return currLine + "\n" + wrapText(' '.join(words[len(words)-i:]),font,width)
             i += 1
     else:
+	#print text
         return text
 
 def drawHTiled(frm, lenght, source, dest):

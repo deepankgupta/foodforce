@@ -25,7 +25,8 @@ import threading
 import random   
 from time import sleep,time,ctime
 #from texts import *
-import texts
+import texts_spa
+import texts_eng
 
 # import statements for animation classes
 import pygame
@@ -38,7 +39,8 @@ import game_events
 import load_images
 import pickle
 import glob
-from texts import setup_text, upgrade_fac_text, buysell_exceptions, setup_fac_exceptions, upgrade_fac_exceptions, fac_running_exceptions, setup_format_text, upgrade_format_text
+from texts_spa import setup_text, upgrade_fac_text, buysell_exceptions, setup_fac_exceptions, upgrade_fac_exceptions, fac_running_exceptions, setup_format_text, upgrade_format_text
+from texts_eng import setup_text, upgrade_fac_text, buysell_exceptions, setup_fac_exceptions, upgrade_fac_exceptions, fac_running_exceptions, setup_format_text, upgrade_format_text
 #import proceduralFlow
 
 
@@ -207,7 +209,7 @@ def stop_facility(facility_obj,name_res = ''):
     
 def get_setup_text(facility_obj):
     
-    ty = setup_format_text[0]
+    ty = model.text_file.setup_format_text[0]
     
     facility=facility_obj.get_name()
     number = str(int(facility_obj.get_original_number()))
@@ -223,13 +225,13 @@ def get_setup_text(facility_obj):
     rem_water = int(model.resources[0].get_vquantity()) - int(costbuild['WATER'])
     
     if rem_build_mat < 0:
-        resafter = setup_fac_exceptions['low_resource']%{'resource':'bricks'}
+        resafter = model.text_file.setup_fac_exceptions['low_resource']%{'resource':'bricks'}
     elif rem_tools < 0:
-        resafter = setup_fac_exceptions['low_resource']%{'resource':'tools'}
+        resafter = model.text_file.setup_fac_exceptions['low_resource']%{'resource':'tools'}
     elif rem_water < 0:
-        resafter = setup_fac_exceptions['low_resource']%{'resource':'water'}
+        resafter = model.text_file.setup_fac_exceptions['low_resource']%{'resource':'water'}
     else:
-        resafter = ' Bricks: '+ str(rem_build_mat)+ ' Tools: '+str(rem_tools)+' Water: '+str(rem_water)
+        resafter = model.text_file.list_gen_res[1]+':'+ str(rem_build_mat)+ model.text_file.list_gen_res[2]+':'+str(rem_tools)+model.text_file.list_gen_res[0]+':'+str(rem_water)
     
     strcostbuild = ''
     strcostrun = ''
@@ -248,28 +250,29 @@ def get_setup_text(facility_obj):
 
 def get_upgrade_text(facility_obj):
     
-    ty = upgrade_format_text[0]
+    ty = model.text_file.upgrade_format_text[0]
     try:
         assert (facility_obj.get_level()<3)
-        text = texts.upgrade_text[facility_obj.get_name()][facility_obj.get_level()]
+        text = model.text_file.upgrade_text[facility_obj.get_name()][facility_obj.get_level()]
         facility=facility_obj.get_name()
         number = str(int(facility_obj.get_original_number()))
         cost_upgrade = facility_obj.get_cost_inc_level()
         rem_build_mat = int(model.resources[1].get_vquantity()) - int(cost_upgrade['BUILDING MATERIAL'])
         rem_tools = int(model.resources[2].get_vquantity()) - int(cost_upgrade['TOOLS'])
         if rem_build_mat < 0:
-            resafter = setup_fac_exceptions['low_resource']%{'resource':'bricks'}
+            resafter = model.text_file.setup_fac_exceptions['low_resource']%{'resource':'bricks'}
         if rem_tools < 0 :
-            resafter = setup_fac_exceptions['low_resource']%{'resource':'tools'}
+            resafter = model.text_file.setup_fac_exceptions['low_resource']%{'resource':'tools'}
         else:
-            resafter = ' Bricks: '+ str(rem_build_mat)+ ' Tools: '+str(rem_tools)
+            resafter = model.text_file.list_gen_res[1]+':'+ str(rem_build_mat)+ model.text_file.list_gen_res[2]+':'+str(rem_tools)
         strcostupgrade=''
         for cost in cost_upgrade.iteritems():
             strcostupgrade+=' '+str(cost[1])+' '+str(cost[0])
+
     except:
-        resafter=upgrade_fac_exceptions['max_level']
+        resafter=model.text_file.upgrade_fac_exceptions['max_level']
         return resafter
-               
+  
     return ty%{'text':text,'number':number,'facility':facility,'costupgrade':strcostupgrade,'resafter':resafter}
 
 def set_build_facility_placement_flag(facility_obj = None):
@@ -376,7 +379,7 @@ def build_facility(facility_obj, PLACING_DATA_LIST = [], list_food = model.DEF_F
     if facility_obj.get_number() == 0:
         
         if facility_obj.get_original_number() > 0:
-            text = setup_fac_exceptions['stopped']
+            text = model.text_file.setup_fac_exceptions['stopped']
             message.push_message(text,'high')
             return text
     try:
@@ -402,20 +405,20 @@ def build_facility(facility_obj, PLACING_DATA_LIST = [], list_food = model.DEF_F
         
     except Exceptions.Resources_Underflow_Exception,args:
         res = str(args).lower()
-        text = setup_fac_exceptions['low_resource']%{'resource':res}
+        text = model.text_file.setup_fac_exceptions['low_resource']%{'resource':res}
         return text
     except Exceptions.Low_Manpower_Resources_Exception:
-        text = setup_fac_exceptions['low_manpower']
+        text = model.text_file.setup_fac_exceptions['low_manpower']
         return text
     except Exceptions.Maximum_Number_Reached:
-        text = setup_fac_exceptions['max_limit']
+        text = model.text_file.setup_fac_exceptions['max_limit']
         return text
     if autobuild_flag == False:
         set_build_facility_placement_flag(facility_obj)
     else:
         build_placed_facility("",True,PLACING_DATA_LIST)
     
-    return setup_text[4]
+    return model.text_file.setup_text[4]
 
 def check_collide_villager(sprite):
     ''' Checks if an installation collides with a position of a villager, If yes, then it deletes 
@@ -454,10 +457,10 @@ def upgrade_facility(facility_obj):
     if facility_obj.get_number() == 0:
         
         if facility_obj.get_original_number() > 0:
-            text = upgrade_fac_exceptions['stopped']
+            text = model.text_file.upgrade_fac_exceptions['stopped']
             message.push_message(text,'high')
             return text
-        text = upgrade_fac_exceptions['none_setup']
+        text = model.text_file.upgrade_fac_exceptions['none_setup']
         return text
         
     #global model.resources
@@ -465,10 +468,10 @@ def upgrade_facility(facility_obj):
         model.resources = facility_obj.update_level(model.resources,model.ppl)
     except Exceptions.Resources_Underflow_Exception,args:
         res = str(args).lower()
-        text = upgrade_fac_exceptions['low_resource']%{'resource':res}
+        text = model.text_file.upgrade_fac_exceptions['low_resource']%{'resource':res}
         return text
     except Exceptions.Maximum_Level_Reached:
-        text =  upgrade_fac_exceptions['max_level']
+        text =  model.text_file.upgrade_fac_exceptions['max_level']
         return text
     
     if facility_obj.get_name() == 'HOUSE':
@@ -489,7 +492,7 @@ def upgrade_facility(facility_obj):
     event = game_events.Event(type = game_events.UPGRADEFACILITYEVENT, facility_name = facility_obj.get_name())
     game_events.EventQueue.add(event)
     
-    text = upgrade_fac_text[4]
+    text = model.text_file.upgrade_fac_text[4]
     return text
 
 
@@ -878,6 +881,7 @@ def save_game():
     pickle.dump(current_level,output)
     pickle.dump(model.game_controller.get_global_time(),output)
     pickle.dump(PLACING_LIST_TEMP,output)
+    pickle.dump(model.select_lang_flag,output)
     output.close()
     
 def delete_saved_game(data_file = save_game_file):
@@ -901,6 +905,7 @@ def resume_game():
     level = pickle.load(output)
     current_level = level
     level_save_time = pickle.load(output)
+    model.select_lang_flag = pickle.load(output)
     model.game_controller.resume_game_time_update(level_save_time)
     #print model.global_time
     while True:
