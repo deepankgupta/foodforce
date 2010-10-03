@@ -1,3 +1,4 @@
+encoding: UTF-8
 load_images.py
 olpc-setup.py
 model.py
