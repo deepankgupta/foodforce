@@ -80,7 +80,7 @@ class Earthquake(pygame.sprite.Sprite):
                 self.image.fill((0,0,0,int(self.alpha)))
                 #threades.screen.blit(self.image,(0,40))
             if self.counter==40:
-                display_text = ' Your Village has been hit by an Earthquake'
+                display_text = model.text_file.earthquake_hit_text
                 threades.message.push_message(display_text,'high')
             if self.counter == 80:
                 threades.audio.play_music(True,'soundtrack')

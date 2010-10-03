@@ -3,7 +3,7 @@ S'action'
 p1
 a(lp2
 I7
-aS'Hait\xc3\xad es un pa\xc3\xads caribe\xc3\xb1o. Junto a Rep\xc3\xbablica Dominicana, ocupa la isla La Espa\xc3\xb1ola, en el archipelago mayor de las Antillas. El \xc3\xa1rea total de Hait\xc3\xad es de 27.750 kil\xc3\xb3metros cuadrados y su capital es Puerto Pr\xc3\xadncipe. Fue la primera naci\xc3\xb3n independiente de Am\xc3\xa9rica Latina y la primera rep\xc3\xbablica en el mundo en ser dirigido por un ser humano de raza negra cuando tras una rebeli\xc3\xb3n exitosa de esclavos en 1804.'
+aS'Hait\xed es un pa\xeds caribe\xf1o. Junto a Rep\xfablica Dominicana, ocupa la isla La Espa\xf1ola, en el archipelago mayor de las Antillas. El \xe1rea total de Hait\xed es de 27.750 kil\xf3metros cuadrados y su capital es Puerto Pr\xedncipe. Fue la primera naci\xf3n independiente de Am\xe9rica Latina y la primera rep\xfablica en el mundo en ser dirigido por un ser humano de raza negra cuando tras una rebeli\xf3n exitosa de esclavos en 1804.'
 p3
 aa.(lp0
 S'action'
@@ -21,17 +21,17 @@ a(lp3
 (lp4
 S'Gilbert Fernandez'
 p5
-aS'La ciudad de Hait\xc3\xad ha sido golpeado por un catastr\xc3\xb3fico terremoto de magnitud 7.0'
+aS'La ciudad de Hait\xed ha sido golpeado por un catastr\xf3fico terremoto de magnitud 7.0'
 p6
 aS'Stevenson Gorbachev'
 p7
-aS'Muchas edificaciones notables, tales como el Palacio Presidencial, la Asamblea Nacional, la catedral de Puerto Pr\xc3\xadncipe, la principal c\xc3\xa1rcel est\xc3\xa1n completamente destruidas. Muchas figuras p\xc3\xbablicas tambi\xc3\xa9n son v\xc3\xadctimas de este terremoto \xe2\x80\x98'
+aS'Muchas edificaciones notables, tales como el Palacio Presidencial, la Asamblea Nacional, la catedral de Puerto Pr\xedncipe, la principal c\xe1rcel est\xe1n completamente destruidas. Muchas figuras p\xfablicas tambi\xe9n son v\xedctimas de este terremoto'
 p8
 ag5
-aS'Hait\xc3\xad no es capaz de recuperarse por s\xc3\xad sola de este desastre'
+aS'Hait\xed no es capaz de recuperarse por s\xed sola de este desastre'
 p9
 ag7
-aS'Hemos pedido ayuda a nuestros pa\xc3\xadses vecinos. Espero que seamos capaces de superar estos tiempos oscuros con su apoyo'
+aS'Hemos pedido ayuda a nuestros pa\xedses vecinos. Espero que seamos capaces de superar estos tiempos oscuros con su apoyo'
 p10
 aaS'earthquake_st.png'
 p11
@@ -40,7 +40,7 @@ S'action'
 p1
 a(lp2
 I7
-aS'Hait\xc3\xad ha sido golpeado por un terremoto que ha destruido la mayor parte de los edificios y deterior\xc3\xb3 gravemente la situaci\xc3\xb3n de la ciudad. Varios equipos se han enviado por diferentes pa\xc3\xadses para atender la situaci\xc3\xb3n y ayudar en todo lo que can. Tu, siendo la jefatura de la ciudad, tienen que trabajar en colaboraci\xc3\xb3n con todos los equipos enviados para su ayuda y garantizar la restauraci\xc3\xb3n de la paz en la ciudad.'
+aS'Hait\xed ha sido golpeado por un terremoto que ha destruido la mayor parte de los edificios y deterior\xf3 gravemente la situaci\xf3n de la ciudad. Varios equipos se han enviado por diferentes pa\xedses para atender la situaci\xf3n y ayudar en todo lo que can. Tu, siendo la jefatura de la ciudad, tienen que trabajar en colaboraci\xf3n con todos los equipos enviados para su ayuda y garantizar la restauraci\xf3n de la paz en la ciudad.'
 p3
 aa.(lp0
 S'action'
@@ -59,13 +59,13 @@ aS'En este momento es necesario que se relocalicen los sobrevivientes o la gente
 p8
 aS'Ragnar Stefansson'
 p9
-aS' Las v\xc3\xadas de acceso m\xc3\xa1s importantes de la ciudad est\xc3\xa1n bloqueadas y hemos comenzado a trabajar en ello, pero nos tomar\xc3\xa1 algunos d\xc3\xadas para volver a la normalidad '
+aS' Las v\xedas de acceso m\xe1s importantes de la ciudad est\xe1n bloqueadas y hemos comenzado a trabajar en ello, pero nos tomar\xe1 algunos d\xedas para volver a la normalidad '
 p10
 ag5
 aS' Hasta entonces , debemos hacer algo para ayudar a los sobrevivientes. '
 p11
 ag7
-aS'La ciudad tambi\xc3\xa9n necesita m\xc3\xa1s hospitales, ya que s\xc3\xb3lo hay un hospital en pleno funcionamiento en la ciudad y est\xc3\xa1 saturado. Hay cientos de heridos.'
+aS'La ciudad tambi\xe9n necesita m\xe1s hospitales, ya que s\xf3lo hay un hospital en pleno funcionamiento en la ciudad y est\xe1 saturado. Hay cientos de heridos.'
 p12
 aaS'haiti.png'
 p13
@@ -74,14 +74,14 @@ S'action'
 p1
 a(lp2
 I9
-aS'Granjas y Hospitales ayudan a aumentar la barra de progreso de nutici\xc3\xb3n y de salud.'
+aS'Granjas y Hospitales ayudan a aumentar la barra de progreso de nutici\xf3n y de salud.'
 p3
 aa.(lp0
 S'action'
 p1
 a(lp2
 I9
-aS'La misi\xc3\xb3n es proporcionar alimentos y medicamentos a las instalaciones de los sobrevivientes. Aumenta las barras de progreso de la nutrici\xc3\xb3n y la salud a 30% en un lapso de 2 semanas.'
+aS'La misi\xf3n es proporcionar alimentos y medicamentos a las instalaciones de los sobrevivientes. Aumenta las barras de progreso de la nutrici\xf3n y la salud a 30% en un lapso de 2 semanas.'
 p3
 aa.(lp0
 S'condition'
@@ -149,7 +149,7 @@ S'actionTrue'
 p1
 a(lp2
 I7
-aS'Haz tenido \xc3\xa9xito en el primer paso hacia la resurrecci\xc3\xb3n de la ciudad'
+aS'Haz tenido \xe9xito en el primer paso hacia la resurrecci\xf3n de la ciudad'
 p3
 aa.(lp0
 S'actionTrue'
@@ -181,7 +181,7 @@ a(lp3
 (lp4
 S'Tony Peralta'
 p5
-aS' Grandes cantidades de suministros de alimentos han sido recogidos en Puerto Pr\xc3\xadncipe y un gran n\xc3\xbamero de m\xc3\xb3dulos de atenci\xc3\xb3n m\xc3\xa9dica m\xc3\xb3vil, enviados por varios pa\xc3\xadses, est\xc3\xa1n trabajando con las personas heridas'
+aS' Grandes cantidades de suministros de alimentos han sido recogidos en Puerto Pr\xedncipe y un gran n\xfamero de m\xf3dulos de atenci\xf3n m\xe9dica m\xf3vil, enviados por varios pa\xedses, est\xe1n trabajando con las personas heridas'
 p6
 aS'Ragnar Stefansson'
 p7
@@ -189,7 +189,7 @@ aS'Cerca del 90% de los edificios en la ciudad han sido destruidos y la gente vi
 p8
 aS'Stevenson Gorbachev'
 p9
-aS'Tenemos que empezar a construir m\xc3\xa1s casas para la gente, pero tambi\xc3\xa9n debemos asegurarnos de que los progresos realizados hasta la fecha se mantengan y no se malgasten.'
+aS'Tenemos que empezar a construir m\xe1s casas para la gente, pero tambi\xe9n debemos asegurarnos de que los progresos realizados hasta la fecha se mantengan y no se malgasten.'
 p10
 aaS'haiti.png'
 p11
@@ -198,7 +198,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'La misi\xc3\xb3n es proporcionar una vivienda digna a los habitantes de la aldea. Aumenta la barra de progreso para Vivienda a 40%, manteniendo las barras de progreso para nutrici\xc3\xb3n y salud por encima del 30%. Esta misi\xc3\xb3n debe ser completada en un lapso de 1 mes.'
+aS'La misi\xf3n es proporcionar una vivienda digna a los habitantes de la aldea. Aumenta la barra de progreso para Vivienda a 40%, manteniendo las barras de progreso para nutrici\xf3n y salud por encima del 30%. Esta misi\xf3n debe ser completada en un lapso de 1 mes.'
 p3
 aa.(lp0
 S'condition'
@@ -233,7 +233,7 @@ S'actionFalse'
 p1
 a(lp2
 I8
-aS'No fuiste capaz de cumplir esta misi\xc3\xb3n. Debes completarla para seguir al siguiente nivel'
+aS'No fuiste capaz de cumplir esta misi\xf3n. Debes completarla para seguir al siguiente nivel'
 p3
 aa.(lp0
 S'actionFalse'
@@ -280,7 +280,7 @@ S'actionFalse'
 p1
 a(lp2
 I8
-aS'No fuiste capaz de cumplir esta misi\xc3\xb3n. Debes completarla para seguir al siguiente nivel'
+aS'No fuiste capaz de cumplir esta misi\xf3n. Debes completarla para seguir al siguiente nivel'
 p3
 aa.(lp0
 S'actionFalse'
@@ -298,11 +298,11 @@ a(lp3
 (lp4
 S'Gilbert Fernandez'
 p5
-aS'Es parte esencial del plan de recuperaci\xc3\xb3n que la gente disponga de fuentes de trabajo y disponga nuevamente de sueldos.'
+aS'Es parte esencial del plan de recuperaci\xf3n que la gente disponga de fuentes de trabajo y disponga nuevamente de sueldos.'
 p6
 aS'Ragnar Stefansson'
 p7
-aS'La gente ha empezado a vivir en sus propios hogares y el proceso de reconstrucci\xc3\xb3n avanza a un ritmo acelerado '
+aS'La gente ha empezado a vivir en sus propios hogares y el proceso de reconstrucci\xf3n avanza a un ritmo acelerado '
 p8
 aS'Stevenson Gorbachev'
 p9
@@ -318,14 +318,14 @@ S'action'
 p1
 a(lp2
 I9
-aS'La funci\xc3\xb3n de los talleres es entrenar a las personas para producir herramientas para la aldea.'
+aS'La funci\xf3n de los talleres es entrenar a las personas para producir herramientas para la aldea.'
 p3
 aa.(lp0
 S'action'
 p1
 a(lp2
 I9
-aS'Esta vez tendr\xc3\xa1s que entrenar a las personas para que puedan iniciar una vida normal otra vez. Aumenta la barra de progreso de capacitaci\xc3\xb3n a 40% creando talleres y tambi\xc3\xa9n asegura que las barras de nutrici\xc3\xb3n y salud se encuentren por sobre 30% y la barra de vivienda por sobre el 40%. El plazo para esta misi\xc3\xb3n es de 1 mes.'
+aS'Esta vez tendr\xe1s que entrenar a las personas para que puedan iniciar una vida normal otra vez. Aumenta la barra de progreso de capacitaci\xf3n a 40% creando talleres y tambi\xe9n asegura que las barras de nutrici\xf3n y salud se encuentren por sobre 30% y la barra de vivienda por sobre el 40%. El plazo para esta misi\xf3n es de 1 mes.'
 p3
 aa.(lp0
 S'condition'
@@ -369,7 +369,7 @@ S'actionFalse'
 p1
 a(lp2
 I8
-aS'Has perdido en este nivel. Int\xc3\xa9ntalo de nuevo'
+aS'Has perdido en este nivel. Int\xe9ntalo de nuevo'
 p3
 aa.(lp0
 S'actionFalse'
@@ -402,7 +402,7 @@ S'actionTrue'
 p1
 a(lp2
 I7
-aS'Se ha creado empleo para las personas y se han hecho autosuficientes. \xc2\xa1Felicitaciones!'
+aS'Se ha creado empleo para las personas y se han hecho autosuficientes. \xa1Felicitaciones!'
 p3
 aa.(lp0
 S'actionTrue'
@@ -416,7 +416,7 @@ S'actionFalse'
 p1
 a(lp2
 I8
-aS'Has perdido en este nivel. Int\xc3\xa9ntalo de nuevo'
+aS'Has perdido en este nivel. Int\xe9ntalo de nuevo'
 p3
 aa.(lp0
 S'actionFalse'
@@ -438,11 +438,11 @@ aS'Debido al terremoto el sistema educativo de la ciudad ha colapsado completame
 p6
 aS'John Tremblay'
 p7
-aS'Es esencial para el futuro que los ni\xc3\xb1os recibir\xc3\xa1n educaci\xc3\xb3n y esta se imparta desde sus inicios. '
+aS'Es esencial para el futuro que los ni\xf1os recibir\xe1n educaci\xf3n y esta se imparta desde sus inicios. '
 p8
 aS'Gilbert Fernandez'
 p9
-aS'La ciudad tambi\xc3\xa9n debe poseer ahorros monetarios a fin de garantizar que este tipo de calamidades se pueden manejar de manera m\xc3\xa1s efectiva. '
+aS'La ciudad tambi\xe9n debe poseer ahorros monetarios a fin de garantizar que este tipo de calamidades se pueden manejar de manera m\xe1s efectiva. '
 p10
 aaS'haiti.png'
 p11
@@ -451,7 +451,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'Todos los servicios b\xc3\xa1sicos de la aldea han sido restaurados, por lo que es tu trabajo manternerlos trabajando. Aumenta la barra de progreso de educaci\xc3\xb3n y capacitaci\xc3\xb3n a 60% y en el pr\xc3\xb3ximo mes ninguna de las barras debe caer por debajo del 50% y debes reunir 4000 Rs al cabo de este tiempo.'
+aS'Todos los servicios b\xe1sicos de la aldea han sido restaurados, por lo que es tu trabajo manternerlos trabajando. Aumenta la barra de progreso de educaci\xf3n y capacitaci\xf3n a 60% y en el pr\xf3ximo mes ninguna de las barras debe caer por debajo del 50% y debes reunir 4000 Rs al cabo de este tiempo.'
 p3
 aa.(lp0
 S'condition'
@@ -545,7 +545,7 @@ S'actionTrue'
 p1
 a(lp2
 I7
-aS'Has completado este paso de llevar la ciudad hacia plena recuperaci\xc3\xb3n'
+aS'Has completado este paso de llevar la ciudad hacia plena recuperaci\xf3n'
 p3
 aa.(lp0
 S'actionTrue'
@@ -577,26 +577,26 @@ a(lp3
 (lp4
 S'Stevenson Gorbachev'
 p5
-aS'La situaci\xc3\xb3n de la ciudad ha mejorado considerablemente '
+aS'La situaci\xf3n de la ciudad ha mejorado considerablemente '
 p6
 aS'Gilbert Fernandez'
 p7
-aS' Debido al r\xc3\xa1pido desarrollo del sistema educativo, One Laptop Per Child (OLPC, Un Computador por Ni\xc3\xb1o) ha decidido donar computadoras port\xc3\xa1tiles a las escuelas .'
+aS' Debido al r\xe1pido desarrollo del sistema educativo, One Laptop Per Child (OLPC, Un Computador por Ni\xf1o) ha decidido donar computadoras port\xe1tiles a las escuelas .'
 p8
 aS'John Tremblay'
 p9
-aS'Esta es una medida muy buena pues ser\xc3\xa1 de gran ayuda al crecimiento del sistema educativo. Por otra parte, este tipo de cosas ayudar mantener todos los niveles de la sociedad en equidad y por lo tanto que la sociedad se desarrolle en su conjunto.'
+aS'Esta es una medida muy buena pues ser\xe1 de gran ayuda al crecimiento del sistema educativo. Por otra parte, este tipo de cosas ayudar mantener todos los niveles de la sociedad en equidad y por lo tanto que la sociedad se desarrolle en su conjunto.'
 p10
 ag5
-aS'El progreso realizado a la fecha ser\xc3\xada in\xc3\xbatil si no se mantiene y el dinero obtenido se utilice para futuros desarrollos. \xc2\xbfTenemos suficientes alimentos y medicamentos para la gente en los pr\xc3\xb3ximos meses?'
+aS'El progreso realizado a la fecha ser\xeda in\xfatil si no se mantiene y el dinero obtenido se utilice para futuros desarrollos. \xbfTenemos suficientes alimentos y medicamentos para la gente en los pr\xf3ximos meses?'
 p11
 aS'Tony Peralta'
 p12
-aS'Nuestros dep\xc3\xb3sitos est\xc3\xa1n llenos, estamos totalmente preparados en ese frente,'
+aS'Nuestros dep\xf3sitos est\xe1n llenos, estamos totalmente preparados en ese frente,'
 p13
 aS'Ragnar Stefansson'
 p14
-aS'El \xc3\xa1rea de vivienda necesita ser atendida, vamos a necesitar muchas m\xc3\xa1s casas para otorgarle techo a todas las personas. '
+aS'El \xe1rea de vivienda necesita ser atendida, vamos a necesitar muchas m\xe1s casas para otorgarle techo a todas las personas. '
 p15
 aaS'haiti.png'
 p16
@@ -605,7 +605,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'Ahora tiene que prestar atenci\xc3\xb3n al desarrollo de la persona village.Every en el pueblo debe tener una casa adecuada a itself.Your tarea es aumentar la barra de progreso para la vivienda del 70%, manteniendo todos los dem\xc3\xa1s muy por encima del 30% durante los primeros 10 d\xc3\xadas y por encima del 50% para los pr\xc3\xb3ximos 20 dias.El plazo es de 1 meses.'
+aS'Ahora tiene que prestar atenci\xf3n al desarrollo de la persona village.Every en el pueblo debe tener una casa adecuada a itself.Your tarea es aumentar la barra de progreso para la vivienda del 70%, manteniendo todos los dem\xe1s muy por encima del 30% durante los primeros 10 d\xedas y por encima del 50% para los pr\xf3ximos 20 dias.El plazo es de 1 meses.'
 p3
 aa.(lp0
 S'condition'
@@ -751,7 +751,7 @@ S'actionTrue'
 p1
 a(lp2
 I7
-aS'Has completado este paso llevando la ciudad hacia la plena recuperaci\xc3\xb3n'
+aS'Has completado este paso llevando la ciudad hacia la plena recuperaci\xf3n'
 p3
 aa.(lp0
 S'actionFalse'
@@ -776,15 +776,15 @@ a(lp3
 (lp4
 S'Gilbert Fernandez'
 p5
-aS'La gente ha vuelto a tener una vida feliz y pr\xc3\xb3spera'
+aS'La gente ha vuelto a tener una vida feliz y pr\xf3spera'
 p6
 aS'Tony Peralta'
 p7
-aS'Todos nuestros esfuerzos han dado sus frutos, nuestro trabajo aqu\xc3\xad en esta ciudad ha terminado. '
+aS'Todos nuestros esfuerzos han dado sus frutos, nuestro trabajo aqu\xed en esta ciudad ha terminado. '
 p8
 aS'Stevenson Gorbachev'
 p9
-aS'Aunque la ciudad se ha recuperado de la conmoci\xc3\xb3n del terremoto, es mi deber como Gobernador mantener la condici\xc3\xb3n actual de la aldea. '
+aS'Aunque la ciudad se ha recuperado de la conmoci\xf3n del terremoto, es mi deber como Gobernador mantener la condici\xf3n actual de la aldea. '
 p10
 aaS'haiti.png'
 p11

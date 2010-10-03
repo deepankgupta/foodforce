@@ -50,7 +50,7 @@ instruction_text = ["Bienvenido a la aldea de Gokul. \n\nJoin la Fuerza y la Ali
 credits_text = "Desarrolladores: \n      Mohit Taneja\n         Grivan Thapar\n          Rupinder Singh\n\n         Administrador \n  Deepank Gupta \n\n Pruebas de crédito: \n Chakkilam Infotech limitada \n\n ilustraciones y el logotipo de: \n Silke Buhr y Graham Bell del PMA "
 
 
-#about_us_text = 'Somos un grupo de programadores interesados para que las plataformas digitales como los portátiles de servir como plataformas para proporcionar educación y formación al tiempo que el alumno se sienten comprometidos y entretenido durante toda la experiencia. Foodforce2 es uno de esos intentos de hacer que se conscientes de hambre en el mundo y la pobreza, dándole la oportunidad de crear comunidades auto-sostenible y en el proceso que tiene una aplicación de otras habilidades básicas de matemáticas y conocimientos teóricos. \n\nPor favor escríbanos a foodforce2@gmail.com de las opiniones, comentarios e ideas para \ndevelopment. \n\nSe adelante a oír de usted. "
+about_us_text = 'Somos un grupo de programadores interesados para que las plataformas digitales como los portátiles de servir como plataformas para proporcionar educación y formación al tiempo que el alumno se sienten comprometidos y entretenido durante toda la experiencia. Foodforce2 es uno de esos intentos de hacer que se conscientes de hambre en el mundo y la pobreza, dándole la oportunidad de crear comunidades auto-sostenible y en el proceso que tiene una aplicación de otras habilidades básicas de matemáticas y conocimientos teóricos. \n\nPor favor escríbanos a foodforce2@gmail.com de las opiniones, comentarios e ideas para \ndevelopment. \n\nSe adelante a oír de usted.'
 
 # Área de visualización de texto
 
@@ -67,6 +67,8 @@ level_text = "Nivel"
 
 list_gen_res = ('agua', 'Ladrillo', 'Herramientas', 'Medicamentos', 'Libros')
 list_food_res = ('arroz', 'Frutas y Hortalizas', 'Habichuelas', 'Sugar', 'Salt', 'aceite')
+
+earthquake_hit_text = "Su pueblo ha sido golpeada por un terremoto"
 
 # GUI texto butons
 

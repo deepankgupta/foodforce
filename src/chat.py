@@ -291,7 +291,7 @@ def chat_event_handle(e):
         if e.key==K_RETURN:
             if show_whole_chat_flag==False:
                 show_whole_chat_flag=True
-                chatObject.label.text='     ENTER : To move to next set of chats              ESC : To skip chat           '
+                chatObject.label.text= model.text_file.proceed_text[0]
             else:
                 
                 move_to_next_chatwin_flag=True
@@ -299,7 +299,7 @@ def chat_event_handle(e):
         if e.button == 1:
             if show_whole_chat_flag==False:
                 show_whole_chat_flag=True
-                chatObject.label.text='     ENTER : To move to next set of chats              ESC : To skip chat           '
+                chatObject.label.text= model.text_file.proceed_text[0]
             else:
                 
                 move_to_next_chatwin_flag=True
