@@ -58,6 +58,8 @@ update_thread = None
 message_thread = None
 level_obj = level_change.change_level()
 storyboardObj = proceduralFlow.storyboardFlow()
+load_images.load_images()
+
 
 def message_window():
     font_color = (255,214,150)
@@ -274,7 +276,6 @@ class starting_intro:
         buttonsurf = pygame.image.load(os.path.join('art','button_green.png')).convert_alpha()
         buttonsurf = pygame.transform.scale(buttonsurf, (36, threades.resize_pt_y(40)))
         self.button_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
-
         self.pause_flag = pause_flag
         if self.pause_flag:
             self.start_button = gui.Button(position = threades.resize_pos((475,500)), size = threades.resize_pos((250,50)), parent = desktop2, text = model.text_file.start_new_game[0],style = self.button_style) 
@@ -316,6 +317,7 @@ class starting_intro:
      
     def start_game_again(self,button=None):
         global select_flag
+	global panel
         #stopping the soundtrack
         threades.audio.stop_soundtrack()
         threades.audio.play_music(False,'soundtrack')
@@ -327,20 +329,20 @@ class starting_intro:
         storyboardObj.prevConditionResult = -1
         storyboardObj.norConditionFlag = False
 	self.close_win()
-	print select_flag
         if select_flag == False:
             self.resume_saved_level()
         else:
             self.startup_text()
         select_flag = True
 	self.storyboard_menu_run = False
+	self.run = False
+	self.language_menu_run = False
         #erasing the facilities and deciding the data file
         gui_buttons.instruction_off_flag = True
-
+	threades.total_update_flag = True
         
     def select_save_or_new_game(self,button=None):
         global select_flag
-	#print '5'
         if button.text == model.text_file.start_new_game[0]:
             select_flag = True
         else:
@@ -383,7 +385,7 @@ class starting_intro:
         self.op_style = op_style
         
         self.win = gui.Window(position = position_win,size = size_win,parent = desktop2,style = win_style,text = model.text_file.language_window_text[0], closeable = False,shadeable = False,moveable = False )
-        #self.win.onClose = self.main_menu
+        self.win.onClose = self.main_menu
         
 	self.lang1 = gui.OptionBox(position = threades.resize_pos((150.0,200.0),(900.0,600.0),self.win.size),parent = self.win,style = op_style,text = model.text_file.Language[0])
 	self.lang1.onValueChanged = self.select_lang
@@ -397,7 +399,6 @@ class starting_intro:
         self.play_button = gui.Button(position = threades.resize_pos((500,490),(900.0,600.0),self.win.size), size = threades.resize_pos((110,30),(900.0,600.0),self.win.size), parent = self.win, text = model.text_file.play_text[0],style = self.button_style)
         self.play_button.onClick = self.storyboardWindow
 
-	
         self.play_button.enabled = False
         logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
         ff_logo = pygame.transform.scale(logo,threades.resize_pos((1128,171)))
@@ -421,16 +422,21 @@ class starting_intro:
                     elif e.type==mesh.MESSAGE_MULTI or e.type==mesh.MESSAGE_UNI :
                         game_sharing.sharing_handler(e.type,e.handle,e.content)
                     #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,e.content]).start()
-    
+	    #print 'in choose language'
 	    desktop2.update()
             desktop2.draw()
             pygame.display.update()
 	    
 
-
+    #def chooselanguage_skip(self,button = None):
+	#self.close_win()
+	#self.main_menu();
+	
     def storyboardWindow(self,button = None):
         global select_flag
-        self.close_win()
+	self.close_win()
+	self.remove_buttons()
+        
         self.lightgreen_color = (0,80,0)
         self.green_color = (0,150,0)
         self.black_color = (0,0,0)
@@ -514,7 +520,7 @@ class starting_intro:
                     elif e.type==mesh.MESSAGE_MULTI or e.type==mesh.MESSAGE_UNI :
                         game_sharing.sharing_handler(e.type,e.handle,e.content)
                     #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,e.content]).start()
-
+	    #print 'in storyboard window'
             desktop2.update()
             desktop2.draw()
             pygame.display.update()
@@ -528,7 +534,7 @@ class starting_intro:
 	    model.text_file = texts_eng
 	elif model.select_lang_flag == 'spa':
 	    model.text_file = texts_spa
-	print model.text_file
+	#print model.text_file
         
     def select_lang(self,button = None):
 	self.play_button.enabled = True
@@ -538,7 +544,7 @@ class starting_intro:
 	elif button.text == model.text_file.Language[1]:
 	    model.select_lang_flag = 'spa'
 	    
-	print model.select_lang_flag
+	#print model.select_lang_flag
 	    
     def instructionsWindow(self,button = None):
         ''' Opens a window for Instructions
@@ -911,7 +917,7 @@ def pause_screen(pause_flag = True):
                 safe_exit()
             if e.type == QUIT:
                 safe_exit()
-    
+	#print 'in pause screen'
         desktop2.update()
         desktop2.draw()
         pygame.display.update()
@@ -984,7 +990,6 @@ def main():
     threades.audio.play_music(False,'soundtrack')
     
     threades.check_saved_game_level()
-    print 'special character : ú'
     model.game_controller.reset_time()
     pause_screen()
     intro_thread.join()
@@ -1007,6 +1012,7 @@ def main():
 
     threades.screen.fill((0,0,0))
     panel = display_panel.display_panel()
+    #panel.__init__()
     animation_obj = threades.Animation()
     animation_obj.update()
     # Starting of the threads

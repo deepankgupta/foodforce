@@ -381,7 +381,7 @@ class facilities_panel:
         self.value_labels = []
         for i in range(6):
             label = gui.Label(position = threades.resize_pos((950,50+55*i)),size = threades.resize_pos((300,30)), parent = threades.desktop, text = self.list_titles[i], style = self.labelstyle1)
-            label = gui.Label(position = threades.resize_pos((950,75+55*i)),size = threades.resize_pos((300,30)), parent = threades.desktop, text = self.list_names[0]+str(int(self.list_values1[i]))+' Level: '+str(int(self.list_values2[i])), style = self.labelstyle1)
+            label = gui.Label(position = threades.resize_pos((950,75+55*i)),size = threades.resize_pos((300,30)), parent = threades.desktop, text = self.list_names[0]+str(int(self.list_values1[i]))+model.text_file.level_text+':'+str(int(self.list_values2[i])), style = self.labelstyle1)
             label.surf.set_alpha(200)
             self.value_labels.append(label)
 
