@@ -1306,7 +1306,7 @@ class gui_buttons:
         ''' Initialises the buttons for setting up facility, upgrading it and for buy/sell operations
         '''
         myfont = pygame.font.Font("font.ttf", threades.resize_pt(17))
-
+        self.name_labels = []
         self.instruction_text = ""
         #Creating new button style
         buttonsurf = pygame.image.load(os.path.join('art','button.png')).convert_alpha()
@@ -1317,6 +1317,10 @@ class gui_buttons:
         self.setup_button = gui.Button(position = threades.resize_pos((7,859)), size = threades.resize_pos((290,25)), parent = threades.desktop, text = model.text_file.panel_text[0],style = button_style)
         self.upgrade_button = gui.Button(position = threades.resize_pos((307,859)), size = threades.resize_pos((290,25)), parent = threades.desktop, text = model.text_file.panel_text[1],style = button_style)
         self.buysell_button = gui.Button(position = threades.resize_pos((607,859)), size = threades.resize_pos((290,25)), parent = threades.desktop, text = model.text_file.panel_text[2],style = button_style)
+        self.name_labels.append(self.setup_button)
+        self.name_labels.append(self.upgrade_button)
+        self.name_labels.append(self.buysell_button)
+        
 
         #Creating new button style
         buttonsurf = pygame.image.load(os.path.join('art','button.png')).convert_alpha()
@@ -1324,7 +1328,7 @@ class gui_buttons:
         button_style = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
         button_style['font'] = myfont
         self.instructions_button = gui.Button(position = threades.resize_pos((1000,10)), size = threades.resize_pos((190,25)), parent = threades.desktop, text = model.text_file.objective[0],style = button_style)
-
+        self.name_labels.append(self.instructions_button)
         self.setup_obj = setup_button()
         self.upgrade_obj = upgrade_button()
         self.buysell_obj = buysell_button()
@@ -1335,7 +1339,13 @@ class gui_buttons:
         self.win_flag = False
         self.child_win_flag = False
 
-    
+    def change_label_names(self):
+        
+        for i in range(3):
+            self.name_labels[i].text = model.text_file.panel_text[i]
+            
+        self.name_labels[3].text = model.text_file.objective[0]
+        
     def showInstruction(self, button = None):
     
         thread_instruction = threading.Thread(target = showMessages.addMessage, args=[]).start()

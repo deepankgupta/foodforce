@@ -3,7 +3,7 @@ S'action'
 p1
 a(lp2
 I7
-aS'\n \n \n \nIn this beautiful country called India, there is a Gokul village. The village of gokul is governed by Kamat who is the Sarpanch(head) of the village. But Kamat is growing old and needs a successor. Can you, his younger son, take on the responsibilities of the village and make the village prosper.'
+aS'\n \n \n \nEn este hermoso pa\xeds llamado Chile, hay un pueblo Gokul. El pueblo de Gokul se rige por Kamat que es el sarpanch (jefe) de la aldea. Pero Kamat est\xe1 envejeciendo y necesita un sucesor. \xbfPuede usted, su hijo menor, asumir las responsabilidades del pueblo y hacer que el pueblo prospere.'
 p3
 aa.(lp0
 S'action'
@@ -18,7 +18,7 @@ aS'Hijo, te voy a ense\xf1ar sobre los distintos aspectos para llevar adelante u
 p6
 aS'Son'
 p7
-aS' Padre, esto no es una aldea, es una terreno vac\xedo .... '
+aS' Padre, esto no es una aldea,es una terreno vac\xedo .... '
 p8
 ag5
 aS' S\xed, \xe9ste es el lugar donde alguna vez existi\xf3 la aldea de Abujamara. La aldea se convirti\xf3 en tierra est\xe9ril cuando Ganga maldijo a los habitantes de Abujamara cambiando el curso del r\xedo, inundando Abujamara. Las personas perdieron sus hogares y nosotros les ayudaremos a reconstruir su aldea'

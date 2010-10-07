@@ -24,7 +24,6 @@ import Exceptions
 import threading   
 import random   
 from time import sleep,time,ctime
-#from texts import *
 import texts_spa
 import texts_eng
 

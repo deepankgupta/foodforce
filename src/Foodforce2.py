@@ -17,10 +17,9 @@
 #   along with this program; if not, write to the Free Software
 #   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #
-
+import pickle
 from texts_spa import *
 from texts_eng import *
-import pickle
 import pygame
 from pygame.locals import *
 from pygame.display import *
@@ -59,6 +58,7 @@ message_thread = None
 level_obj = level_change.change_level()
 storyboardObj = proceduralFlow.storyboardFlow()
 load_images.load_images()
+panel = display_panel.display_panel()
 
 
 def message_window():
@@ -340,6 +340,8 @@ class starting_intro:
         #erasing the facilities and deciding the data file
         gui_buttons.instruction_off_flag = True
 	threades.total_update_flag = True
+	panel.change_labels()
+	gui_buttons.gui_obj.change_label_names()
         
     def select_save_or_new_game(self,button=None):
         global select_flag
@@ -991,6 +993,7 @@ def main():
     
     threades.check_saved_game_level()
     model.game_controller.reset_time()
+    gui_buttons.initialize_gui()
     pause_screen()
     intro_thread.join()
     
@@ -1008,11 +1011,11 @@ def main():
      
     # loading the correct data file
 
-    gui_buttons.initialize_gui()
+    #gui_buttons.initialize_gui()
 
     threades.screen.fill((0,0,0))
-    panel = display_panel.display_panel()
-    #panel.__init__()
+    #panel = display_panel.display_panel()
+    panel.change_labels()
     animation_obj = threades.Animation()
     animation_obj.update()
     # Starting of the threads

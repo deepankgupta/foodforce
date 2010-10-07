@@ -80,7 +80,7 @@ class indicator_panel:
         '''
         self.update_flag = True
         
-
+        self.name_labels = []
         myfont1 = pygame.font.Font("font.ttf", threades.resize_pt(30))   # For main heading
 
         myfont2 = pygame.font.Font("font.ttf", threades.resize_pt(20))   # For indicators name
@@ -95,7 +95,7 @@ class indicator_panel:
         self.labelstyle1['border-color'] = self.color_grey
         # Drawing main Indicator label
         label = gui.Label(position = threades.resize_pos((900,600)),size = threades.resize_pos((300,45)), parent = threades.desktop, text = "  "+model.text_file.indicators_text[0], style = self.labelstyle1)
-
+        self.name_labels.append(label)
         #print " deawing indicator panel"
         
         # Creating second custom label
@@ -121,14 +121,24 @@ class indicator_panel:
         
         # Empty Dictionary for bar
         self.bar_dict = []
+        
         name_label_size = threades.resize_pos((300,25))
         self.value_labels = []
         for i in range(5):
             label = gui.Label(position = threades.resize_pos((900,650+50*i)),size = name_label_size, parent = threades.desktop, text = model.text_file.ind_namelist[i], style = self.labelstyle2)
+            self.name_labels.append(label)
             self.bar_dict.append(bar((902,677+50*i)))
             label = gui.Label(position = threades.resize_pos((1160,677+50*i)), parent = threades.desktop, text = str(0), style = self.labelstyle3)
             self.value_labels.append(label)
+            
+
     
+    def update_name(self):
+        
+        self.name_labels[0].text = model.text_file.indicators_text[0]
+        for i in range(1,6):
+            self.name_labels[i].text = model.text_file.ind_namelist[i-1]
+            
 
 
     def update_value(self):
@@ -187,10 +197,10 @@ class resources_panel:
         self.labelstyle1['font-color'] = self.font_color
         self.labelstyle1['border-color'] = self.color_grey
         
-
+        self.name_labels = []
         # Drawing main Resources rectangle
         label = gui.Label(position = threades.resize_pos((400,600)),size = threades.resize_pos((500,45)), parent = threades.desktop, text = "                    "+model.text_file.resources_text[0], style = self.labelstyle1)
-
+        self.name_labels.append(label)
         # Creating second label style
         self.labelstyle2 = gui.defaultLabelStyle.copy()
         self.labelstyle2['border-width'] = 0
@@ -219,6 +229,7 @@ class resources_panel:
         
         for i in range(5):
             label = gui.Label(position = threades.resize_pos((400,645+35*i)),size = threades.resize_pos((200,35)), parent = threades.desktop, text = model.text_file.list_gen_res[i], style = self.labelstyle2)
+            self.name_labels.append(label)
             label = gui.Label(position = threades.resize_pos((605,649+35*i)), parent = threades.desktop, text = str(int(model.resources[i].get_vquantity())), style = self.labelstyle3)
             self.value_labels.append(label)
             
@@ -226,10 +237,19 @@ class resources_panel:
         
         for i in range(6):
             label = gui.Label(position = threades.resize_pos((650,645+35*i)),size = threades.resize_pos((200,35)), parent = threades.desktop, text = model.text_file.list_food_res[i], style = self.labelstyle2)
+            self.name_labels.append(label)
             label = gui.Label(position = threades.resize_pos((855,649+35*i)), parent = threades.desktop, text = str(int(model.resources[i+5].get_vquantity())), style = self.labelstyle3)
             self.value_labels.append(label)
     
-
+    def update_name(self):
+        
+        self.name_labels[0].text = "                    "+model.text_file.resources_text[0]
+        for i in range(1,6):
+            self.name_labels[i].text = model.text_file.list_gen_res[i-1]
+            
+        for i in range(6,12):
+            self.name_labels[i].text = model.text_file.list_food_res[i-6]
+            
     def update_value(self):
         ''' Updates the model.resources panel
         '''
@@ -298,10 +318,10 @@ class manpower_panel:
         self.labelstyle1['font'] = myfont1
         self.labelstyle1['font-color'] = self.font_color
         self.labelstyle1['border-color'] = self.color_grey
-
+        self.name_labels = []
         # Drawing main Manpower Resources rectangle
         label = gui.Label(position = threades.resize_pos((0,600)),size = threades.resize_pos((400,45)), parent = threades.desktop, text = "  "+model.text_file.mpwr_resources_text[0], style = self.labelstyle1)
-
+        self.name_labels.append(label)
         # Creating second label style
         self.labelstyle2 = gui.defaultLabelStyle.copy()
         self.labelstyle2['border-width'] = 0
@@ -326,10 +346,16 @@ class manpower_panel:
         self.value_labels = []
         for i in range(6):
             label = gui.Label(position = threades.resize_pos((0,645+35*i)),size = threades.resize_pos((350,35)), parent = threades.desktop, text = list_names[i], style = self.labelstyle2)
+            self.name_labels.append(label)
             label = gui.Label(position = threades.resize_pos((355,649+35*i)), parent = threades.desktop, text = str(int(list_values[i])), style = self.labelstyle3)
             self.value_labels.append(label)
 
-
+    def update_name(self):
+        
+        self.name_labels[0].text = model.text_file.mpwr_resources_text[0]
+        for i in range(1,7):
+            self.name_labels[i].text = model.text_file.mpwr_list_names[i-1]
+            
     def update_value(self):
         ''' Updates the Manpower panel
         '''
@@ -365,7 +391,7 @@ class facilities_panel:
         '''
         self.update_flag = True
         myfont1 = pygame.font.Font("font.ttf", threades.resize_pt(20))   # For model.resources name and their value
-        
+        self.name_labels = []
         self.labelstyle1 = gui.defaultLabelStyle.copy()
         self.labelstyle1['border-width'] = 0
         self.labelstyle1['wordwrap'] = False
@@ -381,11 +407,19 @@ class facilities_panel:
         self.value_labels = []
         for i in range(6):
             label = gui.Label(position = threades.resize_pos((950,50+55*i)),size = threades.resize_pos((300,30)), parent = threades.desktop, text = self.list_titles[i], style = self.labelstyle1)
+            self.name_labels.append(label)
             label = gui.Label(position = threades.resize_pos((950,75+55*i)),size = threades.resize_pos((300,30)), parent = threades.desktop, text = self.list_names[0]+str(int(self.list_values1[i]))+model.text_file.level_text+':'+str(int(self.list_values2[i])), style = self.labelstyle1)
+            self.name_labels.append(label)
             label.surf.set_alpha(200)
             self.value_labels.append(label)
 
-
+            
+    def update_name(self):
+        
+        self.name_labels[0].text = model.text_file.mpwr_resources_text[0]
+        for i in range(1,7):
+            self.name_labels[i].text = model.text_file.mpwr_list_names[i-1]
+            
     def update_value(self):
         ''' Updates the Facilities panel
         '''
@@ -461,3 +495,9 @@ class display_panel:
         self.map.update()
         self.man.update_value()
         self.fac.update_value()
+
+    def change_labels(self):
+        self.ind.update_name()
+        self.res.update_name()
+        self.man.update_name()
+        self.man.update_name()
