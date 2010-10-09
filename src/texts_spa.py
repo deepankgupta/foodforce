@@ -71,12 +71,12 @@ about_us_text = u'Somos un grupo de programadores interesados para que las plata
 
 # Área de visualización de texto
 
-indicators_text = [u'barras de progreso']
-ind_namelist = (u'Vivienda', 
-                u'Nutrición', 
-                u'Salud', 
-                u'Educación', 
-                u'Training')
+indicators_text = [u'  Barras de progreso']
+ind_namelist = (u'  Vivienda', 
+                u'  Nutrición', 
+                u'  Salud', 
+                u'  Educación', 
+                u'  Training')
 resources_text = [u'Recursos']
 money_text = [u'El dinero']
 time_text = [u'Tiempo transcurrido', 
@@ -85,12 +85,12 @@ time_text = [u'Tiempo transcurrido',
              u' meses ', 
              u' Días ']
 mpwr_resources_text = [u'Mano de Obra de distribución']
-mpwr_list_names = (u'Población Total', 
-                   u'Al abrigo de personas ', 
-                   u' gente educada ', 
+mpwr_list_names = (u' Población Total', 
+                   u' Al abrigo de personas ', 
+                   u' Gente educada ', 
                    u' Gente Sana ', 
                    u' La gente de la Fed', 
-                   u'Las personas empleadas')
+                   u' Las personas empleadas')
 facilities_list = (u'Chozas', 
                    u'Escuela', 
                    u'Hospitales', 
@@ -100,23 +100,23 @@ facilities_list = (u'Chozas',
 num_text = u'Número'
 level_text = u'Nivel'
 
-list_gen_res = (u'agua', 
-                u'Ladrillo', 
-                u'Herramientas', 
-                u'Medicamentos', 
-                u'Libros')
-list_food_res = (u'arroz', 
-                 u'Frutas y Hortalizas', 
-                 u'Habichuelas', 
-                 u'Sugar', 
-                 u'Salt', 
-                 u'aceite')
+list_gen_res = (u' Agua', 
+                u' Ladrillo', 
+                u' Herramientas', 
+                u' Medicamentos', 
+                u' Libros')
+list_food_res = (u' Arroz', 
+                 u' Frutas y Hortalizas', 
+                 u' Habichuelas', 
+                 u' Sugar', 
+                 u' Salt', 
+                 u' Aceite')
 
 earthquake_hit_text = u'Su pueblo ha sido golpeada por un terremoto'
 
 # GUI texto butons
 
-objective = [u'actual Objetivo']
+objective = [u'Actual Objetivo']
 
 setup_text = [u'Configurar una instalación para su pueblo', 
               u'¿Qué le gustaría crear?', 
@@ -164,16 +164,16 @@ buysell_exceptions = {u'no_exception': u'El pueblo ha cambiado el recurso que ex
 fac_running_exceptions ={u'insufficient_res': u'Facility %(facility)s se ha detenido temporalmente debido a insuficientes %(resource)s en el pueblo!',
                          u'resume': 'Fondo %(facility)s se ha reanudado.'}
 
-fac_name = [u'cabaña', 
+fac_name = [u'Cabaña', 
             u'Hospital', 
             u'Taller', 
-            u'School', 
+            u'Escuela', 
             u'Granja', 
             u'Bien']
 
-food_ingredient_list = [u'arroz', 
-                        u'Frutas y \nVegetables', 
-                        u'Habichuelas']
+food_ingredient_list = [u' Arroz', 
+                        u' Frutas y \nVegetables', 
+                        u' Habichuelas']
 
 Upgrade_box_text = [u'Actualizaciones']
 
@@ -185,13 +185,13 @@ buysell_window_text = [u'Recursos',
 
 buysell_window_buttons = [u'Comprar', 
                           u'Vender', 
-                          u'Close']
+                          u'Cerrar']
 
-panel_text = [u'Build', 
-              u'Upgrade', 
+panel_text = [u'Construir', 
+              u'Actualizar', 
               u'Mercado']
 
-exceptions_text = [u'del pueblo no tiene suficiente dinero para comprar los recursos', 
+exceptions_text = [u'Del pueblo no tiene suficiente dinero para comprar los recursos', 
                    u'No hay suficientes recursos en el pueblo para el comercio']
 
 
@@ -201,21 +201,21 @@ exceptions_text = [u'del pueblo no tiene suficiente dinero para comprar los recu
 Language = [u'Inglés',
             u'Español']
 
-message_window_text = [u'mensaje']
+message_window_text = [u'Mensaje']
 
-start_new_game = [u'nuevo comienzo Juego']
+start_new_game = [u'Nuevo comienzo Juego']
 
 resume_saved_game = [u'Reanudar guardados Juego']
 
 resume_game = [u'Reanudar Juego']
 
-start_game_again = [u'Start Game Again ']
+start_game_again = [u'Inicio del juego nuevo']
 
 save_current_level = [u'Guardar actual nivel']
 
-control_button_text = [u'controles']
+control_button_text = [u'Controles']
 
-exit_button_text = [u'Exit']
+exit_button_text = [u'Salir']
 
 instructions_window_text = [u'Guía']
 
@@ -225,15 +225,15 @@ language_window_text = [u'Elegir idioma']
 
 storyboard_window_text = [u'Elige Storyboard']
 
-skip_text = [u'Skip']
+skip_text = [u'Saltar']
 
-play_text = [u'Play']
+play_text = [u'Escuchar']
 
 instructions_next_text = [u'Siguiente>']
 
 instructions_pre_text = [u'<Anterior']
 
-close_window_text = [u'Close']
+close_window_text = [u'Cerrar']
 
 # Texts from level_change
 

@@ -726,16 +726,16 @@ def buy_res(res,res_quantity):
         quantity=int(res_quantity)
         model.money = res.buy(quantity , model.money)
     except Exceptions.Money_Underflow_Exception:
-        text = buysell_exceptions['low_money']
+        text = model.text_file.buysell_exceptions['low_money']
         return text
     except Exceptions.Resources_Underflow_Exception,args:
-        text = buysell_exceptions['low_mkt_qty']
+        text = model.text_file.buysell_exceptions['low_mkt_qty']
         return text
     except Exceptions.Resources_Overflow_Exception:
-        text = buysell_exceptions['overflow']
+        text = model.text_file.buysell_exceptions['overflow']
         return text
         
-    text = buysell_exceptions['no_exception']
+    text = model.text_file.buysell_exceptions['no_exception']
     
     event = game_events.Event(type = game_events.BUYRESOURCESEVENT, res_name = res.get_name(), res_quantity = res_quantity)
     game_events.EventQueue.add(event)
@@ -750,12 +750,12 @@ def sell_res(res,res_quantity):
         quantity=int(res_quantity)
         model.money = res.sell(quantity , model.money)       
     except Exceptions.Resources_Underflow_Exception,args:
-        text = buysell_exceptions['low_qty']
+        text = model.text_file.buysell_exceptions['low_qty']
         return text
     except Exceptions.Resources_Overflow_Exception:
-        text = buysell_exceptions['no_exception']
+        text = model.text_file.buysell_exceptions['no_exception']
         return text
-    text = buysell_exceptions['no_exception']
+    text = model.text_file.buysell_exceptions['no_exception']
     
     event = game_events.Event(type = game_events.SELLRESOURCESEVENT, res_name = res.get_name(), res_quantity = res_quantity)
     game_events.EventQueue.add(event)

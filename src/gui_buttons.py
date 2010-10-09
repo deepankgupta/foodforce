@@ -964,8 +964,8 @@ class buysell_button:
         if model.FLAG_XO:
             if game_sharing.test_connected() and self.shareCheckBox.value:
                 price = int(self.barObject.bar2Val)
-
         label_text = self.message_label.text
+        
         # Checking whether the user has selected the appropriate option box for the resource or not, and do the appropriate action
         if self.water_box.value:
             if model.FLAG_XO and game_sharing.test_connected() and self.shareCheckBox.value:
@@ -1169,6 +1169,7 @@ class buysell_button:
         else:
             label_text = model.text_file.buysell_text[3]
         self.message_label.text = label_text
+        print self.message_label.text
 
 
     def close_win(self,button=None):
@@ -1230,7 +1231,7 @@ class showInstructions:
         labelStyleCopy['font-color'] = font_color
     
         # Creating window
-        win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = objective[0] ,style = win_style ,closeable = False ,shadeable = False,moveable = False)
+        win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = model.text_file.objective[0] ,style = win_style ,closeable = False ,shadeable = False,moveable = False)
         pygame.draw.rect(win.surf,font_color,threades.resize_rect((3,3,695,195)),1)            
         
         # Creating label
