@@ -295,7 +295,7 @@ class starting_intro:
             self.resume_button.onClick = self.resume
             
             self.start_game_again_button = gui.Button(position = threades.resize_pos((475,500)), size = threades.resize_pos((250,50)), parent = desktop2, text = model.text_file.start_game_again[0],style = self.button_style) 
-	    self.start_game_again_button.onClick = self.select_lang
+	    self.start_game_again_button.onClick = self.storyboardWindow
             
             #Save Game Button
             if proceduralFlow.storyboard_level != 1:
@@ -353,85 +353,7 @@ class starting_intro:
             select_flag = True
         else:
             select_flag = False
-        self.select_lang()
-	
-    def chooseLanguage(self,button = None):
-        self.remove_buttons()
-        self.lightgreen_color = (0,80,0)
-        self.green_color = (0,150,0)
-        self.black_color = (0,0,0)
-        myfont1 = pygame.font.Font('font.ttf',threades.resize_pt(50))
-        
-        win_style = gui.defaultWindowStyle.copy()
-        win_style['font'] = myfont1
-        win_style['font-color'] = self.green_color
-        win_style['bg-color'] = self.black_color
-        win_style['border-color'] =self.black_color
-        
-        position_win = threades.resize_pos((150.0,270.0))
-        size_win = threades.resize_pos((900.0,650.0))
-
-        myfont2 = pygame.font.Font('font.ttf',threades.resize_pt(20))
-        labelstylecopy = gui.defaultLabelStyle.copy()
-        labelstylecopy['font'] = myfont2
-        labelstylecopy['font-color'] = self.green_color
-        labelstylecopy['border-width'] = 1
-        labelstylecopy['border-color'] = (0,0,0)
-        labelstylecopy['autosize']=True
-        labelstylecopy['wordwrap']=False
-        
-        op_image = pygame.image.load(os.path.join("art","optionbox_green.png")).convert_alpha()
-        op_style = gui.createOptionBoxStyle(gui.defaultFont, op_image, 12, (255,255,255),(100,100,100), autosize = True)
-       
-        op_style['font'] = myfont2
-        op_style['font-color'] = self.green_color
-        op_style['normal'] = True
-        op_style['autosize'] = True
-        op_style['word wrap'] = False
-        self.op_style = op_style
-        
-        self.win = gui.Window(position = position_win,size = size_win,parent = desktop2,style = win_style,text = model.text_file.language_window_text[0], closeable = False,shadeable = False,moveable = False )
-        self.win.onClose = self.main_menu
-        
-	self.lang1 = gui.OptionBox(position = threades.resize_pos((150.0,200.0),(900.0,600.0),self.win.size),parent = self.win,style = op_style,text = model.text_file.Language[0])
-	self.lang1.onValueChanged = self.select_lang
-	
-	self.lang2 = gui.OptionBox(position = threades.resize_pos((150.0,240.0),(900.0,600.0),self.win.size),parent = self.win ,style = op_style,text = model.text_file.Language[1])
-	self.lang2.onValueChanged = self.select_lang
-    
-        
-        self.skip_button = gui.Button(position = threades.resize_pos((100,490),(900.0,600.0),self.win.size), size = threades.resize_pos((110,30),(900.0,600.0),self.win.size), parent = self.win, text = model.text_file.skip_text[0],style = self.button_style)
-        self.skip_button.onClick = self.close_win
-        self.play_button = gui.Button(position = threades.resize_pos((500,490),(900.0,600.0),self.win.size), size = threades.resize_pos((110,30),(900.0,600.0),self.win.size), parent = self.win, text = model.text_file.play_text[0],style = self.button_style)
-        self.play_button.onClick = self.storyboardWindow
-
-        self.play_button.enabled = False
-        logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
-        ff_logo = pygame.transform.scale(logo,threades.resize_pos((1128,171)))
-        self.language_menu_run = True
-        while self.language_menu_run:
-            pygame.display.set_caption('FoodForce2')
-            threades.screen.fill((0,0,0))
-            threades.screen.blit(ff_logo,threades.resize_pos((40,90)))
-            for e in gui.setEvents(pygame.event.get()):
-                if e.type == KEYDOWN:
-                    if e.key == 27:  # For escape key
-                        self.language_menu_run = False
-                        self.win.close()
-                if model.FLAG_XO:
-                    if e.type==mesh.CONNECT :
-                        game_sharing.sharing_handler(e.type,None,'')
-                    #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,None,'']).start()
-                    elif e.type==mesh.PARTICIPANT_ADD or e.type==mesh.PARTICIPANT_REMOVE :
-                        game_sharing.sharing_handler(e.type,e.handle,'')
-                    #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,'']).start()
-                    elif e.type==mesh.MESSAGE_MULTI or e.type==mesh.MESSAGE_UNI :
-                        game_sharing.sharing_handler(e.type,e.handle,e.content)
-                    #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,e.content]).start()
-	    desktop2.update()
-            desktop2.draw()
-            pygame.display.update()
-	    
+        self.storyboardWindow()
 	
     def storyboardWindow(self,button = None):
         global select_flag
@@ -495,6 +417,10 @@ class starting_intro:
 		vertical_dist_photo = vertical_dist_photo  + 130
             else:
                 if os.path.exists(os.path.join('storyboards',str(storyboard_name[1]),'save_game.pkl')):
+		    self.image = pygame.image.load(os.path.join('storyboards',str(storyboard_name[1]),'intro_image.png')).convert_alpha()
+		    finalSurface = pygame.surface.Surface((150,150)).convert_alpha()
+		    finalSurface.blit(self.image,(10,10))
+		    self.win.surf.blit(finalSurface,(100,vertical_dist_photo))
                     self.item = gui.Button(position = threades.resize_pos((150.0,vertical_dist),(900.0,600.0),self.win.size),parent = self.win,text = str(storyboard_name[1]),style = self.button_style_2)
                     self.item.onClick = self.select_storyboard
                     vertical_dist = vertical_dist + 40
@@ -531,26 +457,9 @@ class starting_intro:
 
     def select_storyboard(self,button = None):
 	
-        #self.play_button.enabled = True
         model.storyboard_file = button.text
-	if model.select_lang_flag == 'eng':
-	    model.text_file = texts_eng
-	elif model.select_lang_flag == 'spa':
-	    model.text_file = texts_spa
-	    
         self.start_game_again()
 	
-    def select_lang(self,button = None):
-	if 'language' in FLAGS.keys():
-          language = [ FLAGS['language'] ]
-        else:
-	  language = locale.getdefaultlocale()
-        if language[0][0:2] == 'en':
-	    model.select_lang_flag = 'eng'
-	elif language[0][0:2] == 'es':
-	    model.select_lang_flag = 'spa'
-	self.storyboardWindow()
-
 	    
     def instructionsWindow(self,button = None):
         ''' Opens a window for Instructions
@@ -980,17 +889,31 @@ def facility_placement():
             
 message_thread = None
 
+def select_lang():
+    if 'language' in FLAGS.keys():
+	language = [ FLAGS['language'] ]
+    else:
+	language = locale.getdefaultlocale()
+    if language[0][0:2] == 'en':
+	model.select_lang_flag = 'eng'
+	model.text_file = texts_eng
+    elif language[0][0:2] == 'es':
+	model.select_lang_flag = 'spa'
+	model.text_file = texts_spa
+    
+    
 
 def process(arg):
-  print arg
-  parts = arg.split('=')
-  if parts[0] == '--language':
-    FLAGS['language'] = parts[1]
-  print FLAGS
+    print arg
+    parts = arg.split('=')
+    if parts[0] == '--language':
+	FLAGS['language'] = parts[1]
+    print FLAGS
 
 def main():
     for arg in sys.argv[1:]:
-      process(arg)
+	process(arg)
+    select_lang()
     global panel
     global chat_screen
     global level_setting
