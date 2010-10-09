@@ -26,7 +26,8 @@ import pygame
 from pygame.locals import *
 from pygame.display import *
 from pygame.mouse import *
-from sys import exit
+import getopt
+import sys
 import os
 from time import *
 import threades
@@ -44,6 +45,8 @@ import level_change
 import random
 import proceduralFlow
 import natural_calamities
+
+FLAGS = {}
 
 if model.FLAG_XO:
     import game_sharing
@@ -129,7 +132,7 @@ def safe_exit(button = None):
     threades.audio.stop_soundtrack()
     pygame.mixer.quit()
     pygame.quit()
-    exit()
+    sys.exit()
 
 
 
@@ -538,15 +541,16 @@ class starting_intro:
         self.start_game_again()
 	
     def select_lang(self,button = None):
-	
-	language = locale.getdefaultlocale()
-	if language[0] == 'en_US':
+	if 'language' in FLAGS.keys():
+          language = [ FLAGS['language'] ]
+        else:
+	  language = locale.getdefaultlocale()
+        if language[0][0:2] == 'en':
 	    model.select_lang_flag = 'eng'
-	elif language[0] == 'es_MX':
+	elif language[0][0:2] == 'es':
 	    model.select_lang_flag = 'spa'
 	self.storyboardWindow()
 
-	#print model.select_lang_flag
 	    
     def instructionsWindow(self,button = None):
         ''' Opens a window for Instructions
@@ -976,8 +980,17 @@ def facility_placement():
             
 message_thread = None
 
-def main():
 
+def process(arg):
+  print arg
+  parts = arg.split('=')
+  if parts[0] == '--language':
+    FLAGS['language'] = parts[1]
+  print FLAGS
+
+def main():
+    for arg in sys.argv[1:]:
+      process(arg)
     global panel
     global chat_screen
     global level_setting
