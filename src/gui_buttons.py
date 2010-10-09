@@ -1219,7 +1219,7 @@ class showInstructions:
         win_style['font-color'] = font_color
         
         # Calculating position and size of window from the size of the threades.desktop
-        position_win =threades.resize_pos((20.0,42.0))
+        position_win =threades.resize_pos((100.0,42.0))
         size_win =threades.resize_pos((700.0,200.0))
     
         # Creating custom label style for the text to be displayed as a threades.message

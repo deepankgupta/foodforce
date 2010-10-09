@@ -81,7 +81,7 @@ class indicator_panel:
         self.update_flag = True
         
         self.name_labels = []
-        myfont1 = pygame.font.Font("font.ttf", threades.resize_pt(30))   # For main heading
+        myfont1 = pygame.font.Font("font.ttf", threades.resize_pt(25))   # For main heading
 
         myfont2 = pygame.font.Font("font.ttf", threades.resize_pt(20))   # For indicators name
         myfont3 = pygame.font.Font("font.ttf", threades.resize_pt(16))
@@ -183,7 +183,7 @@ class resources_panel:
         self.money_flag = True
         self.time_flag = False
         self.time_help_value=0
-        myfont1 = pygame.font.Font("font.ttf", threades.resize_pt(30))   # For main heading
+        myfont1 = pygame.font.Font("font.ttf", threades.resize_pt(25))   # For main heading
         myfont2 = pygame.font.Font("font.ttf", threades.resize_pt(20))   # For model.resources name and their value
         myfont3 = pygame.font.Font("font.ttf", threades.resize_pt(16))
         myfont4 = pygame.font.Font("font.ttf", threades.resize_pt(18))   # For the display of model.money
@@ -222,9 +222,9 @@ class resources_panel:
         self.labelstyle4['autosize'] = True
         self.labelstyle4['font'] = myfont4
         self.labelstyle4['font-color'] = (160,160,160)
-        self.money_label = gui.Label(position = threades.resize_pos((850,10)), parent = threades.desktop, text = model.text_file.money_text[0]+' -:   '+str(int(model.money.get_money()))+'      ', style = self.labelstyle4)
+        self.money_label = gui.Label(position = threades.resize_pos((820,10)), parent = threades.desktop, text = model.text_file.money_text[0]+' -:   '+str(int(model.money.get_money()))+'      ', style = self.labelstyle4)
         self.name_labels.append(self.money_label)
-        self.time_label= gui.Label(position = threades.resize_pos((300,10)), parent = threades.desktop, text = model.text_file.time_text[0]+' -:   '+model.text_file.time_text[1]+'      ', style = self.labelstyle4)
+        self.time_label= gui.Label(position = threades.resize_pos((270,10)), parent = threades.desktop, text = model.text_file.time_text[0]+' -:   '+model.text_file.time_text[1]+'      ', style = self.labelstyle4)
         self.name_labels.append(self.time_label)
         self.value_labels = []
         # Drawing general model.resources list
@@ -312,7 +312,7 @@ class manpower_panel:
         '''
         
         self.update_flag = True
-        myfont1 = pygame.font.Font("font.ttf", threades.resize_pt(30))   # For main heading
+        myfont1 = pygame.font.Font("font.ttf", threades.resize_pt(25))   # For main heading
         myfont2 = pygame.font.Font("font.ttf", threades.resize_pt(20))   # For model.resources name and their value
         myfont3 = pygame.font.Font("font.ttf", threades.resize_pt(16))   # For model.resources name and their value
 

@@ -71,7 +71,7 @@ def message_window():
     win_style['bg-color'] = (0,0,0)
     
     # Calculating position and size of window from the size of the threades.desktop
-    position_win =threades.resize_pos((745.0,42.0))
+    position_win =threades.resize_pos((375.0,42.0))
     size_win =threades.resize_pos((450.0,150.0))
 
     # Creating custom label style for the text to be displayed as a threades.message
@@ -440,7 +440,7 @@ class starting_intro:
         myfont1 = pygame.font.Font('font.ttf',threades.resize_pt(50))
 	
         myfont = pygame.font.Font("font.ttf", threades.resize_pt(14))
-        buttonsurf = pygame.image.load(os.path.join('art','button_green2.png')).convert_alpha()
+        buttonsurf = pygame.image.load(os.path.join('art','button_green.png')).convert_alpha()
         buttonsurf = pygame.transform.scale(buttonsurf, (38, threades.resize_pt_y(40)))
         self.button_style_2 = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
 	
