@@ -432,14 +432,18 @@ class starting_intro:
 	
     def storyboardWindow(self,button = None):
         global select_flag
-
 	self.remove_buttons()
         
         self.lightgreen_color = (0,80,0)
         self.green_color = (0,150,0)
         self.black_color = (0,0,0)
         myfont1 = pygame.font.Font('font.ttf',threades.resize_pt(50))
-        
+	
+        myfont = pygame.font.Font("font.ttf", threades.resize_pt(14))
+        buttonsurf = pygame.image.load(os.path.join('art','button_green2.png')).convert_alpha()
+        buttonsurf = pygame.transform.scale(buttonsurf, (38, threades.resize_pt_y(40)))
+        self.button_style_2 = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
+	
         win_style = gui.defaultWindowStyle.copy()
         win_style['font'] = myfont1
         win_style['font-color'] = self.green_color
@@ -472,29 +476,28 @@ class starting_intro:
         
         self.win = gui.Window(position = position_win,size = size_win,parent = desktop2,style = win_style,text = model.text_file.storyboard_window_text[0], closeable = False,shadeable = False,moveable = False )
 	self.win.onClose = self.main_menu
-        
-        vertical_dist = 200.0     #for the position of optionboxes
-        
+        vertical_dist = 150.0     #for the position of optionboxes
+	vertical_dist_photo = 50.0
         storyboard_list_file = open('storyboard_list.pkl')
         for i in range(pickle.load(storyboard_list_file)):
             storyboard_name = pickle.load(storyboard_list_file)
             if select_flag == True:
-                self.item = gui.OptionBox(position = threades.resize_pos((150.0,vertical_dist),(900.0,600.0),self.win.size),parent = self.win,style = op_style,text = str(storyboard_name[1]))
-                self.item.onValueChanged = self.select_storyboard
-                vertical_dist = vertical_dist + 40
+		self.image = pygame.image.load(os.path.join('storyboards',str(storyboard_name[1]),'intro_image.png')).convert_alpha()
+		finalSurface = pygame.surface.Surface((150,150)).convert_alpha()
+		finalSurface.blit(self.image,(10,10))
+		self.win.surf.blit(finalSurface,(100,vertical_dist_photo))
+                self.item = gui.Button(position = threades.resize_pos((450.0,vertical_dist),(900.0,600.0),self.win.size),parent = self.win,text = str(storyboard_name[1]),style = self.button_style_2)
+                self.item.onClick = self.select_storyboard
+                vertical_dist = vertical_dist + 180
+		vertical_dist_photo = vertical_dist_photo  + 130
             else:
                 if os.path.exists(os.path.join('storyboards',str(storyboard_name[1]),'save_game.pkl')):
-                    self.item = gui.OptionBox(position = threades.resize_pos((150.0,vertical_dist),(900.0,600.0),self.win.size),parent = self.win,style = op_style,text = str(storyboard_name[1]))
-                    self.item.onValueChanged = self.select_storyboard
+                    self.item = gui.Button(position = threades.resize_pos((150.0,vertical_dist),(900.0,600.0),self.win.size),parent = self.win,text = str(storyboard_name[1]),style = self.button_style_2)
+                    self.item.onClick = self.select_storyboard
                     vertical_dist = vertical_dist + 40
-        
-        self.skip_button = gui.Button(position = threades.resize_pos((100,490),(900.0,600.0),self.win.size), size = threades.resize_pos((110,30),(900.0,600.0),self.win.size), parent = self.win, text = model.text_file.skip_text[0],style = self.button_style)
+        self.skip_button = gui.Button(position = threades.resize_pos((180,490),(900.0,600.0),self.win.size), size = threades.resize_pos((110,30),(900.0,600.0),self.win.size), parent = self.win, text = model.text_file.skip_text[0],style = self.button_style)
         self.skip_button.onClick = self.close_win
-        self.play_button = gui.Button(position = threades.resize_pos((500,490),(900.0,600.0),self.win.size), size = threades.resize_pos((110,30),(900.0,600.0),self.win.size), parent = self.win, text = model.text_file.play_text[0],style = self.button_style)
-        self.play_button.onClick = self.start_game_again
 
-	
-        self.play_button.enabled = False
         logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
         ff_logo = pygame.transform.scale(logo,threades.resize_pos((1128,171)))
         self.storyboard_menu_run = True
@@ -525,13 +528,15 @@ class starting_intro:
 
     def select_storyboard(self,button = None):
 	
-        self.play_button.enabled = True
+        #self.play_button.enabled = True
         model.storyboard_file = button.text
 	if model.select_lang_flag == 'eng':
 	    model.text_file = texts_eng
 	elif model.select_lang_flag == 'spa':
 	    model.text_file = texts_spa
-        
+	    
+        self.start_game_again()
+	
     def select_lang(self,button = None):
 	
 	language = locale.getdefaultlocale()
