@@ -17,7 +17,9 @@
 #   along with this program; if not, write to the Free Software
 #   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #
+import locale
 import pickle
+import model
 from texts_spa import *
 from texts_eng import *
 import pygame
@@ -38,7 +40,6 @@ import game_events
 import texts_spa
 import texts_eng
 import load_images
-import model
 import level_change
 import random
 import proceduralFlow
@@ -88,7 +89,7 @@ def message_window():
             win_style['font-color'] = color
             labelStyleCopy['font-color'] = color
 
-            win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = message_window_text[0] ,style = win_style ,closeable = False ,shadeable = False,moveable = False)
+            win = gui.Window(position = position_win, size = size_win, parent = threades.desktop, text = model.text_file.message_window_text[0] ,style = win_style ,closeable = False ,shadeable = False,moveable = False)
             pygame.draw.rect(win.surf,color,threades.resize_rect((3,3,444,144)),1)            
             #win.surf.set_alpha(160)
             # Creating label
@@ -291,7 +292,7 @@ class starting_intro:
             self.resume_button.onClick = self.resume
             
             self.start_game_again_button = gui.Button(position = threades.resize_pos((475,500)), size = threades.resize_pos((250,50)), parent = desktop2, text = model.text_file.start_game_again[0],style = self.button_style) 
-            self.start_game_again_button.onClick = self.chooseLanguage
+	    self.start_game_again_button.onClick = self.select_lang
             
             #Save Game Button
             if proceduralFlow.storyboard_level != 1:
@@ -349,7 +350,7 @@ class starting_intro:
             select_flag = True
         else:
             select_flag = False
-        self.chooseLanguage()
+        self.select_lang()
 	
     def chooseLanguage(self,button = None):
         self.remove_buttons()
@@ -424,19 +425,14 @@ class starting_intro:
                     elif e.type==mesh.MESSAGE_MULTI or e.type==mesh.MESSAGE_UNI :
                         game_sharing.sharing_handler(e.type,e.handle,e.content)
                     #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,e.content]).start()
-	    #print 'in choose language'
 	    desktop2.update()
             desktop2.draw()
             pygame.display.update()
 	    
-
-    #def chooselanguage_skip(self,button = None):
-	#self.close_win()
-	#self.main_menu();
 	
     def storyboardWindow(self,button = None):
         global select_flag
-	self.close_win()
+
 	self.remove_buttons()
         
         self.lightgreen_color = (0,80,0)
@@ -522,7 +518,6 @@ class starting_intro:
                     elif e.type==mesh.MESSAGE_MULTI or e.type==mesh.MESSAGE_UNI :
                         game_sharing.sharing_handler(e.type,e.handle,e.content)
                     #sharing_thread = threading.Thread(target = game_sharing.sharing_handler, args=[e.type,e.handle,e.content]).start()
-	    #print 'in storyboard window'
             desktop2.update()
             desktop2.draw()
             pygame.display.update()
@@ -536,16 +531,16 @@ class starting_intro:
 	    model.text_file = texts_eng
 	elif model.select_lang_flag == 'spa':
 	    model.text_file = texts_spa
-	#print model.text_file
         
     def select_lang(self,button = None):
-	self.play_button.enabled = True
 	
-	if button.text == model.text_file.Language[0]:
+	language = locale.getdefaultlocale()
+	if language[0] == 'en_US':
 	    model.select_lang_flag = 'eng'
-	elif button.text == model.text_file.Language[1]:
+	elif language[0] == 'es_MX':
 	    model.select_lang_flag = 'spa'
-	    
+	self.storyboardWindow()
+
 	#print model.select_lang_flag
 	    
     def instructionsWindow(self,button = None):

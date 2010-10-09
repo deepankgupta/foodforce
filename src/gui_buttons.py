@@ -34,8 +34,8 @@ import game_events
 import model
 if model.FLAG_XO:
     import game_sharing    
+    from texts_spa import *
 instruction_off_flag = False
-from texts_spa import *
 from texts_eng import *
 
 class marketBarChart:

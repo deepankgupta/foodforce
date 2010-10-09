@@ -26,8 +26,8 @@ from time import *
 import threades
 import threading
 import game_events
-import texts_eng
-import texts_spa
+#import texts_eng
+#import texts_spa
 import model
 import gui_buttons
 import random

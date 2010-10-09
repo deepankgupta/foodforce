@@ -223,7 +223,9 @@ class resources_panel:
         self.labelstyle4['font'] = myfont4
         self.labelstyle4['font-color'] = (160,160,160)
         self.money_label = gui.Label(position = threades.resize_pos((850,10)), parent = threades.desktop, text = model.text_file.money_text[0]+' -:   '+str(int(model.money.get_money()))+'      ', style = self.labelstyle4)
+        self.name_labels.append(self.money_label)
         self.time_label= gui.Label(position = threades.resize_pos((300,10)), parent = threades.desktop, text = model.text_file.time_text[0]+' -:   '+model.text_file.time_text[1]+'      ', style = self.labelstyle4)
+        self.name_labels.append(self.time_label)
         self.value_labels = []
         # Drawing general model.resources list
         
@@ -240,16 +242,20 @@ class resources_panel:
             self.name_labels.append(label)
             label = gui.Label(position = threades.resize_pos((855,649+35*i)), parent = threades.desktop, text = str(int(model.resources[i+5].get_vquantity())), style = self.labelstyle3)
             self.value_labels.append(label)
-    
+            
+            
     def update_name(self):
         
         self.name_labels[0].text = "                    "+model.text_file.resources_text[0]
-        for i in range(1,6):
-            self.name_labels[i].text = model.text_file.list_gen_res[i-1]
+        self.name_labels[1].text = model.text_file.money_text[0]+' -: '+str(int(model.money.get_money()))+'      '
+        self.name_labels[2].text = model.text_file.time_text[0]+' -: '+model.text_file.time_text[1]+'      '
+        for i in range(3,8):
+            self.name_labels[i].text = model.text_file.list_gen_res[i-3]
             
-        for i in range(6,12):
-            self.name_labels[i].text = model.text_file.list_food_res[i-6]
+        for i in range(8,14):
+            self.name_labels[i].text = model.text_file.list_food_res[i-8]
             
+
     def update_value(self):
         ''' Updates the model.resources panel
         '''

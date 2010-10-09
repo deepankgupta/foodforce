@@ -35,8 +35,8 @@ import game_events
 #from chat import *
 import model
 import chat
-import texts_spa
-import texts_eng
+#import texts_spa
+#import texts_eng
 #from Foodforce2 import Earthquake
 import natural_calamities
 import level_change

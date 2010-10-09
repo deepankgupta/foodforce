@@ -24,8 +24,8 @@ import Exceptions
 import threading   
 import random   
 from time import sleep,time,ctime
-import texts_spa
-import texts_eng
+#import texts_spa
+#import texts_eng
 
 # import statements for animation classes
 import pygame
