@@ -364,9 +364,9 @@ class starting_intro:
         self.black_color = (0,0,0)
         myfont1 = pygame.font.Font('font.ttf',threades.resize_pt(50))
 	
-        myfont = pygame.font.Font("font.ttf", threades.resize_pt(14))
+        myfont = pygame.font.Font("font.ttf", threades.resize_pt(20))
         buttonsurf = pygame.image.load(os.path.join('art','button_green.png')).convert_alpha()
-        buttonsurf = pygame.transform.scale(buttonsurf, (38, threades.resize_pt_y(40)))
+        buttonsurf = pygame.transform.scale(buttonsurf, (38, threades.resize_pt_y(50)))
         self.button_style_2 = gui.createButtonStyle(myfont,(0,0,0), buttonsurf,4,1,4,4,1,4,4,1,4,4,1,4)
 	
         win_style = gui.defaultWindowStyle.copy()
@@ -411,7 +411,7 @@ class starting_intro:
 		finalSurface = pygame.surface.Surface((150,150)).convert_alpha()
 		finalSurface.blit(self.image,(10,10))
 		self.win.surf.blit(finalSurface,(100,vertical_dist_photo))
-                self.item = gui.Button(position = threades.resize_pos((450.0,vertical_dist),(900.0,600.0),self.win.size),parent = self.win,text = str(storyboard_name[1]),style = self.button_style_2)
+                self.item = gui.Button(position = threades.resize_pos((450.0,vertical_dist),(900.0,600.0),self.win.size),size = threades.resize_pos((290,50)),parent = self.win,text = str(storyboard_name[1]),style = self.button_style_2)
                 self.item.onClick = self.select_storyboard
                 vertical_dist = vertical_dist + 180
 		vertical_dist_photo = vertical_dist_photo  + 130
@@ -421,7 +421,7 @@ class starting_intro:
 		    finalSurface = pygame.surface.Surface((150,150)).convert_alpha()
 		    finalSurface.blit(self.image,(10,10))
 		    self.win.surf.blit(finalSurface,(100,vertical_dist_photo))
-                    self.item = gui.Button(position = threades.resize_pos((150.0,vertical_dist),(900.0,600.0),self.win.size),parent = self.win,text = str(storyboard_name[1]),style = self.button_style_2)
+                    self.item = gui.Button(position = threades.resize_pos((150.0,vertical_dist),(900.0,600.0),self.win.size),size = threades.resize_pos((290,50)),parent = self.win,text = str(storyboard_name[1]),style = self.button_style_2)
                     self.item.onClick = self.select_storyboard
                     vertical_dist = vertical_dist + 40
         self.skip_button = gui.Button(position = threades.resize_pos((180,490),(900.0,600.0),self.win.size), size = threades.resize_pos((110,30),(900.0,600.0),self.win.size), parent = self.win, text = model.text_file.skip_text[0],style = self.button_style)
