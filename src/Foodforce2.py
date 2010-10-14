@@ -421,9 +421,10 @@ class starting_intro:
 		    finalSurface = pygame.surface.Surface((150,150)).convert_alpha()
 		    finalSurface.blit(self.image,(10,10))
 		    self.win.surf.blit(finalSurface,(100,vertical_dist_photo))
-                    self.item = gui.Button(position = threades.resize_pos((150.0,vertical_dist),(900.0,600.0),self.win.size),size = threades.resize_pos((290,50)),parent = self.win,text = str(storyboard_name[1]),style = self.button_style_2)
+                    self.item = gui.Button(position = threades.resize_pos((450.0,vertical_dist),(900.0,600.0),self.win.size),size = threades.resize_pos((290,50)),parent = self.win,text = str(storyboard_name[1]),style = self.button_style_2)
                     self.item.onClick = self.select_storyboard
-                    vertical_dist = vertical_dist + 40
+                    vertical_dist = vertical_dist + 180
+		    vertical_dist_photo = vertical_dist_photo + 130
         self.skip_button = gui.Button(position = threades.resize_pos((180,490),(900.0,600.0),self.win.size), size = threades.resize_pos((110,30),(900.0,600.0),self.win.size), parent = self.win, text = model.text_file.skip_text[0],style = self.button_style)
         self.skip_button.onClick = self.close_win
 

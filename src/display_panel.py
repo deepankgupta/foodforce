@@ -407,14 +407,14 @@ class facilities_panel:
         #self.labelstyle1['bg-color'] = self.font_bg_color
         
         self.list_titles = model.text_file.facilities_list
-        self.list_names = [model.text_file.num_text+': ']
+        self.list_names = [model.text_file.num_text[0]+': ']
         self.list_values1 = (model.House.get_number(),model.School.get_number(),model.Hospital.get_number(),model.Workshop.get_number(),model.Farm.get_number(),model.Fountain.get_number())
         self.list_values2 = (model.House.get_level(),model.School.get_level(),model.Hospital.get_level(),model.Workshop.get_level(),model.Farm.get_level(),model.Fountain.get_level())
         self.value_labels = []
         for i in range(6):
             label = gui.Label(position = threades.resize_pos((950,50+55*i)),size = threades.resize_pos((300,30)), parent = threades.desktop, text = self.list_titles[i], style = self.labelstyle1)
             self.name_labels.append(label)
-            label = gui.Label(position = threades.resize_pos((950,75+55*i)),size = threades.resize_pos((300,30)), parent = threades.desktop, text = self.list_names[0]+str(int(self.list_values1[i]))+model.text_file.level_text+':'+str(int(self.list_values2[i])), style = self.labelstyle1)
+            label = gui.Label(position = threades.resize_pos((950,75+55*i)),size = threades.resize_pos((300,30)), parent = threades.desktop, text = self.list_names[0]+str(int(self.list_values1[i]))+model.text_file.level_text[0]+':'+str(int(self.list_values2[i])), style = self.labelstyle1)
             self.name_labels.append(label)
             label.surf.set_alpha(200)
             self.value_labels.append(label)
@@ -422,16 +422,18 @@ class facilities_panel:
             
     def update_name(self):
         
-        self.name_labels[0].text = model.text_file.mpwr_resources_text[0]
-        for i in range(1,7):
-            self.name_labels[i].text = model.text_file.mpwr_list_names[i-1]
+        for i in range(6):
+            self.name_labels[2*i].text = model.text_file.facilities_list[i]
+            self.name_labels[2*i+1].text = model.text_file.num_text[0]+':'+str(int(self.list_values1[i]))+model.text_file.level_text[0]+':'+str(int(self.list_values2[i]))
             
+        print self.name_labels[3].text
+        
     def update_value(self):
         ''' Updates the Facilities panel
         '''
         for i in range(6):
 
-            if not (self.value_labels[i].text == self.list_names[0]+str(int(self.list_values1[i]))+' '+model.text_file.level_text+': '+str(int(self.list_values2[i]))):
+            if not (self.value_labels[i].text == self.list_names[0]+str(int(self.list_values1[i]))+' '+model.text_file.level_text[0]+': '+str(int(self.list_values2[i]))):
                 self.update_flag = False
         
         if self.update_flag or threades.facilities_update_flag or threades.total_update_flag:
@@ -441,8 +443,8 @@ class facilities_panel:
             pygame.draw.rect(threades.screen,(0,0,0),threades.resize_rect((930,40,270,350))) 
             for i in range(6):
     
-                if not (self.value_labels[i].text == self.list_names[0]+str(int(self.list_values1[i]))+' '+model.text_file.level_text+': '+str(int(self.list_values2[i]))):
-                    self.value_labels[i].text = self.list_names[0]+str(int(self.list_values1[i]))+' '+model.text_file.level_text+': '+str(int(self.list_values2[i]))
+                if not (self.value_labels[i].text == model.text_file.num_text[0]+':'+str(int(self.list_values1[i]))+' '+model.text_file.level_text[0]+': '+str(int(self.list_values2[i]))):
+                    self.value_labels[i].text = model.text_file.num_text[0]+':'+str(int(self.list_values1[i]))+' '+model.text_file.level_text[0]+': '+str(int(self.list_values2[i]))
         
         self.update_flag = False
         
@@ -506,4 +508,4 @@ class display_panel:
         self.ind.update_name()
         self.res.update_name()
         self.man.update_name()
-        self.man.update_name()
+        self.fac.update_name()

@@ -96,9 +96,9 @@ facilities_list = (u'Chozas',
                    u'Hospitales', 
                    u'Talleres', 
                    u'las granjas', 
-                   u'Wells')
-num_text = u'Número'
-level_text = u'Nivel'
+                   u'Bueno')
+num_text = [u'Número']
+level_text = [u'Nivel']
 
 list_gen_res = (u' Agua', 
                 u' Ladrillo', 
@@ -108,8 +108,8 @@ list_gen_res = (u' Agua',
 list_food_res = (u' Arroz', 
                  u' Frutas y Hortalizas', 
                  u' Habichuelas', 
-                 u' Sugar', 
-                 u' Salt', 
+                 u' Azúcar', 
+                 u' Sal', 
                  u' Aceite')
 
 earthquake_hit_text = u'Su pueblo ha sido golpeada por un terremoto'

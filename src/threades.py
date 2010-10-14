@@ -880,7 +880,6 @@ def save_game():
     pickle.dump(current_level,output)
     pickle.dump(model.game_controller.get_global_time(),output)
     pickle.dump(PLACING_LIST_TEMP,output)
-    pickle.dump(model.select_lang_flag,output)
     output.close()
     
 def delete_saved_game(data_file = save_game_file):
@@ -904,7 +903,7 @@ def resume_game():
     level = pickle.load(output)
     current_level = level
     level_save_time = pickle.load(output)
-    model.select_lang_flag = pickle.load(output)
+    pickle.load(output)
     model.game_controller.resume_game_time_update(level_save_time)
     #print model.global_time
     while True:
