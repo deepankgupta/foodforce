@@ -61,7 +61,7 @@ except:
     
     new_screen_size = [800,600]
     
-new_screen_size = [800,600]
+#new_screen_size = [800,600]
 
 global screen   
 if model.FLAG_XO:
@@ -70,8 +70,8 @@ if model.FLAG_XO:
     screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
 else:
     
-    #screen = pygame.display.set_mode(new_screen_size,FULLSCREEN|SRCALPHA,32)
-    screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
+    screen = pygame.display.set_mode(new_screen_size,FULLSCREEN|SRCALPHA,32)
+    #screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
 
 
 defaultStyle.init(gui)
