@@ -340,12 +340,11 @@ class starting_intro:
         select_flag = True
 	self.storyboard_menu_run = False
 	self.run = False
-	self.language_menu_run = False
         #erasing the facilities and deciding the data file
         gui_buttons.instruction_off_flag = True
 	threades.total_update_flag = True
-	panel.change_labels()
-	gui_buttons.gui_obj.change_label_names()
+	#panel.change_labels()
+	#gui_buttons.gui_obj.change_label_names()
         
     def select_save_or_new_game(self,button=None):
         global select_flag
@@ -402,11 +401,12 @@ class starting_intro:
         self.win = gui.Window(position = position_win,size = size_win,parent = desktop2,style = win_style,text = model.text_file.storyboard_window_text[0], closeable = False,shadeable = False,moveable = False )
 	self.win.onClose = self.main_menu
         vertical_dist = 150.0     #for the position of optionboxes
-	vertical_dist_photo = 50.0
+	vertical_dist_photo = 80.0
         storyboard_list_file = open('storyboard_list.pkl')
+        
         for i in range(pickle.load(storyboard_list_file)):
             storyboard_name = pickle.load(storyboard_list_file)
-            if select_flag == True:
+            if select_flag == True or os.path.exists(os.path.join('storyboards',str(storyboard_name[1]),'save_game.pkl')):
 		self.image = pygame.image.load(os.path.join('storyboards',str(storyboard_name[1]),'intro_image.png')).convert_alpha()
 		finalSurface = pygame.surface.Surface((150,150)).convert_alpha()
 		finalSurface.blit(self.image,(10,10))
@@ -414,17 +414,9 @@ class starting_intro:
                 self.item = gui.Button(position = threades.resize_pos((450.0,vertical_dist),(900.0,600.0),self.win.size),size = threades.resize_pos((290,50)),parent = self.win,text = str(storyboard_name[1]),style = self.button_style_2)
                 self.item.onClick = self.select_storyboard
                 vertical_dist = vertical_dist + 180
-		vertical_dist_photo = vertical_dist_photo  + 130
-            else:
-                if os.path.exists(os.path.join('storyboards',str(storyboard_name[1]),'save_game.pkl')):
-		    self.image = pygame.image.load(os.path.join('storyboards',str(storyboard_name[1]),'intro_image.png')).convert_alpha()
-		    finalSurface = pygame.surface.Surface((150,150)).convert_alpha()
-		    finalSurface.blit(self.image,(10,10))
-		    self.win.surf.blit(finalSurface,(100,vertical_dist_photo))
-                    self.item = gui.Button(position = threades.resize_pos((450.0,vertical_dist),(900.0,600.0),self.win.size),size = threades.resize_pos((290,50)),parent = self.win,text = str(storyboard_name[1]),style = self.button_style_2)
-                    self.item.onClick = self.select_storyboard
-                    vertical_dist = vertical_dist + 180
-		    vertical_dist_photo = vertical_dist_photo + 130
+		vertical_dist_photo = vertical_dist_photo  + 180
+    
+		
         self.skip_button = gui.Button(position = threades.resize_pos((180,490),(900.0,600.0),self.win.size), size = threades.resize_pos((110,30),(900.0,600.0),self.win.size), parent = self.win, text = model.text_file.skip_text[0],style = self.button_style)
         self.skip_button.onClick = self.close_win
 
@@ -597,7 +589,7 @@ class starting_intro:
         labelStyleCopy['font-color'] = (0,200,0)
         labelStyleCopy['border-color'] = self.black_color
         
-        self.close_button = gui.Button(position = threades.resize_pos((400,550),(900.0,600.0),self.win.size), size = threades.resize_pos((80,30),(900.0,600.0),self.win.size), parent = self.win, text = model.text_file.close_widnow_text[0],style = self.button_style)
+        self.close_button = gui.Button(position = threades.resize_pos((400,550),(900.0,600.0),self.win.size), size = threades.resize_pos((80,30),(900.0,600.0),self.win.size), parent = self.win, text = model.text_file.close_window_text[0],style = self.button_style)
         
         self.close_button.onClick = self.close_win
         self.about_us_run = True
@@ -706,8 +698,8 @@ class starting_intro:
         self.win = gui.Window(position = position_win, size = size_win, parent = desktop2, text = model.text_file.control_button_text[0], style = win_style, shadeable = False, closeable = False)
         self.win.onClose = lambda button: self.main_menu(self.pause_flag)
         self.win.surf.set_alpha(140)
-
-        control_text = """\n\n  Build           :       s \n\n  Upgrade       :       u \n\n  Market                    :       b \n\n  Scroll threades.screen up       :       up arrow \n\n  Scroll threades.screen down   :       down arrow \n\n  Scroll threades.screen left      :       left arrow \n\n  Scroll threades.screen right    :       right arrow """
+	
+    
         myfont2 = pygame.font.Font("font.ttf", threades.resize_pt(25))
         labelStyleCopy = gui.defaultLabelStyle.copy()
         labelStyleCopy['border-width'] = 1
@@ -788,7 +780,6 @@ class starting_intro:
         self.instructions_run = False
         self.about_us_run = False
         self.storyboard_menu_run = False
-	self.language_menu_run = False
 
     def remove_buttons(self):
         ''' Removes the buttons from the gui.Desktop
@@ -813,16 +804,15 @@ class starting_intro:
         self.instructions_button._set_parent(win)
         win.close()
 
-
-
-
-
 def pause_screen(pause_flag = True):
 
     start = starting_intro()
     start.main_menu(pause_flag,threades.game_save_flag)
     logo =  pygame.image.load(os.path.join('data', 'logo.png')).convert()
     ff_logo = pygame.transform.scale(logo,threades.resize_pos((1128,171)))
+    
+    threades.audio.play_music(False,'soundtrack')
+    
     while start.run:
         pygame.display.set_caption('FoodForce2')
         threades.screen.fill((0,0,0))
@@ -837,6 +827,8 @@ def pause_screen(pause_flag = True):
         desktop2.update()
         desktop2.draw()
         pygame.display.update()
+    
+    threades.audio.play_music(True,'soundtrack')
     threades.total_update_flag = True
 
 wfp_logo = pygame.image.load(os.path.join('data', 'top.png')).convert()
@@ -901,8 +893,6 @@ def select_lang():
     elif language[0][0:2] == 'es':
 	model.select_lang_flag = 'spa'
 	model.text_file = texts_spa
-    
-    
 
 def process(arg):
     print arg
@@ -970,7 +960,6 @@ def main():
         model.game_controller.update_level_time(threades.update_thread_pause)
         threades.update_turn(time_passed)
         animation_obj.update()
-
 
         mouse_flag = False
             

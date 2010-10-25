@@ -61,7 +61,7 @@ except:
     
     new_screen_size = [800,600]
     
-#new_screen_size = [800,600]
+new_screen_size = [800,600]
 
 global screen   
 if model.FLAG_XO:
@@ -70,8 +70,8 @@ if model.FLAG_XO:
     screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
 else:
     
-    screen = pygame.display.set_mode(new_screen_size,FULLSCREEN|SRCALPHA,32)
-    #screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
+    #screen = pygame.display.set_mode(new_screen_size,FULLSCREEN|SRCALPHA,32)
+    screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
 
 
 defaultStyle.init(gui)
@@ -210,15 +210,29 @@ def get_setup_text(facility_obj):
     
     ty = model.text_file.setup_format_text[0]
     
-    facility=facility_obj.get_name()
+    _name_dic = {'WATER':model.text_file.list_gen_res[0]
+                 ,'BUILDING MATERIAL':model.text_file.list_gen_res[1]
+                 ,'TOOLS':model.text_file.list_gen_res[2]
+                 ,'MEDICINE':model.text_file.list_gen_res[3]
+                 ,'BOOKS':model.text_file.list_gen_res[4]
+                 ,'HOUSE':model.text_file.facilities_list[0]
+                 ,'HOSPITAL':model.text_file.facilities_list[1]
+                 ,'WORKSHOP':model.text_file.facilities_list[2]
+                 ,'SCHOOL':model.text_file.facilities_list[3]
+                 ,'FOUNTAIN':model.text_file.facilities_list[4]
+                 ,'FARM':model.text_file.facilities_list[5]
+                  }
+    
+    
+    facility=_name_dic[str(facility_obj.get_name())]
     number = str(int(facility_obj.get_original_number()))
-    costbuild = facility_obj.get_cost_build() or 'no resources'
-    costrun = facility_obj.get_cons_dict() or 'no resources'
+    costbuild = facility_obj.get_cost_build() or model.text_file.resources_text[1]
+    costrun = facility_obj.get_cons_dict() or model.text_file.resources_text[1]
     manbuild = str(int(model.FACILITY_MANP_DICT_BUILD[facility_obj.get_name()]['EMPLOYED PEOPLE IN CONSTRUCTION']))
     try:
         manrun = model.FACILITY_MANP_DICT_RUN[facility_obj.get_name()]['EMPLOYED PEOPLE IN %(facility)s'%{'facility':facility}]
     except:
-        manrun = 'zero'
+        manrun = '0'
     rem_build_mat = int(model.resources[1].get_vquantity()) - int(costbuild['BUILDING MATERIAL'])
     rem_tools = int(model.resources[2].get_vquantity()) - int(costbuild['TOOLS'])
     rem_water = int(model.resources[0].get_vquantity()) - int(costbuild['WATER'])
@@ -234,14 +248,16 @@ def get_setup_text(facility_obj):
     
     strcostbuild = ''
     strcostrun = ''
+     
+    
     if type(costbuild) != str:
         for cost in costbuild.iteritems():
-            strcostbuild+=' '+str(cost[1])+' '+str(cost[0])
+            strcostbuild+=' '+str(cost[1]).lower()+' '+str(_name_dic[cost[0]])
     else:
         strcostbuild=costbuild
     if type(costrun) != str:
         for cost in costrun.iteritems():
-            strcostrun+=' '+str(cost[1])+' '+str(cost[0])
+            strcostrun+=' '+str(cost[1]).lower()+' '+str(_name_dic[cost[0]])
     else:
         strcostrun=costrun
     
@@ -250,10 +266,23 @@ def get_setup_text(facility_obj):
 def get_upgrade_text(facility_obj):
     
     ty = model.text_file.upgrade_format_text[0]
+    
+    _name_dic = {'WATER':model.text_file.list_gen_res[0]
+                 ,'BUILDING MATERIAL':model.text_file.list_gen_res[1]
+                 ,'TOOLS':model.text_file.list_gen_res[2]
+                 ,'MEDICINE':model.text_file.list_gen_res[3]
+                 ,'BOOKS':model.text_file.list_gen_res[4]
+                 ,'HOUSE':model.text_file.facilities_list[0]
+                 ,'HOSPITAL':model.text_file.facilities_list[1]
+                 ,'WORKSHOP':model.text_file.facilities_list[2]
+                 ,'SCHOOL':model.text_file.facilities_list[3]
+                 ,'FOUNTAIN':model.text_file.facilities_list[4]
+                 ,'FARM':model.text_file.facilities_list[5]
+                  }
     try:
         assert (facility_obj.get_level()<3)
         text = model.text_file.upgrade_text[facility_obj.get_name()][facility_obj.get_level()]
-        facility=facility_obj.get_name()
+        facility=_name_dic[facility_obj.get_name()]
         number = str(int(facility_obj.get_original_number()))
         cost_upgrade = facility_obj.get_cost_inc_level()
         rem_build_mat = int(model.resources[1].get_vquantity()) - int(cost_upgrade['BUILDING MATERIAL'])
@@ -265,8 +294,9 @@ def get_upgrade_text(facility_obj):
         else:
             resafter = model.text_file.list_gen_res[1]+':'+ str(rem_build_mat)+ model.text_file.list_gen_res[2]+':'+str(rem_tools)
         strcostupgrade=''
+        
         for cost in cost_upgrade.iteritems():
-            strcostupgrade+=' '+str(cost[1])+' '+str(cost[0])
+            strcostupgrade+=' '+str(cost[1])+' '+_name_dic[str(cost[0])]
 
     except:
         resafter=model.text_file.upgrade_fac_exceptions['max_level']

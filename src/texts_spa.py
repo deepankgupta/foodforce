@@ -64,7 +64,7 @@ instruction_text = [u'Bienvenido a la aldea de Gokul. \n\nJoin la Fuerza y la Al
                     u'El agua \nWater es la clave para la supervivencia y sustainence. \nUtilizado para beber, lavar y el aumento de los cultivos. \nMaintain y mejorar los pozos de un suministro constante de agua limpia. \n\nMedicine \nMedicine para el tratamiento y cura de enfermedades. \n\nVaccination para los niños \nEnsure un suministro constante de medicamentos para la caja fuerte y saludable Sheylan. '
                     u'Los libros \nBooks están destinados a jóvenes y viejos, mantenerlos bien mi amigo, su peso es de oro. \nMaintain los libros existentes en las bibliotecas escolares, y el orden más necesaria cada vez. Libros sobre la nutrición, la higiene y la agricultura ayudará a la comunidad para adaptarse las mejores prácticas en Sheylan. \nTools \n\nmake o comprar herramientas para el mantenimiento de campos y cultivos, y para \nconstruction de las instalaciones. \n\nBricks. \nProduce ellos en el taller, o comprarlos en el mercado de la construcción de las instalaciones . ']
 
-credits_text = u'Desarrolladores: \n      Mohit Taneja\n         Grivan Thapar\n          Rupinder Singh\n\n         Administrador \n  Deepank Gupta \n\n Pruebas de crédito: \n Chakkilam Infotech limitada \n\n ilustraciones y el logotipo de: \n Silke Buhr y Graham Bell del PMA '
+credits_text = u'Desarrolladores: \n      Mohit Taneja\n         Grivan Thapar\n          Rajat Goel\n\n         Administrador \n  Deepank Gupta \n\n Pruebas de crédito: \n Chakkilam Infotech limitada \n\n ilustraciones y el logotipo de: \n Silke Buhr y Graham Bell del PMA '
 
 
 about_us_text = u'Somos un grupo de programadores interesados para que las plataformas digitales como los portátiles de servir como plataformas para proporcionar educación y formación al tiempo que el alumno se sienten comprometidos y entretenido durante toda la experiencia. Foodforce2 es uno de esos intentos de hacer que se conscientes de hambre en el mundo y la pobreza, dándole la oportunidad de crear comunidades auto-sostenible y en el proceso que tiene una aplicación de otras habilidades básicas de matemáticas y conocimientos teóricos. \n\nPor favor escríbanos a foodforce2@gmail.com de las opiniones, comentarios e ideas para \ndevelopment. \n\nSe adelante a oír de usted.'
@@ -77,7 +77,7 @@ ind_namelist = (u'  Vivienda',
                 u'  Salud', 
                 u'  Educación', 
                 u'  Training')
-resources_text = [u'Recursos']
+resources_text = [u'Recursos','sin recursos']
 money_text = [u'El dinero']
 time_text = [u'Tiempo transcurrido', 
              u'Nivel Sólo empezar ', 
@@ -133,7 +133,7 @@ setup_fac_exceptions = {u'no_exception':u'',
                         u'max_limit': u'No se puede configurar más edificios de este servicio, intentar la creación de otro establecimiento', 
                         u'low_resource':u' Usted no tiene suficientes %(resource)s para construir la instalación, por favor, intente más tarde '}
 
-setup_format_text = [u'Hay %(number)s %(facility)s\'s en el pueblo.\nNeeds %(costbuild)s y %(manbuild)s las personas para construir.\n Requires %(costrun)s y %(manrun)s las personas a ejecutar.\n\n %(resafter)s']
+setup_format_text = [u'Hay %(number)s %(facility)s en el pueblo.\nNeeds %(costbuild)s y %(manbuild)s las personas para construir.\nRequires %(costrun)s y %(manrun)s las personas a ejecutar.\n\n%(resafter)s']
 
 upgrade_fac_text = [u'Actualizar Fondo', 
                     u'Por favor, seleccione un Fondo de Apoyo a la actualización', 
@@ -147,7 +147,7 @@ upgrade_fac_exceptions = {u'no_exception':u'',
                           u'low_res': u'Usted no tiene suficientes% (de recursos) s para actualizar la instalación, por favor, intente más tarde', 
                           u'max_level':u' Fondo ha alcanzado su nivel máximo no puedo actualizar ahora '}
 
-upgrade_format_text = [u'%(text)s\nHay %(number)s %(facility)s\'s en el pueblo.\nNeeds %(costupgrade)s para actualizar.\n\n%(resafter)s']
+upgrade_format_text = [u'%(text)s\nHay %(number)s %(facility)s en el pueblo.\nNeeds %(costupgrade)s para actualizar.\n\n%(resafter)s']
 
 buysell_text = [u'Compra y venta de Recursos', 
                 u'Comercio con los Pueblos de pares', 
@@ -232,6 +232,8 @@ play_text = [u'Escuchar']
 instructions_next_text = [u'Siguiente>']
 
 instructions_pre_text = [u'<Anterior']
+
+controls_text = ['Build','Upgrade','Market','Scroll Screen Up','Scroll Screen Down','Scroll Screen Left','Scroll Screen Right','Focus','De Focus',': ','s','u','b','up arrow','down arrow','left arrow','right arrow','f','d','OK']          
 
 close_window_text = [u'Cerrar']
 

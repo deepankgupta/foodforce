@@ -493,9 +493,6 @@ class display_panel:
         self.man = manpower_panel()
         self.fac = facilities_panel()
         self.map = mini_map()
-    
-    
-    
 
     def update(self):
         self.ind.update_value()
