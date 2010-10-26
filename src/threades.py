@@ -61,7 +61,7 @@ except:
     
     new_screen_size = [800,600]
     
-#new_screen_size = [800,600]
+new_screen_size = [800,600]
 
 global screen   
 if model.FLAG_XO:
@@ -70,8 +70,8 @@ if model.FLAG_XO:
     screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
 else:
     
-    screen = pygame.display.set_mode(new_screen_size,FULLSCREEN|SRCALPHA,32)
-    #screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
+    #screen = pygame.display.set_mode(new_screen_size,FULLSCREEN|SRCALPHA,32)
+    screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
 
 
 defaultStyle.init(gui)
@@ -98,7 +98,7 @@ game_save_flag = False
 
 PLACING_LIST_TEMP = []
 current_level = 0
-SOUND_PATH = os.path.join('sounds/')
+SOUND_PATH = os.path.join('sounds','effects')
 SOUND_VOLUME = [1,1]  #max Vol is [1,1] i.e [left,right]
 
 def initialize_facilities(autobuild_flag = True):
@@ -2256,16 +2256,14 @@ class Sounds:
     
     def load_sound(self,sound_path = SOUND_PATH):
         '''Gets a dictionary of sounds with just their names from SOUND_PATH and loads them into buffer'''
-        sound_list = map(lambda x:x[len(SOUND_PATH):-4],glob.glob(os.path.join(SOUND_PATH,"*.ogg"))
-                         )
+        sound_list = glob.glob(os.path.join(SOUND_PATH,'*.ogg'))
         sound_dic = {}
         for sound_name in sound_list:
-            path = os.path.join(sound_path,sound_name+'.ogg')
             try:
-                sound_dic[sound_name] = pygame.mixer.Sound(path)
-            except:
+                sound_dic[sound_name] = pygame.mixer.Sound(sound_name)
+            except Exception as e:
                 sound_dic[sound_name] = None
-                print "Error Loading Sound: " + sound_name
+                print "Error Loading Sound: " + str(e)+ '\n ' + sound_name
         return sound_dic
     
     def play_sound(self,sound_name,volume = SOUND_VOLUME):
