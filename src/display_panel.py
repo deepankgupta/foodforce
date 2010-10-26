@@ -54,20 +54,17 @@ class bar:
 
     def update_value(self,value):
         '''Updates the value of the bar
+        The rect's are drawn again and again here, what could if we do to just possibly update them in a 
+        a less expensive manner.
         '''
 
         max_value = 100.0
         max_pixel = 246.0
-        colour = (177,135,73)           
-        pygame.draw.rect(threades.screen,self.color_bar,threades.resize_rect((self.x,self.y,250,18)),2)        
-        pygame.draw.rect(threades.screen,colour,threades.resize_rect((self.x+2,self.y+2,value/max_value*max_pixel,14)))
-        pygame.draw.rect(threades.screen,(255,255,255),threades.resize_rect((self.x+2+value/max_value*max_pixel,self.y+2,max_pixel-value/max_value*max_pixel,14)))
-
-
-
-
-
-
+        colour = (177,135,73)   
+        t = value/max_value*max_pixel
+        #pygame.draw.rect(threades.screen,self.color_bar,threades.resize_rect((self.x,self.y,250,18)),2)        
+        pygame.draw.rect(threades.screen,colour,threades.resize_rect((self.x+2,self.y+2,t,14)))
+        pygame.draw.rect(threades.screen,(255,255,255),threades.resize_rect((self.x+2+t,self.y+2,max_pixel-t,14)))
 
 class indicator_panel:
 
