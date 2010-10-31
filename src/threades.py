@@ -2261,7 +2261,7 @@ class Sounds:
         for sound_name in sound_list:
             try:
                 sound_dic[sound_name] = pygame.mixer.Sound(sound_name)
-            except Exception as e:
+            except Exception is e:
                 sound_dic[sound_name] = None
                 print "Error Loading Sound: " + str(e)+ '\n ' + sound_name
         return sound_dic
