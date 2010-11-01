@@ -409,8 +409,8 @@ class starting_intro:
             if select_flag == True or os.path.exists(os.path.join('storyboards',str(storyboard_name[1]),'save_game.pkl')):
 		self.image = pygame.image.load(os.path.join('storyboards',str(storyboard_name[1]),'intro_image.png')).convert_alpha()
 		finalSurface = pygame.surface.Surface((150,150)).convert_alpha()
-		finalSurface.blit(self.image,(10,10))
-		self.win.surf.blit(finalSurface,(100,vertical_dist_photo))
+		finalSurface.blit(self.image,threades.resize_pos((10,10)))
+		self.win.surf.blit(finalSurface,threades.resize_pos((100,vertical_dist_photo)))
                 self.item = gui.Button(position = threades.resize_pos((450.0,vertical_dist),(900.0,600.0),self.win.size),size = threades.resize_pos((290,50)),parent = self.win,text = str(storyboard_name[1]),style = self.button_style_2)
                 self.item.onClick = self.select_storyboard
                 vertical_dist = vertical_dist + 180

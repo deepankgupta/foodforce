@@ -413,11 +413,13 @@ class Actions:
         self.curentLevel = 1
         self.time = 0
         self.timer = 0
+        print action.actionType
         if action.actionType == 1:
             self.Chat(action.data)
         if action.actionType == 2:
             self.loadNextLevel()
         if action.actionType == 3:
+            print "number 1"
             self.loadLevelAgain()
         if action.actionType == 4:
             self.callEarthquake()
@@ -466,7 +468,7 @@ class Actions:
     def checkDelay(self):
         ''' To be called when checking the delay
         '''
-        timeElapsed = self.timerClock.tick()
+        timeElapsed = self.timerClock.tick(30)
         if not (timeElapsed>1000):
             self.time += timeElapsed
         if self.time < self.timer:
@@ -497,7 +499,7 @@ class Actions:
 
 
     def loadLevelAgain(self):
-        
+        print "Number 2"
         global storyboard_level
         data_file = os.path.join('storyboards',str(model.storyboard_file),'data','data'+str(storyboard_level)+'.pkl')
                 
@@ -547,7 +549,7 @@ class Actions:
 
         st_desktop = gui.Desktop()
         clock = pygame.time.Clock()
-        clock.tick()
+        clock.tick(30)
 
         # Calculating position and size of window from the size of the threades.desktop
         position_win =threades.resize_pos((150.0,100.0))
@@ -587,7 +589,7 @@ class Actions:
                     if e.key == 27:  # For escape key
                         self.storyboardwin_run = False
 
-            gl_time += clock.tick()
+            gl_time += clock.tick(30)
             if gl_time >= 17000:
                 self.storyboardwin_run = False
 
@@ -623,7 +625,7 @@ class Actions:
 
         st_desktop = gui.Desktop()
         clock = pygame.time.Clock()
-        clock.tick()
+        clock.tick(30)
 
         # Calculating position and size of window from the size of the threades.desktop
         position_win =threades.resize_pos((150.0,100.0))
@@ -670,7 +672,7 @@ class Actions:
                     if e.key == 27:  # For escape key
                         self.storyboardwin_run = False
 
-            gl_time += clock.tick()
+            gl_time += clock.tick(30)
             if gl_time >= 17000:
                 self.storyboardwin_run = False
 
@@ -699,7 +701,7 @@ class Actions:
 
         st_desktop = gui.Desktop()
         clock = pygame.time.Clock()
-        clock.tick()
+        clock.tick(30)
 
         # Calculating position and size of window from the size of the threades.desktop
         position_win =threades.resize_pos((150.0,100.0))
@@ -731,7 +733,7 @@ class Actions:
         st_desktop.update()
         st_desktop.draw()
         pygame.display.update()
-
+        
         while self.storyboardwin_run:
             pygame.display.set_caption('FoodForce2')
 
@@ -739,8 +741,11 @@ class Actions:
                 if e.type == KEYDOWN:
                     if e.key == 27:  # For escape key
                         self.storyboardwin_run = False
-
-            gl_time += clock.tick()
+                if e.type == MOUSEBUTTONDOWN:
+                    if e.button == 1:
+                        self.storyboardwin_run = False
+                    
+            gl_time += clock.tick(30)
             if gl_time >= 17000:
                 self.storyboardwin_run = False
 
@@ -769,7 +774,7 @@ class Actions:
 
         st_desktop = gui.Desktop()
         clock = pygame.time.Clock()
-        clock.tick()
+        clock.tick(30)
 
         # Calculating position and size of window from the size of the threades.desktop
         position_win =threades.resize_pos((150.0,100.0))
@@ -816,7 +821,7 @@ class Actions:
                     if e.key == 27:  # For escape key
                         self.storyboardwin_run = False
 
-            gl_time += clock.tick()
+            gl_time += clock.tick(30)
             if gl_time >= 17000:
                 self.storyboardwin_run = False
 
@@ -895,14 +900,15 @@ class storyboardFlow:
 
                 if self.norConditionFlag:
                     if (variable[0] == 'actionTrue') and (self.prevConditionResult == 1):
-
+                        
                         tempAction = actionTemplate(variable[1][0],variable[1][1])
                         self.action = Actions(tempAction)
                         self.actionRunningFlag = True
 
                     if (variable[0] == 'actionFalse') and (self.prevConditionResult == 2):
-
+                        
                         tempAction = actionTemplate(variable[1][0],variable[1][1])
+                        
                         self.action = Actions(tempAction)
                         self.actionRunningFlag = True
 
