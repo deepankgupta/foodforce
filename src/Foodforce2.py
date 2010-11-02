@@ -401,16 +401,17 @@ class starting_intro:
         self.win = gui.Window(position = position_win,size = size_win,parent = desktop2,style = win_style,text = model.text_file.storyboard_window_text[0], closeable = False,shadeable = False,moveable = False )
 	self.win.onClose = self.main_menu
         vertical_dist = 150.0     #for the position of optionboxes
-	vertical_dist_photo = 80.0
+	vertical_dist_photo = 120.0
         storyboard_list_file = open('storyboard_list.pkl')
         
         for i in range(pickle.load(storyboard_list_file)):
             storyboard_name = pickle.load(storyboard_list_file)
             if select_flag == True or os.path.exists(os.path.join('storyboards',str(storyboard_name[1]),'save_game.pkl')):
 		self.image = pygame.image.load(os.path.join('storyboards',str(storyboard_name[1]),'intro_image.png')).convert_alpha()
-		finalSurface = pygame.surface.Surface((150,150)).convert_alpha()
+		self.image = pygame.transform.scale(self.image, threades.resize_pos((150,120)))
+		finalSurface = pygame.surface.Surface(threades.resize_pos((150,150))).convert_alpha()
 		finalSurface.blit(self.image,threades.resize_pos((10,10)))
-		self.win.surf.blit(finalSurface,threades.resize_pos((100,vertical_dist_photo)))
+		self.win.surf.blit(finalSurface,threades.resize_pos((160,vertical_dist_photo)))
                 self.item = gui.Button(position = threades.resize_pos((450.0,vertical_dist),(900.0,600.0),self.win.size),size = threades.resize_pos((290,50)),parent = self.win,text = str(storyboard_name[1]),style = self.button_style_2)
                 self.item.onClick = self.select_storyboard
                 vertical_dist = vertical_dist + 180

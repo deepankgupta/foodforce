@@ -419,7 +419,6 @@ class Actions:
         if action.actionType == 2:
             self.loadNextLevel()
         if action.actionType == 3:
-            print "number 1"
             self.loadLevelAgain()
         if action.actionType == 4:
             self.callEarthquake()
@@ -741,9 +740,9 @@ class Actions:
                 if e.type == KEYDOWN:
                     if e.key == 27:  # For escape key
                         self.storyboardwin_run = False
-                if e.type == MOUSEBUTTONDOWN:
-                    if e.button == 1:
-                        self.storyboardwin_run = False
+                #if e.type == MOUSEBUTTONDOWN:
+                    #if e.button == 1:
+                        #self.storyboardwin_run = False
                     
             gl_time += clock.tick(30)
             if gl_time >= 17000:
@@ -908,7 +907,6 @@ class storyboardFlow:
                     if (variable[0] == 'actionFalse') and (self.prevConditionResult == 2):
                         
                         tempAction = actionTemplate(variable[1][0],variable[1][1])
-                        
                         self.action = Actions(tempAction)
                         self.actionRunningFlag = True
 
