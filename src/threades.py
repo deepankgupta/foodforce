@@ -61,7 +61,7 @@ except:
     
     new_screen_size = [800,600]
     
-#new_screen_size = [800,600]
+new_screen_size = [800,600]
 
 global screen   
 if model.FLAG_XO:
@@ -70,8 +70,8 @@ if model.FLAG_XO:
     screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
 else:
     
-    screen = pygame.display.set_mode(new_screen_size,FULLSCREEN|SRCALPHA,32)
-    #screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
+    #screen = pygame.display.set_mode(new_screen_size,FULLSCREEN|SRCALPHA,32)
+    screen = pygame.display.set_mode(new_screen_size,SRCALPHA,32)
 
 
 defaultStyle.init(gui)
@@ -632,8 +632,8 @@ def update_turn(delay = 0):
     
             # Increase of population
             popul = model.ppl.get_total_population()
-            
-            model.ppl.change_total_population((popul * model.POPULATION_CHANGE))
+            model.POPULATION_FACTOR+=0.05
+            model.ppl.change_total_population((popul * model.POPULATION_CHANGE/model.POPULATION_FACTOR))
             model.ppl.update_total_no_of_ppl_employed()
             
             # updation of manpower model.resources
@@ -933,14 +933,14 @@ def resume_game():
     level = pickle.load(output)
     current_level = level
     level_save_time = pickle.load(output)
-    pickle.load(output)
     model.game_controller.resume_game_time_update(level_save_time)
     #print model.global_time
     while True:
         try:
             PLACING_LIST_TEMP = pickle.load(output)
+            print PLACING_LIST_TEMP
         except EOFError:
-            break 
+            break
     output.close()
     game_save_flag = False
     

@@ -51,6 +51,9 @@ storyboard_file = ''
 select_lang_flag = 'eng'
 text_file = texts_eng
 
+#Remove this sometime!
+POPULATION_FACTOR=0.5
+
 def init_cons(file_name):
     """ used to read the values of constant from data file file_name
     @ivar file_name data file containing values of constant

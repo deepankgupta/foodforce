@@ -226,7 +226,7 @@ def write_data():
     chatText = ['Kamat','Nice work with the setting up of the new village. I am really impressed.',
                 'Son','Thanks',
                 'Kamat','But I wonder, if you are capable enough to work without my guidance now that you have learnt the basics of building a village.',
-                'Kamat','I will leave you the responsibility of the village for the next 3 months while I go out for your cousin sister wedding.']
+                'Kamat','I will leave you the responsibility of the village for the next 2 months while I go out for your cousin sister wedding.']
     
     action = [1,[chatText,'Wfpwork.png']]
     actionData = ['action',action]
@@ -244,7 +244,7 @@ def write_data():
     condn4 = [False,3,'','','>=','NUTRITION',35]
     condn5 = [False,3,'','','>=','TRAINING',35]
     condnlist = [condn1,condn2,condn3,condn4,condn5]
-    condnGlobal = ['NOR',90,condnlist]
+    condnGlobal = ['NOR',10,condnlist]
     condnData = ['condition',condnGlobal]
     pickle.dump(condnData,output)
     

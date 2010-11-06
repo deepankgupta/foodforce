@@ -372,7 +372,7 @@ ag5
 aS'But I wonder, if you are capable enough to work without my guidance now that you have learnt the basics of building a village.'
 p9
 ag5
-aS'I will leave you the responsibility of the village for the next 3 months while I go out for your cousin sister wedding.'
+aS'I will leave you the responsibility of the village for the next 2 months while I go out for your cousin sister wedding.'
 p10
 aaS'Wfpwork.png'
 p11
@@ -389,7 +389,7 @@ p1
 a(lp2
 S'NOR'
 p3
-aI90
+aI10
 a(lp4
 (lp5
 I00

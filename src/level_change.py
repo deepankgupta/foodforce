@@ -83,6 +83,7 @@ class change_level:
         #threades.current_level = proceduralFlow.storyboard_level
                 
         threades.total_update_flag = True
+        model.POPULATION_FACTOR = 0.5
         threades.resume_update_thread()
 
         
@@ -99,7 +100,7 @@ class change_level:
         model.fountain_sprite_list = []
 
         model.facilities_list_sprites = { 'HOUSE':model.house_sprite_list, 'HOSPITAL':model.hospital_sprite_list, 'FARM':model.farm_sprite_list, 'SCHOOL':model.school_sprite_list, 'WORKSHOP':model.workshop_sprite_list, 'FOUNTAIN':model.fountain_sprite_list}
-
+        model.POPULATION_FACTOR = 0.5
         
         
         local_list = threades.natural_calamities.sprites()
