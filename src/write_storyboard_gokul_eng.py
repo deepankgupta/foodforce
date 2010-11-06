@@ -33,7 +33,7 @@ while storyboard_name == None:
 
 def write_data():
 
-    output = open('storyboards/'+str(storyboard_name)+'/storyboard.pkl','wb')
+    output = open('storyboards/'+str(storyboard_name)+'/storyboard_eng.pkl','wb')
     
     # Tutorial Mission
     
@@ -229,7 +229,7 @@ def write_data():
                 'Kamat','But I wonder, if you are capable enough to work without my guidance now that you have learnt the basics of building a village.',
                 'Kamat','I will leave you the responsibility of the village for the next 1 month while I go out for your cousin sister wedding.']
     
-    action = [1,[chatText,str(storyboard_name)+'/images/chat images/Wfpwork.png']]
+    action = [1,[chatText,os.path.join('Wfpwork.png')]]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
@@ -277,7 +277,7 @@ def write_data():
                 'Kamat','Also, more cash reserves will enable us to setup more buildings and buy materials and food to improve the condition of our people.',
                 'Kamat','As you have already learnt that Tools made in workshops can be traded in market to earn money, you should focus on that.']
     
-    action = [1,[chatText,str(storyboard_name)+'/images/chat images/Wfpwork.png']]
+    action = [1,[chatText,'Wfpwork.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
@@ -333,7 +333,7 @@ def write_data():
     chatText = ['Kamat','Respected members of Panchayat, my son has brought Rs 5000 more into the village funds. Now, it is for us to decide what needs to be done with it.']
     
     
-    action = [1,[chatText,str(storyboard_name)+'/images/chat images/Wfpwork.png']]
+    action = [1,[chatText,'Wfpwork.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
@@ -350,7 +350,7 @@ def write_data():
                 'Son','It will be my pleasure.']
                 
     
-    action = [1,[chatText,str(storyboard_name)+'/images/chat images/Wfpwork.png']]
+    action = [1,[chatText,'Wfpwork.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
@@ -412,18 +412,18 @@ def write_data():
                 'Ajmal','Also we need to setup hospitals and educate people about good practices and simple measures to avoid diseases. Schools setup by you are already doing a good job of it. We just need to bring some good doctors here',
                 'Ajmal','Can you do all this to avoid an epidemic']
                 
-    action = [1,[chatText,str(storyboard_name)+'/images/chat images/Wfpwork.png']]
+    action = [1,[chatText,'Wfpwork.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    text = 'Yes, this mission is harder. Take the progress bars for health to 65 and nutrition above 45 and you will be termed as pass.'
+    text = 'Yes, this mission is harder. Take the progress bars for health to 70 and nutrition above 65 and you will be termed as pass.'
     
     action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    condn1 = [False,3,'','','>=','HEALTH',65]
-    condn2 = [False,3,'','','>=','NUTRITION',45]
+    condn1 = [False,3,'','','>=','HEALTH',70]
+    condn2 = [False,3,'','','>=','NUTRITION',65]
     condnlist = [condn1,condn2]
     condnGlobal = ['AND',-1,condnlist]
     condnData = ['condition',condnGlobal]
@@ -452,7 +452,7 @@ def write_data():
                 'Farmer','I have none sir.. I have ran away from my home with my kids and wife since there is a war going on.',
                 'Farmer','There will be more like me coming. I will work hard, but please give me a place to live peacefully.']
                 
-    action = [1,[chatText,str(storyboard_name)+'/images/chat images/Wfpwork.png']]
+    action = [1,[chatText,'Wfpwork.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
@@ -464,17 +464,17 @@ def write_data():
     
     chatText = ['Panch','Panchayat has decided that we will let the incoming immigrants into our village and will treat them as our guests. Athiti Devo Bhav.']
     
-    action = [1,[chatText,str(storyboard_name)+'/images/chat images/Wfpwork.png']]
+    action = [1,[chatText,'Wfpwork.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
-    text = 'It seems as if there are not enough huts for all the incoming immigrants. Build more huts and increase the progress bar for housing till 80. Also increase the progress for Nutrition upto 50.'
+    text = 'It seems as if there are not enough huts for all the incoming immigrants. Build more huts and increase the progress bar for housing till 90. Also increase the progress for Nutrition upto 50.'
     
     action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    condn1 = [False,3,'','','>=','HOUSING',80]
+    condn1 = [False,3,'','','>=','HOUSING',90]
     condn2 = [False,3,'','','>=','NUTRITION',50]
     condnlist = [condn1,condn2]
     condnGlobal = ['AND',-1,condnlist]
@@ -501,18 +501,18 @@ def write_data():
                 'Panch','But most of them are sitting idle, since they were originally farmers and have no farms now.',
                 'Kamat','So, what. We will train them in our workshops to produce bricks for our village. Also, we can train them as labourers and they will become a part and parcel of the village.']
                  
-    action = [1,[chatText,str(storyboard_name)+'/images/chat images/Wfpwork.png']]
+    action = [1,[chatText,'Wfpwork.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    text = 'Good job recovering from the calamity. Train your people so that they turn into useful resources. Increase the training progress bar to 70 to pass this mission.' 
+    text = 'Good job recovering from the calamity. Train your people so that they turn into useful resources. Increase the training progress bar to 90 to pass this mission.' 
 
     action = [9,text]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
     
-    condn1 = [False,3,'','','>=','TRAINING',70]
+    condn1 = [False,3,'','','>=','TRAINING',90]
     condnlist = [condn1]
     condnGlobal = ['AND',-1,condnlist]
     condnData = ['condition',condnGlobal]
@@ -539,7 +539,7 @@ def write_data():
                 'Priest','How can Sarpanch ji help. It is the rain god: Indra who is displeased with us. Let us hold a pooja to please Indra.',
                 'Kamat','I will do what I can.']
     
-    action = [1,[chatText,str(storyboard_name)+'/images/chat images/drought.png']]
+    action = [1,[chatText,'drought.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
@@ -549,7 +549,7 @@ def write_data():
                 'Kamat','They will be holding a pooja soon. But we need to do more than that.',
                 'Son','Yes Father.']
     
-    action = [1,[chatText,str(storyboard_name)+'/images/chat images/drought.png']]
+    action = [1,[chatText,'drought.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
@@ -608,7 +608,7 @@ def write_data():
                 'Son','Why do you think so, father?',
                 'Kamat','The signs are there in the animals. Look how the cattle and the sheep are getting restless. They are the ones who know first that the Gods are angry.']
     
-    action = [1,[chatText,str(storyboard_name)+'/images/chat images/earthquake_st.png']]
+    action = [1,[chatText,'earthquake_st.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
 
@@ -629,11 +629,11 @@ def write_data():
                 'Son','Dont worry brother; I will rebuild the village to its former glory.']
     
 
-    action = [1,[chatText,str(storyboard_name)+'/images/chat images/earthquake_st.png']]
+    action = [1,[chatText,'earthquake_st.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     
-    text = 'Mission Objective: Rebuild the village and bring the progress levels to 40%'
+    text = 'Mission Objective: Rebuild the village and bring the progress levels to 65%'
     
     action = [9,text]
     actionData = ['action',action]
@@ -641,11 +641,11 @@ def write_data():
     
 
 
-    condn1 = [False,3,'','','>=','HOUSING',40]
-    condn2 = [False,3,'','','>=','HEALTH',40]
-    condn3 = [False,3,'','','>=','EDUCATION',40]
-    condn4 = [False,3,'','','>=','NUTRITION',40]
-    condn5 = [False,3,'','','>=','TRAINING',40]
+    condn1 = [False,3,'','','>=','HOUSING',65]
+    condn2 = [False,3,'','','>=','HEALTH',65]
+    condn3 = [False,3,'','','>=','EDUCATION',65]
+    condn4 = [False,3,'','','>=','NUTRITION',65]
+    condn5 = [False,3,'','','>=','TRAINING',65]
     condnlist = [condn1,condn2,condn3,condn4,condn5]
     condnGlobal = ['AND',-1,condnlist]
     condnData = ['condition',condnGlobal]
@@ -668,50 +668,3 @@ def write_data():
     
     
 write_data()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    

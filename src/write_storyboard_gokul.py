@@ -24,7 +24,7 @@ import pickle
 
 def write_data():
 
-    output = open('storyboards/storyboard1/storyboard.pkl','wb')
+    output = open('storyboards/storyboard.pkl','wb')
     
     # Tutorial Mission
     
@@ -38,7 +38,7 @@ def write_data():
                 'Son','Father, this is no village, it is just empty land.... ',
                 'Kamat','Yes, this is the place where once stood the village of Abujamara. The village became a barren land when Ganga cursed the people of Abujamara by changing its course and flooding the Abujamara village. The people are homeless are we will help rebuild their village.']
     
-    action = [1,[chatText,'storyboard1/images/chat images/Wfpwork.png']]
+    action = [1,[chatText,'storyboard/images/chat images/Wfpwork.png']]
     actionData = ['action',action]
     pickle.dump(actionData,output)
     

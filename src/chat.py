@@ -320,6 +320,7 @@ def showChat(chatText,back_image=None):
     global surf_bckgnd    
     
     background_image= back_image
+    print back_image
 
     if back_image:
         surf_bckgnd = pygame.image.load(os.path.join('storyboards',back_image)).convert()

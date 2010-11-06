@@ -372,7 +372,7 @@ ag5
 aS'Pero yo me pregunto, si eres lo suficientemente capaz de trabajar sin mi gu\xeda, ahora que has aprendido lo b\xe1sico para construir una aldea.'
 p9
 ag5
-aS'Yo te dejar\xe9 la responsabilidad de la aldea por los pr\xf3ximos 3 meses, mientras estoy fuera por la boda de tu prima hermana. '
+aS'Yo te dejar\xe9 la responsabilidad de la aldea por los pr\xf3ximos 1 mese, mientras estoy fuera por la boda de tu prima hermana. '
 p10
 aaS'Wfpwork.png'
 p11
@@ -389,7 +389,7 @@ p1
 a(lp2
 S'NOR'
 p3
-aI90
+aI30
 a(lp4
 (lp5
 I00
@@ -449,7 +449,7 @@ S'Kamat'
 p5
 aS'Bien hecho Hijo. Parece que eres capaz de manejar el pueblo despues de m\xed.'
 p6
-aaS'prosper.png'
+aaS'Gokul An Indian Village/images/chat images/prosper.png'
 p7
 aaa.(lp0
 S'actionTrue'
@@ -492,14 +492,14 @@ p8
 ag5
 aS'Como ya has aprendido, las Herramientas hechas en los talleres se pueden vender en el mercado para ganar dinero, debes dedicarte a eso.'
 p9
-aaS'Wfpwork.png'
+aaS'Gokul An Indian Village/images/chat images/Wfpwork.png'
 p10
 aaa.(lp0
 S'action'
 p1
 a(lp2
 I9
-aS'Gana  5000 Rs. m\xe1s en los pr\xf3ximos 4 meses. Pero recuerda, esto no deber\xeda ser a costa de la condici\xf3n de la aldea. No dejes que las barras de progreso caigan por debajo de 25. \xa1Buena suerte!'
+aS'Gana  5000 Rs. m\xe1s en los pr\xf3ximos 1 mese. Pero recuerda, esto no deber\xeda ser a costa de la condici\xf3n de la aldea. No dejes que las barras de progreso caigan por debajo de 25. \xa1Buena suerte!'
 p3
 aa.(lp0
 S'condition'
@@ -507,7 +507,7 @@ p1
 a(lp2
 S'NOR'
 p3
-aI120
+aI30
 a(lp4
 (lp5
 I00
@@ -658,7 +658,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'Tu misi\xf3n es simple. Aumenta la barra de progreso de Educaci\xf3n a 70, mientras que no permitas que ninguna de las otras barras de progreso caigan por debajo de 30 durante 3 meses.'
+aS'Tu misi\xf3n es simple. Aumenta la barra de progreso de Educaci\xf3n a 70, mientras que no permitas que ninguna de las otras barras de progreso caigan por debajo de 30 durante 1 mese.'
 p3
 aa.(lp0
 S'condition'
@@ -666,7 +666,7 @@ p1
 a(lp2
 S'NOR'
 p3
-aI90
+aI30
 a(lp4
 (lp5
 I00
@@ -800,7 +800,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'S\xed, esta misi\xf3n es m\xe1s dif\xedcil. Lleva la barra de progreso de salud a 65 y la de nutrici\xf3n por sobre 45 y ser\xe1s calificado a seguir.'
+aS'S\xed, esta misi\xf3n es m\xe1s dif\xedcil. Lleva la barra de progreso de salud a 70 y la de nutrici\xf3n por sobre 65 y ser\xe1s calificado a seguir.'
 p3
 aa.(lp0
 S'condition'
@@ -820,7 +820,7 @@ aS'>='
 p7
 aS'HEALTH'
 p8
-aI65
+aI70
 aa(lp9
 I00
 aI3
@@ -829,7 +829,7 @@ ag6
 ag7
 aS'NUTRITION'
 p10
-aI45
+aI65
 aaaa.(lp0
 S'action'
 p1
@@ -892,7 +892,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'Parece que no hay suficientes chozas para todos los inmigrantes. Construye m\xe1s chozas y aumenta la barra de progreso de Vivienda hasta 80. Tambi\xe9n aumenta los progresos en Nutrici\xf3n hasta 50.'
+aS'Parece que no hay suficientes chozas para todos los inmigrantes. Construye m\xe1s chozas y aumenta la barra de progreso de Vivienda hasta 90. Tambi\xe9n aumenta los progresos en Nutrici\xf3n hasta 50.'
 p3
 aa.(lp0
 S'condition'
@@ -912,7 +912,7 @@ aS'>='
 p7
 aS'HOUSING'
 p8
-aI80
+aI90
 aa(lp9
 I00
 aI3
@@ -961,7 +961,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'Buen trabajo recuper\xe1ndose de la calamidad. Entrena a tu gente para que se conviertan en recursos \xfatiles. Aumenta la barra de progreso de capacitaci\xf3n a 70 para aprobar esta misi\xf3n.'
+aS'Buen trabajo recuper\xe1ndose de la calamidad. Entrena a tu gente para que se conviertan en recursos \xfatiles. Aumenta la barra de progreso de capacitaci\xf3n a 90 para aprobar esta misi\xf3n.'
 p3
 aa.(lp0
 S'condition'
@@ -981,7 +981,7 @@ aS'>='
 p7
 aS'TRAINING'
 p8
-aI70
+aI90
 aaaa.(lp0
 S'action'
 p1
@@ -1046,7 +1046,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'No permitas que los progresos de nutrici\xf3n caigan por debajo del 50% y no permitas que el nivel del agua caiga por debajo de 500 durante los pr\xf3ximos 2 meses.'
+aS'No permitas que los progresos de nutrici\xf3n caigan por debajo del 50% y no permitas que el nivel del agua caiga por debajo de 500 durante los pr\xf3ximos 1 mese.'
 p3
 aa.(lp0
 S'condition'
@@ -1054,7 +1054,7 @@ p1
 a(lp2
 S'NOR'
 p3
-aI60
+aI30
 a(lp4
 (lp5
 I00
@@ -1095,7 +1095,7 @@ aS'Son'
 p9
 aS' Gracias, padre. Pero todo fue gracias a su orientaci\xf3n y apoyo es que soy capaz de servir para la prosperidad de la aldea.'
 p10
-aaS'happy.png'
+aaS'Gokul An Indian Village/images/chat images/Happy.png'
 p11
 aaa.(lp0
 S'actionTrue'
@@ -1190,7 +1190,7 @@ S'action'
 p1
 a(lp2
 I9
-aS'Objetivo de la Misi\xf3n: reconstruir el pueblo y subir los niveles de progreso a un 40%'
+aS'Objetivo de la Misi\xf3n: reconstruir el pueblo y subir los niveles de progreso a un 65%'
 p3
 aa.(lp0
 S'condition'
@@ -1210,7 +1210,7 @@ aS'>='
 p7
 aS'HOUSING'
 p8
-aI40
+aI65
 aa(lp9
 I00
 aI3
@@ -1219,7 +1219,7 @@ ag6
 ag7
 aS'HEALTH'
 p10
-aI40
+aI65
 aa(lp11
 I00
 aI3
@@ -1228,7 +1228,7 @@ ag6
 ag7
 aS'EDUCATION'
 p12
-aI40
+aI65
 aa(lp13
 I00
 aI3
@@ -1237,7 +1237,7 @@ ag6
 ag7
 aS'NUTRITION'
 p14
-aI40
+aI65
 aa(lp15
 I00
 aI3
@@ -1246,7 +1246,7 @@ ag6
 ag7
 aS'TRAINING'
 p16
-aI40
+aI65
 aaaa.(lp0
 S'action'
 p1

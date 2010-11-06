@@ -413,7 +413,7 @@ class Actions:
         self.curentLevel = 1
         self.time = 0
         self.timer = 0
-        print action.actionType
+        #print action.actionType
         if action.actionType == 1:
             self.Chat(action.data)
         if action.actionType == 2:
@@ -452,6 +452,8 @@ class Actions:
 
         text = data[0]
         bckgnd = data[1]
+        print 'In pro'
+        print bckgnd
         chat.showChat(text,bckgnd)
         event = game_events.Event(type = game_events.ACTIONCOMPLETEEVENT, facility_name = '', res_name = '' , res_quantity = 0)
         game_events.EventQueue.add(event)
