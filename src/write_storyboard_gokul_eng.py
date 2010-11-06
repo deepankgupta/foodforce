@@ -641,11 +641,11 @@ def write_data():
     
 
 
-    condn1 = [False,3,'','','>=','HOUSING',0]
-    condn2 = [False,3,'','','>=','HEALTH',0]
-    condn3 = [False,3,'','','>=','EDUCATION',0]
-    condn4 = [False,3,'','','>=','NUTRITION',0]
-    condn5 = [False,3,'','','>=','TRAINING',0]
+    condn1 = [False,3,'','','>=','HOUSING',65]
+    condn2 = [False,3,'','','>=','HEALTH',65]
+    condn3 = [False,3,'','','>=','EDUCATION',65]
+    condn4 = [False,3,'','','>=','NUTRITION',65]
+    condn5 = [False,3,'','','>=','TRAINING',65]
     condnlist = [condn1,condn2,condn3,condn4,condn5]
     condnGlobal = ['AND',-1,condnlist]
     condnData = ['condition',condnGlobal]
