@@ -914,5 +914,5 @@ class storyboardFlow:
 
 
             except EOFError:
-                self.action.showCredentials()
+                self.action.showCredits()
 
