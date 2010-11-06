@@ -183,7 +183,8 @@ def event_handling(e):
         proceduralFlow.openStoryBoardFile()
         threades.delete_saved_game()
         proceduralFlow.storyboard_level = 1
-        proceduralFlow.load_level_obj.new_level_stats('data.pkl','graphics_layout.pkl')
+	data_file = os.path.join('storyboards',str(model.storyboard_file),'data','data1.pkl')
+        proceduralFlow.load_level_obj.new_level_stats(data_file,'graphics_layout.pkl')
         event = game_events.Event(type = game_events.ACTIONCOMPLETEEVENT, facility_name = '', res_name = '' , res_quantity = 0)
         game_events.EventQueue.add(event)
         model.game_controller.reset_time()

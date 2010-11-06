@@ -452,8 +452,6 @@ class Actions:
 
         text = data[0]
         bckgnd = data[1]
-        print 'In pro'
-        print bckgnd
         chat.showChat(text,bckgnd)
         event = game_events.Event(type = game_events.ACTIONCOMPLETEEVENT, facility_name = '', res_name = '' , res_quantity = 0)
         game_events.EventQueue.add(event)

@@ -938,7 +938,7 @@ def resume_game():
     while True:
         try:
             PLACING_LIST_TEMP = pickle.load(output)
-            print PLACING_LIST_TEMP
+            #print PLACING_LIST_TEMP
         except EOFError:
             break
     output.close()

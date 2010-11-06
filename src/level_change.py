@@ -65,10 +65,10 @@ class change_level:
             for e in gui.setEvents(pygame.event.get()):
                 if e.type == pygame.QUIT:
                     print 'in pygame.quit'                    
-                    safe_exit()
+                    #safe_exit()
                 if e.type == QUIT:
                     print 'in quit'
-                    safe_exit()
+                    #safe_exit()
 
             #if level_updater.is_alive()==False:
                # self.run=False      GREAT THIS IS APPLICABLE ONLY WITH PYTHON 2.6, SO HAVE TO SEARCH SOME OTHER MEANS
